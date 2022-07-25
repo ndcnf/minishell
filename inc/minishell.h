@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/22 13:54:52 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:18:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,15 @@
 # include <curses.h>			// tg*
 # include <term.h>				// tg*
 # include <fcntl.h>				// open
+
+// structure minimale pour gerer les donnees pour tester les builtins - sera certainement vouee a modification suite au parsing
+typedef struct s_builtins
+{
+	char	**args; //une commande valide entree par le user
+	char	*path; //chemin du programme
+} t_builtins;
+
+//builtins.c
+int	b_echo(t_builtins *bs);
 
 #endif
