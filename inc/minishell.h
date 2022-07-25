@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/25 15:13:10 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:03:24 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_builtins
 {
 	char	**args; //une commande valide entree par le user
 	char	*path; //chemin du programme
+	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 } t_builtins;
 
 //builtins.c
