@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <marvin@42lausanne.ch>            +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/13 17:46:37 by nchennaf          #+#    #+#              #
-#    Updated: 2021/11/05 10:17:39 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/07/25 13:22:42 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,16 +54,16 @@ OBJ = ${SRC:.c=.o}
 all: ${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJ}
-	${AR} ${NAME} ${OBJ}
+	@${AR} ${NAME} ${OBJ}
 
 clean:
-	rm -rf *.o
+	@rm -rf *.o
 
 fclean: clean
-	rm -rf ${NAME}
+	@rm -rf ${NAME}
 	
 re: fclean all
 

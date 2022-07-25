@@ -6,9 +6,13 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/07/25 12:23:53 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/07/25 14:25:40 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+CYN = \033[36m
+YEL = \033[33m
+GRN = \033[32m
 
 CC =	gcc
 FLAGS =	-Wall -Wextra -Werror #-g -fsanitize=address
@@ -31,23 +35,36 @@ all:	${NAME}
 %.o:	%.c
 		@${CC} ${FLAGS} ${HEADER} -c $< -o $@
 ${NAME}:	${OBJ}
-		${MAKE} -C ${DIR_LIBFT}
-		${MAKE} -C ${DIR_GNL}
-		${CC} ${OBJ} ${FLAGS} \
+		@echo "${CYN}[LIBFT]		Creating..."
+		@${MAKE} -C ${DIR_LIBFT}
+		@echo "${GRN}[LIBFT]		OK"
+		@echo "${CYN}[GET NEXT LINE]	Creating ..."
+		@${MAKE} -C ${DIR_GNL}
+		@echo "${GRN}[GET NEXT LINE]	OK"
+		@echo "${CYN}[MINISHELL]	Compilating..."
+		@${CC} ${OBJ} ${FLAGS} \
 		-L${DIR_LIBFT} -l${LIB_LIBFT} \
 		-L${DIR_GNL} -l${LIB_GNL} \
 		-o ${NAME}
+		@echo "${GRN}[MINISHELL]	OK"
 exec:	all
 		./${NAME}
 norm:	all
 		norminette ${SRC} minishell.h
 clean:
-			${DEL} ${OBJ}
-			${MAKE} -C ${DIR_LIBFT} clean
-			${MAKE} -C ${DIR_GNL} clean
+			@echo "${YEL}[MINISHELL]	Deleting..."
+			@${DEL} ${OBJ}
+			@echo "${GRN}[MINISHELL]	Cleaned"
+			@echo "${YEL}[LIBFT]		Deleting..."
+			@${MAKE} -C ${DIR_LIBFT} clean
+			@echo "${GRN}[LIBFT]		Cleaned"
+			@echo "${YEL}[GET NEXT LINE]	Deleting..."
+			@${MAKE} -C ${DIR_GNL} clean
+			@echo "${GRN}[GET NEXT LINE]	Cleaned"
 
 fclean:		clean
-			${DEL} ${NAME}
+			@${DEL} ${NAME}
+			@echo "${GRN}Cleaning complete."
 
 re:			fclean all
 

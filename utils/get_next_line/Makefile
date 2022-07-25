@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:50:12 by nchennaf          #+#    #+#              #
-#    Updated: 2022/07/25 11:50:23 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/07/25 13:24:27 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,16 @@ OBJ = ${SRC:.c=.o}
 all: ${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}: ${OBJ}
-	${AR} ${NAME} ${OBJ}
+	@${AR} ${NAME} ${OBJ}
 
 clean:
-	rm -rf ${OBJ}
+	@rm -rf ${OBJ}
 
 fclean: clean
-	rm -rf ${NAME}
+	@rm -rf ${NAME}
 
 re: fclean all
 
