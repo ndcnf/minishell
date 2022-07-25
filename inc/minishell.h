@@ -6,12 +6,15 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/24 17:18:53 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:13:10 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+# include "../utils/libft/libft.h"
+# include "../utils/get_next_line/get_next_line.h"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -39,6 +42,7 @@ typedef struct s_builtins
 } t_builtins;
 
 //builtins.c
-int	b_echo(t_builtins *bs);
+int		b_echo(t_builtins *bs);
+void	b_init(t_builtins *bs, int argc, char *argv[]);
 
 #endif
