@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 11:32:07 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:31:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 
 // 'echo'				-> retour à la ligne
 // 'echo -n'			-> rien, ligne suivante
-// 'echo -n texte'		-> 'texte\n'
-// 'echo texte'			-> 'texte'
-// 'echo texte long'	-> 'texte long'
-// 'echo -n texte long'	-> 'texte long\n'
-// 'echo texte -n'		-> 'texte -n'
+// 'echo -n texte'		-> 'texte'
+// 'echo texte'			-> 'texte\n'
+// 'echo texte long'	-> 'texte long\n'
+// 'echo -n texte long'	-> 'texte long'
+// 'echo texte -n'		-> 'texte -n\n'
 ///////////////////////////////////////////////
 int	b_echo(t_builtins *bs)
 {
