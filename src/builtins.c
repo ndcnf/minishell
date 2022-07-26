@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 11:17:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:47:07 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 	int	i;
 
 	bs->args = malloc(sizeof(char *) * (argc + 1));
+	if(!bs->args)
+		perror("malloc error");
 	// Stocker temporairement les argv entres dans une structure
 	// et decaler afin de ne plus avoir le nom "./minishell" en premier
 	// argument
@@ -32,11 +34,11 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 
 // 'echo'				-> retour à la ligne
 // 'echo -n'			-> rien, ligne suivante
-// 'echo -n texte'		-> 'texte\n'
-// 'echo texte'			-> 'texte'
-// 'echo texte long'	-> 'texte long'
-// 'echo -n texte long'	-> 'texte long\n'
-// 'echo texte -n'		-> 'texte -n'
+// 'echo -n texte'		-> 'texte'
+// 'echo texte'			-> 'texte\n'
+// 'echo texte long'	-> 'texte long\n'
+// 'echo -n texte long'	-> 'texte long'
+// 'echo texte -n'		-> 'texte -n\n'
 ///////////////////////////////////////////////
 int	b_echo(t_builtins *bs)
 {
@@ -78,5 +80,13 @@ int	b_echo(t_builtins *bs)
 
 int	b_pwd(t_builtins *bs)
 {
-	
+	// utiliser le path de la fonction pwd directement
+	// fonction getcwd() a utiliser
+
+	if (getcwd(bs->path, sizeof(bs->path)) == NULL)
+		perror("getcwd() error");
+	else
+		printf("%s\n", bs->path);
+
+	return (EXIT_SUCCESS);
 }
