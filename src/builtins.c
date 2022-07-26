@@ -60,7 +60,6 @@ int	b_echo(t_builtins *bs)
 					if (i != bs->n_args)
 						printf(" ");
 				}
-				printf("\n");
 			}
 		}
 		else
@@ -73,6 +72,7 @@ int	b_echo(t_builtins *bs)
 				if (i != bs->n_args)
 					printf(" ");
 			}
+			printf("\n");
 		}
 	}
 	return (EXIT_SUCCESS);
