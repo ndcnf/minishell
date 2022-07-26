@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/07/25 14:25:40 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/07/25 16:24:10 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ YEL = \033[33m
 GRN = \033[32m
 
 CC =	gcc
-FLAGS =	-Wall -Wextra -Werror #-g -fsanitize=address
+FLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
 NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
