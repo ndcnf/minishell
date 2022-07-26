@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 13:31:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:58:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 	int	i;
 
 	bs->args = malloc(sizeof(char *) * (argc + 1));
+	if (!bs->args)
+		exit(EXIT_FAILURE);
 	// Stocker temporairement les argv entres dans une structure
 	// et decaler afin de ne plus avoir le nom "./minishell" en premier
 	// argument
@@ -42,9 +44,9 @@ int	b_echo(t_builtins *bs)
 {
 	int	i;
 
-	if (bs->n_args == 1) //si juste 'echo'
+	if (bs->n_args == 1)
 		printf("\n");
-	if (bs->n_args >= 2) //'echo' et ses complements
+	if (bs->n_args >= 2)
 	{
 		if (ft_strncmp(bs->args[1], "-n", strlen(bs->args[1])) == 0)
 		{
@@ -76,3 +78,11 @@ int	b_echo(t_builtins *bs)
 	return (EXIT_SUCCESS);
 }
 
+int	b_pwd(t_builtins *bs)
+{
+	if (getcwd(bs->path, sizeof(bs->path)) == NULL)
+		perror("error");
+	else
+		printf("%s\n", bs->path);
+	return (EXIT_SUCCESS);
+}
