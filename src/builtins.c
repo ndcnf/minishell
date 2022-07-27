@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 13:59:39 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 14:45:58 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,15 @@ int	b_cd(t_builtins *bs)
 	printf("PATH avant : [%s]\n", bs->path);
 	if (bs->n_args == 1)
 	{
-		printf("%s\n", getenv("HOME"));
 		bs->path = getenv("HOME");
+		printf("%s\n", bs->path);
 		return (EXIT_SUCCESS);
 	}
 	if (chdir(bs->args[1]) != 0)
+	{
 		perror("ERR");
-		
+		return (EXIT_FAILURE);
+	}	
 	getcwd(bs->path, ft_strlen(bs->path));
 	printf("PATH apres : [%s]\n", bs->path);
 	return (EXIT_SUCCESS);
