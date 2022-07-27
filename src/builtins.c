@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 12:33:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 13:59:39 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 		i++;
 	}
 	bs->n_args = i;
-	getcwd(bs->path, sizeof(bs->path));
+	bs->path = getcwd(bs->path, sizeof(bs->path));
 }
 
 // 'echo'				-> retour à la ligne
@@ -83,19 +83,22 @@ int	b_echo(t_builtins *bs)
 ///////////////////////////////////////////////////////////////
 int	b_pwd(t_builtins *bs)
 {
+	char	dir[MAX_PATH];
+
 	if (bs->n_args > 1)
 	{
 		printf("pwd: too many arguments\n");
 		exit(EXIT_FAILURE);
 	}
-	if (getcwd(bs->path, sizeof(bs->path)) == NULL)
+	if (getcwd(dir, sizeof(dir)) == NULL)
 		perror("pwd");
 	else
-		printf("%s\n", bs->path);
+		printf("%s\n", dir);
 	return (EXIT_SUCCESS);
 }
 
-// 'cd'			-> retour a /Users/(nom du user) / identique a 'cd ~'
+// 'cd ~'		-> retour a /Users/(nom du user)
+// 'cd'			-> identique a 'cd ~'
 // 'cd ..'		-> retour un niveau avant (le prompt l'affiche)
 // 'cd .'		-> on reste et fait rien
 // 'cd (dir)'	-> on va dans le dossier (dir)
@@ -103,10 +106,15 @@ int	b_pwd(t_builtins *bs)
 int	b_cd(t_builtins *bs)
 {
 	printf("PATH avant : [%s]\n", bs->path);
-	if (chdir(bs->args[1]) == 0)
-		printf("OK\n");
-	else
+	if (bs->n_args == 1)
+	{
+		printf("%s\n", getenv("HOME"));
+		bs->path = getenv("HOME");
+		return (EXIT_SUCCESS);
+	}
+	if (chdir(bs->args[1]) != 0)
 		perror("ERR");
+		
 	getcwd(bs->path, ft_strlen(bs->path));
 	printf("PATH apres : [%s]\n", bs->path);
 	return (EXIT_SUCCESS);
