@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 11:47:04 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:48:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	b_pwd(t_builtins *bs)
 int	b_cd(t_builtins *bs)
 {
 	printf("PATH avant : [%s]\n", bs->path);
-	chdir(*bs->args);
+	chdir(bs->args[1]);
 	getcwd(bs->path, ft_strlen(bs->path));
 	printf("PATH apres : [%s]\n", bs->path);
 	return (EXIT_SUCCESS);
