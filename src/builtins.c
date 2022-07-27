@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 11:48:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:23:15 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,30 @@ int	b_echo(t_builtins *bs)
 
 int	b_pwd(t_builtins *bs)
 {
+	if (bs->n_args > 1)
+	{
+		printf("pwd: too many arguments\n");
+		exit(EXIT_FAILURE);
+	}
 	if (getcwd(bs->path, sizeof(bs->path)) == NULL)
-		perror("error");
+		perror("pwd");
 	else
 		printf("%s\n", bs->path);
 	return (EXIT_SUCCESS);
 }
 
-// 'cd'			-> retour a /Users/(nom du user)
+// 'cd'			-> retour a /Users/(nom du user) / identique a 'cd ~'
 // 'cd ..'		-> retour un niveau avant (le prompt l'affiche)
 // 'cd .'		-> on reste et fait rien
-// 'cd (dir)	-> on va dans le dossier (dir)
+// 'cd (dir)'	-> on va dans le dossier (dir)
+/////////////////////////////////////////////////////////////////////
 int	b_cd(t_builtins *bs)
 {
 	printf("PATH avant : [%s]\n", bs->path);
-	chdir(bs->args[1]);
+	if (chdir(bs->args[1]) == 0)
+		printf("OK\n");
+	else
+		perror("ERR");
 	getcwd(bs->path, ft_strlen(bs->path));
 	printf("PATH apres : [%s]\n", bs->path);
 	return (EXIT_SUCCESS);
