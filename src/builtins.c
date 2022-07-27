@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 14:58:12 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:47:04 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 		i++;
 	}
 	bs->n_args = i;
+	getcwd(bs->path, sizeof(bs->path));
 }
 
 // 'echo'				-> retour à la ligne
@@ -84,5 +85,18 @@ int	b_pwd(t_builtins *bs)
 		perror("error");
 	else
 		printf("%s\n", bs->path);
+	return (EXIT_SUCCESS);
+}
+
+// 'cd'			-> retour a /Users/(nom du user)
+// 'cd ..'		-> retour un niveau avant (le prompt l'affiche)
+// 'cd .'		-> on reste et fait rien
+// 'cd (dir)	-> on va dans le dossier (dir)
+int	b_cd(t_builtins *bs)
+{
+	printf("PATH avant : [%s]\n", bs->path);
+	chdir(*bs->args);
+	getcwd(bs->path, ft_strlen(bs->path));
+	printf("PATH apres : [%s]\n", bs->path);
 	return (EXIT_SUCCESS);
 }

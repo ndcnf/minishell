@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 14:46:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:46:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ typedef struct s_builtins
 int		b_echo(t_builtins *bs);
 void	b_init(t_builtins *bs, int argc, char *argv[]);
 int		b_pwd(t_builtins *bs);
+int		b_cd(t_builtins *bs);
 
 #endif
