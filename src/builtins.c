@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 12:23:15 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:33:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ int	b_echo(t_builtins *bs)
 	}
 	return (EXIT_SUCCESS);
 }
-
+// 'pwd'		-> affiche le chemin actuel, suivi d'un \n
+// 'pwd texte	-> message d'erreur : 'pwd: too many arguments'
+///////////////////////////////////////////////////////////////
 int	b_pwd(t_builtins *bs)
 {
 	if (bs->n_args > 1)
