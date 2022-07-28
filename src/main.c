@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 14:02:24 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:26:33 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main (int argc, char *argv[], char **envp)
 {
 	// (void)argc;
 	// (void)argv;
-	(void)envp;
+	// (void)envp;
 
 	t_builtins bs;
 
@@ -25,7 +25,7 @@ int main (int argc, char *argv[], char **envp)
 	// args[1] = "-n";
 	// args[2] = NULL;
 
-	b_init(&bs, argc, argv);
+	b_init(&bs, argc, argv, envp);
 	if (ft_strncmp(argv[1], "echo", 4) == 0)
 		b_echo(&bs);
 	else if (ft_strncmp(argv[1], "pwd", 3) == 0)
@@ -34,6 +34,8 @@ int main (int argc, char *argv[], char **envp)
 		b_cd(&bs);
 	else if (ft_strncmp(argv[1], "exit", 4) == 0)
 		b_exit(&bs);
+	else if (ft_strncmp(argv[1], "env", 3) == 0)
+		b_env(&bs);
 	else
 		printf("Command not found (yet)\n");
 	

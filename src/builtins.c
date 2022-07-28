@@ -6,13 +6,13 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 14:14:52 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:07:03 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	b_init(t_builtins *bs, int argc, char *argv[])
+void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 {
 	int	i;
 
@@ -22,6 +22,21 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 	// Stocker temporairement les argv entres dans une structure
 	// et decaler afin de ne plus avoir le nom "./minishell" en premier
 	// argument
+
+	i = 0;
+	while (envp[i] != NULL)
+		i++;
+	bs->n_env = i;
+	bs->env = malloc(sizeof(char *) * bs->n_env);
+	if (!bs->env)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (i < bs->n_env)
+	{
+		bs->env[i] = ft_strdup(envp[i]);
+		// printf("[%s]\n", bs->env[i]);
+		i++;
+	}
 	i = 0;
 	while (i < (argc - 1))
 	{
@@ -134,4 +149,20 @@ int	b_exit(t_builtins *bs)
 	if (bs->n_args > 1)
 		printf("argument isn't valid in this program\n");
 	exit(EXIT_SUCCESS);
+}
+
+// 'env'		-> affiche la liste des variables d'environnement
+// 'env texte'	-> idem, rien de plus, rien de moins
+/////////////////////////////////////////////////////////////////
+int	b_env(t_builtins *bs)
+{
+	int	i;
+
+	i = 0;
+	while (i < bs->n_env)
+	{
+		printf("%s\n", bs->env[i]);
+		i++;
+	}
+	return (EXIT_SUCCESS);
 }
