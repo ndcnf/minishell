@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 12:43:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:14:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,15 @@ int	b_cd(t_builtins *bs)
 	bs->path = getcwd(dir, MAX_PATH);
 	printf("PATH : [%s]\n", bs->path); // UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
 	return (EXIT_SUCCESS);
+}
+
+// 'exit'		-> affiche 'exit\n' et ferme
+// 'exit texte'	-> affiche 'exit\n' puis un message erreur et ferme
+////////////////////////////////////////
+int	b_exit(t_builtins *bs)
+{
+	printf("%s\n", bs->args[0]); //plus simple : "exit\n" mais evite dutiliser un (void)bs
+	if (bs->n_args > 1)
+		printf("argument isn't valid in this program\n");
+	exit(EXIT_SUCCESS);
 }

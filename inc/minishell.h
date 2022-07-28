@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 13:50:30 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:56:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int		b_echo(t_builtins *bs);
 void	b_init(t_builtins *bs, int argc, char *argv[]);
 int		b_pwd(t_builtins *bs);
 int		b_cd(t_builtins *bs);
+int		b_exit(t_builtins *bs);
 
 #endif
