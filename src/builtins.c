@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 14:45:58 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:43:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	b_init(t_builtins *bs, int argc, char *argv[])
 		i++;
 	}
 	bs->n_args = i;
-	bs->path = getcwd(bs->path, sizeof(bs->path));
 }
 
 // 'echo'				-> retour à la ligne
@@ -105,19 +104,23 @@ int	b_pwd(t_builtins *bs)
 /////////////////////////////////////////////////////////////////////
 int	b_cd(t_builtins *bs)
 {
-	printf("PATH avant : [%s]\n", bs->path);
+	char	dir[MAX_PATH];
+
+	bs->path = getcwd(dir, MAX_PATH);
 	if (bs->n_args == 1)
 	{
-		bs->path = getenv("HOME");
-		printf("%s\n", bs->path);
-		return (EXIT_SUCCESS);
+		if (chdir(getenv("HOME")) != 0)
+		{
+			perror("ERR");
+			return (EXIT_FAILURE);
+		}
 	}
-	if (chdir(bs->args[1]) != 0)
+	else if (chdir(bs->args[1]) != 0)
 	{
 		perror("ERR");
 		return (EXIT_FAILURE);
-	}	
-	getcwd(bs->path, ft_strlen(bs->path));
-	printf("PATH apres : [%s]\n", bs->path);
+	}
+	bs->path = getcwd(dir, MAX_PATH);
+	printf("PATH : [%s]\n", bs->path); // UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
 	return (EXIT_SUCCESS);
 }
