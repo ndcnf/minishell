@@ -6,16 +6,17 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/07/25 16:24:10 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/07/28 12:07:27 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CYN = \033[36m
 YEL = \033[33m
 GRN = \033[32m
+RST = \033[0m
 
 CC =	gcc
-FLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
 NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
@@ -33,7 +34,7 @@ OBJ =	${SRC:.c=.o}
 all:	${NAME}
 
 %.o:	%.c
-		@${CC} ${FLAGS} ${HEADER} -c $< -o $@
+		@${CC} ${CFLAGS} ${HEADER} -c $< -o $@
 ${NAME}:	${OBJ}
 		@echo "${CYN}[LIBFT]		Creating..."
 		@${MAKE} -C ${DIR_LIBFT}
@@ -42,11 +43,11 @@ ${NAME}:	${OBJ}
 		@${MAKE} -C ${DIR_GNL}
 		@echo "${GRN}[GET NEXT LINE]	OK"
 		@echo "${CYN}[MINISHELL]	Compilating..."
-		@${CC} ${OBJ} ${FLAGS} \
+		@${CC} ${OBJ} ${CFLAGS} \
 		-L${DIR_LIBFT} -l${LIB_LIBFT} \
 		-L${DIR_GNL} -l${LIB_GNL} \
 		-o ${NAME}
-		@echo "${GRN}[MINISHELL]	OK"
+		@echo "${GRN}[MINISHELL]	OK${RST}"
 exec:	all
 		./${NAME}
 norm:	all

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 13:47:15 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:53:29 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@ int main (int argc, char *argv[], char **envp)
 	// args[2] = NULL;
 
 	b_init(&bs, argc, argv);
-	//b_echo(&bs);
-	b_pwd(&bs);
+	if (ft_strncmp(argv[1], "echo", 4) == 0)
+		b_echo(&bs);
+	else if (ft_strncmp(argv[1], "pwd", 3) == 0)
+		b_pwd(&bs);
+	else if (ft_strncmp(argv[1], "cd", 2) == 0)
+		b_cd(&bs);
+	else
+		printf("Command not found (yet)\n");
 	
 	//lancer execve dans un fork, afin de pouvoir continuer le main apres l'execution
 	// if (execve(args[0], args, envp) == -1)

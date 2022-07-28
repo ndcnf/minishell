@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 14:58:12 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:43:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,50 @@ int	b_echo(t_builtins *bs)
 	}
 	return (EXIT_SUCCESS);
 }
-
+// 'pwd'		-> affiche le chemin actuel, suivi d'un \n
+// 'pwd texte	-> message d'erreur : 'pwd: too many arguments'
+///////////////////////////////////////////////////////////////
 int	b_pwd(t_builtins *bs)
 {
-	if (getcwd(bs->path, sizeof(bs->path)) == NULL)
-		perror("error");
+	char	dir[MAX_PATH];
+
+	if (bs->n_args > 1)
+	{
+		printf("pwd: too many arguments\n");
+		exit(EXIT_FAILURE);
+	}
+	if (getcwd(dir, sizeof(dir)) == NULL)
+		perror("pwd");
 	else
-		printf("%s\n", bs->path);
+		printf("%s\n", dir);
+	return (EXIT_SUCCESS);
+}
+
+// 'cd ~'		-> retour a /Users/(nom du user)
+// 'cd'			-> identique a 'cd ~'
+// 'cd ..'		-> retour un niveau avant (le prompt l'affiche)
+// 'cd .'		-> on reste et fait rien
+// 'cd (dir)'	-> on va dans le dossier (dir)
+/////////////////////////////////////////////////////////////////////
+int	b_cd(t_builtins *bs)
+{
+	char	dir[MAX_PATH];
+
+	bs->path = getcwd(dir, MAX_PATH);
+	if (bs->n_args == 1)
+	{
+		if (chdir(getenv("HOME")) != 0)
+		{
+			perror("ERR");
+			return (EXIT_FAILURE);
+		}
+	}
+	else if (chdir(bs->args[1]) != 0)
+	{
+		perror("ERR");
+		return (EXIT_FAILURE);
+	}
+	bs->path = getcwd(dir, MAX_PATH);
+	printf("PATH : [%s]\n", bs->path); // UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/26 14:46:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/27 13:50:30 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@
 # include <term.h>				// tg*
 # include <fcntl.h>				// open
 
+# define MAX_PATH 1024
+
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
 typedef struct s_builtins
 {
 	char	**args; //une commande valide entree par le user
-	char	path[256]; //chemin du programme, devra etre renomme en *path au lieu de path[256]
+	char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 } t_builtins;
 
@@ -47,5 +49,6 @@ typedef struct s_builtins
 int		b_echo(t_builtins *bs);
 void	b_init(t_builtins *bs, int argc, char *argv[]);
 int		b_pwd(t_builtins *bs);
+int		b_cd(t_builtins *bs);
 
 #endif
