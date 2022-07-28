@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 16:04:47 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:07:03 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,8 @@ int	b_exit(t_builtins *bs)
 }
 
 // 'env'		-> affiche la liste des variables d'environnement
-// 'env texte'	-> 
+// 'env texte'	-> idem, rien de plus, rien de moins
+/////////////////////////////////////////////////////////////////
 int	b_env(t_builtins *bs)
 {
 	int	i;
