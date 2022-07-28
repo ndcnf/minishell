@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 15:52:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:27:08 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int		b_pwd(t_builtins *bs);
 int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
+int		b_export(t_builtins *bs);
 
 #endif

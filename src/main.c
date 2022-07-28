@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 15:26:33 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:28:13 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int main (int argc, char *argv[], char **envp)
 {
-	// (void)argc;
-	// (void)argv;
-	// (void)envp;
-
 	t_builtins bs;
 
 	// char *args[3];
@@ -36,6 +32,8 @@ int main (int argc, char *argv[], char **envp)
 		b_exit(&bs);
 	else if (ft_strncmp(argv[1], "env", 3) == 0)
 		b_env(&bs);
+	else if (ft_strncmp(argv[1], "export", 6) == 0)
+		b_export(&bs);
 	else
 		printf("Command not found (yet)\n");
 	
