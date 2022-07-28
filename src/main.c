@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/27 11:53:29 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:02:24 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int main (int argc, char *argv[], char **envp)
 		b_pwd(&bs);
 	else if (ft_strncmp(argv[1], "cd", 2) == 0)
 		b_cd(&bs);
+	else if (ft_strncmp(argv[1], "exit", 4) == 0)
+		b_exit(&bs);
 	else
 		printf("Command not found (yet)\n");
 	
