@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 15:55:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:58:35 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 	// Stocker temporairement les argv entres dans une structure
 	// et decaler afin de ne plus avoir le nom "./minishell" en premier
 	// argument
-
-	// bs->env = malloc(sizeof(char *) * ft_strlen(*envp));
-	// if (!bs->env)
-	// 	exit(EXIT_FAILURE);
-	// bs->env = ft_strdup(**envp);
 
 	i = 0;
 	while (envp[i] != NULL)
@@ -160,7 +155,13 @@ int	b_exit(t_builtins *bs)
 // 'env texte'	-> 
 int	b_env(t_builtins *bs)
 {
-	(void)bs;
+	int	i;
+
+	i = 0;
+	while (i < bs->n_env)
+	{
+		printf("%s\n", bs->env[i]);
+		i++;
+	}
 	return (EXIT_SUCCESS);
-	// getenv()
 }
