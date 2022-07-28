@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/07/28 14:06:01 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/07/28 14:28:09 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,36 +36,36 @@ all:	${NAME}
 %.o:	%.c
 		@${CC} ${CFLAGS} ${HEADER} -c $< -o $@
 ${NAME}:	${OBJ}
-		@echo "${CYN}[LIBFT]		Creating..."
+		@echo "[LIBFT]		${CYN}Creating...${RST}"
 		@${MAKE} -C ${DIR_LIBFT}
-		@echo "${GRN}[LIBFT]		OK"
-		@echo "${CYN}[GET NEXT LINE]	Creating ..."
+		@echo "[LIBFT]		${GRN}OK${RST}"
+		@echo "[GET NEXT LINE]	${CYN}Creating...${RST}"
 		@${MAKE} -C ${DIR_GNL}
-		@echo "${GRN}[GET NEXT LINE]	OK"
-		@echo "${CYN}[MINISHELL]	Compilating..."
+		@echo "[GET NEXT LINE]	${GRN}OK${RST}"
+		@echo "[MINISHELL]	${CYN}Compilating...${RST}"
 		@${CC} ${OBJ} ${CFLAGS} \
 		-L${DIR_LIBFT} -l${LIB_LIBFT} \
 		-L${DIR_GNL} -l${LIB_GNL} \
 		-o ${NAME}
-		@echo "${GRN}[MINISHELL]	OK${RST}"
+		@echo "[MINISHELL]	${GRN}OK${RST}"
 exec:	all
 		./${NAME}
 norm:	all
 		norminette ${SRC} minishell.h
 clean:
-			@echo "${YEL}[MINISHELL]	Deleting..."
+			@echo "[MINISHELL]	${YEL}Deleting...${RST}"
 			@${DEL} ${OBJ}
-			@echo "${GRN}[MINISHELL]	Cleaned"
-			@echo "${YEL}[LIBFT]		Deleting..."
+			@echo "[MINISHELL]	${GRN}Cleaned${RST}"
+			@echo "[LIBFT]		${YEL}Deleting...${RST}"
 			@${MAKE} -C ${DIR_LIBFT} clean
-			@echo "${GRN}[LIBFT]		Cleaned"
-			@echo "${YEL}[GET NEXT LINE]	Deleting..."
+			@echo "[LIBFT]		${GRN}Cleaned${RST}"
+			@echo "[GET NEXT LINE]	${YEL}Deleting...${RST}"
 			@${MAKE} -C ${DIR_GNL} clean
-			@echo "${GRN}[GET NEXT LINE]	Cleaned"
+			@echo "[GET NEXT LINE]	${GRN}Cleaned${RST}"
 
 fclean:		clean
 			@${DEL} ${NAME}
-			@echo "${GRN}Cleaning complete."
+			@echo "${GRN}Cleaning complete.${RST}"
 
 re:			fclean all
 
