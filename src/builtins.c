@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/29 11:57:50 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/29 12:07:03 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,15 +168,19 @@ int	b_env(t_builtins *bs)
 }
 
 // 'export'				-> affiche liste des variables environnement, triees par ASCII
-// 'export test=texte	-> cree une variable "test" avec la valeur "texte", rien ne s'affiche
-/////////////////////////////////////////////////////////////////////////////////////////////
+// 'export bonjour'		-> cree la variable bonjour seule, rien ne s'affiche. Cette info ne sera pas ajoutee lors de l'affichage de env, mais dans export oui
+// 'export test=texte	-> cree la variable test="texte", rien ne s'affiche. Cette info sera ajoutee lors de l'affichage de env et export
+//////////////////////////////////////////////////////////////////////////////////////
 int	b_export(t_builtins *bs)
 {
-	sort_env(bs);
-	return (EXIT_SUCCESS);
+	if (bs->n_args == 1)
+		sort_env(bs);
+	else
+		printf("creer une nouvelle variable\n");
 	// sans option : trier ASCII
 	// declare -x VARIABLE="valeur"\n
 	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
+	return (EXIT_SUCCESS);
 }
 
 void	sort_env(t_builtins *bs)
@@ -214,7 +218,7 @@ void	sort_env(t_builtins *bs)
 	i = 0;
 	while (i < bs->n_env)
 	{
-		printf("declare -x %s\n", export[i]); //le printf devra inclure " " plus tard, spliter = (?)
+		printf("declare -x %s\n", export[i]); //le printf devra inclure " " plus tard, spliter avec '=' ?
 		i++;
 	}
 }
