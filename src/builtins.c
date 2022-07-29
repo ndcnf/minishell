@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 16:30:36 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:57:50 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,54 @@ int	b_env(t_builtins *bs)
 	return (EXIT_SUCCESS);
 }
 
+// 'export'				-> affiche liste des variables environnement, triees par ASCII
+// 'export test=texte	-> cree une variable "test" avec la valeur "texte", rien ne s'affiche
+/////////////////////////////////////////////////////////////////////////////////////////////
 int	b_export(t_builtins *bs)
 {
-	
+	sort_env(bs);
+	return (EXIT_SUCCESS);
+	// sans option : trier ASCII
+	// declare -x VARIABLE="valeur"\n
+	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
+}
+
+void	sort_env(t_builtins *bs)
+{
+	int		i;
+	int		j;
+	char	*tempura;
+	char	**export;
+
+	export = malloc(sizeof(char *) * bs->n_env);
+	if(!export)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (i < bs->n_env)
+	{
+		export[i] = ft_strdup(bs->env[i]);
+		i++;
+	}
+	i = 0;
+	while (i < bs->n_env)
+	{
+		j = i + 1;
+		while (j < bs->n_env)
+		{
+			if (ft_strncmp(export[j], export[i], MAX_PATH) < 0)
+			{
+				tempura = export[i];
+				export[i] = export[j];
+				export[j] = tempura;
+			}
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < bs->n_env)
+	{
+		printf("declare -x %s\n", export[i]); //le printf devra inclure " " plus tard, spliter = (?)
+		i++;
+	}
 }
