@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 14:39:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:24:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_builtins
 	char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 	char	**env; //copie des valeurs de l'environnement
-	char	***env_elem; //valeurs d'environnement separes/parses
 	int		n_env; //nombre de variables d'environnement
 } t_builtins;
 
@@ -56,9 +55,8 @@ int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
 int		b_export(t_builtins *bs);
-// void	sort_env(t_builtins *bs);
-// void	print_export(char *s);
-void	parse_env(t_builtins *bs);
+// void	parse_env(t_builtins *bs);
 void	sort_env(t_builtins *bs);
+void	parse_it(char *s);
 
 #endif
