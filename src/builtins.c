@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 13:28:06 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:01:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,39 +173,40 @@ int	b_env(t_builtins *bs)
 //////////////////////////////////////////////////////////////////////////////////////
 int	b_export(t_builtins *bs)
 {
+	//parse_env(bs);
 	if (bs->n_args == 1)
-	{
 		sort_env(bs);
-	}
 	else
 		printf("creer une nouvelle variable\n");
-	// declare -x VARIABLE="valeur"\n
 	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
 	return (EXIT_SUCCESS);
 }
 
-void	parse_env(t_builtins *bs)
-{
-	int		i;
-	char	***env_elements;
-
-	env_elements = malloc(sizeof(char **) * bs->n_env);
-	if (!env_elements)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (i < bs->n_env)
-	{
-		env_elements[i] = ft_split(bs->env[i], '=');
-		printf("variable[%s]\n", env_elements[i][0]);
-		printf("valeur[%s]\n", env_elements[i][1]);
-		i++;
-	}
-}
-
-// void	print_export(char *s)
+// void	parse_env(t_builtins *bs)
 // {
+// 	int		i;
+// 	//char	***env_elem;
 
+// 	bs->env_elem = malloc(sizeof(char **) * bs->n_env);
+// 	if (!bs->env_elem)
+// 		exit(EXIT_FAILURE);
+// 	i = 0;
+// 	while (i < bs->n_env)
+// 	{
+// 		bs->env_elem[i] = ft_split(bs->env[i], '=');
+// 		printf("%s = \"%s\"\n", bs->env_elem[i][0], bs->env_elem[i][1]);
+// 		i++;
+// 	}
 // }
+
+
+void	parse_it(char *s)
+{
+	char	**elem;
+
+	elem = ft_split(s, '=');
+	printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
+}
 
 void	sort_env(t_builtins *bs)
 {
@@ -241,8 +242,5 @@ void	sort_env(t_builtins *bs)
 	}
 	i = 0;
 	while (i < bs->n_env)
-	{
-		printf("declare -x %s\n", export[i]); //le printf devra inclure " " plus tard, spliter avec '=' ?
-		i++;
-	}
+		parse_it(export[i++]);
 }

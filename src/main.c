@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 11:39:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:21:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int main (int argc, char *argv[], char **envp)
 	else if (ft_strncmp(argv[1], "env", 3) == 0)
 		b_env(&bs);
 	else if (ft_strncmp(argv[1], "export", 6) == 0)
-		parse_env(&bs); //juste pour tester le parsing de l'environnement
-		//b_export(&bs);
+		//parse_env(&bs); //juste pour tester le parsing de l'environnement
+		b_export(&bs);
 	else
 		printf("Command not found (yet)\n");
 	
