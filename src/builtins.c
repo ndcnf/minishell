@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 12:12:52 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:28:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,9 @@ int	b_env(t_builtins *bs)
 int	b_export(t_builtins *bs)
 {
 	if (bs->n_args == 1)
+	{
 		sort_env(bs);
+	}
 	else
 		printf("creer une nouvelle variable\n");
 	// declare -x VARIABLE="valeur"\n
@@ -185,18 +187,17 @@ int	b_export(t_builtins *bs)
 void	parse_env(t_builtins *bs)
 {
 	int		i;
-	char	**env_elements;
+	char	***env_elements;
 
-	env_elements = malloc(sizeof(char *) * (2 * bs->n_env));
+	env_elements = malloc(sizeof(char **) * bs->n_env);
 	if (!env_elements)
 		exit(EXIT_FAILURE);
 	i = 0;
 	while (i < bs->n_env)
 	{
-		env_elements[i] = *ft_split(bs->env[i], '=');
-		printf("splitty[%s]\n", env_elements[i]);
-		printf("valeur [%s]\n", env_elements[i]);
-		//printf("split : [%s]\n", ft_split(bs->env[i], '='));
+		env_elements[i] = ft_split(bs->env[i], '=');
+		printf("variable[%s]\n", env_elements[i][0]);
+		printf("valeur[%s]\n", env_elements[i][1]);
 		i++;
 	}
 }
