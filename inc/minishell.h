@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 16:24:27 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:55:36 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int		b_export(t_builtins *bs);
 // void	parse_env(t_builtins *bs);
 void	sort_env(t_builtins *bs);
 void	parse_it(char *s);
+void	add_key(t_builtins *bs);
 
 #endif

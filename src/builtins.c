@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 16:25:32 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:16:28 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	b_echo(t_builtins *bs)
 	}
 	return (EXIT_SUCCESS);
 }
+
 // 'pwd'		-> affiche le chemin actuel, suivi d'un \n
 // 'pwd texte	-> message d'erreur : 'pwd: too many arguments'
 ///////////////////////////////////////////////////////////////
@@ -177,7 +178,7 @@ int	b_export(t_builtins *bs)
 	if (bs->n_args == 1)
 		sort_env(bs);
 	else
-		printf("creer une nouvelle variable\n");
+		add_key(bs);
 	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
 	return (EXIT_SUCCESS);
 }
@@ -245,4 +246,26 @@ void	sort_env(t_builtins *bs)
 	i = 0;
 	while (i < bs->n_env)
 		parse_it(export[i++]);
+}
+
+// export chien de paille=ok -->
+// declare -x chien
+// declare -x de
+// declare -x paille="ok"
+void	add_key(t_builtins *bs)
+{
+	char	*new_key;
+	char	*new_val;
+	int		i;
+
+	printf("ARGS[0] [%s]\n", bs->args[1]);
+	new_key = malloc(sizeof(char) * ft_strlen(bs->args[1]));
+	if (!new_key)
+		exit(EXIT_FAILURE);
+	new_val = malloc(sizeof(char) * ft_strlen(bs->args[1]));
+	if (!new_val)
+		exit(EXIT_FAILURE);
+
+	i = 0;
+	printf("STRCHR [%s]\n", ft_strchr(bs->args[2], '='));
 }
