@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: marlene <marlene@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/07/28 14:28:09 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/08/08 13:22:20 by marlene          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,10 @@ NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
 		src/main.c \
+		src/parsing.c \
 
 DIR_LIBFT = ./utils/libft/
 LIB_LIBFT = ft
-DIR_GNL = ./utils/get_next_line/
-LIB_GNL = gnl
 HEADER = -Iinc
 DEL = rm -rf
 
@@ -39,13 +38,9 @@ ${NAME}:	${OBJ}
 		@echo "[LIBFT]		${CYN}Creating...${RST}"
 		@${MAKE} -C ${DIR_LIBFT}
 		@echo "[LIBFT]		${GRN}OK${RST}"
-		@echo "[GET NEXT LINE]	${CYN}Creating...${RST}"
-		@${MAKE} -C ${DIR_GNL}
-		@echo "[GET NEXT LINE]	${GRN}OK${RST}"
 		@echo "[MINISHELL]	${CYN}Compilating...${RST}"
 		@${CC} ${OBJ} ${CFLAGS} \
 		-L${DIR_LIBFT} -l${LIB_LIBFT} \
-		-L${DIR_GNL} -l${LIB_GNL} \
 		-o ${NAME}
 		@echo "[MINISHELL]	${GRN}OK${RST}"
 exec:	all
@@ -59,9 +54,6 @@ clean:
 			@echo "[LIBFT]		${YEL}Deleting...${RST}"
 			@${MAKE} -C ${DIR_LIBFT} clean
 			@echo "[LIBFT]		${GRN}Cleaned${RST}"
-			@echo "[GET NEXT LINE]	${YEL}Deleting...${RST}"
-			@${MAKE} -C ${DIR_GNL} clean
-			@echo "[GET NEXT LINE]	${GRN}Cleaned${RST}"
 
 fclean:		clean
 			@${DEL} ${NAME}

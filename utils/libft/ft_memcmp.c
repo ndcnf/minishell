@@ -3,27 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 16:52:56 by nchennaf          #+#    #+#             */
-/*   Updated: 2021/11/05 11:26:03 by nchennaf         ###   ########.fr       */
+/*   Created: 2021/11/04 14:35:06 by marlene           #+#    #+#             */
+/*   Updated: 2021/11/08 15:59:43 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	size_t			i;
-	unsigned char	*ptr_s1;
-	unsigned char	*ptr_s2;
+	const unsigned char	*str1_char;
+	const unsigned char	*str2_char;
+	unsigned int		i;
 
-	ptr_s1 = (unsigned char *)s1;
-	ptr_s2 = (unsigned char *)s2;
 	i = 0;
+	str1_char = str1;
+	str2_char = str2;
 	if (n == 0)
+	{
 		return (0);
-	while ((ptr_s1[i] == ptr_s2[i]) && (i < n - 1))
+	}
+	while (i < n && *str1_char == *str2_char)
+	{
 		i++;
-	return (ptr_s1[i] - ptr_s2[i]);
+		str1_char++;
+		str2_char++;
+	}
+	if (i == n)
+	{
+		str1_char--;
+		str2_char--;
+	}
+	return (*str1_char - *str2_char);
 }
+
+/*int main(int argc, char **argv)
+{
+    (void)    argc;
+    (void)     argv;
+    char *s1 = "\xff\xaa\xde\x12";
+	char *s2 = "\xff\xaa\xde\x12MACOSAAAAA";
+	size_t size = 4;
+
+    printf("Valeur de retour : %d", ft_memcmp(s1, s2, size));
+}*/
