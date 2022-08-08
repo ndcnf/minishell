@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strichr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 12:35:14 by mthiesso          #+#    #+#             */
-/*   Updated: 2021/11/05 18:23:05 by mthiesso         ###   ########.fr       */
+/*   Created: 2022/06/01 14:50:16 by mthiesso          #+#    #+#             */
+/*   Updated: 2022/06/05 16:05:53 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_strichr(const char *s, int c)
 {
-	size_t			i;
-	unsigned char	*dest;
+	int	i;
 
 	i = 0;
-	dest = s;
-	while (i < n)
+	if (!s)
+		return (-1);
+	while (s[i])
 	{
-		*dest = 0;
+		if (s[i] == c)
+			return (i);
 		i++;
-		dest++;
 	}
+	return (-1);
 }

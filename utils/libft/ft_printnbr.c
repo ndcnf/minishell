@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_printnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 12:35:14 by mthiesso          #+#    #+#             */
-/*   Updated: 2021/11/05 18:23:05 by mthiesso         ###   ########.fr       */
+/*   Created: 2021/11/29 14:12:58 by mthiesso          #+#    #+#             */
+/*   Updated: 2022/06/20 17:03:26 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_printnbr(int nb)
 {
-	size_t			i;
-	unsigned char	*dest;
+	int		len;
+	char	*num;
 
-	i = 0;
-	dest = s;
-	while (i < n)
-	{
-		*dest = 0;
-		i++;
-		dest++;
-	}
+	num = ft_itoa(nb);
+	len = ft_printstr(num);
+	free (num);
+	return (len);
 }
