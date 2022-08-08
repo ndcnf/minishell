@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 17:16:28 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:25:46 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,16 @@ int	b_export(t_builtins *bs)
 // 	}
 // }
 
+char	**parse_env(char *s)
+{
+	char	**elem;
+
+	elem = ft_split(s, '=');
+	//if (elem)
+		return (elem);
+	///return (EXIT_FAILURE); //REPRENDRE ICI
+}
+
 void	parse_it(char *s)
 {
 	char	**elem;
@@ -245,7 +255,13 @@ void	sort_env(t_builtins *bs)
 	}
 	i = 0;
 	while (i < bs->n_env)
+	{
+		// if (parse_env(export[i])[1])
+		// 	printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
+		// else
+		// 	printf("declare -x %s\n", elem[0]);
 		parse_it(export[i++]);
+	}
 }
 
 // export chien de paille=ok -->
@@ -267,5 +283,13 @@ void	add_key(t_builtins *bs)
 		exit(EXIT_FAILURE);
 
 	i = 0;
-	printf("STRCHR [%s]\n", ft_strchr(bs->args[2], '='));
+	new_val = ft_strchr(bs->args[1], '=') + 1;
+	printf("VAL : %s\n", new_val);
+	while (bs->args[1][i] != '=')
+	{
+		new_key[i] = bs->args[1][i];
+		i++;
+	}
+	new_key[i] = '\0';
+	printf("KEY : %s\n", new_key);
 }
