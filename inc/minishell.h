@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/28 16:58:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 11:37:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
 int		b_export(t_builtins *bs);
 void	sort_env(t_builtins *bs);
+// void	print_export(char *s);
+void	parse_env(t_builtins *bs);
 
 #endif

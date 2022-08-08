@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/07/29 12:07:03 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:12:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,11 +177,34 @@ int	b_export(t_builtins *bs)
 		sort_env(bs);
 	else
 		printf("creer une nouvelle variable\n");
-	// sans option : trier ASCII
 	// declare -x VARIABLE="valeur"\n
 	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
 	return (EXIT_SUCCESS);
 }
+
+void	parse_env(t_builtins *bs)
+{
+	int		i;
+	char	**env_elements;
+
+	env_elements = malloc(sizeof(char *) * (2 * bs->n_env));
+	if (!env_elements)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (i < bs->n_env)
+	{
+		env_elements[i] = *ft_split(bs->env[i], '=');
+		printf("splitty[%s]\n", env_elements[i]);
+		printf("valeur [%s]\n", env_elements[i]);
+		//printf("split : [%s]\n", ft_split(bs->env[i], '='));
+		i++;
+	}
+}
+
+// void	print_export(char *s)
+// {
+
+// }
 
 void	sort_env(t_builtins *bs)
 {
