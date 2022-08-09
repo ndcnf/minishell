@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 13:50:01 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:06:15 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,15 +174,19 @@ int	b_env(t_builtins *bs)
 //////////////////////////////////////////////////////////////////////////////////////
 int	b_export(t_builtins *bs)
 {
-	//parse_env(bs);
+	int	i;
 	if (bs->n_args == 1)
 		sort_env(bs);
 	else
 	{
-		add_key(bs);
-		sort_env(bs); //juste pour tester
+		i = 1;
+		while (i < bs->n_args)
+		{
+			add_key(bs);
+			i++;
+		}
+		sort_env(bs); //juste verif
 	}
-	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
 	return (EXIT_SUCCESS);
 }
 
@@ -278,7 +282,6 @@ void	add_key(t_builtins *bs)
 	char	*new_val;
 	int		i;
 
-	// printf("ARGS[0] [%s]\n", bs->args[1]); //UNIQUEMENT VERIF
 	new_key = malloc(sizeof(char) * ft_strlen(bs->args[1]));
 	if (!new_key)
 		exit(EXIT_FAILURE);
@@ -288,11 +291,15 @@ void	add_key(t_builtins *bs)
 	i = 0;
 	new_val = ft_strchr(bs->args[1], '=') + 1;
 
+	////////////////////////////////////////////////////
+	// Partie verification si aucune valeur a faire ici
+
 	if (new_val != NULL)
-		printf("%s", new_val); //UNIQUEMENT VERIF
+		printf("%s\n", new_val); //UNIQUEMENT VERIF
 	else
 		printf("pas de valeur\n");
 	//if (ft_strlen(new_val) == ft_strlen(bs->args[1]))
+	////////////////////////////////////////////////////
 
 	while (bs->args[1][i] != '=')
 	{
@@ -300,19 +307,8 @@ void	add_key(t_builtins *bs)
 		i++;
 	}
 	new_key[i] = '\0';
-	// printf("KEY : %s\n", new_key); //UNIQUEMENT VERIF
-	//printf("VAL : %s\n", new_val); //UNIQUEMENT VERIF
-
 	need_bigger_array(bs, new_key, new_val);
 }
-
-
-// Fonction pour agrandir et ajouter une nouvelle donnee dans le tableau
-// Dupliquer le tableau actuel dans un nouveau temporaire qui aura la taille +1
-// Ajouter la nouvelle donnee
-// Ajouter le NULL final
-// Liberer le tableau (les donnees, puis le tableau)
-// Reassigner les valeurs dans le tableau
 
 void	need_bigger_array(t_builtins *bs, char *key, char *val)
 {
@@ -339,26 +335,12 @@ void	need_bigger_array(t_builtins *bs, char *key, char *val)
 	}
 	new_array[i] = new_val;
 	new_array[i + 1] = NULL;
-
 	bs->n_env++;
-
 	free(bs->env);
-	dup_array(bs, new_array);
+	dup_array_to_env(bs, new_array);
 }
 
-// void	free_array(t_builtins *bs)
-// {
-// 	// int	i;
-
-// 	// i = 0;
-// 	// while (i < bs->n_env)
-// 	// 	free(bs->env[i]);
-// 	//free(bs->env);
-	
-// }
-
-
-void	dup_array(t_builtins *bs, char **array)
+void	dup_array_to_env(t_builtins *bs, char **array)
 {
 	int	i;
 
