@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 16:12:45 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:25:23 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,18 +173,15 @@ int	b_env(t_builtins *bs)
 int	b_export(t_builtins *bs)
 {
 	int	i;
-	printf("n_args[%d]\n", bs->n_args);
+
 	if (bs->n_args == 1)
 		sort_env(bs);
 	else
 	{
 		i = 1;
 		while (i < bs->n_args)
-		{
-			add_key(bs, i);
-			i++;
-		}
-		sort_env(bs); //juste verif
+			add_key(bs, i++);
+		sort_env(bs); //VERIFICATION UNIQUEMENT
 	}
 	return (EXIT_SUCCESS);
 }
@@ -224,7 +221,7 @@ void	parse_it(char *s)
 	if (elem[1]) // A TESTER, SI AUCUNE VALEUR DONNEE POUR LA CLEF
 		printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
 	else if (elem[0])
-		printf("declare -x %s\n", elem[0]); //modifier apres bug trouve
+		printf("declare -x %s\n", elem[0]);
 }
 
 void	sort_env(t_builtins *bs)
@@ -288,18 +285,7 @@ void	add_key(t_builtins *bs, int pos)
 	if (!new_val)
 		exit(EXIT_FAILURE);
 	i = 0;
-	new_val = ft_strchr(bs->args[pos], '=') + 1;
-
-	////////////////////////////////////////////////////
-	// Partie verification si aucune valeur a faire ici
-
-	if (new_val != NULL)
-		printf("%s\n", new_val); //UNIQUEMENT VERIF
-	else
-		printf("pas de valeur\n");
-	//if (ft_strlen(new_val) == ft_strlen(bs->args[1]))
-	////////////////////////////////////////////////////
-
+	new_val = ft_strchr(bs->args[pos], '=');
 	while (bs->args[pos][i] != '=')
 	{
 		new_key[i] = bs->args[pos][i];
@@ -319,7 +305,6 @@ void	need_bigger_array(t_builtins *bs, char *key, char *val)
 	char	*new_val;
 	int		i;
 
-	printf("n_env = [%d]\n", bs->n_env);
 	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
 	if (!new_array)
 		exit(EXIT_FAILURE);
