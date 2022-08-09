@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 16:25:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:41:42 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,7 @@ void	sort_env(t_builtins *bs)
 // declare -x de
 // declare -x paille="ok"
 // Pour l'ajout, ce sera une clef apres l'autre
+// Cette fonction contient des leaks
 void	add_key(t_builtins *bs, int pos)
 {
 	char	*new_key;
