@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 15:04:41 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:12:45 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,8 +223,8 @@ void	parse_it(char *s)
 	elem = ft_split(s, '=');
 	if (elem[1]) // A TESTER, SI AUCUNE VALEUR DONNEE POUR LA CLEF
 		printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
-	else
-		printf("declare -x %s\n", elem[0]);
+	else if (elem[0])
+		printf("declare -x %s\n", elem[0]); //modifier apres bug trouve
 }
 
 void	sort_env(t_builtins *bs)
