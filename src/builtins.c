@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 12:49:10 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:50:01 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,10 @@ int	b_export(t_builtins *bs)
 	if (bs->n_args == 1)
 		sort_env(bs);
 	else
+	{
 		add_key(bs);
+		sort_env(bs); //juste pour tester
+	}
 	// option=truc, ajouter dans les variables et mettre a jour le nombre de variables
 	return (EXIT_SUCCESS);
 }
@@ -275,7 +278,7 @@ void	add_key(t_builtins *bs)
 	char	*new_val;
 	int		i;
 
-	printf("ARGS[0] [%s]\n", bs->args[1]); //UNIQUEMENT VERIF
+	// printf("ARGS[0] [%s]\n", bs->args[1]); //UNIQUEMENT VERIF
 	new_key = malloc(sizeof(char) * ft_strlen(bs->args[1]));
 	if (!new_key)
 		exit(EXIT_FAILURE);
@@ -284,8 +287,11 @@ void	add_key(t_builtins *bs)
 		exit(EXIT_FAILURE);
 	i = 0;
 	new_val = ft_strchr(bs->args[1], '=') + 1;
-	if (new_val)
-		printf("%s", new_val);
+
+	if (new_val != NULL)
+		printf("%s", new_val); //UNIQUEMENT VERIF
+	else
+		printf("pas de valeur\n");
 	//if (ft_strlen(new_val) == ft_strlen(bs->args[1]))
 
 	while (bs->args[1][i] != '=')
@@ -294,12 +300,10 @@ void	add_key(t_builtins *bs)
 		i++;
 	}
 	new_key[i] = '\0';
-	printf("KEY : %s\n", new_key); //UNIQUEMENT VERIF
+	// printf("KEY : %s\n", new_key); //UNIQUEMENT VERIF
 	//printf("VAL : %s\n", new_val); //UNIQUEMENT VERIF
 
 	need_bigger_array(bs, new_key, new_val);
-
-	bs->n_env++;
 }
 
 
@@ -316,6 +320,7 @@ void	need_bigger_array(t_builtins *bs, char *key, char *val)
 	char	*new_val;
 	int		i;
 
+	printf("n_env = [%d]\n", bs->n_env);
 	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
 	if (!new_array)
 		exit(EXIT_FAILURE);
@@ -335,11 +340,37 @@ void	need_bigger_array(t_builtins *bs, char *key, char *val)
 	new_array[i] = new_val;
 	new_array[i + 1] = NULL;
 
-	// Pour tester uniquement
+	bs->n_env++;
+
+	free(bs->env);
+	dup_array(bs, new_array);
+}
+
+// void	free_array(t_builtins *bs)
+// {
+// 	// int	i;
+
+// 	// i = 0;
+// 	// while (i < bs->n_env)
+// 	// 	free(bs->env[i]);
+// 	//free(bs->env);
+	
+// }
+
+
+void	dup_array(t_builtins *bs, char **array)
+{
+	int	i;
+
+	bs->env = malloc (sizeof(char *) * bs->n_env);
+	if (!bs->env)
+		exit(EXIT_FAILURE);
 	i = 0;
-	while (new_array[i])
+	while (i < bs->n_env)
 	{
-		printf("[%s]\n", new_array[i]);
+		bs->env[i] = array[i];
 		i++;
 	}
+	bs->env[i] = NULL;
+	free(array);
 }
