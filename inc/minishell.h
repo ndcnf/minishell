@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 18:55:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:57:18 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char	**parse_env(char *s);
 void	sort_env(t_builtins *bs);
 void	parse_it(char *s); //soon obsolete ?
 void	add_key(t_builtins *bs);
+void	need_bigger_array(t_builtins *bs, char *key, char *val);
 
 #endif

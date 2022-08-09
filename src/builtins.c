@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 19:25:46 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:49:10 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,28 +268,78 @@ void	sort_env(t_builtins *bs)
 // declare -x chien
 // declare -x de
 // declare -x paille="ok"
+// Pour l'ajout, ce sera une clef apres l'autre
 void	add_key(t_builtins *bs)
 {
 	char	*new_key;
 	char	*new_val;
 	int		i;
 
-	printf("ARGS[0] [%s]\n", bs->args[1]);
+	printf("ARGS[0] [%s]\n", bs->args[1]); //UNIQUEMENT VERIF
 	new_key = malloc(sizeof(char) * ft_strlen(bs->args[1]));
 	if (!new_key)
 		exit(EXIT_FAILURE);
 	new_val = malloc(sizeof(char) * ft_strlen(bs->args[1]));
 	if (!new_val)
 		exit(EXIT_FAILURE);
-
 	i = 0;
 	new_val = ft_strchr(bs->args[1], '=') + 1;
-	printf("VAL : %s\n", new_val);
+	if (new_val)
+		printf("%s", new_val);
+	//if (ft_strlen(new_val) == ft_strlen(bs->args[1]))
+
 	while (bs->args[1][i] != '=')
 	{
 		new_key[i] = bs->args[1][i];
 		i++;
 	}
 	new_key[i] = '\0';
-	printf("KEY : %s\n", new_key);
+	printf("KEY : %s\n", new_key); //UNIQUEMENT VERIF
+	//printf("VAL : %s\n", new_val); //UNIQUEMENT VERIF
+
+	need_bigger_array(bs, new_key, new_val);
+
+	bs->n_env++;
+}
+
+
+// Fonction pour agrandir et ajouter une nouvelle donnee dans le tableau
+// Dupliquer le tableau actuel dans un nouveau temporaire qui aura la taille +1
+// Ajouter la nouvelle donnee
+// Ajouter le NULL final
+// Liberer le tableau (les donnees, puis le tableau)
+// Reassigner les valeurs dans le tableau
+
+void	need_bigger_array(t_builtins *bs, char *key, char *val)
+{
+	char	**new_array;
+	char	*new_val;
+	int		i;
+
+	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
+	if (!new_array)
+		exit(EXIT_FAILURE);
+	if (val)
+	{
+		key = ft_strjoin(key, "=");
+		new_val = ft_strjoin(key, val);
+	}
+	else
+		new_val = key;
+	i = 0;
+	while (i < bs->n_env)
+	{
+		new_array[i] = ft_strdup(bs->env[i]);
+		i++;
+	}
+	new_array[i] = new_val;
+	new_array[i + 1] = NULL;
+
+	// Pour tester uniquement
+	i = 0;
+	while (new_array[i])
+	{
+		printf("[%s]\n", new_array[i]);
+		i++;
+	}
 }
