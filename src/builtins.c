@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 16:41:42 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:08:23 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,17 +203,7 @@ int	b_export(t_builtins *bs)
 // 	}
 // }
 
-char	**parse_env(char *s)
-{
-	char	**elem;
-
-	elem = ft_split(s, '=');
-	//if (elem)
-		return (elem);
-	///return (EXIT_FAILURE); //REPRENDRE ICI
-}
-
-void	parse_it(char *s)
+void	parse_env(char *s)
 {
 	char	**elem;
 
@@ -258,13 +248,7 @@ void	sort_env(t_builtins *bs)
 	}
 	i = 0;
 	while (i < bs->n_env)
-	{
-		// if (parse_env(export[i])[1])
-		// 	printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
-		// else
-		// 	printf("declare -x %s\n", elem[0]);
-		parse_it(export[i++]);
-	}
+		parse_env(export[i++]);
 }
 
 // export chien de paille=ok -->
@@ -280,11 +264,13 @@ void	add_key(t_builtins *bs, int pos)
 	int		i;
 
 	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
-	if (!new_key)
-		exit(EXIT_FAILURE);
+	malloc_checker(new_key);
+	// if (!new_key)
+	// 	exit(EXIT_FAILURE);
 	new_val = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
-	if (!new_val)
-		exit(EXIT_FAILURE);
+	malloc_checker(new_val);
+	// if (!new_val)
+	// 	exit(EXIT_FAILURE);
 	i = 0;
 	new_val = ft_strchr(bs->args[pos], '=');
 	while (bs->args[pos][i] != '=')
@@ -307,8 +293,9 @@ void	need_bigger_array(t_builtins *bs, char *key, char *val)
 	int		i;
 
 	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
-	if (!new_array)
-		exit(EXIT_FAILURE);
+	malloc_checker((char *)new_array);
+	// if (!new_array)
+	// 	exit(EXIT_FAILURE);
 	if (val)
 	{
 		key = ft_strjoin(key, "=");
@@ -344,4 +331,10 @@ void	dup_array_to_env(t_builtins *bs, char **array)
 	}
 	bs->env[i] = NULL;
 	free(array);
+}
+
+void	malloc_checker(char *s)
+{
+	if (!s)
+		exit(EXIT_FAILURE);
 }
