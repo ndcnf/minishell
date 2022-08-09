@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 13:53:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:27:34 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		b_export(t_builtins *bs);
 char	**parse_env(char *s);
 void	sort_env(t_builtins *bs);
 void	parse_it(char *s); //soon obsolete ?
-void	add_key(t_builtins *bs);
+void	add_key(t_builtins *bs, int pos);
 void	need_bigger_array(t_builtins *bs, char *key, char *val);
 void	dup_array_to_env(t_builtins *bs, char **array);
 

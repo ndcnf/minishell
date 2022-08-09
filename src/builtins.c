@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 14:06:15 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:04:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 	while (i < bs->n_env)
 	{
 		bs->env[i] = ft_strdup(envp[i]);
-		// printf("[%s]\n", bs->env[i]);
 		i++;
 	}
 	i = 0;
 	while (i < (argc - 1))
 	{
 		bs->args[i] = argv[i + 1];
-		//printf("b_init[%d]: %s\n", i, bs->args[i]);
 		i++;
 	}
 	bs->n_args = i;
@@ -175,6 +173,7 @@ int	b_env(t_builtins *bs)
 int	b_export(t_builtins *bs)
 {
 	int	i;
+	printf("n_args[%d]\n", bs->n_args);
 	if (bs->n_args == 1)
 		sort_env(bs);
 	else
@@ -182,7 +181,7 @@ int	b_export(t_builtins *bs)
 		i = 1;
 		while (i < bs->n_args)
 		{
-			add_key(bs);
+			add_key(bs, i);
 			i++;
 		}
 		sort_env(bs); //juste verif
@@ -276,20 +275,20 @@ void	sort_env(t_builtins *bs)
 // declare -x de
 // declare -x paille="ok"
 // Pour l'ajout, ce sera une clef apres l'autre
-void	add_key(t_builtins *bs)
+void	add_key(t_builtins *bs, int pos)
 {
 	char	*new_key;
 	char	*new_val;
 	int		i;
 
-	new_key = malloc(sizeof(char) * ft_strlen(bs->args[1]));
+	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	if (!new_key)
 		exit(EXIT_FAILURE);
-	new_val = malloc(sizeof(char) * ft_strlen(bs->args[1]));
+	new_val = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	if (!new_val)
 		exit(EXIT_FAILURE);
 	i = 0;
-	new_val = ft_strchr(bs->args[1], '=') + 1;
+	new_val = ft_strchr(bs->args[pos], '=') + 1;
 
 	////////////////////////////////////////////////////
 	// Partie verification si aucune valeur a faire ici
@@ -301,13 +300,17 @@ void	add_key(t_builtins *bs)
 	//if (ft_strlen(new_val) == ft_strlen(bs->args[1]))
 	////////////////////////////////////////////////////
 
-	while (bs->args[1][i] != '=')
+	while (bs->args[pos][i] != '=')
 	{
-		new_key[i] = bs->args[1][i];
+		new_key[i] = bs->args[pos][i];
 		i++;
 	}
 	new_key[i] = '\0';
 	need_bigger_array(bs, new_key, new_val);
+	// if (new_key)
+	// 	free(new_key);
+	// if (new_val)
+	// 	free(new_val);
 }
 
 void	need_bigger_array(t_builtins *bs, char *key, char *val)
