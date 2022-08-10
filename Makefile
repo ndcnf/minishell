@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/08/09 16:42:09 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/08/10 12:17:14 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
 		src/main.c \
+		src/b_export.c \
+		src/env_utils.c \
 
 DIR_LIBFT = ./utils/libft/
 LIB_LIBFT = ft

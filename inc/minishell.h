@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/10 11:23:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:59:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,24 @@ int		b_pwd(t_builtins *bs);
 int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
-int		b_export(t_builtins *bs);
-// void	parse_env(t_builtins *bs);
-void	sort_env(t_builtins *bs);
-// void	parse_env(char *s);
+
+
+
+
+void	malloc_checker(char *s);
+
+
+//env_utils.c
 char	**parse_env(char *s);
+void	sort_env(t_builtins *bs);
+void	print_env(char **elem);
+
+//b_export.c
+int		b_export(t_builtins *bs);
 void	add_key(t_builtins *bs, int pos);
 void	need_bigger_array(t_builtins *bs, char *key, char *val);
 void	dup_array_to_env(t_builtins *bs, char **array);
-void	malloc_checker(char *s);
-void	print_env(char **elem);
+char	*key_checker(t_builtins *bs, char **elem);
+
 
 #endif

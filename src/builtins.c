@@ -6,11 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/10 11:26:52 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:56:42 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 // Stocker temporairement les argv entres dans une structure
 // et decaler afin de ne plus avoir le nom "./minishell" en premier
@@ -166,175 +166,6 @@ int	b_env(t_builtins *bs)
 		i++;
 	}
 	return (EXIT_SUCCESS);
-}
-
-// 'export'				-> affiche liste des variables environnement, triees par ASCII
-// 'export bonjour'		-> cree la variable bonjour seule, rien ne s'affiche. Cette info ne sera pas ajoutee lors de l'affichage de env, mais dans export oui
-// 'export test=texte	-> cree la variable test="texte", rien ne s'affiche. Cette info sera ajoutee lors de l'affichage de env et export
-//////////////////////////////////////////////////////////////////////////////////////
-int	b_export(t_builtins *bs)
-{
-	int	i;
-
-	if (bs->n_args == 1)
-		sort_env(bs);
-	else
-	{
-		i = 1;
-		while (i < bs->n_args)
-			add_key(bs, i++);
-		sort_env(bs); //VERIFICATION UNIQUEMENT
-	}
-	return (EXIT_SUCCESS);
-}
-
-
-// void	key_checker(t_builtins *bs, )
-// {
-
-// }
-
-// void	parse_env(t_builtins *bs)
-// {
-// 	int		i;
-// 	//char	***env_elem;
-
-// 	bs->env_elem = malloc(sizeof(char **) * bs->n_env);
-// 	if (!bs->env_elem)
-// 		exit(EXIT_FAILURE);
-// 	i = 0;
-// 	while (i < bs->n_env)
-// 	{
-// 		bs->env_elem[i] = ft_split(bs->env[i], '=');
-// 		printf("%s = \"%s\"\n", bs->env_elem[i][0], bs->env_elem[i][1]);
-// 		i++;
-// 	}
-// }
-
-void	print_env(char **elem)
-{
-	if (elem[1]) // A TESTER, SI AUCUNE VALEUR DONNEE POUR LA CLEF
-		printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
-	else if (elem[0])
-		printf("declare -x %s\n", elem[0]);
-}
-
-char	**parse_env(char *s)
-{
-	char	**elem;
-
-	elem = ft_split(s, '=');
-	return (elem);
-}
-
-// Separer en DUPLIQUER environnement et SORT environnement
-void	sort_env(t_builtins *bs)
-{
-	int		i;
-	int		j;
-	char	*tempura;
-	char	**export;
-
-	export = malloc(sizeof(char *) * bs->n_env);
-	malloc_checker((char *)export);
-	// if(!export)
-	// 	exit(EXIT_FAILURE);
-	i = 0;
-	while (i < bs->n_env)
-	{
-		export[i] = ft_strdup(bs->env[i]);
-		i++;
-	}
-	i = 0;
-	while (i < bs->n_env)
-	{
-		j = i + 1;
-		while (j < bs->n_env)
-		{
-			if (ft_strncmp(export[j], export[i], MAX_PATH) < 0)
-			{
-				tempura = export[i];
-				export[i] = export[j];
-				export[j] = tempura;
-			}
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < bs->n_env)
-		print_env(parse_env(export[i++]));
-}
-
-// Cette fonction contient des leaks
-void	add_key(t_builtins *bs, int pos)
-{
-	char	*new_key;
-	char	*new_val;
-	int		i;
-
-	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
-	malloc_checker(new_key);
-	new_val = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
-	malloc_checker(new_val);
-	i = 0;
-	new_val = ft_strchr(bs->args[pos], '=');
-	while (bs->args[pos][i] != '=')
-	{
-		new_key[i] = bs->args[pos][i];
-		i++;
-	}
-	new_key[i] = '\0';
-	need_bigger_array(bs, new_key, new_val);
-	// if (new_key)
-	// 	free(new_key);
-	// if (new_val)
-	// 	free(new_val);
-}
-
-void	need_bigger_array(t_builtins *bs, char *key, char *val)
-{
-	char	**new_array;
-	char	*new_val;
-	int		i;
-
-	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
-	malloc_checker((char *)new_array);
-	if (val)
-	{
-		key = ft_strjoin(key, "=");
-		new_val = ft_strjoin(key, val);
-	}
-	else
-		new_val = key;
-	i = 0;
-	while (i < bs->n_env)
-	{
-		new_array[i] = ft_strdup(bs->env[i]);
-		i++;
-	}
-	new_array[i] = new_val;
-	new_array[i + 1] = NULL;
-	bs->n_env++;
-	free(bs->env);
-	dup_array_to_env(bs, new_array);
-}
-
-void	dup_array_to_env(t_builtins *bs, char **array)
-{
-	int	i;
-
-	bs->env = malloc (sizeof(char *) * bs->n_env);
-	if (!bs->env)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (i < bs->n_env)
-	{
-		bs->env[i] = array[i];
-		i++;
-	}
-	bs->env[i] = NULL;
-	free(array);
 }
 
 void	malloc_checker(char *s)
