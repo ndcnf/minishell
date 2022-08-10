@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/10 11:59:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:51:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # include <fcntl.h>				// open
 
 # define MAX_PATH 1024
+# define NEW_VAL 1
+# define NO_VAL 2
+# define CREATE_KEY 3
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -68,10 +71,10 @@ void	print_env(char **elem);
 
 //b_export.c
 int		b_export(t_builtins *bs);
-void	add_key(t_builtins *bs, int pos);
-void	need_bigger_array(t_builtins *bs, char *key, char *val);
+void	add_key(t_builtins *bs, char *key, char *val);
 void	dup_array_to_env(t_builtins *bs, char **array);
-char	*key_checker(t_builtins *bs, char **elem);
-
+int		key_checker(t_builtins *bs, char *key, char *val, int pos);
+char	*get_key(t_builtins *bs, int pos);
+char	*get_val(t_builtins *bs, int pos);
 
 #endif

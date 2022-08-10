@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/10 11:48:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:21:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**parse_env(char *s)
 	return (elem);
 }
 
-// Separer en DUPLIQUER environnement et SORT environnement
+//Separer en DUPLIQUER environnement et SORT environnement
 void	sort_env(t_builtins *bs)
 {
 	int		i;
