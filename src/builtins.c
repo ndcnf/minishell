@@ -6,30 +6,32 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/09 17:08:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:26:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Stocker temporairement les argv entres dans une structure
+// et decaler afin de ne plus avoir le nom "./minishell" en premier
+// argument
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 {
 	int	i;
 
 	bs->args = malloc(sizeof(char *) * (argc + 1));
-	if (!bs->args)
-		exit(EXIT_FAILURE);
-	// Stocker temporairement les argv entres dans une structure
-	// et decaler afin de ne plus avoir le nom "./minishell" en premier
-	// argument
+	malloc_checker((char *)bs->args);
+	// if (!bs->args)
+	// 	exit(EXIT_FAILURE);
 
 	i = 0;
 	while (envp[i] != NULL)
 		i++;
 	bs->n_env = i;
 	bs->env = malloc(sizeof(char *) * bs->n_env);
-	if (!bs->env)
-		exit(EXIT_FAILURE);
+	malloc_checker((char *)bs->env);
+	// if (!bs->env)
+	// 	exit(EXIT_FAILURE);
 	i = 0;
 	while (i < bs->n_env)
 	{
@@ -186,6 +188,12 @@ int	b_export(t_builtins *bs)
 	return (EXIT_SUCCESS);
 }
 
+
+// void	key_checker(t_builtins *bs, )
+// {
+
+// }
+
 // void	parse_env(t_builtins *bs)
 // {
 // 	int		i;
@@ -203,17 +211,23 @@ int	b_export(t_builtins *bs)
 // 	}
 // }
 
-void	parse_env(char *s)
+void	print_env(char **elem)
 {
-	char	**elem;
-
-	elem = ft_split(s, '=');
 	if (elem[1]) // A TESTER, SI AUCUNE VALEUR DONNEE POUR LA CLEF
 		printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
 	else if (elem[0])
 		printf("declare -x %s\n", elem[0]);
 }
 
+char	**parse_env(char *s)
+{
+	char	**elem;
+
+	elem = ft_split(s, '=');
+	return (elem);
+}
+
+// Separer en DUPLIQUER environnement et SORT environnement
 void	sort_env(t_builtins *bs)
 {
 	int		i;
@@ -222,8 +236,9 @@ void	sort_env(t_builtins *bs)
 	char	**export;
 
 	export = malloc(sizeof(char *) * bs->n_env);
-	if(!export)
-		exit(EXIT_FAILURE);
+	malloc_checker((char *)export);
+	// if(!export)
+	// 	exit(EXIT_FAILURE);
 	i = 0;
 	while (i < bs->n_env)
 	{
@@ -248,14 +263,9 @@ void	sort_env(t_builtins *bs)
 	}
 	i = 0;
 	while (i < bs->n_env)
-		parse_env(export[i++]);
+		print_env(parse_env(export[i++]));
 }
 
-// export chien de paille=ok -->
-// declare -x chien
-// declare -x de
-// declare -x paille="ok"
-// Pour l'ajout, ce sera une clef apres l'autre
 // Cette fonction contient des leaks
 void	add_key(t_builtins *bs, int pos)
 {
@@ -265,12 +275,8 @@ void	add_key(t_builtins *bs, int pos)
 
 	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	malloc_checker(new_key);
-	// if (!new_key)
-	// 	exit(EXIT_FAILURE);
 	new_val = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	malloc_checker(new_val);
-	// if (!new_val)
-	// 	exit(EXIT_FAILURE);
 	i = 0;
 	new_val = ft_strchr(bs->args[pos], '=');
 	while (bs->args[pos][i] != '=')
@@ -294,8 +300,6 @@ void	need_bigger_array(t_builtins *bs, char *key, char *val)
 
 	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
 	malloc_checker((char *)new_array);
-	// if (!new_array)
-	// 	exit(EXIT_FAILURE);
 	if (val)
 	{
 		key = ft_strjoin(key, "=");
