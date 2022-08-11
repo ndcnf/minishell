@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/10 11:56:42 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 14:07:22 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 	malloc_checker((char *)bs->args);
 	// if (!bs->args)
 	// 	exit(EXIT_FAILURE);
-
 	i = 0;
 	while (envp[i] != NULL)
 		i++;

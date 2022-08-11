@@ -6,17 +6,13 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 12:02:39 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 14:09:44 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// 'export'				-> affiche liste des variables environnement, triees par ASCII
-// 'export bonjour'		-> cree la variable bonjour seule, rien ne s'affiche. Cette info ne sera pas ajoutee lors de l'affichage de env, mais dans export oui
-// 'export test=texte	-> cree la variable test="texte", rien ne s'affiche. Cette info sera ajoutee lors de l'affichage de env et export
-//////////////////////////////////////////////////////////////////////////////////////
-int		b_export(t_builtins *bs)
+int	b_export(t_builtins *bs)
 {
 	int		i;
 	char	*key;
