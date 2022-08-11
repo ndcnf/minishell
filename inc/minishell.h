@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 13:16:52 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:28:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ int		key_checker(t_builtins *bs, char *key, char *val, int pos);
 char	*get_key(t_builtins *bs, int pos);
 char	*get_val(t_builtins *bs, int pos);
 void	mod_key(t_builtins *bs, char *key, char *val);
+
+//b_unset.c
+
 
 #endif

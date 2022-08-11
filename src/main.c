@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 13:25:44 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:43:46 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int main (int argc, char *argv[], char **envp)
 	// args[0] = "/bin/echo";
 	// args[1] = "-n";
 	// args[2] = NULL;
+	char	**splitty;
+	int		i = 0;
 
 	ft_printf("TEST\n");
 	b_init(&bs, argc, argv, envp);
@@ -37,7 +39,14 @@ int main (int argc, char *argv[], char **envp)
 		//parse_env(&bs); //juste pour tester le parsing de l'environnement
 		b_export(&bs);
 	else
-		printf("Command not found (yet)\n");
+		{
+			splitty = ft_split("les7chiens7dans7au7soleil\n", '7');
+			while (splitty[i])
+			{
+				printf("%s\n", splitty[i++]);
+			}
+		}
+		//printf("Command not found (yet)\n");
 	
 	//lancer execve dans un fork, afin de pouvoir continuer le main apres l'execution
 	// if (execve(args[0], args, envp) == -1)
