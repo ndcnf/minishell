@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:22:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 16:25:18 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:52:55 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	b_unset(t_builtins *bs)
 			remove_key(bs, key);
 			i++;
 		}
-		sort_env(bs); //VERIFICATION UNIQUEMENT
 	}
 	return (EXIT_SUCCESS);
 }
