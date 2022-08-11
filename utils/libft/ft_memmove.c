@@ -3,38 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 10:59:26 by nchennaf          #+#    #+#             */
-/*   Updated: 2021/11/05 19:28:27 by nchennaf         ###   ########.fr       */
+/*   Created: 2021/11/04 14:57:02 by marlene           #+#    #+#             */
+/*   Updated: 2021/11/08 16:00:01 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*ptr_src;
-	char	*ptr_dst;
-	size_t	i;
+	size_t				i;
+	unsigned char		*dest_char;
+	const unsigned char	*src_char;
 
-	if (dst == NULL && src == NULL)
+	if (src > dest)
+	{
+		return (ft_memcpy(dest, src, n));
+	}
+	i = n;
+	if (!dest && !src)
 		return (NULL);
-	ptr_src = (char *)src;
-	ptr_dst = (char *)dst;
-	if (ptr_dst > ptr_src)
+	src_char = src + n - 1;
+	dest_char = dest + n - 1;
+	while (i > 0)
 	{
-		while (len-- > 0)
-			ptr_dst[len] = ptr_src[len];
+		*dest_char = *src_char;
+		i--;
+		dest_char--;
+		src_char--;
 	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			ptr_dst[i] = ptr_src[i];
-			i++;
-		}
-	}
-	return (ptr_dst);
+	return (dest);
 }
+
+/*int main(int argc, char **argv)
+{
+    (void)    argc;
+    (void)     argv;
+    char dst1[0xF0];
+	char dst2[0xF0];
+	char *data = "thiÃ Ã\xde\xad\xbe\xeftriÃ±g will be Ã¸vÃ©rlapÃ©d !\r\n";
+	int size = 0xF0 - 0xF;
+
+    ft_memmove(dst2, dst2 + 3, size);
+}*/

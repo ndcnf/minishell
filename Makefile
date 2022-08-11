@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: marlene <marlene@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/08/10 12:17:14 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/08/09 15:08:37 by marlene          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,15 @@ SRC =	src/builtins.c \
 		src/main.c \
 		src/b_export.c \
 		src/env_utils.c \
+		src/parsing.c \
 
+RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
+RL_P	:= $(shell brew --cellar readline)
+RL		= $(RL_P)/$(RL_V)
+LIBS	= -L $(RL)/lib/ -lreadline -lhistory
+INC		= -I. -I $(RL)/include/
 DIR_LIBFT = ./utils/libft/
 LIB_LIBFT = ft
-DIR_GNL = ./utils/get_next_line/
-LIB_GNL = gnl
 HEADER = -Iinc
 DEL = rm -rf
 
@@ -36,18 +40,14 @@ OBJ =	${SRC:.c=.o}
 all:	${NAME}
 
 %.o:	%.c
-		@${CC} ${CFLAGS} ${HEADER} -c $< -o $@
+		@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 ${NAME}:	${OBJ}
 		@echo "[LIBFT]		${CYN}Creating...${RST}"
 		@${MAKE} -C ${DIR_LIBFT}
 		@echo "[LIBFT]		${GRN}OK${RST}"
-		@echo "[GET NEXT LINE]	${CYN}Creating...${RST}"
-		@${MAKE} -C ${DIR_GNL}
-		@echo "[GET NEXT LINE]	${GRN}OK${RST}"
 		@echo "[MINISHELL]	${CYN}Compilating...${RST}"
-		@${CC} ${OBJ} ${CFLAGS} \
+		@${CC} ${OBJ} ${CFLAGS} ${LIBS}\
 		-L${DIR_LIBFT} -l${LIB_LIBFT} \
-		-L${DIR_GNL} -l${LIB_GNL} \
 		-o ${NAME}
 		@echo "[MINISHELL]	${GRN}OK${RST}"
 exec:	all
@@ -61,9 +61,6 @@ clean:
 			@echo "[LIBFT]		${YEL}Deleting...${RST}"
 			@${MAKE} -C ${DIR_LIBFT} clean
 			@echo "[LIBFT]		${GRN}Cleaned${RST}"
-			@echo "[GET NEXT LINE]	${YEL}Deleting...${RST}"
-			@${MAKE} -C ${DIR_GNL} clean
-			@echo "[GET NEXT LINE]	${GRN}Cleaned${RST}"
 
 fclean:		clean
 			@${DEL} ${NAME}

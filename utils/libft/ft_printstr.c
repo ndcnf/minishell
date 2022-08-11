@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 12:35:14 by mthiesso          #+#    #+#             */
-/*   Updated: 2021/11/05 18:23:05 by mthiesso         ###   ########.fr       */
+/*   Created: 2021/11/29 13:56:21 by mthiesso          #+#    #+#             */
+/*   Updated: 2022/06/20 17:03:40 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+static int	ft_putstr(char *str)
 {
-	size_t			i;
-	unsigned char	*dest;
+	int	i;
 
 	i = 0;
-	dest = s;
-	while (i < n)
+	while (str[i])
 	{
-		*dest = 0;
+		write(1, &str[i], 1);
 		i++;
-		dest++;
 	}
+	return (i);
+}
+
+int	ft_printstr(char *str)
+{
+	int	len;
+
+	if (!str)
+		len = ft_putstr("(null)");
+	else
+		len = ft_putstr(str);
+	return (len);
 }
