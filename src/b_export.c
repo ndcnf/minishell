@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 11:59:38 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 12:02:39 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int		b_export(t_builtins *bs)
 			key = get_key(bs, i);
 			val = get_val(bs, i);
 			mod_key(bs, key, val);
-			//add_key(bs, key, val);
-			//si on ajoute un nouvel element dans le tableau alors n_env++
-			//bs->n_env++;
 			i++;
 		}
 		sort_env(bs); //VERIFICATION UNIQUEMENT
@@ -71,33 +68,6 @@ char	*get_val(t_builtins *bs, int pos)
 	return (new_val);
 }
 
-void	add_key(t_builtins *bs, char *key, char *val)
-{
-	char	**new_array;
-	char	*new_val;
-	int		i;
-
-	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
-	malloc_checker((char *)new_array);
-	if (val)
-	{
-		key = ft_strjoin(key, "=");
-		new_val = ft_strjoin(key, val);
-	}
-	else
-		new_val = key;
-	i = 0;
-	while (i < bs->n_env)
-	{
-		new_array[i] = ft_strdup(bs->env[i]);
-		i++;
-	}
-	new_array[i] = new_val;
-	new_array[i + 1] = NULL;
-	free(bs->env);
-	dup_array_to_env(bs, new_array);
-}
-
 void	mod_key(t_builtins *bs, char *key, char *val)
 {
 	char	**new_array;
@@ -127,7 +97,7 @@ void	mod_key(t_builtins *bs, char *key, char *val)
 			if (val)
 				new_array[i] = new_val;
 			else
-				new_array[i] = key;
+				new_array[i] = ft_strdup(bs->env[i]);
 		}
 		else
 			new_array[i] = ft_strdup(bs->env[i]);
