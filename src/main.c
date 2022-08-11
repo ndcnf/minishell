@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 13:25:44 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:58:43 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main (int argc, char *argv[], char **envp)
 	// args[1] = "-n";
 	// args[2] = NULL;
 
-	ft_printf("TEST\n");
 	b_init(&bs, argc, argv, envp);
 	if (ft_strncmp(argv[1], "echo", 4) == 0)
 		b_echo(&bs);
@@ -34,8 +33,9 @@ int main (int argc, char *argv[], char **envp)
 	else if (ft_strncmp(argv[1], "env", 3) == 0)
 		b_env(&bs);
 	else if (ft_strncmp(argv[1], "export", 6) == 0)
-		//parse_env(&bs); //juste pour tester le parsing de l'environnement
 		b_export(&bs);
+	else if (ft_strncmp(argv[1], "unset", 5) == 0)
+		b_unset(&bs);
 	else
 		printf("Command not found (yet)\n");
 	
