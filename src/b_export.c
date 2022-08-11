@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 17:02:47 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:10:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	b_export(t_builtins *bs)
 			add_key(bs, key, val);
 			i++;
 		}
+		sort_env(bs);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -68,20 +69,13 @@ void	add_key(t_builtins *bs, char *key, char *val)
 	char	**new_array;
 	char	*new_val;
 	char	*exist_key;
-	char	*key_val;
 	int		add_key;
 	int		i;
 
 	add_key = 1;
 	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
 	malloc_checker((char *)new_array);
-	if (val)
-	{
-		key_val = ft_strjoin(key, "=");
-		new_val = ft_strjoin(key_val, val);
-	}
-	else
-		new_val = key;
+	new_val = define_val(key, val);
 	i = 0;
 	while (i < bs->n_env)
 	{
@@ -110,19 +104,16 @@ void	add_key(t_builtins *bs, char *key, char *val)
 	dup_array_to_env(bs, new_array);
 }
 
-void	dup_array_to_env(t_builtins *bs, char **array)
+char	*define_val(char *key, char *val)
 {
-	int	i;
+	char	*new_val;
 
-	bs->env = malloc (sizeof(char *) * bs->n_env);
-	if (!bs->env)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (i < bs->n_env)
+	if (val)
 	{
-		bs->env[i] = array[i];
-		i++;
+		new_val = ft_strjoin(key, "=");
+		new_val = ft_strjoin(new_val, val);
 	}
-	bs->env[i] = NULL;
-	free(array);
+	else
+		new_val = key;
+	return (new_val);
 }
