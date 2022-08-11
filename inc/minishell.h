@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 15:24:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:48:08 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_builtins
 } t_builtins;
 
 //builtins.c
-int		b_echo(t_builtins *bs);
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
 int		b_pwd(t_builtins *bs);
 int		b_cd(t_builtins *bs);
@@ -80,5 +79,9 @@ void	mod_key(t_builtins *bs, char *key, char *val);
 //b_unset.c
 int 	b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
+
+//b_echo.c
+void    print_echo_n(t_builtins *bs, int i);
+int		b_echo(t_builtins *bs);
 
 #endif

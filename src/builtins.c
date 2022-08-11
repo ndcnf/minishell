@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 16:32:12 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:43:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,52 +44,6 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 		i++;
 	}
 	bs->n_args = i;
-}
-
-// 'echo'				-> retour à la ligne
-// 'echo -n'			-> rien, ligne suivante
-// 'echo -n texte'		-> 'texte'
-// 'echo texte'			-> 'texte\n'
-// 'echo texte long'	-> 'texte long\n'
-// 'echo -n texte long'	-> 'texte long'
-// 'echo texte -n'		-> 'texte -n\n'
-///////////////////////////////////////////////
-int	b_echo(t_builtins *bs)
-{
-	int	i;
-
-	if (bs->n_args == 1)
-		printf("\n");
-	if (bs->n_args >= 2)
-	{
-		if (ft_strncmp(bs->args[1], "-n", strlen(bs->args[1])) == 0)
-		{
-			if (bs->n_args != 2)
-			{
-				i = 2;
-				while (i < bs->n_args)
-				{
-					printf("%s", bs->args[i]);
-					i++;
-					if (i != bs->n_args)
-						printf(" ");
-				}
-			}
-		}
-		else
-		{
-			i = 1;
-			while (i < bs->n_args)
-			{
-				printf("%s", bs->args[i]);
-				i++;
-				if (i != bs->n_args)
-					printf(" ");
-			}
-			printf("\n");
-		}
-	}
-	return (EXIT_SUCCESS);
 }
 
 // 'pwd'		-> affiche le chemin actuel, suivi d'un \n
