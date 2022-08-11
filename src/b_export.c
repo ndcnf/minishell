@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 14:09:44 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:02:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ int	b_export(t_builtins *bs)
 		{
 			key = get_key(bs, i);
 			val = get_val(bs, i);
-			mod_key(bs, key, val);
+			add_key(bs, key, val);
 			i++;
 		}
-		sort_env(bs); //VERIFICATION UNIQUEMENT
 	}
 	return (EXIT_SUCCESS);
 }
@@ -64,7 +63,7 @@ char	*get_val(t_builtins *bs, int pos)
 	return (new_val);
 }
 
-void	mod_key(t_builtins *bs, char *key, char *val)
+void	add_key(t_builtins *bs, char *key, char *val)
 {
 	char	**new_array;
 	char	*new_val;
