@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/08/10 12:17:14 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/08/11 14:24:34 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC =	src/builtins.c \
 		src/main.c \
 		src/b_export.c \
 		src/env_utils.c \
+		src/b_unset.c \
 
 DIR_LIBFT = ./utils/libft/
 LIB_LIBFT = ft
