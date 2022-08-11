@@ -3,83 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 13:56:04 by nchennaf          #+#    #+#             */
-/*   Updated: 2021/11/05 12:24:03 by nchennaf         ###   ########.fr       */
+/*   Created: 2021/11/09 13:36:59 by mthiesso          #+#    #+#             */
+/*   Updated: 2021/11/10 17:14:08 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Example:
- * s1		"....,.,,..,,,.,Hell,,.,.,o.,.,.,,.,."
- * set		".,"
- * return:	"Hell,,.,.,o"
- * ____________________________________________________*/
-
-static char	*first(char *str, char *c)
+static int	ft_set(char const *s1, char const *set)
 {
 	int	i;
-	int	j;
+	int	y;
 
 	i = 0;
-	while (str[i])
+	y = 0;
+	while (set[i])
 	{
-		j = 0;
-		while (str[i] != c[j] && c[j])
-			j++;
-		if (!c[j])
-			return (&str[i]);
+		if (s1[y] == set[i])
+		{
+			return (1);
+		}
 		else
 			i++;
 	}
 	return (0);
 }
 
-static char	*last(char *str, char *c)
-{
-	int	i;
-	int	j;
-
-	i = (ft_strlen(str) - 1);
-	while (i >= 0)
-	{
-		j = 0;
-		while (str[i] != c[j] && c[j])
-			j++;
-		if (!c[j])
-			return (&str[i]);
-		else
-			i--;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*lean;
-	char	*bgn;
-	char	*end;
-	int		i;
+	int	end;
+	int	start;
 
-	if (s1 == NULL)
-		return (NULL);
-	if (set == NULL)
-		return (ft_strdup(s1));
-	bgn = first((char *)s1, (char *)set);
-	end = last((char *)s1, (char *)set);
-	if (!bgn && !end)
-		return (ft_strdup(""));
-	lean = (char *)malloc(sizeof(char) * (end - bgn + 2));
-	if (lean == NULL)
-		return (NULL);
-	i = 0;
-	while (i < end - bgn + 1)
+	if (!s1)
+		return (0);
+	end = ft_strlen(s1) - 1;
+	start = 0;
+	while (ft_set(&s1[start], set) == 1 && s1[start])
 	{
-		lean[i] = bgn[i];
-		i++;
+		start++;
 	}
-	lean[i] = '\0';
-	return (lean);
+	while (ft_set(&s1[end], set) == 1 && end > 0)
+	{
+		end--;
+	}
+	return (ft_substr(s1, start, end - start + 1));
 }

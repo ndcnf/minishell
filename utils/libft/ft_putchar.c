@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 12:35:14 by mthiesso          #+#    #+#             */
-/*   Updated: 2021/11/05 18:23:05 by mthiesso         ###   ########.fr       */
+/*   Created: 2021/11/22 14:56:50 by mthiesso          #+#    #+#             */
+/*   Updated: 2022/06/20 17:03:51 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_putchar(char c)
 {
-	size_t			i;
-	unsigned char	*dest;
-
-	i = 0;
-	dest = s;
-	while (i < n)
-	{
-		*dest = 0;
-		i++;
-		dest++;
-	}
+	write(1, &c, 1);
+	return (1);
 }

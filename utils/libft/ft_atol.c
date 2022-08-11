@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:25:35 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/07/07 00:04:33 by marlene          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:45:43 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	i;
-	int	res;
-	int	sign;
+	long int	i;
+	long int	res;
+	long int	sign;
 
 	i = 0;
 	sign = 1;
@@ -31,9 +31,11 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] && ft_isdigit(str[i]) == 1)
+		res = res * 10 + str[i++] - '0';
+	if ((res * sign) > INT_MAX || (res * sign) < INT_MIN)
 	{
-		res = res * 10 + str[i] - '0';
-		i++;
+		ft_printf("Error !\n");
+		exit (0);
 	}
 	return (sign * res);
 }

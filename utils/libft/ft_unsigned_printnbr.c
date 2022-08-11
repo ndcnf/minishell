@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_unsigned_printnbr.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 12:56:01 by mthiesso          #+#    #+#             */
-/*   Updated: 2021/11/11 22:42:15 by mthiesso         ###   ########.fr       */
+/*   Created: 2021/11/29 14:12:58 by mthiesso          #+#    #+#             */
+/*   Updated: 2022/06/20 17:04:13 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_count(long int n)
+static	unsigned int	ft_count(unsigned long int n)
 {
-	int		count;
+	unsigned int		count;
 
 	count = 0;
 	if (n == 0)
@@ -32,10 +32,10 @@ static	int	ft_count(long int n)
 	return (count);
 }
 
-static char	*ft_calcul(long int n)
+static char	*ft_calcul(unsigned long int n)
 {
-	int		count;
-	char	*str;
+	unsigned int		count;
+	char				*str;
 
 	count = ft_count(n);
 	str = (char *) ft_calloc(count + 1, sizeof(char));
@@ -57,10 +57,10 @@ static char	*ft_calcul(long int n)
 	return (str);
 }
 
-char	*ft_itoa(int n)
+char	*ft_uitoa(unsigned int n)
 {
-	char		*str;
-	long int	nb;
+	char				*str;
+	unsigned long int	nb;
 
 	nb = n;
 	str = ft_calcul(nb);
@@ -70,4 +70,15 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 	str[ft_strlen(str)] = '\0';
 	return (str);
+}
+
+unsigned int	ft_unsigned_printnbr(unsigned int nb)
+{
+	unsigned int	len;
+	char			*num;
+
+	num = ft_uitoa(nb);
+	len = ft_printstr(num);
+	free (num);
+	return (len);
 }
