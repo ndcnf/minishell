@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 14:28:52 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 15:24:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char	*get_val(t_builtins *bs, int pos);
 void	mod_key(t_builtins *bs, char *key, char *val);
 
 //b_unset.c
-
+int 	b_unset(t_builtins *bs);
+void	remove_key(t_builtins *bs, char *key);
 
 #endif
