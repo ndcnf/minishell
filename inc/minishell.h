@@ -34,6 +34,9 @@
 # include <fcntl.h>				// open
 
 # define MAX_PATH 1024
+# define NEW_VAL 1
+# define NO_VAL 2
+# define CREATE_KEY 3
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -53,5 +56,25 @@ int		b_pwd(t_builtins *bs);
 int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
+
+
+
+
+void	malloc_checker(char *s);
+
+
+//env_utils.c
+char	**parse_env(char *s);
+void	sort_env(t_builtins *bs);
+void	print_env(char **elem);
+
+//b_export.c
+int		b_export(t_builtins *bs);
+void	add_key(t_builtins *bs, char *key, char *val);
+void	dup_array_to_env(t_builtins *bs, char **array);
+int		key_checker(t_builtins *bs, char *key, char *val, int pos);
+char	*get_key(t_builtins *bs, int pos);
+char	*get_val(t_builtins *bs, int pos);
+void	mod_key(t_builtins *bs, char *key, char *val);
 
 #endif

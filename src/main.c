@@ -14,10 +14,6 @@
 
 int main (int argc, char *argv[], char **envp)
 {
-	// (void)argc;
-	// (void)argv;
-	// (void)envp;
-
 	t_builtins bs;
 
 	// char *args[3];
@@ -37,6 +33,9 @@ int main (int argc, char *argv[], char **envp)
 		b_exit(&bs);
 	else if (ft_strncmp(argv[1], "env", 3) == 0)
 		b_env(&bs);
+	else if (ft_strncmp(argv[1], "export", 6) == 0)
+		//parse_env(&bs); //juste pour tester le parsing de l'environnement
+		b_export(&bs);
 	else
 		printf("Command not found (yet)\n");
 	
