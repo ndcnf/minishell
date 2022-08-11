@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 14:07:22 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:32:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,7 @@ int	b_pwd(t_builtins *bs)
 {
 	char	dir[MAX_PATH];
 
-	if (bs->n_args > 1)
-	{
-		printf("pwd: too many arguments\n");
-		exit(EXIT_FAILURE);
-	}
+	(void)bs;
 	if (getcwd(dir, sizeof(dir)) == NULL)
 		perror("pwd");
 	else
