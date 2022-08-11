@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/10 14:51:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/11 10:43:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	dup_array_to_env(t_builtins *bs, char **array);
 int		key_checker(t_builtins *bs, char *key, char *val, int pos);
 char	*get_key(t_builtins *bs, int pos);
 char	*get_val(t_builtins *bs, int pos);
+void	mod_key(t_builtins *bs, char *key, char *val);
 
 #endif
