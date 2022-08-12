@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
 /*   Updated: 2022/08/12 17:19:05 by marlene          ###   ########.fr       */
@@ -34,6 +34,9 @@
 # include <fcntl.h>				// open
 
 # define MAX_PATH 1024
+# define NEW_VAL 1
+# define NO_VAL 2
+# define CREATE_KEY 3
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -75,5 +78,26 @@ int		b_env(t_builtins *bs);
 void	parsing_init(char *args, t_input *input);
 void	dividing_args(t_builtins *bs);
 int		parse_cmd(char *in);
+
+void	malloc_checker(char *s);
+
+//env_utils.c
+char	**parse_env(char *s);
+void	sort_env(t_builtins *bs);
+void	print_env(char **elem);
+
+//b_export.c
+int		b_export(t_builtins *bs);
+void	add_key(t_builtins *bs, char *key, char *val);
+void	dup_array_to_env(t_builtins *bs, char **array);
+int		key_checker(t_builtins *bs, char *key, char *val, int pos);
+char	*get_key(t_builtins *bs, int pos);
+char	*get_val(t_builtins *bs, int pos);
+void	mod_key(t_builtins *bs, char *key, char *val);
+
+//b_unset.c
+int 	b_unset(t_builtins *bs);
+void	remove_key(t_builtins *bs, char *key);
+
 
 #endif

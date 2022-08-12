@@ -21,6 +21,9 @@ NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
 		src/main.c \
+		src/b_export.c \
+		src/env_utils.c \
+		src/b_unset.c \
 		src/parsing.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')

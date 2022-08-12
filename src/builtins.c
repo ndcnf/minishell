@@ -10,38 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
+// Stocker temporairement les argv entres dans une structure
+// et decaler afin de ne plus avoir le nom "./minishell" en premier
+// argument
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 {
 	int	i;
 
 	bs->args = malloc(sizeof(char *) * (argc + 1));
-	if (!bs->args)
-		exit(EXIT_FAILURE);
-	// Stocker temporairement les argv entres dans une structure
-	// et decaler afin de ne plus avoir le nom "./minishell" en premier
-	// argument
-
+	malloc_checker((char *)bs->args);
+	// if (!bs->args)
+	// 	exit(EXIT_FAILURE);
 	i = 0;
 	while (envp[i] != NULL)
 		i++;
 	bs->n_env = i;
 	bs->env = malloc(sizeof(char *) * bs->n_env);
-	if (!bs->env)
-		exit(EXIT_FAILURE);
+	malloc_checker((char *)bs->env);
+	// if (!bs->env)
+	// 	exit(EXIT_FAILURE);
 	i = 0;
 	while (i < bs->n_env)
 	{
 		bs->env[i] = ft_strdup(envp[i]);
-		// printf("[%s]\n", bs->env[i]);
 		i++;
 	}
 	i = 0;
 	while (i < (argc - 1))
 	{
 		bs->args[i] = argv[i + 1];
-		//printf("b_init[%d]: %s\n", i, bs->args[i]);
 		i++;
 	}
 	bs->n_args = i;
@@ -92,6 +91,7 @@ int	b_echo(t_builtins *bs)
 	}
 	return (EXIT_SUCCESS);
 }
+
 // 'pwd'		-> affiche le chemin actuel, suivi d'un \n
 // 'pwd texte	-> message d'erreur : 'pwd: too many arguments'
 ///////////////////////////////////////////////////////////////
@@ -166,4 +166,10 @@ int	b_env(t_builtins *bs)
 		i++;
 	}
 	return (EXIT_SUCCESS);
+}
+
+void	malloc_checker(char *s)
+{
+	if (!s)
+		exit(EXIT_FAILURE);
 }
