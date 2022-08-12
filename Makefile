@@ -6,7 +6,7 @@
 #    By: marlene <marlene@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/08/09 15:08:37 by marlene          ###   ########.fr        #
+#    Updated: 2022/08/11 14:50:17 by marlene          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,16 @@ OBJ =	${SRC:.c=.o}
 all:	${NAME}
 
 %.o:	%.c
-		@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
+			@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 ${NAME}:	${OBJ}
-		@echo "[LIBFT]		${CYN}Creating...${RST}"
-		@${MAKE} -C ${DIR_LIBFT}
-		@echo "[LIBFT]		${GRN}OK${RST}"
-		@echo "[MINISHELL]	${CYN}Compilating...${RST}"
-		@${CC} ${OBJ} ${CFLAGS} ${LIBS}\
-		-L${DIR_LIBFT} -l${LIB_LIBFT} \
-		-o ${NAME}
-		@echo "[MINISHELL]	${GRN}OK${RST}"
+			@echo "[LIBFT]		${CYN}Creating...${RST}"
+			@${MAKE} -C ${DIR_LIBFT}
+			@echo "[LIBFT]		${GRN}OK${RST}"
+			@echo "[MINISHELL]	${CYN}Compilating...${RST}"
+			@${CC} ${OBJ} ${CFLAGS} ${LIBS}\
+			-L${DIR_LIBFT} -l${LIB_LIBFT} \
+			-o ${NAME}
+			@echo "[MINISHELL]	${GRN}OK${RST}"
 exec:	all
 		./${NAME}
 norm:	all

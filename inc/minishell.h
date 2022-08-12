@@ -6,7 +6,7 @@
 /*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/08 13:16:52 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/12 17:19:05 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,29 @@
 // sera certainement vouee a modification suite au parsing
 typedef struct s_builtins
 {
+	char	*content;
 	char	**args; //une commande valide entree par le user
 	char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 	char	**env; //copie des valeurs de l'environnement
 	int		n_env; //nombre de variables d'environnement
 } t_builtins;
+
+// structure des listes chaînées afin de pouvoir stocker les arguments 
+//et de pouvoir les utiliser de manière optimisée
+typedef struct s_cmd
+{
+	char				*content;
+	struct cmd			*next;
+	int					line;
+} t_cmd;
+
+typedef	struct	s_input
+{
+	char				*content;
+	struct input		*next;
+	int					line;
+} t_input;
 
 //builtins.c
 int		b_echo(t_builtins *bs);
@@ -53,5 +70,10 @@ int		b_pwd(t_builtins *bs);
 int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
+
+//parsing.c
+void	parsing_init(char *args, t_input *input);
+void	dividing_args(t_builtins *bs);
+int		parse_cmd(char *in);
 
 #endif
