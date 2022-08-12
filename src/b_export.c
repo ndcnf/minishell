@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 18:10:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/12 11:41:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ char	*get_key(t_builtins *bs, int pos)
 	char	*new_key;
 	int		i;
 
-	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
+	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos] + 1));
+	// new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	malloc_checker(new_key);
 	i = 0;
 	while (bs->args[pos][i] != '=')
@@ -51,7 +52,7 @@ char	*get_key(t_builtins *bs, int pos)
 	new_key[i] = '\0';
 	return (new_key);
 	// if (new_key)
-	// 	free(new_key);
+	//  	free(new_key);
 }
 
 char	*get_val(t_builtins *bs, int pos)
@@ -73,8 +74,16 @@ void	add_key(t_builtins *bs, char *key, char *val)
 	int		i;
 
 	add_key = 1;
-	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
+	new_array = malloc(sizeof(char *) * (bs->n_env + 1) + 1);
 	malloc_checker((char *)new_array);
+	
+	i = 0;
+	while (i < bs->n_env)
+	{
+		new_array[i] = malloc(sizeof(char) * 2);
+		i++;
+	}
+
 	new_val = define_val(key, val);
 	i = 0;
 	while (i < bs->n_env)
@@ -84,7 +93,7 @@ void	add_key(t_builtins *bs, char *key, char *val)
 		{
 			add_key = 0;
 			if (val)
-				new_array[i] = new_val;
+				new_array[i] = ft_strdup(new_val);
 			else
 				new_array[i] = ft_strdup(bs->env[i]);
 		}
@@ -94,8 +103,8 @@ void	add_key(t_builtins *bs, char *key, char *val)
 	}
 	if (add_key)
 	{
-		new_array[i] = new_val;
-		new_array[i + 1] = NULL;
+		new_array[i] = ft_strdup(new_val);
+		new_array[i + 1] = NULL; //LEAKS
 		bs->n_env++;
 	}
 	else
