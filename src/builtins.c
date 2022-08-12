@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 14:07:22 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:24:43 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ int	b_echo(t_builtins *bs)
 int	b_pwd(t_builtins *bs)
 {
 	char	dir[MAX_PATH];
-
+	
+	bs->n_args = 0;
 	if (bs->n_args > 1)
 	{
 		printf("pwd: too many arguments\n");

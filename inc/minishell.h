@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 15:24:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:19:05 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,29 @@
 // sera certainement vouee a modification suite au parsing
 typedef struct s_builtins
 {
+	char	*content;
 	char	**args; //une commande valide entree par le user
 	char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 	char	**env; //copie des valeurs de l'environnement
 	int		n_env; //nombre de variables d'environnement
 } t_builtins;
+
+// structure des listes chaînées afin de pouvoir stocker les arguments 
+//et de pouvoir les utiliser de manière optimisée
+typedef struct s_cmd
+{
+	char				*content;
+	struct cmd			*next;
+	int					line;
+} t_cmd;
+
+typedef	struct	s_input
+{
+	char				*content;
+	struct input		*next;
+	int					line;
+} t_input;
 
 //builtins.c
 int		b_echo(t_builtins *bs);
@@ -57,11 +74,12 @@ int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
 
-
-
+//parsing.c
+void	parsing_init(char *args, t_input *input);
+void	dividing_args(t_builtins *bs);
+int		parse_cmd(char *in);
 
 void	malloc_checker(char *s);
-
 
 //env_utils.c
 char	**parse_env(char *s);
@@ -80,5 +98,6 @@ void	mod_key(t_builtins *bs, char *key, char *val);
 //b_unset.c
 int 	b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
+
 
 #endif
