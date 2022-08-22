@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/22 12:48:21 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:23:03 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 int main (int argc, char *argv[], char **envp)
 {
+	(void)argc;
+	(void)argv;
+	(void)envp;
+	char 	*prompt;
+	t_input	*input;
+
+	input = NULL;
+	//ft_lstnew(cmd->content);
+
 	t_builtins bs;
 	//int	i;
 
 	b_init(&bs, argc, argv, envp);
-	if (ft_strncmp(argv[1], "echo", 4) == 0)
+	/*if (ft_strncmp(argv[1], "echo", 4) == 0)
 		b_echo(&bs);
 	else if (ft_strncmp(argv[1], "pwd", 3) == 0)
 		b_pwd(&bs);
@@ -47,4 +56,15 @@ int main (int argc, char *argv[], char **envp)
 	// 	perror("Something went wrong");
 	// //avec un fork, le message suivant sera execute. Sans le fork, il ne le sera qu'en cas d'erreur.
 	// printf("si tu me lis, il y a une erreur\n");
+
+		printf("Command not found (yet)\n");*/
+	prompt = NULL;
+
+	while (1)
+	{
+		prompt = readline("\e[36mminishell$ \e[0m");
+		parsing_init(prompt, input);
+	}
+	free(prompt);
+	return(0);
 }
