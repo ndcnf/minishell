@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:55:05 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 13:41:42 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:24:07 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,49 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 		i++;
 	}
 	bs->n_args = i;
+
+	// i = 0;
+	// while (i < bs->n_env)
+	// 	free(envp[i]);
+	// free(envp);
+	// i = 0;
+	// while (i < bs->n_args)
+	// 	free(argv[i]);
+	// free(argv);
 }
+
+// void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
+// {
+// 	int		i;
+// 	char	**tempura;
+
+// 	// tempura = malloc(sizeof(char *) * );
+// 	init_env(bs, envp);
+// 	init_args(bs, argc, argv);
+
+// }
+
+// void	init_env(t_builtins *bs, char *envp[])
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (envp[i])
+// 		i++;
+// 	bs->n_env = i;
+// }
+
+// void	init_args(t_builtins *bs, int argc, char *argv[])
+// {
+// 	int	i;
+
+// 	bs->args = malloc(sizeof(char *) * argc);
+// 	malloc_checker(bs->args);
+// 	i = 0;
+// 	while (argv[i])
+// 		i++;
+// 	bs->n_args = argc;
+// }
 
 void	malloc_checker(char *s)
 {
