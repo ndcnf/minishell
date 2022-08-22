@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 16:51:10 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:27:19 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ int	b_echo(t_builtins *bs)
 			printf("\n");
 		}
 	}
+	i = 0;
+	while (i < bs->n_args)
+	{
+		printf("FREE [%s], {%p}\n", bs->args[i], bs->args[i]);
+		i++;
+	}
+	// i = 0;
+	// while (i < bs->n_args)
+	// 	free(bs->args[i++]);
 	return (EXIT_SUCCESS);
 }
 

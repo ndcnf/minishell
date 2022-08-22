@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 15:23:25 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:48:21 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 int main (int argc, char *argv[], char **envp)
 {
 	t_builtins bs;
-	int	i;
-
-	// char *args[3];
-	// args[0] = "/bin/echo";
-	// args[1] = "-n";
-	// args[2] = NULL;
+	//int	i;
 
 	b_init(&bs, argc, argv, envp);
 	if (ft_strncmp(argv[1], "echo", 4) == 0)
@@ -39,13 +34,14 @@ int main (int argc, char *argv[], char **envp)
 		b_unset(&bs);
 	else
 		printf("Command not found (yet)\n");
-	i = 0;
-	while (i < (argc - 1))
-		free(&bs.args[i++]);
-	free(&bs.args);
+	freearray(bs.args, argc);
+	// i = 0;
+	// while (i < (argc - 1))
+	// 	free(&bs.args[i++]);
+	// free(&bs.args);
 
 
-	
+
 	//lancer execve dans un fork, afin de pouvoir continuer le main apres l'execution
 	// if (execve(args[0], args, envp) == -1)
 	// 	perror("Something went wrong");
