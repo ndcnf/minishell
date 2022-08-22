@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 17:16:31 by mthiesso          #+#    #+#              #
-#    Updated: 2022/07/12 16:22:06 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/08/22 11:24:07 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,18 +27,18 @@ GCC		= gcc
 GCCFLAGS = -Wall -Wextra -Werror
 
 .c.o:
-			${GCC} ${GCCFLAGS} -c $< -o ${<:.c=.o}
+			@${GCC} ${GCCFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			ar rc ${NAME} ${OBJS}
-			ranlib ${NAME}
+			@ar rc ${NAME} ${OBJS}
+			@ranlib ${NAME}
 
 all:		${NAME}
 
 clean:
-			rm -f ${OBJS}
+			@rm -f ${OBJS}
 
 fclean:		clean
-			rm -f ${NAME}
+			@rm -f ${NAME}
 
 re:			fclean all
