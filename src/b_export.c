@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/11 14:09:44 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/12 11:41:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	b_export(t_builtins *bs)
 		{
 			key = get_key(bs, i);
 			val = get_val(bs, i);
-			mod_key(bs, key, val);
+			add_key(bs, key, val);
 			i++;
 		}
-		sort_env(bs); //VERIFICATION UNIQUEMENT
+		sort_env(bs);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -40,7 +40,8 @@ char	*get_key(t_builtins *bs, int pos)
 	char	*new_key;
 	int		i;
 
-	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
+	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos] + 1));
+	// new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	malloc_checker(new_key);
 	i = 0;
 	while (bs->args[pos][i] != '=')
@@ -51,7 +52,7 @@ char	*get_key(t_builtins *bs, int pos)
 	new_key[i] = '\0';
 	return (new_key);
 	// if (new_key)
-	// 	free(new_key);
+	//  	free(new_key);
 }
 
 char	*get_val(t_builtins *bs, int pos)
@@ -64,25 +65,26 @@ char	*get_val(t_builtins *bs, int pos)
 	return (new_val);
 }
 
-void	mod_key(t_builtins *bs, char *key, char *val)
+void	add_key(t_builtins *bs, char *key, char *val)
 {
 	char	**new_array;
 	char	*new_val;
 	char	*exist_key;
-	char	*key_val;
 	int		add_key;
 	int		i;
 
 	add_key = 1;
-	new_array = malloc(sizeof(char *) * (bs->n_env + 1));
+	new_array = malloc(sizeof(char *) * (bs->n_env + 1) + 1);
 	malloc_checker((char *)new_array);
-	if (val)
+	
+	i = 0;
+	while (i < bs->n_env)
 	{
-		key_val = ft_strjoin(key, "=");
-		new_val = ft_strjoin(key_val, val);
+		new_array[i] = malloc(sizeof(char) * 2);
+		i++;
 	}
-	else
-		new_val = key;
+
+	new_val = define_val(key, val);
 	i = 0;
 	while (i < bs->n_env)
 	{
@@ -91,7 +93,7 @@ void	mod_key(t_builtins *bs, char *key, char *val)
 		{
 			add_key = 0;
 			if (val)
-				new_array[i] = new_val;
+				new_array[i] = ft_strdup(new_val);
 			else
 				new_array[i] = ft_strdup(bs->env[i]);
 		}
@@ -101,8 +103,8 @@ void	mod_key(t_builtins *bs, char *key, char *val)
 	}
 	if (add_key)
 	{
-		new_array[i] = new_val;
-		new_array[i + 1] = NULL;
+		new_array[i] = ft_strdup(new_val);
+		new_array[i + 1] = NULL; //LEAKS
 		bs->n_env++;
 	}
 	else
@@ -111,19 +113,16 @@ void	mod_key(t_builtins *bs, char *key, char *val)
 	dup_array_to_env(bs, new_array);
 }
 
-void	dup_array_to_env(t_builtins *bs, char **array)
+char	*define_val(char *key, char *val)
 {
-	int	i;
+	char	*new_val;
 
-	bs->env = malloc (sizeof(char *) * bs->n_env);
-	if (!bs->env)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (i < bs->n_env)
+	if (val)
 	{
-		bs->env[i] = array[i];
-		i++;
+		new_val = ft_strjoin(key, "=");
+		new_val = ft_strjoin(new_val, val);
 	}
-	bs->env[i] = NULL;
-	free(array);
+	else
+		new_val = key;
+	return (new_val);
 }

@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marlene <marlene@student.42.fr>            +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
 #    Updated: 2022/08/11 14:50:17 by marlene          ###   ########.fr        #
@@ -25,6 +25,8 @@ SRC =	src/builtins.c \
 		src/env_utils.c \
 		src/b_unset.c \
 		src/parsing.c \
+		src/b_echo.c \
+		src/b_init.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)
