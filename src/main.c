@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 17:23:03 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/23 11:14:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main (int argc, char *argv[], char **envp)
 {
+	/* --------- PARTIE MARLENE ---------
 	(void)argc;
 	(void)argv;
 	(void)envp;
@@ -22,12 +23,16 @@ int main (int argc, char *argv[], char **envp)
 
 	input = NULL;
 	//ft_lstnew(cmd->content);
+	--------- PARTIE MARLENE --------- */
 
+
+	/* --------- PARTIE NADIA --------- */
 	t_builtins bs;
 	//int	i;
 
 	b_init(&bs, argc, argv, envp);
-	/*if (ft_strncmp(argv[1], "echo", 4) == 0)
+	// /*
+	if (ft_strncmp(argv[1], "echo", 4) == 0)
 		b_echo(&bs);
 	else if (ft_strncmp(argv[1], "pwd", 3) == 0)
 		b_pwd(&bs);
@@ -43,7 +48,11 @@ int main (int argc, char *argv[], char **envp)
 		b_unset(&bs);
 	else
 		printf("Command not found (yet)\n");
-	freearray(bs.args, argc);
+
+	freearray(bs.env);
+
+
+	//freearray(bs.args, argc);
 	// i = 0;
 	// while (i < (argc - 1))
 	// 	free(&bs.args[i++]);
@@ -57,7 +66,11 @@ int main (int argc, char *argv[], char **envp)
 	// //avec un fork, le message suivant sera execute. Sans le fork, il ne le sera qu'en cas d'erreur.
 	// printf("si tu me lis, il y a une erreur\n");
 
-		printf("Command not found (yet)\n");*/
+	/* --------- PARTIE NADIA --------- */
+
+
+
+	/* --------- PARTIE MARLENE ---------
 	prompt = NULL;
 
 	while (1)
@@ -66,5 +79,10 @@ int main (int argc, char *argv[], char **envp)
 		parsing_init(prompt, input);
 	}
 	free(prompt);
+
+	--------- PARTIE MARLENE --------- */
+	(void)argc;
+	(void)argv;
+	(void)envp;
 	return(0);
 }
