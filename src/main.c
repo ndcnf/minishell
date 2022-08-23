@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/23 11:14:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:39:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,7 @@ int main (int argc, char *argv[], char **envp)
 		printf("Command not found (yet)\n");
 
 	freearray(bs.env);
-
-
-	//freearray(bs.args, argc);
-	// i = 0;
-	// while (i < (argc - 1))
-	// 	free(&bs.args[i++]);
-	// free(&bs.args);
-
-
+	freearray(bs.args);
 
 	//lancer execve dans un fork, afin de pouvoir continuer le main apres l'execution
 	// if (execve(args[0], args, envp) == -1)
