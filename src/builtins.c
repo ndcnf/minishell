@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 17:24:43 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/25 10:24:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	b_cd(t_builtins *bs)
 
 // 'exit'		-> affiche 'exit\n' et ferme
 // 'exit texte'	-> affiche 'exit\n' puis un message erreur et ferme
+// exit values : celles de la commande precedente
 ////////////////////////////////////////
 int	b_exit(t_builtins *bs)
 {
