@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/23 11:13:40 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/26 13:03:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,8 @@ int		b_echo(t_builtins *bs);
 //b_init.c
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
 void	malloc_checker(char *s);
+
+//redirections.c
+
 
 #endif
