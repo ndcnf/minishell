@@ -6,7 +6,7 @@
 /*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 17:19:05 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/18 22:19:21 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 typedef struct s_builtins
 {
 	char	*content;
+	int		len;
 	char	**args; //une commande valide entree par le user
 	char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
@@ -74,6 +75,7 @@ int		b_env(t_builtins *bs);
 //parsing.c
 void	parsing_init(char *args, t_input *input);
 void	dividing_args(t_builtins *bs);
-int		parse_cmd(char *in);
+int		parse_pwd(t_builtins *bs, char *in);
+int		skip_spaces(t_builtins *bs, char *in);
 
 #endif

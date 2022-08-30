@@ -6,7 +6,7 @@
 #    By: marlene <marlene@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/08/11 14:50:17 by marlene          ###   ########.fr        #
+#    Updated: 2022/08/17 14:36:21 by marlene          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ AR =	ar rcs
 SRC =	src/builtins.c \
 		src/main.c \
 		src/parsing.c \
+		src/parsing_utils.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)

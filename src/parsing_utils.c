@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 13:36:59 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/08/29 14:34:17 by marlene          ###   ########.fr       */
+/*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
+/*   Updated: 2022/08/18 22:18:26 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int    skip_spaces(t_builtins *bs, char *in)
 {
-	size_t	i;
-	size_t	j;
-	char	*tmp;
+    int i;
 
-	i = 0;
-	j = 0;
-	if (!set || !s1)
-		return (NULL);
-	j = ft_strlen(s1);
-	while (s1[i] != '\0' && ft_strchr(set, s1[i]) != NULL)
-		i++;
-	while (j > i && ft_strchr(set, s1[j]) != NULL)
-		j--;
-	tmp = ft_substr((char *)(s1 + i), 0, (j - i + 1));
-	return (tmp);
+    i = 0;
+    while (in[i])
+    {
+        if (in[i] != ' ')
+        {
+            bs->len = ft_strlen(in) - i;
+            return (1);
+        }
+        i++;
+    }
+    return (0);
 }
