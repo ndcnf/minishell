@@ -6,7 +6,7 @@
 /*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/08/12 17:29:17 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/29 14:41:56 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,23 @@ void    dividing_args(t_builtins *bs)
 {
     char        *in;
     
+    in = malloc(sizeof(char *) + 1);
     in = bs->content;
-    if (parse_cmd(in) == 1)
+    if (parse_pwd(bs, in) == 1)
             b_pwd(bs);
 }
 
-int    parse_cmd(char *in)
+int    parse_pwd(t_builtins *bs, char *in)
 {
-    if (ft_strncmp(in, "pwd", 3) == 0)
-		return(1);
+    int i;
+    bs->len = ft_strlen(in);
+    i = 0;
+    in = ft_strtrim(in, " ");
+    while (in[i])
+    {
+        if (ft_strncmp(in, "pwd", 3) == 0)
+            return(1);
+        i++;
+    }
     return(0);
 }

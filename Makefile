@@ -25,6 +25,7 @@ SRC =	src/builtins.c \
 		src/env_utils.c \
 		src/b_unset.c \
 		src/parsing.c \
+		src/parsing_utils.c \
 		src/b_echo.c \
 		src/b_init.c \
 		src/redirections.c \
