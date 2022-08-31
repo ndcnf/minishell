@@ -3,94 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 17:24:43 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/25 10:24:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-// Stocker temporairement les argv entres dans une structure
-// et decaler afin de ne plus avoir le nom "./minishell" en premier
-// argument
-void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
-{
-	int	i;
-
-	bs->args = malloc(sizeof(char *) * (argc + 1));
-	malloc_checker((char *)bs->args);
-	// if (!bs->args)
-	// 	exit(EXIT_FAILURE);
-	i = 0;
-	while (envp[i] != NULL)
-		i++;
-	bs->n_env = i;
-	bs->env = malloc(sizeof(char *) * bs->n_env);
-	malloc_checker((char *)bs->env);
-	// if (!bs->env)
-	// 	exit(EXIT_FAILURE);
-	i = 0;
-	while (i < bs->n_env)
-	{
-		bs->env[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	i = 0;
-	while (i < (argc - 1))
-	{
-		bs->args[i] = argv[i + 1];
-		i++;
-	}
-	bs->n_args = i;
-}
-
-// 'echo'				-> retour à la ligne
-// 'echo -n'			-> rien, ligne suivante
-// 'echo -n texte'		-> 'texte'
-// 'echo texte'			-> 'texte\n'
-// 'echo texte long'	-> 'texte long\n'
-// 'echo -n texte long'	-> 'texte long'
-// 'echo texte -n'		-> 'texte -n\n'
-///////////////////////////////////////////////
-int	b_echo(t_builtins *bs)
-{
-	int	i;
-
-	if (bs->n_args == 1)
-		printf("\n");
-	if (bs->n_args >= 2)
-	{
-		if (ft_strncmp(bs->args[1], "-n", strlen(bs->args[1])) == 0)
-		{
-			if (bs->n_args != 2)
-			{
-				i = 2;
-				while (i < bs->n_args)
-				{
-					printf("%s", bs->args[i]);
-					i++;
-					if (i != bs->n_args)
-						printf(" ");
-				}
-			}
-		}
-		else
-		{
-			i = 1;
-			while (i < bs->n_args)
-			{
-				printf("%s", bs->args[i]);
-				i++;
-				if (i != bs->n_args)
-					printf(" ");
-			}
-			printf("\n");
-		}
-	}
-	return (EXIT_SUCCESS);
-}
 
 // 'pwd'		-> affiche le chemin actuel, suivi d'un \n
 // 'pwd texte	-> message d'erreur : 'pwd: too many arguments'
@@ -98,13 +18,8 @@ int	b_echo(t_builtins *bs)
 int	b_pwd(t_builtins *bs)
 {
 	char	dir[MAX_PATH];
-	
-	bs->n_args = 0;
-	if (bs->n_args > 1)
-	{
-		printf("pwd: too many arguments\n");
-		exit(EXIT_FAILURE);
-	}
+
+	(void)bs;
 	if (getcwd(dir, sizeof(dir)) == NULL)
 		perror("pwd");
 	else
@@ -143,6 +58,7 @@ int	b_cd(t_builtins *bs)
 
 // 'exit'		-> affiche 'exit\n' et ferme
 // 'exit texte'	-> affiche 'exit\n' puis un message erreur et ferme
+// exit values : celles de la commande precedente
 ////////////////////////////////////////
 int	b_exit(t_builtins *bs)
 {
@@ -161,15 +77,6 @@ int	b_env(t_builtins *bs)
 
 	i = 0;
 	while (i < bs->n_env)
-	{
-		printf("%s\n", bs->env[i]);
-		i++;
-	}
+		printf("%s\n", bs->env[i++]);
 	return (EXIT_SUCCESS);
-}
-
-void	malloc_checker(char *s)
-{
-	if (!s)
-		exit(EXIT_FAILURE);
 }
