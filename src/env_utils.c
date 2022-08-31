@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/23 11:13:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:16:21 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,14 @@ void	dup_array_to_env(t_builtins *bs, char **array)
 	free(array);
 }
 
-void	freearray(char **m)
+void	freearray(char **m, int n)
 {
 	int	i;
 
 	i = 0;
-	while (m[i])
+	while (i < n)
+	{
 		free(m[i++]);
+	}
 	free(m);
 }

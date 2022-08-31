@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:55:05 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/23 11:43:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:19:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[])
 	while (i < argc)
 	{
 		bs->args[i - 1] = ft_strdup(argv[i]);
-		malloc_checker(bs->args[i]);
+		malloc_checker(bs->args[i - 1]);
 		i++;
 	}
+
 	i = 0;
 	while (envp[i] != NULL)
 		i++;
