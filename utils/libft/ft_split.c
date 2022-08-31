@@ -6,11 +6,10 @@
 /*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/17 14:40:50 by marlene          ###   ########.fr       */
+/*   Updated: 2022/08/31 11:43:37 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
 /* Example:
  * s		"Everything needs a delimiter."
