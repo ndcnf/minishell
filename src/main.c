@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/23 11:39:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/31 11:43:11 by marlene          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main (int argc, char *argv[], char **envp)
 {
+
 	/* --------- PARTIE MARLENE ---------
 	(void)argc;
 	(void)argv;
@@ -73,8 +74,4 @@ int main (int argc, char *argv[], char **envp)
 	free(prompt);
 
 	--------- PARTIE MARLENE --------- */
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	return(0);
 }
