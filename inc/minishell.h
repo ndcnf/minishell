@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/30 12:53:30 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/31 14:28:43 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_builtins
 	char	**env; //copie des valeurs de l'environnement
 	int		n_env; //nombre de variables d'environnement
 
-	char	*file = "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
+	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
 
 } t_builtins;
 
@@ -109,9 +109,9 @@ void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
 void	malloc_checker(char *s);
 
 //redirections.c
-void	redir_input(t_builtins *bs);
-void	redir_output(t_builtins *bs);
-void	append_in(t_builtins *bs);
-void	heredoc(t_builtins *bs);
+// void	redir_input(t_builtins *bs);
+// void	redir_output(t_builtins *bs);
+// void	append_in(t_builtins *bs);
+// void	heredoc(t_builtins *bs);
 
 #endif
