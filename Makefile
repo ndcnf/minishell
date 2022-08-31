@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/08/17 14:36:21 by marlene          ###   ########.fr        #
+#    Updated: 2022/08/31 15:08:08 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ GRN = \033[32m
 RST = \033[0m
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
 NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
@@ -28,6 +28,7 @@ SRC =	src/builtins.c \
 		src/parsing_utils.c \
 		src/b_echo.c \
 		src/b_init.c \
+		src/redirections.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)
@@ -36,7 +37,7 @@ LIBS	= -L $(RL)/lib/ -lreadline -lhistory
 INC		= -I. -I $(RL)/include/
 DIR_LIBFT = ./utils/libft/
 LIB_LIBFT = ft
-HEADER = -Iinc
+HEADER = -I./inc
 DEL = rm -rf
 
 OBJ =	${SRC:.c=.o}
@@ -51,7 +52,7 @@ ${NAME}:	${OBJ}
 			@echo "[LIBFT]		${GRN}OK${RST}"
 			@echo "[MINISHELL]	${CYN}Compilating...${RST}"
 			@${CC} ${OBJ} ${CFLAGS} ${LIBS}\
-			-L${DIR_LIBFT} -l${LIB_LIBFT} \
+			-L${DIR_LIBFT} -l${LIB_LIBFT}\
 			-o ${NAME}
 			@echo "[MINISHELL]	${GRN}OK${RST}"
 exec:	all

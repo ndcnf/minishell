@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/23 11:13:40 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:14:45 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ typedef struct s_builtins
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 	char	**env; //copie des valeurs de l'environnement
 	int		n_env; //nombre de variables d'environnement
+
+	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
+
 } t_builtins;
 
 // structure des listes chaînées afin de pouvoir stocker les arguments
@@ -86,7 +89,7 @@ char	**parse_env(char *s);
 void	sort_env(t_builtins *bs);
 void	print_env(char **elem);
 void	dup_array_to_env(t_builtins *bs, char **array);
-void	freearray(char **m);
+void	freearray(char **m, int n);
 
 //b_export.c
 int		b_export(t_builtins *bs);
@@ -106,5 +109,11 @@ int		b_echo(t_builtins *bs);
 //b_init.c
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
 void	malloc_checker(char *s);
+
+//redirections.c
+// void	redir_input(t_builtins *bs);
+// void	redir_output(t_builtins *bs);
+// void	append_in(t_builtins *bs);
+// void	heredoc(t_builtins *bs);
 
 #endif
