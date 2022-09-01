@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/31 15:14:45 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:31:19 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ typedef struct s_builtins
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 	char	**env; //copie des valeurs de l'environnement
 	int		n_env; //nombre de variables d'environnement
-
 	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
-
-} t_builtins;
+}	t_builtins;
 
 // structure des listes chaînées afin de pouvoir stocker les arguments
 //et de pouvoir les utiliser de manière optimisée
@@ -61,14 +59,15 @@ typedef struct s_cmd
 	char				*content;
 	struct cmd			*next;
 	int					line;
-} t_cmd;
+}	t_cmd;
 
-typedef	struct	s_input
+typedef struct s_input
 {
-	char				*content;
+	char				**content;
+	int					nb_cmd;
 	struct input		*next;
 	int					line;
-} t_input;
+}	t_input;
 
 //builtins.c
 int		b_pwd(t_builtins *bs);
@@ -99,11 +98,11 @@ void	add_key(t_builtins *bs, char *key, char *val);
 char	*define_val(char *key, char *val);
 
 //b_unset.c
-int 	b_unset(t_builtins *bs);
+int		b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
-void    print_echo_n(t_builtins *bs, int i);
+void	print_echo_n(t_builtins *bs, int i);
 int		b_echo(t_builtins *bs);
 
 //b_init.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/31 15:42:11 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:44:45 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main (int argc, char *argv[], char **envp)
 {
 
-	/* --------- PARTIE MARLENE ---------
+	//--------- PARTIE MARLENE ---------
 	(void)argc;
 	(void)argv;
 	(void)envp;
@@ -23,16 +23,16 @@ int main (int argc, char *argv[], char **envp)
 	t_input	*input;
 
 	input = NULL;
+
 	//ft_lstnew(cmd->content);
-	--------- PARTIE MARLENE --------- */
+	// --------- PARTIE MARLENE ---------
 
 
-	/* --------- PARTIE NADIA --------- */
+	/* --------- PARTIE NADIA ---------
 	t_builtins bs;
 	//int	i;
 
 	b_init(&bs, argc, argv, envp);
-	// /*
 	if (argc == 1) // a modifier ensuite avec bs. et les bons crochets carres pour les autres conditions.
 		printf("\n");
 	else if (ft_strncmp(argv[1], "echo", 5) == 0)
@@ -69,19 +69,18 @@ int main (int argc, char *argv[], char **envp)
 	// //avec un fork, le message suivant sera execute. Sans le fork, il ne le sera qu'en cas d'erreur.
 	// printf("si tu me lis, il y a une erreur\n");
 
-	/* --------- PARTIE NADIA --------- */
+	--------- PARTIE NADIA --------- */
 
 
 
-	/* --------- PARTIE MARLENE ---------
+	// --------- PARTIE MARLENE ---------
 	prompt = NULL;
-
 	while (1)
 	{
-		prompt = readline("\e[36mminishell$ \e[0m");
+		prompt = readline("\e[36mmarynad$ \e[0m");
 		parsing_init(prompt, input);
+		add_history(prompt);
 	}
 	free(prompt);
-
-	--------- PARTIE MARLENE --------- */
+	// --------- PARTIE MARLENE ---------
 }
