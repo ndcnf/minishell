@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/05 14:29:54 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:44:15 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,13 @@ void	parse_cmd(char *s)
 	i = 0;
 	if (check_quotes(s) == 1)
 		printf("DEGAGE\n");
-	while (s[i])
-	{
-		// if (check_quotes(s) == 1)
-		// {
-		// 	printf("DEGAGE\n");
-		// 	break ;
-		// }
-		i++;
-	}
+	i = skip_spaces(s);
+	printf("i : %d\n", i);
+	// while (s[i])
+	// {
+		
+	// 	i++;
+	// }
 }
 void	dividing_args(t_builtins *bs)
 {

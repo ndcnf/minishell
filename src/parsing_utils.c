@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/05 14:20:31 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:46:13 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,18 @@ int	check_quotes(char *s)
 	if (nb_quotes % 2)
 		return (1);
 	return (0);
+}
+
+int	skip_spaces(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		while (s[i] == ' ')
+			i++;
+		return (i);
+	}
+	return (i);
 }
