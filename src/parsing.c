@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/01 18:58:45 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:29:54 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,30 @@ void	parsing_init(char *args, t_input *input)
 	i = 0;
 	while (i < input->nb_cmd)
 	{
+		parse_cmd(input->content[i]);
 		ft_printf("content: %s\n", input->content[i]);
 		i++;
 	}
 	//dividing_args(&bs);
 }
 
+void	parse_cmd(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (check_quotes(s) == 1)
+		printf("DEGAGE\n");
+	while (s[i])
+	{
+		// if (check_quotes(s) == 1)
+		// {
+		// 	printf("DEGAGE\n");
+		// 	break ;
+		// }
+		i++;
+	}
+}
 void	dividing_args(t_builtins *bs)
 {
 	char	*in;
