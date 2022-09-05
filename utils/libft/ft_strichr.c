@@ -6,13 +6,13 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:50:16 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/06/05 16:05:53 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:07:26 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strichr(const char *s, int c)
+int	ft_strichr(const char *s, char c)
 {
 	int	i;
 

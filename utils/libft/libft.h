@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:05:15 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/08/08 15:38:38 by marlene          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:07:29 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				ft_strncmp(char *s1, char *s2, size_t n);
 int				ft_memcmp(const void *str1, const void *str2, size_t n);
 int				ft_lstsize(t_list *lst);
 int				nl_finder(char *line);
-int				ft_strichr(const char *s, int c);
+int				ft_strichr(const char *s, char c);
 int				ft_putchar(char c);
 int				ft_printstr(char *str);
 int				ft_printf(const char *format, ...);

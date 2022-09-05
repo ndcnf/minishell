@@ -6,13 +6,13 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/05 14:46:13 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:41:34 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_quotes(char *s)
+int	check_quotes(t_input *input, char *s)
 {
 	int	nb_quotes;
 	int	i;
@@ -27,6 +27,7 @@ int	check_quotes(char *s)
 	}
 	if (nb_quotes % 2)
 		return (1);
+	input->nb_elem = nb_quotes;
 	i = 0;
 	nb_quotes = 0;
 	while (s[i])
@@ -37,6 +38,7 @@ int	check_quotes(char *s)
 	}
 	if (nb_quotes % 2)
 		return (1);
+	input->nb_elem += nb_quotes;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/05 14:44:15 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:45:13 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	parsing_init(char *args, t_input *input)
 {
 	int			i;
+	t_elem		*elem;
 
 	i = 0;
 	input = malloc(sizeof(t_input));
+	elem = malloc(sizeof(t_elem));
 	input->nb_cmd = 1;
 	while (args[i])
 	{
@@ -30,28 +32,36 @@ void	parsing_init(char *args, t_input *input)
 	i = 0;
 	while (i < input->nb_cmd)
 	{
-		parse_cmd(input->content[i]);
+		parse_cmd(input, input->content[i]);
 		ft_printf("content: %s\n", input->content[i]);
 		i++;
 	}
 	//dividing_args(&bs);
 }
 
-void	parse_cmd(char *s)
+void	parse_cmd(t_input *input, char *s)
 {
 	int	i;
+	int	next_sp;
+	int	j;
 
 	i = 0;
-	if (check_quotes(s) == 1)
+	j = 0;
+	if (check_quotes(input, s) == 1)
 		printf("DEGAGE\n");
+	printf("nb_elem : %d\n", input->nb_elem);
 	i = skip_spaces(s);
 	printf("i : %d\n", i);
-	// while (s[i])
-	// {
-		
-	// 	i++;
-	// }
+	next_sp = ft_strichr(s, ' ');
+	//input->elem->content[j] = ft_substr(s, i, next_sp);
 }
+
+
+
+
+
+
+
 void	dividing_args(t_builtins *bs)
 {
 	char	*in;
