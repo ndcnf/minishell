@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/05 16:45:13 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:37:15 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,29 @@ void	parsing_init(char *args, t_input *input)
 	i = 0;
 	while (i < input->nb_cmd)
 	{
-		parse_cmd(input, input->content[i]);
-		ft_printf("content: %s\n", input->content[i]);
+		input->nb_elem = 1;
+		input->content[i] = parse_cmd(input, input->content[i]);
+		space_counter(input, input->content[i]);
+		printf("nb_elem : [%d]\n", input->nb_elem);
+		ft_printf("content: [%s]\n", input->content[i]);
 		i++;
+		//input->elem->content = malloc(sizeof(char *) * input->nb_elem);
 	}
 	//dividing_args(&bs);
 }
 
-void	parse_cmd(t_input *input, char *s)
+char	*parse_cmd(t_input *input, char *s)
 {
 	int	i;
-	int	next_sp;
 	int	j;
 
 	i = 0;
 	j = 0;
 	if (check_quotes(input, s) == 1)
 		printf("DEGAGE\n");
-	printf("nb_elem : %d\n", input->nb_elem);
-	i = skip_spaces(s);
-	printf("i : %d\n", i);
-	next_sp = ft_strichr(s, ' ');
+	s = ft_strtrim(s, " ");
+	printf("parse_s : [%s]\n", s);
+	return (s);
 	//input->elem->content[j] = ft_substr(s, i, next_sp);
 }
 

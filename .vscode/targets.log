@@ -7,8 +7,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
+/bin/sh: brew: command not found
 
-# Make data base, printed on Wed Aug 24 13:39:20 2022
+make: brew: Command not found
+
+
+# Make data base, printed on Wed Sep  7 11:03:51 2022
 
 # Variables
 
@@ -18,12 +22,14 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 16)
 RST = \033[0m
-# makefile (from `Makefile', line 37)
+# makefile (from `Makefile', line 43)
 OBJ = ${SRC:.c=.o}
-# makefile (from `Makefile', line 27)
-RL_V := 8.1.2
+# makefile (from `Makefile', line 33)
+RL_V := 
 # makefile (from `Makefile', line 22)
-SRC = src/builtins.c src/main.c src/parsing.c src/parsing_utils.c 
+SRC = src/builtins.c src/main.c src/b_export.c src/env_utils.c src/b_unset.c src/parsing.c src/parsing_utils.c src/b_echo.c src/b_init.c src/redirections.c 
+# environment
+VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -31,36 +37,35 @@ SRC = src/builtins.c src/main.c src/parsing.c src/parsing_utils.c
 # automatic
 @F = $(notdir $@)
 # makefile
- 
-CURDIR := /Users/marlene/Documents/42cursus/minishell
+CURDIR := /Users/mthiesso/Documents/cursus/minishell
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"8e1a08857df44efaeace20a1f4372f40.fr","_translationsConfigFile":"/Users/marlene/Library/Application Support/Code/clp/8e1a08857df44efaeace20a1f4372f40.fr/tcf.json","_cacheRoot":"/Users/marlene/Library/Application Support/Code/clp/8e1a08857df44efaeace20a1f4372f40.fr","_resolvedLanguagePackCoreLocation":"/Users/marlene/Library/Application Support/Code/clp/8e1a08857df44efaeace20a1f4372f40.fr/da76f93349a72022ca4670c1b84860304616aaa2","_corruptedFile":"/Users/marlene/Library/Application Support/Code/clp/8e1a08857df44efaeace20a1f4372f40.fr/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 19)
 CFLAGS = -Wall -Wextra -Werror -g 
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from `Makefile', line 28)
-RL_P := /opt/homebrew/Cellar/readline
+# makefile (from `Makefile', line 34)
+RL_P := 
 # environment
-__CFBundleIdentifier = com.microsoft.VSCode
-# environment
-INFOPATH = /opt/homebrew/share/info:
-# makefile (from `Makefile', line 35)
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 41)
 DEL = rm -rf
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbgw0032vz/T/vscode-ipc-568310b8-8b0a-4322-bad0-471ed82bd598.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/bin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
-# environment
-LaunchInstanceID = D4297C07-35EE-4A3F-9559-0825D7A2DCF1
+LaunchInstanceID = 5D2C793E-D20C-40C5-B13D-B7E320DCB93E
 # makefile (from `Makefile', line 21)
 AR = ar rcs
+# environment
+VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
@@ -68,33 +73,29 @@ ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 15)
 GRN = \033[32m
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Olk468qmZg/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.V9wnKBsquR/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/marlene/Documents/42cursus/minishell
-# makefile (from `Makefile', line 29)
-RL = $(RL_P)/$(RL_V)
+VSCODE_PIPE_LOGGING = true
 # environment
-HOMEBREW_CELLAR = /opt/homebrew/Cellar
+PWD = /Users/mthiesso/Documents/cursus/minishell
+# makefile (from `Makefile', line 35)
+RL = $(RL_P)/$(RL_V)
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /opt/local/share/man:/opt/homebrew/share/man::
-# environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/marlene
+HOME = /Users/mthiesso
 # default
-MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/marlene/Library/Application Support/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
+VSCODE_CODE_CACHE_PATH = /Users/mthiesso/Library/Application Support/Code/CachedData/dfd34e8260c270da74b5c2d86d61aee4b6d56977
 # environment
-LOGNAME = marlene
+LOGNAME = mthiesso
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-ZSH = /Users/marlene/.oh-my-zsh
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -114,29 +115,25 @@ CC = gcc
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = marlene
+USER = mthiesso
 # makefile
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 20)
 NAME = minishell
-# environment
-LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
-MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
-# makefile (from `Makefile', line 31)
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# makefile (from `Makefile', line 37)
 INC = -I. -I $(RL)/include/
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/bz/f5stjy814254hmv3zkj1_sdr0000gn/T/
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cbgw0032vz/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/marlene/Library/Application Support/Code/1.70.0-main.sock
-# environment
-MallocNanoZone = 0
+VSCODE_IPC_HOOK = /Users/mthiesso/Library/Application Support/Code/1.66.2-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -144,19 +141,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.8552037.8552043
-# environment
-HOMEBREW_PREFIX = /opt/homebrew
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
-# makefile (from `Makefile', line 33)
+# makefile (from `Makefile', line 39)
 LIB_LIBFT = ft
 # environment
-HOMEBREW_REPOSITORY = /opt/homebrew
-# environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x1
+__CF_USER_TEXT_ENCODING = 0x18B7F:0x0:0x0
 # environment
 COMMAND_MODE = unix2003
 # default
@@ -164,19 +157,17 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
-PAGER = less
-# environment
 LC_ALL = C
 # makefile (from `Makefile', line 14)
 YEL = \033[33m
-# makefile (from `Makefile', line 32)
+# makefile (from `Makefile', line 38)
 DIR_LIBFT = ./utils/libft/
-# makefile (from `Makefile', line 34)
-HEADER = -Iinc
-# makefile (from `Makefile', line 30)
+# makefile (from `Makefile', line 40)
+HEADER = -I./inc
+# makefile (from `Makefile', line 36)
 LIBS = -L $(RL)/lib/ -lreadline -lhistory
 # environment
-SECURITYSESSIONID = 186ac
+SECURITYSESSIONID = 186a7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -188,9 +179,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2368
+VSCODE_PID = 4040
 # variable set hash-table stats:
-# Load=88/1024=9%, Rehash=0, Collisions=5/120=4%
+# Load=82/1024=8%, Rehash=0, Collisions=5/114=4%
 
 # Pattern-specific Variable Values
 
@@ -198,15 +189,15 @@ VSCODE_PID = 2368
 
 # Directories
 
-# . (device 16777231, inode 8234257): 13 files, no impossibilities.
-# src (device 16777231, inode 8234376): 8 files, no impossibilities so far.
+# . (device 16777225, inode 3013746): 13 files, no impossibilities.
+# src (device 16777225, inode 3013822): 21 files, no impossibilities so far.
 
-# 21 files, no impossibilities in 2 directories.
+# 34 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  commands to execute (from `Makefile', line 42):
+#  commands to execute (from `Makefile', line 48):
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
@@ -217,7 +208,7 @@ VSCODE_PID = 2368
 # Not a target:
 src/builtins.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 17:24:43
+#  Last modified 2022-08-31 17:16:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -233,27 +224,60 @@ all: minishell
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+# Not a target:
+src/b_init.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-31 17:16:29
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
 .PHONY: all clean fclean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-src/main.o: src/main.c
+src/b_echo.o: src/b_echo.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/main'
-#  Last modified 2022-08-18 21:52:14
+#  Implicit/static pattern stem: `src/b_echo'
+#  Last modified 2022-09-07 11:03:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
+#  commands to execute (from `Makefile', line 48):
+	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
+	
+
+src/main.o: src/main.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/main'
+#  Last modified 2022-09-07 11:03:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 48):
+	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
+	
+
+src/b_export.o: src/b_export.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/b_export'
+#  Last modified 2022-09-07 11:03:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 48):
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
 # Not a target:
 src/parsing_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 22:18:26
+#  Last modified 2022-09-05 17:06:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -262,12 +286,12 @@ src/parsing_utils.c:
 src/parsing.o: src/parsing.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parsing'
-#  Last modified 2022-08-18 22:27:06
+#  Last modified 2022-09-07 11:03:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
+#  commands to execute (from `Makefile', line 48):
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
@@ -280,28 +304,50 @@ src/parsing.o: src/parsing.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 14:36:21
+#  Last modified 2022-09-07 11:03:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-minishell: src/builtins.o src/main.o src/parsing.o src/parsing_utils.o
-#  Implicit rule search has not been done.
-#  Last modified 2022-08-18 22:27:06
+# Not a target:
+src/redirections.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-31 17:16:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
+
+ 
+minishell: src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-09-07 11:03:24
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 50):
 	@echo "[LIBFT]		${CYN}Creating...${RST}"
 	@${MAKE} -C ${DIR_LIBFT}
 	@echo "[LIBFT]		${GRN}OK${RST}"
 	@echo "[MINISHELL]	${CYN}Compilating...${RST}"
 	@${CC} ${OBJ} ${CFLAGS} ${LIBS}\
-	-L${DIR_LIBFT} -l${LIB_LIBFT} \
+	-L${DIR_LIBFT} -l${LIB_LIBFT}\
 	-o ${NAME}
 	@echo "[MINISHELL]	${GRN}OK${RST}"
+	
+
+src/env_utils.o: src/env_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/env_utils'
+#  Last modified 2022-09-07 11:03:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 48):
+	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
 fclean: clean
@@ -309,16 +355,33 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 65):
+#  commands to execute (from `Makefile', line 71):
 	@${DEL} ${NAME}
 	@echo "${GRN}Cleaning complete.${RST}"
 	
 
 # Not a target:
+src/b_echo.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-31 17:16:29
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-16 17:50:11
- 
+#  Last modified 2022-09-01 18:44:45
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/b_export.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-31 17:16:29
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -328,14 +391,14 @@ norm: all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 55):
+#  commands to execute (from `Makefile', line 61):
 	norminette ${SRC} minishell.h
 	
 
 # Not a target:
 src/parsing.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 22:26:58
+#  Last modified 2022-09-07 11:01:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -347,6 +410,18 @@ src/parsing.c:
 #  Modification time never checked.
 #  File has not been updated.
 
+src/b_unset.o: src/b_unset.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/b_unset'
+#  Last modified 2022-09-07 11:03:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 48):
+	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
+	
+
 re: fclean all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -357,7 +432,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 57):
+#  commands to execute (from `Makefile', line 63):
 	@echo "[MINISHELL]	${YEL}Deleting...${RST}"
 	@${DEL} ${OBJ}
 	@echo "[MINISHELL]	${GRN}Cleaned${RST}"
@@ -369,24 +444,45 @@ clean:
 src/builtins.o: src/builtins.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/builtins'
-#  Last modified 2022-08-18 21:52:14
+#  Last modified 2022-09-07 11:03:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
+#  commands to execute (from `Makefile', line 48):
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
+
+src/b_init.o: src/b_init.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/b_init'
+#  Last modified 2022-09-07 11:03:18
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 48):
+	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
+	
+
+# Not a target:
+src/env_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-31 17:16:29
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 src/parsing_utils.o: src/parsing_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parsing_utils'
-#  Last modified 2022-08-18 22:20:17
+#  Last modified 2022-09-07 11:03:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
+#  commands to execute (from `Makefile', line 48):
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
@@ -394,12 +490,33 @@ exec: all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 53):
+#  commands to execute (from `Makefile', line 59):
 	./${NAME}
 	
 
+src/redirections.o: src/redirections.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/redirections'
+#  Last modified 2022-09-07 11:03:18
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 48):
+	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
+	
+
+# Not a target:
+src/b_unset.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-31 17:16:29
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
 # files hash-table stats:
-# Load=19/1024=2%, Rehash=0, Collisions=0/57=0%
+# Load=31/1024=3%, Rehash=0, Collisions=0/93=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -411,6 +528,6 @@ exec: all
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 24 13:39:20 2022
+# Finished Make data base on Wed Sep  7 11:03:51 2022
 
  

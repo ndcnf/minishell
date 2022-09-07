@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/05 16:37:00 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/07 10:59:55 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ int		b_env(t_builtins *bs);
 
 //parsing.c
 void	parsing_init(char *args, t_input *input);
-void	parse_cmd(t_input *input, char *s);
+char	*parse_cmd(t_input *input, char *s);
 int		check_quotes(t_input *input, char *s);
 void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
 int		skip_spaces(char *s);
+void	space_counter(t_input *input, char *s);
 
 void	malloc_checker(char *s);
 
