@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/07 11:35:58 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:09:05 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,24 @@
 
 int	check_quotes(t_input *input, char *s)
 {
-	int	nb_quotes;
+	int	s_quotes;
+	int	d_quotes;
 	int	i;
 
-	nb_quotes = 0;
+	s_quotes = 0;
+	d_quotes = 0;
 	i = 0;
 	while (s[i])
 	{
 		if (s[i] == '\'')
-			nb_quotes++;
-		i++;
-	}
-	if (nb_quotes % 2)
-		return (1);
-	input->nb_elem += nb_quotes;
-	i = 0;
-	nb_quotes = 0;
-	while (s[i])
-	{
+			s_quotes++;
 		if (s[i] == '\"')
-			nb_quotes++;
+			d_quotes++;
 		i++;
 	}
-	if (nb_quotes % 2)
+	if (s_quotes % 2 || d_quotes % 2)
 		return (1);
-	input->nb_elem += nb_quotes;
+	input->nb_elem += (s_quotes + d_quotes);
 	return (0);
 }
 

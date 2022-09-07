@@ -7,12 +7,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-/bin/sh: brew: command not found
 
-make: brew: Command not found
-
-
-# Make data base, printed on Wed Sep  7 11:03:51 2022
+# Make data base, printed on Wed Sep  7 13:13:15 2022
 
 # Variables
 
@@ -55,13 +51,13 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 41)
 DEL = rm -rf
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbgw0032vz/T/vscode-ipc-568310b8-8b0a-4322-bad0-471ed82bd598.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbgw0032vz/T/vscode-ipc-e58cace6-fd77-42d7-9a80-99d05428d603.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
-LaunchInstanceID = 5D2C793E-D20C-40C5-B13D-B7E320DCB93E
+LaunchInstanceID = 17095265-C087-4143-84F7-80AA7C76D06A
 # makefile (from `Makefile', line 21)
 AR = ar rcs
 # environment
@@ -73,7 +69,7 @@ ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 15)
 GRN = \033[32m
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.V9wnKBsquR/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ts68ZhHMAh/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -141,7 +137,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -179,9 +175,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4040
+VSCODE_PID = 3907
 # variable set hash-table stats:
-# Load=82/1024=8%, Rehash=0, Collisions=5/114=4%
+# Load=82/1024=8%, Rehash=0, Collisions=6/123=5%
 
 # Pattern-specific Variable Values
 
@@ -190,9 +186,9 @@ VSCODE_PID = 4040
 # Directories
 
 # . (device 16777225, inode 3013746): 13 files, no impossibilities.
-# src (device 16777225, inode 3013822): 21 files, no impossibilities so far.
+# src (device 16777225, inode 3013822): 17 files, no impossibilities so far.
 
-# 34 files, no impossibilities in 2 directories.
+# 30 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -220,40 +216,25 @@ all: minishell
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-src/b_init.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:16:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
 
 .PHONY: all clean fclean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-src/b_echo.o: src/b_echo.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/b_echo'
-#  Last modified 2022-09-07 11:03:17
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 48):
-	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
-	
+# Not a target:
+src/b_echo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 src/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/main'
-#  Last modified 2022-09-07 11:03:17
+#  Last modified 2022-09-07 12:47:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -265,7 +246,7 @@ src/main.o: src/main.c
 src/b_export.o: src/b_export.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/b_export'
-#  Last modified 2022-09-07 11:03:17
+#  Last modified 2022-09-07 12:47:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -274,23 +255,30 @@ src/b_export.o: src/b_export.c
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
-# Not a target:
-src/parsing_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-09-05 17:06:58
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
 src/parsing.o: src/parsing.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parsing'
-#  Last modified 2022-09-07 11:03:17
+#  Last modified 2022-09-07 13:09:17
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/parsing.o
+# automatic
+# % := 
+# automatic
+# * := src/parsing
+# automatic
+# + := src/parsing.c
+# automatic
+# | := 
+# automatic
+# < := src/parsing.c
+# automatic
+# ^ := src/parsing.c
+# automatic
+# ? := src/parsing.c
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=8/32=25%, Rehash=0, Collisions=2/19=11%
 #  commands to execute (from `Makefile', line 48):
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
@@ -304,29 +292,19 @@ src/parsing.o: src/parsing.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:03:12
+#  Last modified 2022-09-07 13:13:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-src/redirections.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:16:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
- 
 minishell: src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-09-07 11:03:24
+#  Last modified 2022-09-07 13:09:17
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
 #  commands to execute (from `Makefile', line 50):
 	@echo "[LIBFT]		${CYN}Creating...${RST}"
 	@${MAKE} -C ${DIR_LIBFT}
@@ -339,9 +317,13 @@ minishell: src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.
 	
 
 src/env_utils.o: src/env_utils.c
+ 
+/bin/sh: brew: command not found
+make: brew: Command not found
+
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/env_utils'
-#  Last modified 2022-09-07 11:03:17
+#  Last modified 2022-09-07 12:47:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -359,15 +341,6 @@ fclean: clean
 	@${DEL} ${NAME}
 	@echo "${GRN}Cleaning complete.${RST}"
 	
-
-# Not a target:
-src/b_echo.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-31 17:16:29
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 src/main.c:
@@ -398,7 +371,7 @@ norm: all
 # Not a target:
 src/parsing.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 11:01:01
+#  Last modified 2022-09-07 13:09:48
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -413,7 +386,7 @@ src/parsing.c:
 src/b_unset.o: src/b_unset.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/b_unset'
-#  Last modified 2022-09-07 11:03:17
+#  Last modified 2022-09-07 12:47:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -444,7 +417,7 @@ clean:
 src/builtins.o: src/builtins.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/builtins'
-#  Last modified 2022-09-07 11:03:17
+#  Last modified 2022-09-07 12:47:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -453,17 +426,11 @@ src/builtins.o: src/builtins.c
 	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
 	
 
-src/b_init.o: src/b_init.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/b_init'
-#  Last modified 2022-09-07 11:03:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 48):
-	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
-	
+# Not a target:
+src/b_init.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/env_utils.c:
@@ -474,17 +441,11 @@ src/env_utils.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-src/parsing_utils.o: src/parsing_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/parsing_utils'
-#  Last modified 2022-09-07 11:03:17
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 48):
-	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
-	
+# Not a target:
+src/parsing_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 exec: all
 #  Implicit rule search has not been done.
@@ -494,17 +455,11 @@ exec: all
 	./${NAME}
 	
 
-src/redirections.o: src/redirections.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `src/redirections'
-#  Last modified 2022-09-07 11:03:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 48):
-	@${CC} ${CFLAGS} ${HEADER} ${INC}  -c $< -o $@
-	
+# Not a target:
+src/redirections.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/b_unset.c:
@@ -516,7 +471,7 @@ src/b_unset.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=31/1024=3%, Rehash=0, Collisions=0/93=0%
+# Load=27/1024=3%, Rehash=0, Collisions=0/77=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -528,6 +483,6 @@ src/b_unset.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Sep  7 11:03:51 2022
+# Finished Make data base on Wed Sep  7 13:13:15 2022
 
  
