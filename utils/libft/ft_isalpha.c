@@ -6,11 +6,14 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 13:22:57 by mthiesso          #+#    #+#             */
-/*   Updated: 2021/10/28 19:00:30 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:38:52 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
+}	

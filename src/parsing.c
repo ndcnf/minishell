@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/07 13:09:48 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:52:09 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	parsing_init(char *args, t_input *input)
 	{
 		input->nb_elem = 1;
 		input->content[i] = parse_cmd(input, input->content[i]);
-		space_counter(input, input->content[i++]);
-		printf("%d\n", input->nb_elem);
+		space_counter(input, input->content[i]);
 		input->elem->content = malloc(sizeof(char *) * input->nb_elem);
+		parsing_elem(input, input->content[i]);
+		i++;
 	}
 }
 
@@ -51,34 +52,50 @@ char	*parse_cmd(t_input *input, char *s)
 	return (s);
 }
 
-
-
-
-
-
-
-void	dividing_args(t_builtins *bs)
+void	parsing_elem(t_input *input, char *s)
 {
-	char	*in;
-
-	in = malloc(sizeof(char *) + 1);
-	in = bs->content;
-	if (parse_pwd(bs, in) == 1)
-		b_pwd(bs);
-}
-
-int	parse_pwd(t_builtins *bs, char *in)
-{
-	int	i;
-
-	bs->len = ft_strlen(in);
-	i = 0;
-	in = ft_strtrim(in, " ");
-	while (in[i])
+	if (s[0] == '\"')
 	{
-		if (ft_strncmp(in, "pwd", 3) == 0)
-			return (1);
-		i++;
+		input->elem->content[0] = "\"";
+		input->elem->content[1] = d_quotes_mgmt(input, s, 1);
 	}
-	return (0);
+	printf("elem 0 : [%s]\n", input->elem->content[0]);
+	printf("elem 1 : [%s]\n", input->elem->content[1]);
 }
+// int		quotes_mgmt(t_input *input, char *s, int j)
+// {
+// 	int	i;
+// 	int	d_quotes;
+// 	int	s_quotes;
+
+// 	i = 0;
+// 	d_quotes = 0;
+// 	s_quotes = 0;
+// 	while (s[i])
+// 	{
+// 		if (s[i] == '\"' )
+// 			d_quotes_mgmt(input, s, i, j);
+// 		if (s[i] == '\'')
+// 			s_quotes_mgmt(input, s, i, j);
+// 		i++;
+// 	}
+// 	return (0); //on verra tout ca tout ca
+// }
+
+char	*d_quotes_mgmt(t_input *input, char *s, int i)
+{
+	int		k;
+	char	*tmp;
+
+	(void) input;
+	k = 0;
+	tmp = malloc(sizeof(char) * ft_strlen(s));
+	while (s[i] && (ft_isalpha(s[i]) == 1))
+		tmp[k++] = s[i++];
+	return (tmp);
+}
+
+// int		s_quotes_mgmt(t_input *input, char *s, int i)
+// {
+
+// }
