@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/08 10:52:09 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:25:41 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,18 @@ char	*parse_cmd(t_input *input, char *s)
 
 void	parsing_elem(t_input *input, char *s)
 {
+	int	i;
+
+	i = 0;
 	if (s[0] == '\"')
 	{
 		input->elem->content[0] = "\"";
-		input->elem->content[1] = d_quotes_mgmt(input, s, 1);
+		i = d_quotes_mgmt(input, s, 1);
+		input->elem->content[2] = "\"";
 	}
 	printf("elem 0 : [%s]\n", input->elem->content[0]);
-	printf("elem 1 : [%s]\n", input->elem->content[1]);
+	ft_printf("elem 1 : [%s]\n", input->elem->content[1]);
+	printf("elem 2 : [%s]\n", input->elem->content[2]);
 }
 // int		quotes_mgmt(t_input *input, char *s, int j)
 // {
@@ -82,17 +87,26 @@ void	parsing_elem(t_input *input, char *s)
 // 	return (0); //on verra tout ca tout ca
 // }
 
-char	*d_quotes_mgmt(t_input *input, char *s, int i)
+int	d_quotes_mgmt(t_input *input, char *s, int i)
 {
 	int		k;
-	char	*tmp;
+	int		size;
 
-	(void) input;
 	k = 0;
-	tmp = malloc(sizeof(char) * ft_strlen(s));
-	while (s[i] && (ft_isalpha(s[i]) == 1))
-		tmp[k++] = s[i++];
-	return (tmp);
+	size = 0;
+	while (s[i] && s[i] != '\"')
+	{
+		size++;
+		i++;
+	}
+	i = 1;
+	input->elem->content[1] = malloc(sizeof(char) * size);
+	while (s[i] && s[i] != '\"')
+		input->elem->content[1][k++] = s[i++];
+	if (i == 1)
+		input->elem->content[1][k] = ' ';
+	printf(" i : [%d]\n", i);
+	return (i);
 }
 
 // int		s_quotes_mgmt(t_input *input, char *s, int i)

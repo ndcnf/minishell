@@ -12,7 +12,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: brew: Command not found
 
 
-# Make data base, printed on Thu Sep  8 10:31:16 2022
+# Make data base, printed on Thu Sep  8 11:00:05 2022
 
 # Variables
 
@@ -45,7 +45,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 19)
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # makefile (from `Makefile', line 34)
@@ -59,7 +59,7 @@ VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cbgw0032vz/T/vscod
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # makefile (from `Makefile', line 21)
 AR = ar rcs
 # environment
@@ -235,7 +235,7 @@ src/b_init.c:
 src/b_echo.o: src/b_echo.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/b_echo'
-#  Last modified 2022-09-07 16:12:21
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -247,7 +247,7 @@ src/b_echo.o: src/b_echo.c
 src/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/main'
-#  Last modified 2022-09-07 16:12:20
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -259,7 +259,7 @@ src/main.o: src/main.c
 src/b_export.o: src/b_export.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/b_export'
-#  Last modified 2022-09-07 16:12:20
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -280,7 +280,7 @@ src/parsing_utils.c:
 src/parsing.o: src/parsing.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parsing'
-#  Last modified 2022-09-07 16:13:17
+#  Last modified 2022-09-08 10:58:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -298,7 +298,7 @@ src/parsing.o: src/parsing.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 13:13:12
+#  Last modified 2022-09-08 11:00:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -314,9 +314,9 @@ src/redirections.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 minishell: src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o
-#  Implicit rule search has not been done.
  
-#  Last modified 2022-09-07 16:13:17
+#  Implicit rule search has not been done.
+#  Last modified 2022-09-08 10:58:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -335,7 +335,7 @@ minishell: src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.
 src/env_utils.o: src/env_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/env_utils'
-#  Last modified 2022-09-07 16:12:20
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -392,7 +392,7 @@ norm: all
 # Not a target:
 src/parsing.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-07 16:13:06
+#  Last modified 2022-09-08 10:58:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -407,7 +407,7 @@ src/parsing.c:
 src/b_unset.o: src/b_unset.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/b_unset'
-#  Last modified 2022-09-07 16:12:21
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -438,7 +438,7 @@ clean:
 src/builtins.o: src/builtins.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/builtins'
-#  Last modified 2022-09-07 16:12:20
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -450,7 +450,7 @@ src/builtins.o: src/builtins.c
 src/b_init.o: src/b_init.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/b_init'
-#  Last modified 2022-09-07 16:12:21
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -471,7 +471,7 @@ src/env_utils.c:
 src/parsing_utils.o: src/parsing_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/parsing_utils'
-#  Last modified 2022-09-07 16:12:21
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -491,7 +491,7 @@ exec: all
 src/redirections.o: src/redirections.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/redirections'
-#  Last modified 2022-09-07 16:12:21
+#  Last modified 2022-09-08 10:54:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -522,6 +522,6 @@ src/b_unset.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Sep  8 10:31:16 2022
+# Finished Make data base on Thu Sep  8 11:00:05 2022
 
  

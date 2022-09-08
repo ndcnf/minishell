@@ -6,7 +6,7 @@
 #    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/07 13:13:12 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/08 11:00:03 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ GRN = \033[32m
 RST = \033[0m
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
 NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
