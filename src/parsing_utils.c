@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/08 13:54:04 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:30:36 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ int	check_quotes(t_input *input, char *s)
 	return (0);
 }
 
-int	skip_spaces(char *s)
+int	skip_spaces(char *s, int i)
 {
-	int	i;
-
-	i = 0;
 	while (s[i])
 	{
 		while (s[i] == ' ')
