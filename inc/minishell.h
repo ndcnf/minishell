@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/08 11:16:39 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:12:14 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
 int		skip_spaces(char *s);
 void	space_counter(t_input *input, char *s);
-int		quotes_mgmt(t_input *input, char *s);
+void	first_elem(t_input *input, char *s, char c);
 int		d_quotes_mgmt(t_input *input, char *s, int i);
 int		s_quotes_mgmt(t_input *input, char *s, int i);
+int		no_quote_mgmt(t_input *input, char *s, int i);
 void	parsing_elem(t_input *input, char *s);
 void	malloc_checker(char *s);
 
