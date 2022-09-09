@@ -1,26 +1,26 @@
 make --dry-run --always-make --keep-going --print-directory
-/bin/sh: brew: command not found
-
-make: brew: Command not found
-
 make: Entering directory `/Users/mthiesso/Documents/cursus/minishell'
-
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/builtins.c -o src/builtins.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/main.c -o src/main.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/b_export.c -o src/b_export.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/env_utils.c -o src/env_utils.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/b_unset.c -o src/b_unset.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/parsing.c -o src/parsing.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/parsing_utils.c -o src/parsing_utils.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/b_echo.c -o src/b_echo.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/b_init.c -o src/b_init.o
-gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/redirections.c -o src/redirections.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/builtins.c -o src/builtins.o
+ 
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/main.c -o src/main.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/b_export.c -o src/b_export.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/env_utils.c -o src/env_utils.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/b_unset.c -o src/b_unset.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/parsing.c -o src/parsing.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/parsing_utils.c -o src/parsing_utils.o
+ 
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/b_echo.c -o src/b_echo.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/b_init.c -o src/b_init.o
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I /Users/mthiesso/.brew/Cellar/readline/8.1.2/include/  -c src/redirections.c -o src/redirections.o
 echo "[LIBFT]		\033[36mCreating...\033[0m"
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./utils/libft/
+ 
 make[1]: Entering directory `/Users/mthiesso/Documents/cursus/minishell/utils/libft'
+ 
 gcc -Wall -Wextra -Werror -c ft_atoi.c -o ft_atoi.o
 gcc -Wall -Wextra -Werror -c ft_atol.c -o ft_atol.o
 gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
+ 
 gcc -Wall -Wextra -Werror -c ft_calloc.c -o ft_calloc.o
 gcc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o
 gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
@@ -31,6 +31,7 @@ gcc -Wall -Wextra -Werror -c ft_itoa.c -o ft_itoa.o
 gcc -Wall -Wextra -Werror -c ft_memchr.c -o ft_memchr.o
 gcc -Wall -Wextra -Werror -c ft_memcmp.c -o ft_memcmp.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
+ 
 gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
 gcc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
 gcc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o
@@ -40,6 +41,7 @@ gcc -Wall -Wextra -Werror -c ft_putstr_fd.c -o ft_putstr_fd.o
 gcc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o
 gcc -Wall -Wextra -Werror -c ft_strchr.c -o ft_strchr.o
 gcc -Wall -Wextra -Werror -c ft_strdup.c -o ft_strdup.o
+ 
 gcc -Wall -Wextra -Werror -c ft_striteri.c -o ft_striteri.o
 gcc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o
 gcc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o
@@ -48,12 +50,14 @@ gcc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
 gcc -Wall -Wextra -Werror -c ft_strmapi.c -o ft_strmapi.o
 gcc -Wall -Wextra -Werror -c ft_strncmp.c -o ft_strncmp.o
 gcc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o
+ 
 gcc -Wall -Wextra -Werror -c ft_strrchr.c -o ft_strrchr.o
 gcc -Wall -Wextra -Werror -c ft_strtrim.c -o ft_strtrim.o
 gcc -Wall -Wextra -Werror -c ft_substr.c -o ft_substr.o
 gcc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
 gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
 gcc -Wall -Wextra -Werror -c get_next_line.c -o get_next_line.o
+ 
 gcc -Wall -Wextra -Werror -c get_next_line_utils.c -o get_next_line_utils.o
 gcc -Wall -Wextra -Werror -c ft_strichr.c -o ft_strichr.o
 gcc -Wall -Wextra -Werror -c ft_lstnew.c -o ft_lstnew.o
@@ -62,11 +66,13 @@ gcc -Wall -Wextra -Werror -c ft_lstlast.c -o ft_lstlast.o
 gcc -Wall -Wextra -Werror -c ft_lstsize.c -o ft_lstsize.o
 gcc -Wall -Wextra -Werror -c ft_lstadd_back.c -o ft_lstadd_back.o
 gcc -Wall -Wextra -Werror -c ft_lstdelone.c -o ft_lstdelone.o
+ 
 gcc -Wall -Wextra -Werror -c ft_lstclear.c -o ft_lstclear.o
 gcc -Wall -Wextra -Werror -c ft_lstiter.c -o ft_lstiter.o
 gcc -Wall -Wextra -Werror -c ft_lstmap.c -o ft_lstmap.o
 gcc -Wall -Wextra -Werror -c ft_hexa_printnbr.c -o ft_hexa_printnbr.o
 gcc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+ 
 gcc -Wall -Wextra -Werror -c ft_printnbr.c -o ft_printnbr.o
 gcc -Wall -Wextra -Werror -c ft_putchar.c -o ft_putchar.o
 gcc -Wall -Wextra -Werror -c ft_unsigned_printnbr.c -o ft_unsigned_printnbr.o
@@ -76,7 +82,7 @@ ranlib libft.a
 make[1]: Leaving directory `/Users/mthiesso/Documents/cursus/minishell/utils/libft'
 echo "[LIBFT]		\033[32mOK\033[0m"
 echo "[MINISHELL]	\033[36mCompilating...\033[0m"
-gcc src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o -Wall -Wextra -Werror -g -fsanitize=address -L //lib/ -lreadline -lhistory\
+gcc src/builtins.o src/main.o src/b_export.o src/env_utils.o src/b_unset.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o -Wall -Wextra -Werror -g -fsanitize=address -L /Users/mthiesso/.brew/Cellar/readline/8.1.2/lib/ -lreadline -lhistory\
 			-L./utils/libft/ -lft\
 			-o minishell
 echo "[MINISHELL]	\033[32mOK\033[0m"

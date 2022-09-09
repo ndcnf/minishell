@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/08 17:23:35 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:56:25 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	parsing_init(char *args, t_input *input)
 		input->content[i] = parse_cmd(input, input->content[i]);
 		space_counter(input, input->content[i]);
 		input->elem->content = malloc(sizeof(char *) * input->nb_elem);
+		printf("nb_elem : [%d]\n", input->nb_elem);
 		parsing_elem(input, input->content[i]);
 		i++;
 	}
@@ -62,29 +63,40 @@ void	parsing_elem(t_input *input, char *s)
 
 	i = 0;
 	n = 0;
-	while (n < input->nb_elem) //REPRENDRE LE NOMBRE D'ELEMENTS
+	if (s[0])
 	{
-		if (s[0])
-		{
-			i = first_elem(input, s, s[0]);
-			ft_printf("elem [%d] : [%s]\n", n, input->elem->content[0]);
-			ft_printf("elem [%d] : [%s]\n", n, input->elem->content[1]);
-			ft_printf("elem [%d] : [%s]\n", n, input->elem->content[2]);
+		i = first_elem(input, s, s[0]);
+		ft_printf("elem [%d] : [%d]\n", n, input->nb_elem);
+		// ft_printf("elem [0] : [%s]\n", input->elem->content[0]);
+		// ft_printf("elem [1] : [%s]\n", input->elem->content[1]);
+		// ft_printf("elem [2] : [%s]\n", input->elem->content[2]);
+		if (input->nb_elem > 3)
 			n = 3;
-		}
+	}
+	while (s[i])
+	{
 		i = skip_spaces(s, i);
-		while (s[i])
+		// ft_printf("elem [%d] : [%s]\n", n, input->elem->content[n]);
+		ft_printf("i : [%d]\nn : [%d]\n", i, n);
+		if (s[i] == '\'')
 		{
-			// ft_printf("elem [%d] : [%s]\n", n, input->elem->content[n]);
-			ft_printf("i : [%d]\nn : [%d]\ns : [%s]\n", i, n, s + i);
-			if (s[i] == '\'')
-				i = s_quotes_mgmt(input, s, (i + 1), n);
-			else if (s[i] == '\"')
-				i = d_quotes_mgmt(input, s, (i + 1), n);
-			else
-				i = no_quote_mgmt(input, s, i, n);
-			i++;
+			input->elem->content[n] = ft_strdup("\'");
+			i = s_quotes_mgmt(input, s, (i + 1), (n + 1));
+			input->elem->content[n + 2] = ft_strdup("\'");
 		}
+		else if (s[i] == '\"')
+		{
+			input->elem->content[n] = ft_strdup("\"");
+			i = d_quotes_mgmt(input, s, (i + 1), (n + 1));
+			input->elem->content[n + 2] = ft_strdup("\"");
+		}
+		else
+			i = no_quote_mgmt(input, s, i + 1, n);
+		n++;
+	}
+	n = 0;
+	while (n < input->nb_elem)
+	{
 		ft_printf("elem [%d] : [%s]\n", n, input->elem->content[n]);
 		n++;
 	}
@@ -143,15 +155,17 @@ int	s_quotes_mgmt(t_input *input, char *s, int i, int n)
 {
 	int		k;
 	int		size;
+	int		j;
 
 	k = 0;
 	size = 0;
+	j = i;
 	while (s[i] && s[i] != '\'')
 	{
 		size++;
 		i++;
 	}
-	i = 1;
+	i = j;
 	input->elem->content[n] = malloc(sizeof(char) * size);
 	while (s[i] && s[i] != '\'')
 		input->elem->content[n][k++] = s[i++];
@@ -164,15 +178,17 @@ int	no_quote_mgmt(t_input *input, char *s, int i, int n)
 {
 	int		k;
 	int		size;
+	int		j;
 
 	k = 0;
 	size = 0;
+	j = i;
 	while (s[i] && s[i] != ' ')
 	{
 		size++;
 		i++;
 	}
-	i = 0;
+	i = j; //i = 0;
 	input->elem->content[n] = malloc(sizeof(char) * size);
 	while (s[i] && s[i] != ' ')
 		input->elem->content[n][k++] = s[i++];

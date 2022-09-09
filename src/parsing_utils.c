@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/08 16:30:36 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:47:50 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,19 @@ void	space_counter(t_input *input, char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == ' ' && s[i + 1] != ' ')
+		if (s[i] == '\"')
+		{
+			i++;
+			while (s[i] != '\"')
+				i++;
+		}
+		else if (s[i] == '\'')
+		{
+			i++;
+			while (s[i] != '\'')
+				i++;
+		}
+		else if (s[i] == ' ' && s[i + 1] != ' ')
 			input->nb_elem++;
 		i++;
 	}
