@@ -115,6 +115,9 @@ int		b_echo(t_builtins *bs);
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
 void	malloc_checker(char *s);
 
+//var.c
+void	conv_var(t_builtins *bs);
+
 //redirections.c
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);

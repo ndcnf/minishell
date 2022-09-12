@@ -30,6 +30,7 @@ SRC =	src/builtins.c \
 		src/b_init.c \
 		src/redirections.c \
 		src/quotes_mgmt.c \
+		src/var.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)
