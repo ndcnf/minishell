@@ -3,28 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/08/18 22:18:26 by marlene          ###   ########.fr       */
+/*   Updated: 2022/09/09 14:47:50 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int    skip_spaces(t_builtins *bs, char *in)
+int	check_quotes(t_input *input, char *s)
 {
-    int i;
+	int	s_quotes;
+	int	d_quotes;
+	int	i;
 
-    i = 0;
-    while (in[i])
-    {
-        if (in[i] != ' ')
-        {
-            bs->len = ft_strlen(in) - i;
-            return (1);
-        }
-        i++;
-    }
-    return (0);
+	s_quotes = 0;
+	d_quotes = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\'')
+			s_quotes++;
+		if (s[i] == '\"')
+			d_quotes++;
+		i++;
+	}
+	if (s_quotes % 2 || d_quotes % 2)
+		return (1);
+	input->nb_elem += (s_quotes + d_quotes);
+	return (0);
+}
+
+int	skip_spaces(char *s, int i)
+{
+	while (s[i])
+	{
+		while (s[i] == ' ')
+			i++;
+		return (i);
+	}
+	return (i);
+}
+
+void	space_counter(t_input *input, char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\"')
+		{
+			i++;
+			while (s[i] != '\"')
+				i++;
+		}
+		else if (s[i] == '\'')
+		{
+			i++;
+			while (s[i] != '\'')
+				i++;
+		}
+		else if (s[i] == ' ' && s[i + 1] != ' ')
+			input->nb_elem++;
+		i++;
+	}
+	if (s[0] != '\'' && s[0] != '\"')
+		input->nb_elem += 2;
 }

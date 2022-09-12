@@ -3,46 +3,120 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marlene <marlene@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/08/29 14:41:56 by marlene          ###   ########.fr       */
+/*   Updated: 2022/09/12 10:33:55 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    parsing_init(char *args, t_input *input)
+void	parsing_init(char *args, t_input *input)
 {
-    t_builtins  bs;
+	int			i;
 
-    input = malloc(sizeof(t_input));
-    input->content = args;
-    bs.content = ft_strdup(input->content);
-    dividing_args(&bs);
+	i = 0;
+	input = malloc(sizeof(t_input));
+	input->elem = malloc(sizeof(t_elem));
+	input->nb_cmd = 1;
+	while (args[i])
+	{
+		if (args[i] == '|')
+			input->nb_cmd++;
+		i++;
+	}
+	input->content = ft_split(args, '|');
+	i = 0;
+	while (i < input->nb_cmd)
+	{
+		input->nb_elem = 1;
+		input->content[i] = parse_cmd(input, input->content[i]);
+		space_counter(input, input->content[i]);
+		input->elem->content = malloc(sizeof(char *) * input->nb_elem);
+		parsing_elem(input, input->content[i]);
+		i++;
+	}
 }
 
-void    dividing_args(t_builtins *bs)
+char	*parse_cmd(t_input *input, char *s)
 {
-    char        *in;
-    
-    in = malloc(sizeof(char *) + 1);
-    in = bs->content;
-    if (parse_pwd(bs, in) == 1)
-            b_pwd(bs);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (check_quotes(input, s) == 1)
+	{
+		printf("DEGAGE\n");
+		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
+	}
+	s = ft_strtrim(s, " ");
+	return (s);
 }
 
-int    parse_pwd(t_builtins *bs, char *in)
+void	parsing_elem(t_input *input, char *s)
 {
-    int i;
-    bs->len = ft_strlen(in);
-    i = 0;
-    in = ft_strtrim(in, " ");
-    while (in[i])
-    {
-        if (ft_strncmp(in, "pwd", 3) == 0)
-            return(1);
-        i++;
-    }
-    return(0);
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	if (s[0])
+	{
+		i = first_elem(input, s, s[0]);
+		if (input->nb_elem > 3)
+			n = 3;
+	}
+	while (s[i])
+	{
+		i = skip_spaces(s, i);
+		if (s[i] == '\'')
+		{
+			input->elem->content[n] = ft_strdup("\'");
+			i = s_quotes_mgmt(input, s, (i + 1), (n + 1));
+			input->elem->content[n + 2] = ft_strdup("\'");
+		}
+		else if (s[i] == '\"')
+		{
+			input->elem->content[n] = ft_strdup("\"");
+			i = d_quotes_mgmt(input, s, (i + 1), (n + 1));
+			input->elem->content[n + 2] = ft_strdup("\"");
+		}
+		else
+			i = no_quote_mgmt(input, s, i, n);
+		n++;
+	}
+	n = 0;
+	while (n < input->nb_elem)
+	{
+		ft_printf("elem [%d] : [%s]\n", n, input->elem->content[n]);
+		n++;
+	}
+}
+
+int	first_elem(t_input *input, char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	if (c == '\"')
+	{
+		input->elem->content[0] = ft_strdup("\"");
+		i = d_quotes_mgmt(input, s, 1, 1);
+		input->elem->content[2] = ft_strdup("\"");
+	}
+	else if (c == '\'')
+	{
+		input->elem->content[0] = ft_strdup("\'");
+		i = s_quotes_mgmt(input, s, 1, 1);
+		input->elem->content[2] = ft_strdup("\'");
+	}
+	else
+	{
+		input->elem->content[0] = ft_strdup("X");
+		i = no_quote_mgmt(input, s, 0, 1);
+		input->elem->content[2] = ft_strdup("X");
+	}
+	return (i);
 }

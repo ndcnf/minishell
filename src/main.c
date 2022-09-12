@@ -15,7 +15,7 @@
 int main (int argc, char *argv[], char **envp)
 {
 
-	/* --------- PARTIE MARLENE ---------
+	//--------- PARTIE MARLENE ---------
 	(void)argc;
 	(void)argv;
 	(void)envp;
@@ -23,11 +23,12 @@ int main (int argc, char *argv[], char **envp)
 	t_input	*input;
 
 	input = NULL;
+
 	//ft_lstnew(cmd->content);
-	--------- PARTIE MARLENE --------- */
+	// --------- PARTIE MARLENE ---------
 
 
-	/* --------- PARTIE NADIA --------- */
+	/* --------- PARTIE NADIA ---------
 	t_builtins bs;
 	//int	i;
 
@@ -75,26 +76,24 @@ int main (int argc, char *argv[], char **envp)
 		freearray(bs.env, bs.n_env);
 		freearray(bs.args, bs.n_args);
 
-
 	//lancer execve dans un fork, afin de pouvoir continuer le main apres l'execution
 	// if (execve(args[0], args, envp) == -1)
 	// 	perror("Something went wrong");
 	// //avec un fork, le message suivant sera execute. Sans le fork, il ne le sera qu'en cas d'erreur.
 	// printf("si tu me lis, il y a une erreur\n");
 
-	/* --------- PARTIE NADIA --------- */
+	--------- PARTIE NADIA --------- */
 
 
 
-	/* --------- PARTIE MARLENE ---------
+	// --------- PARTIE MARLENE ---------
 	prompt = NULL;
-
 	while (1)
 	{
-		prompt = readline("\e[36mminishell$ \e[0m");
+		prompt = readline("\e[36mmarynad$ \e[0m");
 		parsing_init(prompt, input);
+		add_history(prompt);
 	}
 	free(prompt);
-
-	--------- PARTIE MARLENE --------- */
+	// --------- PARTIE MARLENE ---------
 }
