@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/01 18:44:45 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:16:46 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ int main (int argc, char *argv[], char **envp)
 	(void)argv;
 	(void)envp;
 	char 	*prompt;
-	t_input	*input;
+	t_data	*dt;
 
-	input = NULL;
-
-	//ft_lstnew(cmd->content);
+	dt = NULL;
+	prompt = NULL;
+	while (1)
+	{
+		prompt = readline("\e[36mmarynad$ \e[0m");
+		parsing_init(prompt, dt);
+		add_history(prompt);
+	}
+	free(prompt);
 	// --------- PARTIE MARLENE ---------
 
 
@@ -33,22 +39,6 @@ int main (int argc, char *argv[], char **envp)
 	//int	i;
 
 	b_init(&bs, argc, argv, envp);
-	if (argc == 1) // a modifier ensuite avec bs. et les bons crochets carres pour les autres conditions.
-		printf("\n");
-	else if (ft_strncmp(argv[1], "echo", 5) == 0)
-		b_echo(&bs);
-	else if (ft_strncmp(argv[1], "pwd", 4) == 0)
-		b_pwd(&bs);
-	else if (ft_strncmp(argv[1], "cd", 3) == 0)
-		b_cd(&bs);
-	else if (ft_strncmp(argv[1], "exit", 5) == 0)
-		b_exit(&bs);
-	else if (ft_strncmp(argv[1], "env", 4) == 0)
-		b_env(&bs);
-	else if (ft_strncmp(argv[1], "export", 7) == 0)
-		b_export(&bs);
-	else if (ft_strncmp(argv[1], "unset", 6) == 0)
-		b_unset(&bs);
 	// else if (ft_strchr(argv[2], '<'))
 	// 	redir_input(&bs);
 	// else if (ft_strchr(argv[2], '>'))
@@ -70,17 +60,4 @@ int main (int argc, char *argv[], char **envp)
 	// printf("si tu me lis, il y a une erreur\n");
 
 	--------- PARTIE NADIA --------- */
-
-
-
-	// --------- PARTIE MARLENE ---------
-	prompt = NULL;
-	while (1)
-	{
-		prompt = readline("\e[36mmarynad$ \e[0m");
-		parsing_init(prompt, input);
-		add_history(prompt);
-	}
-	free(prompt);
-	// --------- PARTIE MARLENE ---------
 }

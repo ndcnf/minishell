@@ -6,13 +6,13 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/09 14:47:50 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:58:51 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_quotes(t_input *input, char *s)
+int	check_quotes(t_input *in, char *s)
 {
 	int	s_quotes;
 	int	d_quotes;
@@ -31,7 +31,7 @@ int	check_quotes(t_input *input, char *s)
 	}
 	if (s_quotes % 2 || d_quotes % 2)
 		return (1);
-	input->nb_elem += (s_quotes + d_quotes);
+	in->n_elem += (s_quotes + d_quotes);
 	return (0);
 }
 
@@ -46,7 +46,18 @@ int	skip_spaces(char *s, int i)
 	return (i);
 }
 
-void	space_counter(t_input *input, char *s)
+// int	skip_quotes(char *s, int i)
+// {
+// 	while (i < in->n_elem)
+// 	{
+// 		while (in->elem->cont[i] == '\"' || in->elem->cont[i] == '\'')
+// 			i++;
+// 		return (i);
+// 	}
+// 	return (i);
+// }
+
+void	space_counter(t_input *in, char *s)
 {
 	int	i;
 
@@ -66,9 +77,9 @@ void	space_counter(t_input *input, char *s)
 				i++;
 		}
 		else if (s[i] == ' ' && s[i + 1] != ' ')
-			input->nb_elem++;
+			in->n_elem++;
 		i++;
 	}
 	if (s[0] != '\'' && s[0] != '\"')
-		input->nb_elem += 2;
+		in->n_elem += 2;
 }
