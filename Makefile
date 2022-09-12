@@ -6,7 +6,7 @@
 #    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/08 11:00:03 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/12 10:36:55 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC =	src/builtins.c \
 		src/b_echo.c \
 		src/b_init.c \
 		src/redirections.c \
+		src/quotes_mgmt.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)
