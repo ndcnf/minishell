@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/08 16:30:54 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:11:26 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,25 @@ typedef struct s_builtins
 //et de pouvoir les utiliser de manière optimisée
 typedef struct s_elem
 {
-	char				**content;
+	char				**cont;
 }	t_elem;
 
 typedef struct s_input
 {
-	char				**content;
-	int					nb_cmd;
-	int					nb_elem;
+	char				*cont;
+	//int					n_cmd;
+	int					n_elem;
 	t_elem				*elem;
 }	t_input;
+
+typedef struct s_data
+{
+	//char				**env; //copie des valeurs de l'environnement
+	//int				n_env; //nombre de variables d'environnement
+	//char				*path;
+	int					n_cmd;
+	t_input				*in;
+}	t_data;
 
 //builtins.c
 int		b_pwd(t_builtins *bs);
@@ -73,21 +82,28 @@ int		b_cd(t_builtins *bs);
 int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
 
-//parsing.c
-void	parsing_init(char *args, t_input *input);
-char	*parse_cmd(t_input *input, char *s);
-int		check_quotes(t_input *input, char *s);
+//builtins_selecter.c
+void	builtins_selecter(t_input *input);
 
+//parsing.c
+void	parsing_init(char *args, t_data *dt);
+char	*parse_cmd(t_data *dt, char *s, int in);
 void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
+int		first_elem(t_data *dt, char *s, char c, int in);
+void	parsing_elem(t_data *dt, char *s, int in);
+
+void	malloc_checker(char *s);
+
+//parsing_utils.c
+int		check_quotes(t_input *input, char *s);
 int		skip_spaces(char *s, int i);
 void	space_counter(t_input *input, char *s);
-int		first_elem(t_input *input, char *s, char c);
+
+//quotes_mgmt.c
 int		d_quotes_mgmt(t_input *input, char *s, int i, int n);
 int		s_quotes_mgmt(t_input *input, char *s, int i, int n);
 int		no_quote_mgmt(t_input *input, char *s, int i, int n);
-void	parsing_elem(t_input *input, char *s);
-void	malloc_checker(char *s);
 
 //env_utils.c
 char	**parse_env(char *s);
@@ -109,7 +125,7 @@ void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
 void	print_echo_n(t_builtins *bs, int i);
-int		b_echo(t_builtins *bs);
+int		b_echo(t_input *in);
 
 //b_init.c
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
