@@ -17,7 +17,6 @@ void	parsing_init(char *args, t_data *dt)
 	int			i;
 
 	i = 0;
-	dt = malloc(sizeof(t_data));
 	dt->n_cmd = 0;
 	if (ft_strncmp(args, "", 1) == 0)
 	{
@@ -96,6 +95,7 @@ void	parsing_elem(t_data *dt, char *s, int in)
 			i = no_quote_mgmt(&dt->in[in], s, i, n);
 		n++;
 	}
+	//cmd_selecter(dt, 0);
 	n = 0;
 	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
 	{

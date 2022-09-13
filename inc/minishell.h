@@ -65,6 +65,7 @@ typedef struct s_input
 	//int					n_cmd;
 	int					n_elem;
 	t_elem				*elem;
+	int					fd;
 }	t_input;
 
 typedef struct s_data
@@ -99,6 +100,8 @@ void	malloc_checker(char *s);
 int		check_quotes(t_input *input, char *s);
 int		skip_spaces(char *s, int i);
 void	space_counter(t_input *input, char *s);
+int		skip_quotes(t_input *in, int i);
+int		skip_n(t_input *in, int i);
 
 //quotes_mgmt.c
 int		d_quotes_mgmt(t_input *input, char *s, int i, int n);
@@ -124,8 +127,8 @@ int		b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
-void	print_echo_n(t_builtins *bs, int i);
-int		b_echo(t_data *dt);
+void	print_echo_n(t_input *in, int i);
+int		b_echo(t_data *dt, int in);
 
 //b_init.c
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);

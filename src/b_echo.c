@@ -20,56 +20,56 @@
 // 'echo -n texte long'	-> 'texte long'
 // 'echo texte -n'		-> 'texte -n\n'
 ///////////////////////////////////////////////
-int	b_echo(t_data *dt)
+int	b_echo(t_data *dt, int in)
 {
-	(void) *dt;
-	printf("JE SUIS ECHO\n");
-	// int	i;
+	int	i;
 
-	// if (in->n_elem < 4)
-	// 	printf("\n");
-	// if (in->n_elem >= 3)
-	// {
-	// 	//skip_quotes(in, 3); //faut-il donner un index a input pour lui dire dans lequel on veut les infos ? Need HELP
-	// 	if (ft_strncmp(in->elem->cont[3], "-n", strlen(in->elem->cont[3])) == 0)
-	// 		print_echo_n(in, 2);
-	// 	else if (ft_strncmp(in->elem->cont[4], "-n", \
-	// 		strlen(in->elem->cont[4])) == 0)
-	// 		print_echo_n(in, 2);
-	// 	else
-	// 	{
-	// 		i = 1;
-	// 		while (i < bs->n_args)
-	// 		{
-	// 			printf("%s", bs->args[i]);
-	// 			i++;
-	// 			if (i != bs->n_args)
-	// 				printf(" ");
-	// 		}
-	// 		printf("\n");
-	// 	}
-	// i = 0;
-	// while (i < bs->n_args)
-	// {
-	// 	printf("FREE [%s], {%p}\n", bs->args[i], bs->args[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < bs->n_args)
-	// 	free(bs->args[i++]);
+	i = 0;
+	if (dt->in[in].n_elem < 4)
+		ft_printf("\n");
+	if (dt->in[in].n_elem > 3)
+	{
+		i = skip_quotes(&dt->in[in], 3);
+		if (ft_strncmp(dt->in[in].elem->cont[i], "-n", 2) == 0)
+			print_echo_n(&dt->in[in], i);
+		else
+		{
+			while (i < dt->in[in].n_elem)
+			{
+				i = skip_quotes(&dt->in[in], i);
+				ft_printf("%s", dt->in[in].elem->cont[i]);
+				i++;
+				if (i != dt->in[in].n_elem)
+					ft_printf(" ");
+			}
+			ft_printf("\n");
+		}
+	}
+		// i = 0;
+		// while (i < bs->n_args)
+		// {
+		// 	printf("FREE [%s], {%p}\n", bs->args[i], bs->args[i]);
+		// 	i++;
+		// }
+		// i = 0;
+		// while (i < bs->n_args)
+		// 	free(bs->args[i++]);
 	return (EXIT_SUCCESS);
 }
 
-// void	print_echo_n(t_builtins *bs, int i)
-// {
-// 	if (bs->n_args != 2) //in->n_elem
-// 	{
-// 		while (i < bs->n_args)
-// 		{
-// 			printf("%s", bs->args[i]);
-// 			i++;
-// 			if (i != bs->n_args)
-// 				printf(" ");
-// 		}
-// 	}
-// }
+void	print_echo_n(t_input *in, int i)
+{
+	while (i < in->n_elem)
+	{
+		i = skip_quotes(in, i);
+		i = skip_n(in, i);
+		if (ft_strncmp(in->elem->cont[i], "\0", 1))
+		{
+			ft_printf("%s", in->elem->cont[i]);
+			i++;
+			if (i != in->n_elem)
+				ft_printf(" ");
+		}
+		i = skip_quotes(in, i);
+	}
+}

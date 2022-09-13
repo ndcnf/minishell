@@ -20,15 +20,15 @@ int main (int argc, char *argv[], char **envp)
 	(void)argv;
 	(void)envp;
 	char 	*prompt;
-	t_data	*dt;
+	t_data	dt;
 
-	dt = NULL;
+	//dt = NULL;
 	prompt = NULL;
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
-		parsing_init(prompt, dt);
-		//cmd_selecter(dt, 0); //remplacer le 0 plus tard pour savoir quel input est concerné
+		parsing_init(prompt, &dt);
+		cmd_selecter(&dt, 0); //remplacer le 0 plus tard pour savoir quel input est concerné
 		add_history(prompt);
 	}
 	free(prompt);

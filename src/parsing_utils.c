@@ -46,16 +46,31 @@ int	skip_spaces(char *s, int i)
 	return (i);
 }
 
-// int	skip_quotes(char *s, int i)
-// {
-// 	while (i < in->n_elem)
-// 	{
-// 		while (in->elem->cont[i] == '\"' || in->elem->cont[i] == '\'')
-// 			i++;
-// 		return (i);
-// 	}
-// 	return (i);
-// }
+int	skip_quotes(t_input *in, int i)
+{
+	while (i < in->n_elem)
+	{
+		if (ft_strncmp(in->elem->cont[i], "\"", 1) == 0)
+			i++;
+		else if (ft_strncmp(in->elem->cont[i], "\'", 1) == 0)
+			i++;
+		else
+			return (i);
+	}
+	return (i);
+}
+
+int	skip_n(t_input *in, int i)
+{
+	while (i < in->n_elem)
+	{
+		if (ft_strncmp(in->elem->cont[i], "-n", 1) == 0)
+			i++;
+		else
+			return (i);
+	}
+	return (i);
+}
 
 void	space_counter(t_input *in, char *s)
 {

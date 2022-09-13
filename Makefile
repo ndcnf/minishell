@@ -31,7 +31,6 @@ SRC =	src/builtins.c \
 		src/redirections.c \
 		src/quotes_mgmt.c \
 		src/cmd_selecter.c \
-		src/builtins_selecter.c \
 		src/var.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')

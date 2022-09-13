@@ -73,8 +73,9 @@ int	no_quote_mgmt(t_input *in, char *s, int i, int n)
 		i++;
 	}
 	i = j;
-	in->elem->cont[n] = malloc(sizeof(char) * size);
+	in->elem->cont[n] = malloc(sizeof(char) * (size + 1));
 	while (s[i] && s[i] != ' ')
 		in->elem->cont[n][k++] = s[i++];
+	in->elem->cont[n][k] = '\0';
 	return (i);
 }
