@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/13 10:32:27 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:33:14 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	remove_key(t_builtins *bs, char *key);
 //b_echo.c
 void	print_echo_n(t_input *in, int i);
 int		b_echo(t_data *dt, int in);
+void	print_echo_quotes(t_input *in, int i);
 
 //b_init.c
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);

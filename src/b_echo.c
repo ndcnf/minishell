@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/13 10:32:57 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:09:45 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ int	b_echo(t_data *dt, int in)
 			while (i < dt->in[in].n_elem)
 			{
 				i = skip_quotes(&dt->in[in], i);
-				ft_printf("%s", dt->in[in].elem->cont[i]);
+				if (i == dt->in[in].n_elem)
+					break ;
+				ft_printf("[%s]", dt->in[in].elem->cont[i]);
 				i++;
-				if (i != dt->in[in].n_elem)
-					ft_printf(" ");
+				i = skip_quotes(&dt->in[in], i);
+				if (i < dt->in[in].n_elem)
+					ft_printf("[H]");
 			}
 			ft_printf("\n");
 		}
@@ -59,17 +62,32 @@ int	b_echo(t_data *dt, int in)
 
 void	print_echo_n(t_input *in, int i)
 {
+	i = skip_quotes(in, i);
+	i = skip_n(in, i);
 	while (i < in->n_elem)
 	{
 		i = skip_quotes(in, i);
-		i = skip_n(in, i);
 		if (ft_strncmp(in->elem->cont[i], "\0", 1))
 		{
 			ft_printf("%s", in->elem->cont[i]);
-			i++;
-			if (i != in->n_elem)
+			if (i != in->n_elem - 1)
 				ft_printf(" ");
+			i++;
 		}
 		i = skip_quotes(in, i);
 	}
 }
+
+// void	print_echo_quotes(t_input *in, int i)
+// {
+// 	while (i < in->n_elem)
+// 	{
+// 		i = skip_quotes(in, i);
+// 		if (i == in->n_elem)
+// 			break ;
+// 		ft_printf("[%s]", in->elem->cont[i]);
+// 		i++;
+// 		if (i != in->n_elem - 1)
+// 			ft_printf("[ ]");
+// 	}
+// }
