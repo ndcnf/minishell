@@ -6,7 +6,7 @@
 #    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/12 10:56:00 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/13 11:16:36 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	src/builtins.c \
 		src/b_init.c \
 		src/redirections.c \
 		src/quotes_mgmt.c \
+		src/cmd_selecter.c \
 		src/builtins_selecter.c \
 		src/var.c \
 

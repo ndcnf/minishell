@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/12 14:10:10 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:56:02 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	parsing_init(char *args, t_data *dt)
 
 	i = 0;
 	dt = malloc(sizeof(t_data));
+	dt->n_cmd = 0;
+	if (ft_strncmp(args, "", 1) == 0)
+	{
+		printf("");
+		return ;
+	}
 	dt->n_cmd = 1;
 	while (args[i])
 	{

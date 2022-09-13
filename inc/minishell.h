@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/12 14:11:26 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:32:27 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		b_exit(t_builtins *bs);
 int		b_env(t_builtins *bs);
 
 //builtins_selecter.c
-void	builtins_selecter(t_input *input);
+void	cmd_selecter(t_data *dt, int i);
 
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
@@ -125,7 +125,7 @@ void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
 void	print_echo_n(t_builtins *bs, int i);
-int		b_echo(t_input *in);
+int		b_echo(t_data *dt);
 
 //b_init.c
 void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
