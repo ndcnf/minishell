@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
 /*   Updated: 2022/09/13 10:54:18 by mthiesso         ###   ########.fr       */
@@ -50,9 +50,6 @@ int main (int argc, char *argv[], char **envp)
 	// 	append_in(&bs);
 	else
 		printf("Command not found (yet)\n");
-
-	freearray(bs.env, bs.n_env);
-	freearray(bs.args, bs.n_args);
 
 	//lancer execve dans un fork, afin de pouvoir continuer le main apres l'execution
 	// if (execve(args[0], args, envp) == -1)
