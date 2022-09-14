@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:05:15 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/05 16:07:29 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:56:31 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_itoa(int n);
 char			**ft_split(char const *s, char c);
+char			**ft_split_ex(char const *s, char c);
 char			*get_next_line(int fd);
 char			*ft_strchr(const char *str, int c);
 char			*ft_strjoin(char const *s1, char const *s2);

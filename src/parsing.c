@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/13 10:56:02 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:03:23 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,33 @@ void	parsing_init(char *args, t_data *dt)
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)
-		dt->in[i].cont = ft_split(args, '|')[i];
-	i = 0;
-	while (i < dt->n_cmd)
+		dt->in[i].cont = ft_split_ex(args, '|')[i];
+	i = -1;
+	while (++i < dt->n_cmd)
 	{
-		dt->in[i].n_elem = 1;
-		dt->in[i].cont = parse_cmd(dt, dt->in[i].cont, i);
-		space_counter(&dt->in[i], dt->in[i].cont);
-		dt->in[i].elem = malloc(sizeof(t_elem));
-		dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
-		parsing_elem(dt, dt->in[i].cont, i);
-		i++;
+		ft_printf("input[%d] : [%s]\n", i, dt->in[i].cont);
 	}
+	i = 0;
+	// while (i < dt->n_cmd)
+	// {
+	// 	dt->in[i].n_elem = 1;
+	// 	dt->in[i].cont = parse_cmd(dt, dt->in[i].cont, i);
+	// 	space_counter(&dt->in[i], dt->in[i].cont);
+	// 	dt->in[i].elem = malloc(sizeof(t_elem));
+	// 	dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
+	// 	parsing_elem(dt, dt->in[i].cont, i);
+	// 	i++;
+	// }
+
+	// while (i < dt->n_cmd)
+	// {
+	// 	dt->in[i].n_elem = 1;
+	// 	space_counter(&dt->in[i], dt->in[i].cont);
+	// 	dt->in[i].elem = malloc(sizeof(t_elem));
+	// 	dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
+	// 	parsing_elem(dt, dt->in[i].cont, i);
+	// 	i++;
+	// }
 }
 
 char	*parse_cmd(t_data *dt, char *s, int in)
@@ -59,7 +74,7 @@ char	*parse_cmd(t_data *dt, char *s, int in)
 		printf("DEGAGE\n");
 		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
 	}
-	s = ft_strtrim(s, " ");
+	//s = ft_strtrim(s, " ");
 	return (s);
 }
 
@@ -70,26 +85,26 @@ void	parsing_elem(t_data *dt, char *s, int in)
 
 	i = 0;
 	n = 0;
-	if (s[0])
-	{
-		i = first_elem(dt, s, s[0], in);
-		if (dt->in[in].n_elem > 3)
-			n = 3;
-	}
+	// if (s[0])
+	// {
+	// 	i = first_elem(dt, s, s[0], in);
+	// 	if (dt->in[in].n_elem > 3)
+	// 		n = 3;
+	// }
 	while (s[i])
 	{
 		i = skip_spaces(s, i);
 		if (s[i] == '\'')
 		{
-			dt->in[in].elem->cont[n] = ft_strdup("\'");
+			//dt->in[in].elem->cont[n] = ft_strdup("\'");
 			i = s_quotes_mgmt(&dt->in[in], s, (i + 1), (n + 1));
-			dt->in[in].elem->cont[n + 2] = ft_strdup("\'");
+			//dt->in[in].elem->cont[n + 2] = ft_strdup("\'");
 		}
 		else if (s[i] == '\"')
 		{
-			dt->in[in].elem->cont[n] = ft_strdup("\"");
-			i = d_quotes_mgmt(&dt->in[in], s, (i + 1), (n + 1));
-			dt->in[in].elem->cont[n + 2] = ft_strdup("\"");
+			//dt->in[in].elem->cont[n] = ft_strdup("\"");
+			i = d_quotes_mgmt(&dt->in[in], s, i, n);
+			//dt->in[in].elem->cont[n + 2] = ft_strdup("\"");
 		}
 		else
 			i = no_quote_mgmt(&dt->in[in], s, i, n);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 17:16:31 by mthiesso          #+#    #+#              #
-#    Updated: 2022/08/22 11:24:07 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/09/14 14:56:47 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_
 ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 get_next_line.c get_next_line_utils.c ft_strichr.c ft_lstnew.c ft_lstadd_front.c ft_lstlast.c ft_lstsize.c ft_lstadd_back.c \
 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_hexa_printnbr.c ft_printf.c ft_printnbr.c ft_putchar.c \
-ft_unsigned_printnbr.c ft_printstr.c
+ft_unsigned_printnbr.c ft_printstr.c ft_split_exception.c
 
 OBJS	= ${SRCS:.c=.o}
 
