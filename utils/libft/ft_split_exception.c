@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/15 17:04:31 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:06:46 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static void	*new_str(char *s, char c, int w_cnt, int toggle)
 			i = is_quotes(s, i);
 		p = i - 1;
 		ft_printf("i str : [%d]\n", i);
-		if ((s[i] != c && s[p] == c && i > 0) || (w_cnt == 0 && s[i] != c) || (s[i] == '\0' && (s[i] == '\"' || s[i] == '\'')))
+		if ((s[i] != c && s[p] == c && i > 0) || (w_cnt == 0 && s[i] != c))
 		{
 			ft_printf("new str : [%d] [%s]\n", i, (char *)&s[i]);
 			return ((char *)&s[i]);
