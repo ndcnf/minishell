@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/14 18:25:56 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:15:03 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	word_cnt(char *s, char c)
 		}
 		i++;
 	}
-	ft_printf("cnt : [%d]\n", cnt);
 	return (cnt);
 }
 
@@ -87,7 +86,7 @@ static char	*words_without_borders(char *s, char c)
 
 	i = 0;
 	w_len = 0;
-	while (s[w_len])
+	while (s[w_len] && s[w_len] != c)
 	{
 		w_len = is_quotes(s, w_len);
 		if (s[w_len] != c)
