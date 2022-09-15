@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/15 15:33:10 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:04:31 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int	is_quotes(char *s, int i)
 			while (s[i] != '\"')
 				i++;
 			if (s[i] == '\"')
-			{
-				ft_printf("is_quotes d: [%d]\n", i);
-				return (i++);
-			}
+				return (i);
 		}
 		else if (s[i] == '\'')
 		{
@@ -45,11 +42,10 @@ int	is_quotes(char *s, int i)
 			while (s[i] != '\'')
 				i++;
 			if (s[i] == '\'')
-				return (i++);
+				return (i);
 		}
 		i++;
 	}
-	ft_printf("is_quotes n: [%d]\n", i);
 	return (j);
 }
 
@@ -92,7 +88,8 @@ static char	*words_without_borders(char *s, char c)
 	w_len = 0;
 	while (s[w_len] && s[w_len] != c)
 	{
-		w_len = is_quotes(s, w_len);
+		if (s[w_len] == '\"' || s[w_len] == '\'')
+			w_len = is_quotes(s, w_len);
 		if (s[w_len] != c)
 			w_len++;
 	}
@@ -121,12 +118,13 @@ static void	*new_str(char *s, char c, int w_cnt, int toggle)
 	{
 		if (s[0] != c && toggle == 0)
 			return ((char *)&s[0]);
-		i = is_quotes(s, i);
+		if (s[i - 1] != c && (s[i] == '\"' || s[i] == '\''))
+			i = is_quotes(s, i);
 		p = i - 1;
 		ft_printf("i str : [%d]\n", i);
-		if ((s[i] != c && s[p] == c && i > 0]) || (w_cnt == 0 && s[i] != c) || (s[i] == '\"' || s[i] == '\''))
+		if ((s[i] != c && s[p] == c && i > 0) || (w_cnt == 0 && s[i] != c) || (s[i] == '\0' && (s[i] == '\"' || s[i] == '\'')))
 		{
-			ft_printf("new str : [%d]\n", i);
+			ft_printf("new str : [%d] [%s]\n", i, (char *)&s[i]);
 			return ((char *)&s[i]);
 		}
 		i++;
@@ -147,7 +145,6 @@ char	**ft_split_ex(char const *s, char c)
 		return (NULL);
 	str = (char *)s;
 	w_cnt = word_cnt(str, c);
-	ft_printf("w_cnt : [%d]\n", w_cnt);
 	lean = (char **)malloc(sizeof(char *) * (w_cnt + 1));
 	if (lean == NULL)
 		return (NULL);
