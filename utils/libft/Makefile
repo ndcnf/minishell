@@ -6,7 +6,7 @@
 #    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 17:16:31 by mthiesso          #+#    #+#              #
-#    Updated: 2022/09/14 14:56:47 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/15 14:54:36 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ NAME	= libft.a
 
 GCC		= gcc
 
-GCCFLAGS = -Wall -Wextra -Werror
+GCCFLAGS = -Wall -Wextra -Werror -g
 
 .c.o:
 			@${GCC} ${GCCFLAGS} -c $< -o ${<:.c=.o}

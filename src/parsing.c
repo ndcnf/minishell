@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/14 15:03:23 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:25:54 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ void	parsing_init(char *args, t_data *dt)
 	dt->n_cmd = 1;
 	while (args[i])
 	{
+		if (args[i] == '\"' || args[i] == '\'')
+			i = is_quotes(args, i);
 		if (args[i] == '|')
 			dt->n_cmd++;
 		i++;
 	}
+	ft_printf("nb_cmd : [%d]\n", dt->n_cmd);
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)

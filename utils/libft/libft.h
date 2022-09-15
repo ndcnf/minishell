@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:05:15 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/14 14:56:31 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:23:41 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int				ft_printf(const char *format, ...);
 int				ft_printnbr(int nb);
 int				ft_hexa_printnbr(unsigned long int nb, int up);
 int				ft_nbwords(char const *s, char c);
+int				is_quotes(char *s, int i);
 
 long			ft_atol(const char *str);
 
