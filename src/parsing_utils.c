@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/14 11:19:50 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:48:45 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	space_counter(t_input *in, char *s)
 	int	i;
 
 	i = 0;
+	i = skip_spaces(s, i);
 	while (s[i])
 	{
 		if (s[i] == '\"')

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/14 12:40:23 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/16 11:17:14 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	parsing_init(char *args, t_data *dt);
 char	*parse_cmd(t_data *dt, char *s, int in);
 void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
-int		first_elem(t_data *dt, char *s, char c, int in);
+int		first_elem(t_data *dt, char *s, int in);
 void	parsing_elem(t_data *dt, char *s, int in);
 
 void	malloc_checker(char *s);
