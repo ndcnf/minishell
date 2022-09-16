@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/12 14:11:26 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:08:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_builtins
 	char	*content;
 	int		len;
 	char	**args; //une commande valide entree par le user
-	char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
+	//char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
 	char	**env; //copie des valeurs de l'environnement
 	int		n_env; //nombre de variables d'environnement
@@ -69,18 +69,18 @@ typedef struct s_input
 
 typedef struct s_data
 {
-	//char				**env; //copie des valeurs de l'environnement
-	//int				n_env; //nombre de variables d'environnement
-	//char				*path;
+	char				**env; //copie des valeurs de l'environnement
+	int					n_env; //nombre de variables d'environnement
+	char				*path;
 	int					n_cmd;
 	t_input				*in;
 }	t_data;
 
 //builtins.c
-int		b_pwd(t_builtins *bs);
-int		b_cd(t_builtins *bs);
+int		b_pwd(t_data *dt);
+int		b_cd(t_data *dt, int in);
 int		b_exit(t_builtins *bs);
-int		b_env(t_builtins *bs);
+int		b_env(t_data *dt);
 
 //builtins_selecter.c
 void	builtins_selecter(t_input *input);
@@ -128,7 +128,7 @@ void	print_echo_n(t_builtins *bs, int i);
 int		b_echo(t_input *in);
 
 //b_init.c
-void	b_init(t_builtins *bs, int argc, char *argv[], char *envp[]);
+void	b_init(t_data *dt, char *envp[]);
 void	malloc_checker(char *s);
 
 //var.c

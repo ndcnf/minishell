@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/12 14:16:46 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:47:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int main (int argc, char *argv[], char **envp)
 	(void)argv;
 	(void)envp;
 	char 	*prompt;
-	t_data	*dt;
+	t_data	dt;
 
-	dt = NULL;
 	prompt = NULL;
+	b_init(&dt, envp);
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
-		parsing_init(prompt, dt);
+		parsing_init(prompt, &dt);
+		b_pwd(&dt); // test only
 		add_history(prompt);
 	}
 	free(prompt);

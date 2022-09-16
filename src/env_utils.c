@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/31 15:16:21 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:32:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	freearray(char **m, int n)
 
 	i = 0;
 	while (i < n)
-	{
 		free(m[i++]);
-	}
 	free(m);
 }
