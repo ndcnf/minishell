@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/16 14:44:55 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/16 14:48:55 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,18 +146,18 @@ int	first_elem(t_data *dt, char *s, int in)
 			dt->in[in].elem->cont[0][i] = s[i];
 			i++;
 		}
-		dt->in[in].elem->cont[0][i] = '\0';
 	}
 	else
 	{
-		while (s[i])
+		while (i < j)
 		{
 			if (s[i] == ' ')
 				break ;
+			dt->in[in].elem->cont[0][i] = s[i];
 			i++;
-			j++;
 		}
 	}
+	dt->in[in].elem->cont[0][i] = '\0';
 
 	
 
