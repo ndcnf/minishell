@@ -14,10 +14,10 @@
 
 void	cmd_selecter(t_data *dt, int i)
 {
-	if (dt->n_cmd == 0) // cette condition devra etre faite au debut meme du programme, pas ici
-		printf("\n");
-	else if (ft_strncmp(dt->in[i].elem->cont[1], "echo", 5) == 0)
-		b_echo(dt);
+	// if (dt->n_cmd == 0) // cette condition devra etre faite au debut meme du programme, pas ici
+	// 	printf("\n");
+	if (ft_strncmp(dt->in[i].elem->cont[1], "echo", 5) == 0)
+		b_echo(dt, i);
 	// else if (ft_strncmp(input->elem->content[1], "pwd", 4) == 0)
 	// 	b_pwd(&input);
 	// else if (ft_strncmp(input->elem->content[1], "cd", 3) == 0)
