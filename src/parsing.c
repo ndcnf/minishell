@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/19 15:15:59 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:38:18 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	parsing_init(char *args, t_data *dt)
 	// 	parsing_elem(dt, dt->in[i].cont, i);
 	// 	i++;
 	// }
-
+	ft_printf("n_cmd : [%d]\n", dt->n_cmd);
 	while (i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
@@ -83,17 +83,16 @@ void	parsing_elem(t_data *dt, char *s, int in)
 
 	i = 0;
 	n = 0;
-	if (s[0])
+	// if (s[0])
+	// {
+	// 	i = each_elem(&dt->in[in], s, i, n);
+	// 	n++;
+	// }
+	while (s[i] && n < dt->in[in].n_elem)
 	{
-		i = first_elem(&dt->in[in], s, i, n);
-	}
-	while (s[i])
-	{
-		if (s[i] == '-' || ((s[i] == '\"' || s[i] == '\'') && s[i + 1] == '-'))
-		{
-			n++;
-			i += (first_elem(&dt->in[in], s, i, n) - 1);
-		}
+		i += (each_elem(&dt->in[in], s, i, n++));
+		if (n == dt->in[in].n_elem)
+			break ;
 		i++;
 	}
 	//cmd_selecter(dt, 0);
@@ -105,7 +104,7 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	}
 }
 
-int	first_elem(t_input *in, char *s, int i, int n)
+int	each_elem(t_input *in, char *s, int i, int n)
 {
 	int		j;
 	int		g;
