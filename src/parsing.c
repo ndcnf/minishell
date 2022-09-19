@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/19 11:00:41 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:06:56 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	{
 		i = first_elem(dt, s, in);
 	}
+
 	// while (s[i])
 	// {
 	// 	i = skip_spaces(s, i);
@@ -108,11 +109,11 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	// }
 	//cmd_selecter(dt, 0);
 	n = 0;
-	// while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
-	// {
-	ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[0]);
-	// 	n++;
-	// }
+	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
+	{
+		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[0]);
+		n++;
+	}
 }
 
 int	first_elem(t_data *dt, char *s, int in)
@@ -142,6 +143,7 @@ int	first_elem(t_data *dt, char *s, int in)
 		while (i < j)
 		{
 			dt->in[in].elem->cont[0][i] = s[i];
+			dt->in[in].elem->cont[0][i] = ft_tolower(dt->in[in].elem->cont[0][i]);
 			i++;
 		}
 	}
@@ -157,24 +159,5 @@ int	first_elem(t_data *dt, char *s, int in)
 		}
 	}
 	dt->in[in].elem->cont[0][i] = '\0';
-
-	
-
-	// while (s[i] && s[i] != ' ')
-	// {
-	// 	if (s[i] == '\"')
-	// 		i++;
-	// 	j++;
-	// 	i++;
-	// }
-	// tmp = malloc(sizeof(char) * j + 1);
-	// i = 0;
-	// j = 0;
-	// while (s[i] && s[i] != ' ')
-	// {
-	// 	if (s[i] == '\"')
-	// 		i++;
-	// 	tmp[j++] = ft_tolower(s[i++]);
-	// }
 	return (i);
 }
