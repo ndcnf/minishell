@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/19 17:38:18 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:41:22 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int	each_elem(t_input *in, char *s, int i, int n)
 	{
 		while (i < j)
 		{
-			in->elem->cont[n][i] = ft_tolower(s[i]);
+			in->elem->cont[n][i] = s[i];
 			i++;
 		}
 	}
@@ -141,7 +141,7 @@ int	each_elem(t_input *in, char *s, int i, int n)
 		{
 			if (s[i] == ' ')
 				break ;
-			in->elem->cont[n][i] = ft_tolower(s[i]);
+			in->elem->cont[n][i] = s[i];
 			i++;
 		}
 	}
