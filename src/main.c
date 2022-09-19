@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/16 15:47:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:41:28 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main (int argc, char *argv[], char **envp)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
 		parsing_init(prompt, &dt);
-		b_pwd(&dt); // test only
+		b_cd(&dt, 0); // test only
 		add_history(prompt);
 	}
 	free(prompt);

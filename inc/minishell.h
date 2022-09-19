@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/13 15:08:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:40:14 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_data
 //builtins.c
 int		b_pwd(t_data *dt);
 int		b_cd(t_data *dt, int in);
-int		b_exit(t_builtins *bs);
+// int		b_exit(t_builtins *bs);
 int		b_env(t_data *dt);
 
 //builtins_selecter.c

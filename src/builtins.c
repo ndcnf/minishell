@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/16 16:09:15 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:05:25 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,57 @@ int	b_pwd(t_data *dt)
 // 	printf("PATH : [%s]\n", dt->path); // UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
 // 	return (EXIT_SUCCESS);
 // }
+
+int	b_cd(t_data *dt, int in)
+{
+	char	dir[MAX_PATH];
+	// char	**tempura;
+	int		i;
+	(void)in;
+
+	// tempura = malloc(sizeof(char *) * dt->n_env);
+	// malloc_checker((char *)tempura);
+
+	i = 0;
+	while (ft_strncmp(parse_env(dt->env[i])[0], "OLDPWD", 6) && i < dt->n_env)
+		i++;
+
+	ft_printf("[%s]\n", dt->env[i]);
+	// ft_printf("env[%d]: [%s] [%s]\n", i, parse_env(dt->env[i])[0], parse_env(dt->env[i])[1]);
+	dt->env[i] = ft_strjoin("OLDPWD=", parse_env(dt->env[i])[1]);
+	ft_printf("[%s]\n", dt->env[i]);
+
+
+
+
+	// while (dt->env[i] != ft_strncmp(dt->env[i], "OLDPWD", ft_strlen(dt->env[i])))
+	// 	i++;
+	// dt->env[i] = ft_strdup(getcwd(dir, MAX_PATH));
+
+	// if (dt->in[in].n_elem == 1) //S'il n''y a QUE 'cd', sans flag, ni arg
+	// {
+	// 	if (chdir(getenv("HOME")) != 0)
+	// 	{
+	// 		perror("ERR");
+	// 		return (EXIT_FAILURE);
+	// 	}
+	// }
+	// else if (chdir(dt->in[in]->elem) != 0)
+	if (chdir("..") != 0)
+	{
+		perror("ERR");
+		return (EXIT_FAILURE);
+	}
+	i = 0;
+	while (ft_strncmp(parse_env(dt->env[i])[0], "PWD", 3))
+		i++;
+	ft_printf("avant : [%s]\n", dt->env[i]); // UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
+	dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
+	ft_printf("apres : [%s]\n", dt->env[i]); // UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
+	return (EXIT_SUCCESS);
+}
+
+// int
 
 // 'exit'		-> affiche 'exit\n' et ferme
 // 'exit texte'	-> affiche 'exit\n' puis un message erreur et ferme
