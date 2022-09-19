@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/19 11:13:36 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:15:59 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,45 +85,35 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	n = 0;
 	if (s[0])
 	{
-		i = first_elem(dt, s, in);
+		i = first_elem(&dt->in[in], s, i, n);
 	}
-
-	// while (s[i])
-	// {
-	// 	i = skip_spaces(s, i);
-	// 	if (s[i] == '\'')
-	// 	{
-	// 		//dt->in[in].elem->cont[n] = ft_strdup("\'");
-	// 		i = s_quotes_mgmt(&dt->in[in], s, (i + 1), (n + 1));
-	// 		//dt->in[in].elem->cont[n + 2] = ft_strdup("\'");
-	// 	}
-	// 	else if (s[i] == '\"')
-	// 	{
-	// 		//dt->in[in].elem->cont[n] = ft_strdup("\"");
-	// 		i = d_quotes_mgmt(&dt->in[in], s, i, n);
-	// 		//dt->in[in].elem->cont[n + 2] = ft_strdup("\"");
-	// 	}
-	// 	else
-	// 		i = no_quote_mgmt(&dt->in[in], s, i, n);
-	// 	n++;
-	// }
+	while (s[i])
+	{
+		if (s[i] == '-' || ((s[i] == '\"' || s[i] == '\'') && s[i + 1] == '-'))
+		{
+			n++;
+			i += (first_elem(&dt->in[in], s, i, n) - 1);
+		}
+		i++;
+	}
 	//cmd_selecter(dt, 0);
 	n = 0;
 	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
 	{
-		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[0]);
+		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
 		n++;
 	}
 }
 
-int	first_elem(t_data *dt, char *s, int in)
+int	first_elem(t_input *in, char *s, int i, int n)
 {
-	int		i;
 	int		j;
+	int		g;
 
-	i = 0;
 	j = 0;
+	g = i;
 	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
+	i = 0;
 	if (s[i] == '\"' || s[i] == '\'')
 		j = (is_quotes(s, i) + 1);
 	else
@@ -136,13 +126,13 @@ int	first_elem(t_data *dt, char *s, int in)
 			j++;
 		}
 	}
-	dt->in[in].elem->cont[0] = malloc(sizeof(char) * j + 1);
+	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
 	i = 0;
 	if (s[i] == '\"' || s[i] == '\'')
 	{
 		while (i < j)
 		{
-			dt->in[in].elem->cont[0][i] = ft_tolower(s[i]);
+			in->elem->cont[n][i] = ft_tolower(s[i]);
 			i++;
 		}
 	}
@@ -152,10 +142,10 @@ int	first_elem(t_data *dt, char *s, int in)
 		{
 			if (s[i] == ' ')
 				break ;
-			dt->in[in].elem->cont[0][i] = ft_tolower(s[i]);
+			in->elem->cont[n][i] = ft_tolower(s[i]);
 			i++;
 		}
 	}
-	dt->in[in].elem->cont[0][i] = '\0';
+	in->elem->cont[n][i] = '\0';
 	return (i);
 }
