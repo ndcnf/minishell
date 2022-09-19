@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/19 10:40:14 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:03:32 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		b_cd(t_data *dt, int in);
 int		b_env(t_data *dt);
 
 //builtins_selecter.c
-void	builtins_selecter(t_input *input);
+void	builtins_selector(t_data *dt, int i);
 
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
@@ -113,7 +113,8 @@ void	dup_array_to_env(t_builtins *bs, char **array);
 void	freearray(char **m, int n);
 
 //b_export.c
-int		b_export(t_builtins *bs);
+// int		b_export(t_builtins *bs);
+int		b_export(t_data *dt, int in);
 char	*get_key(t_builtins *bs, int pos);
 char	*get_val(t_builtins *bs, int pos);
 void	add_key(t_builtins *bs, char *key, char *val);
