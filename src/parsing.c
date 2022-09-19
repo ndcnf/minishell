@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/16 14:51:17 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:00:41 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int	first_elem(t_data *dt, char *s, int in)
 			if (s[i] == ' ')
 				break ;
 			dt->in[in].elem->cont[0][i] = s[i];
+			dt->in[in].elem->cont[0][i] = ft_tolower(dt->in[in].elem->cont[0][i]);
 			i++;
 		}
 	}
