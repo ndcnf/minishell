@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/13 11:16:36 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/20 11:24:32 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,7 @@ NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
 		src/main.c \
-		src/b_export.c \
 		src/env_utils.c \
-		src/b_unset.c \
 		src/parsing.c \
 		src/parsing_utils.c \
 		src/b_echo.c \
@@ -32,6 +30,8 @@ SRC =	src/builtins.c \
 		src/quotes_mgmt.c \
 		src/cmd_selecter.c \
 		src/var.c \
+		#src/b_export.c \
+		src/b_unset.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)

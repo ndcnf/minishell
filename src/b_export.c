@@ -6,47 +6,47 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/12 11:41:12 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:47:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	b_export(t_builtins *bs)
+int	b_export(t_data *dt, int in)
 {
 	int		i;
 	char	*key;
 	char	*val;
 
-	if (bs->n_args == 1)
-		sort_env(bs);
+	if (dt->in[in].n_elem == 1) //bs->nb_args avant
+		sort_env(dt);
 	else
 	{
 		i = 1;
-		while (i < bs->n_args)
+		while (i < dt->in[in].n_elem) //bs->nb_args avant
 		{
-			key = get_key(bs, i);
-			val = get_val(bs, i);
-			add_key(bs, key, val);
+			key = get_key(dt, i);
+			val = get_val(dt, i);
+			add_key(dt, key, val);
 			i++;
 		}
-		sort_env(bs);
+		sort_env(dt);
 	}
 	return (EXIT_SUCCESS);
 }
 
-char	*get_key(t_builtins *bs, int pos)
+char	*get_key(t_data *dt, int pos)
 {
 	char	*new_key;
 	int		i;
 
-	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos] + 1));
+	new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos] + 1)); //(bs->nb_args[pos] + 1) avant
 	// new_key = malloc(sizeof(char) * ft_strlen(bs->args[pos]));
 	malloc_checker(new_key);
 	i = 0;
-	while (bs->args[pos][i] != '=')
+	while (bs->args[pos][i] != '=') //(bs->nb_args[pos][i] avant
 	{
-		new_key[i] = bs->args[pos][i];
+		new_key[i] = bs->args[pos][i];//(bs->nb_args[pos][i] avant
 		i++;
 	}
 	new_key[i] = '\0';
@@ -55,7 +55,7 @@ char	*get_key(t_builtins *bs, int pos)
 	//  	free(new_key);
 }
 
-char	*get_val(t_builtins *bs, int pos)
+char	*get_val(t_data *dt, int pos)
 {
 	char	*new_val;
 	int		i;
@@ -65,7 +65,7 @@ char	*get_val(t_builtins *bs, int pos)
 	return (new_val);
 }
 
-void	add_key(t_builtins *bs, char *key, char *val)
+void	add_key(t_data *dt, char *key, char *val)
 {
 	char	**new_array;
 	char	*new_val;
@@ -76,7 +76,7 @@ void	add_key(t_builtins *bs, char *key, char *val)
 	add_key = 1;
 	new_array = malloc(sizeof(char *) * (bs->n_env + 1) + 1);
 	malloc_checker((char *)new_array);
-	
+
 	i = 0;
 	while (i < bs->n_env)
 	{
