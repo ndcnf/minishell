@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/12 14:10:10 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:41:22 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@ void	parsing_init(char *args, t_data *dt)
 	int			i;
 
 	i = 0;
-	dt = malloc(sizeof(t_data));
+	dt->n_cmd = 0;
+	if (ft_strncmp(args, "", 1) == 0)
+	{
+		printf("");
+		return ;
+	}
 	dt->n_cmd = 1;
 	while (args[i])
 	{
+		if (args[i] == '\"' || args[i] == '\'')
+			i = is_quotes(args, i);
 		if (args[i] == '|')
 			dt->n_cmd++;
 		i++;
@@ -28,16 +35,27 @@ void	parsing_init(char *args, t_data *dt)
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)
-		dt->in[i].cont = ft_split(args, '|')[i];
+		dt->in[i].cont = ft_split_ex(args, '|')[i];
 	i = 0;
+	// while (i < dt->n_cmd)
+	// {
+	// 	dt->in[i].n_elem = 1;
+	// 	dt->in[i].cont = parse_cmd(dt, dt->in[i].cont, i);
+	// 	space_counter(&dt->in[i], dt->in[i].cont);
+	// 	dt->in[i].elem = malloc(sizeof(t_elem));
+	// 	dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
+	// 	parsing_elem(dt, dt->in[i].cont, i);
+	// 	i++;
+	// }
+	ft_printf("n_cmd : [%d]\n", dt->n_cmd);
 	while (i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
-		dt->in[i].cont = parse_cmd(dt, dt->in[i].cont, i);
 		space_counter(&dt->in[i], dt->in[i].cont);
 		dt->in[i].elem = malloc(sizeof(t_elem));
 		dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
 		parsing_elem(dt, dt->in[i].cont, i);
+		ft_printf("n_elem : [%d]\n", dt->in[i].n_elem);
 		i++;
 	}
 }
@@ -54,7 +72,7 @@ char	*parse_cmd(t_data *dt, char *s, int in)
 		printf("DEGAGE\n");
 		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
 	}
-	s = ft_strtrim(s, " ");
+	//s = ft_strtrim(s, " ");
 	return (s);
 }
 
@@ -65,31 +83,19 @@ void	parsing_elem(t_data *dt, char *s, int in)
 
 	i = 0;
 	n = 0;
-	if (s[0])
+	// if (s[0])
+	// {
+	// 	i = each_elem(&dt->in[in], s, i, n);
+	// 	n++;
+	// }
+	while (s[i] && n < dt->in[in].n_elem)
 	{
-		i = first_elem(dt, s, s[0], in);
-		if (dt->in[in].n_elem > 3)
-			n = 3;
+		i += (each_elem(&dt->in[in], s, i, n++));
+		if (n == dt->in[in].n_elem)
+			break ;
+		i++;
 	}
-	while (s[i])
-	{
-		i = skip_spaces(s, i);
-		if (s[i] == '\'')
-		{
-			dt->in[in].elem->cont[n] = ft_strdup("\'");
-			i = s_quotes_mgmt(&dt->in[in], s, (i + 1), (n + 1));
-			dt->in[in].elem->cont[n + 2] = ft_strdup("\'");
-		}
-		else if (s[i] == '\"')
-		{
-			dt->in[in].elem->cont[n] = ft_strdup("\"");
-			i = d_quotes_mgmt(&dt->in[in], s, (i + 1), (n + 1));
-			dt->in[in].elem->cont[n + 2] = ft_strdup("\"");
-		}
-		else
-			i = no_quote_mgmt(&dt->in[in], s, i, n);
-		n++;
-	}
+	//cmd_selecter(dt, 0);
 	n = 0;
 	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
 	{
@@ -98,28 +104,47 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	}
 }
 
-int	first_elem(t_data *dt, char *s, char c, int in)
+int	each_elem(t_input *in, char *s, int i, int n)
 {
-	int	i;
+	int		j;
+	int		g;
 
+	j = 0;
+	g = i;
+	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
 	i = 0;
-	if (c == '\"')
+	if (s[i] == '\"' || s[i] == '\'')
+		j = (is_quotes(s, i) + 1);
+	else
 	{
-		dt->in[in].elem->cont[0] = ft_strdup("\"");
-		i = d_quotes_mgmt(&dt->in[in], s, 1, 1);
-		dt->in[in].elem->cont[2] = ft_strdup("\"");
+		while (s[i])
+		{
+			if (s[i] == ' ')
+				break ;
+			i++;
+			j++;
+		}
 	}
-	else if (c == '\'')
+	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
+	i = 0;
+	if (s[i] == '\"' || s[i] == '\'')
 	{
-		dt->in[in].elem->cont[0] = ft_strdup("\'");
-		i = s_quotes_mgmt(&dt->in[in], s, 1, 1);
-		dt->in[in].elem->cont[2] = ft_strdup("\'");
+		while (i < j)
+		{
+			in->elem->cont[n][i] = s[i];
+			i++;
+		}
 	}
 	else
 	{
-		dt->in[in].elem->cont[0] = ft_strdup("X");
-		i = no_quote_mgmt(&dt->in[in], s, 0, 1);
-		dt->in[in].elem->cont[2] = ft_strdup("X");
+		while (i < j)
+		{
+			if (s[i] == ' ')
+				break ;
+			in->elem->cont[n][i] = s[i];
+			i++;
+		}
 	}
+	in->elem->cont[n][i] = '\0';
 	return (i);
 }

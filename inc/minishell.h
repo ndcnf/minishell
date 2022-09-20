@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/19 12:03:32 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:24:22 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_input
 	//int					n_cmd;
 	int					n_elem;
 	t_elem				*elem;
+	int					fd;
 }	t_input;
 
 typedef struct s_data
@@ -83,14 +84,14 @@ int		b_cd(t_data *dt, int in);
 int		b_env(t_data *dt);
 
 //builtins_selecter.c
-void	builtins_selector(t_data *dt, int i);
+void	cmd_selecter(t_data *dt, int i);
 
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
 char	*parse_cmd(t_data *dt, char *s, int in);
 void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
-int		first_elem(t_data *dt, char *s, char c, int in);
+int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
 
 void	malloc_checker(char *s);
@@ -99,6 +100,8 @@ void	malloc_checker(char *s);
 int		check_quotes(t_input *input, char *s);
 int		skip_spaces(char *s, int i);
 void	space_counter(t_input *input, char *s);
+int		skip_quotes(t_input *in, int i);
+int		skip_n(t_input *in, int i);
 
 //quotes_mgmt.c
 int		d_quotes_mgmt(t_input *input, char *s, int i, int n);
@@ -125,8 +128,9 @@ int		b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
-void	print_echo_n(t_builtins *bs, int i);
-int		b_echo(t_input *in);
+void	print_echo_n(t_input *in, int i);
+int		b_echo(t_data *dt, int in);
+void	print_echo_quotes(t_input *in, int i);
 
 //b_init.c
 void	b_init(t_data *dt, char *envp[]);

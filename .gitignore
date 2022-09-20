@@ -53,5 +53,5 @@ Mkfile.old
 dkms.conf
 minishell
 sandbox/
-.DS_Store
 .vscode/
+.DS_Store

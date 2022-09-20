@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/12 13:58:51 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:02:52 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,38 @@ int	skip_spaces(char *s, int i)
 	return (i);
 }
 
-// int	skip_quotes(char *s, int i)
-// {
-// 	while (i < in->n_elem)
-// 	{
-// 		while (in->elem->cont[i] == '\"' || in->elem->cont[i] == '\'')
-// 			i++;
-// 		return (i);
-// 	}
-// 	return (i);
-// }
+int	skip_quotes(t_input *in, int i)
+{
+	while (i < in->n_elem)
+	{
+		if (ft_strncmp(in->elem->cont[i], "\"", 1) == 0)
+			i++;
+		else if (ft_strncmp(in->elem->cont[i], "\'", 1) == 0)
+			i++;
+		else
+			return (i);
+	}
+	return (i);
+}
+
+int	skip_n(t_input *in, int i)
+{
+	while (i < in->n_elem)
+	{
+		if (ft_strncmp(in->elem->cont[i], "-n", 1) == 0)
+			i++;
+		else
+			return (i);
+	}
+	return (i);
+}
 
 void	space_counter(t_input *in, char *s)
 {
 	int	i;
 
 	i = 0;
+	i = skip_spaces(s, i);
 	while (s[i])
 	{
 		if (s[i] == '\"')
@@ -76,10 +92,12 @@ void	space_counter(t_input *in, char *s)
 			while (s[i] != '\'')
 				i++;
 		}
+		else if (s[i] == ' ' && s[i + 1] == '\0')
+			break ;
 		else if (s[i] == ' ' && s[i + 1] != ' ')
 			in->n_elem++;
 		i++;
 	}
-	if (s[0] != '\'' && s[0] != '\"')
-		in->n_elem += 2;
+// 	if (s[0] != '\'' && s[0] != '\"')
+// 		in->n_elem += 2;
 }

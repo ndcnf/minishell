@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/19 12:51:50 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/09/20 11:24:32 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC =	src/builtins.c \
 		src/b_init.c \
 		src/redirections.c \
 		src/quotes_mgmt.c \
-		src/builtins_selecter.c \
+		src/cmd_selecter.c \
 		src/var.c \
 		#src/b_export.c \
 		src/b_unset.c \
