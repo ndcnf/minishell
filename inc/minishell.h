@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/20 11:24:22 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:18:55 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define NEW_VAL 1
 # define NO_VAL 2
 # define CREATE_KEY 3
+# define OPT_IGN "Option(s) ignored\n"
+# define ERR_ARG "Argument invalid in this scope\n"
+# define ERR_NO_ARG "No argument(s) provided\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -62,7 +65,6 @@ typedef struct s_elem
 typedef struct s_input
 {
 	char				*cont;
-	//int					n_cmd;
 	int					n_elem;
 	t_elem				*elem;
 	int					fd;
@@ -70,8 +72,8 @@ typedef struct s_input
 
 typedef struct s_data
 {
-	char				**env; //copie des valeurs de l'environnement
-	int					n_env; //nombre de variables d'environnement
+	char				**env;
+	int					n_env;
 	char				*path;
 	int					n_cmd;
 	t_input				*in;

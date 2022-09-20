@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:55:05 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/19 13:50:56 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:44:07 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ void	b_init(t_data *dt, char *envp[])
 	i = 0;
 	while (ft_strncmp(parse_env(dt->env[i])[0], "PATH", 4))
 		i++;
-	ft_printf("path ? : [%s]\n", dt->env[i]); // <-----------------------------------UNIQUEMENT POUR VERIFICATION, A SUPPRIMER
 	dt->path = ft_substr(ft_strdup(dt->env[i]), 5, ft_strlen(dt->env[i]));
-
-	ft_printf("vraiment path ? [%s]\n", dt->path);
 	// i = 0;
 	// while (i < dt->n_env)
 	// {
