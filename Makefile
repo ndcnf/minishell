@@ -6,7 +6,7 @@
 #    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/21 15:13:41 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/21 15:31:37 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,7 @@ NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
 		src/main.c \
-		src/b_export.c \
 		src/env_utils.c \
-		src/b_unset.c \
 		src/parsing.c \
 		src/parsing_utils.c \
 		src/b_echo.c \
@@ -33,6 +31,9 @@ SRC =	src/builtins.c \
 		src/cmd_selecter.c \
 		src/var.c \
 		src/prompt.c \
+		src/b_cd.c \
+		#src/b_export.c \
+		src/b_unset.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)

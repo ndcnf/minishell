@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/08/31 15:16:21 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/19 10:28:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	sort_env(t_builtins *bs)
 	i = 0;
 	while (i < bs->n_env)
 		print_env(parse_env(export[i++]));
+	//freearray(export) ?
 }
 
 void	dup_array_to_env(t_builtins *bs, char **array)
@@ -78,7 +79,7 @@ void	dup_array_to_env(t_builtins *bs, char **array)
 		bs->env[i] = array[i];
 		i++;
 	}
-	bs->env[i] = NULL; // LEAKS
+	bs->env[i] = NULL;
 	free(array);
 }
 
@@ -88,8 +89,6 @@ void	freearray(char **m, int n)
 
 	i = 0;
 	while (i < n)
-	{
 		free(m[i++]);
-	}
 	free(m);
 }
