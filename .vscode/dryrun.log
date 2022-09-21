@@ -5,6 +5,19 @@ make: brew: Command not found
 
 make: Entering directory `/Users/mthiesso/Documents/cursus/minishell'
 
-make: Nothing to be done for `all'.
+gcc -Wall -Wextra -Werror -g -fsanitize=address -I./inc -I. -I //include/  -c src/execve.c -o src/execve.o
+echo "[LIBFT]		\033[36mCreating...\033[0m"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./utils/libft/
+ 
+make[1]: Entering directory `/Users/mthiesso/Documents/cursus/minishell/utils/libft'
+make[1]: `libft.a' is up to date.
+ 
+make[1]: Leaving directory `/Users/mthiesso/Documents/cursus/minishell/utils/libft'
+echo "[LIBFT]		\033[32mOK\033[0m"
+echo "[MINISHELL]	\033[36mCompilating...\033[0m"
+gcc src/builtins.o src/main.o src/env_utils.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o src/quotes_mgmt.o src/cmd_selecter.o src/var.o src/prompt.o src/b_cd.o src/execve.o -Wall -Wextra -Werror -g -fsanitize=address -L //lib/ -lreadline -lhistory\
+			-L./utils/libft/ -lft\
+			-o minishell
+echo "[MINISHELL]	\033[32mOK\033[0m"
 make: Leaving directory `/Users/mthiesso/Documents/cursus/minishell'
  

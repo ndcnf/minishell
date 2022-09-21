@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 15:30:43 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:58:03 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ int main (int argc, char *argv[], char **envp)
 {
 
 	//--------- PARTIE MARLENE ---------
-	(void)argc;
 	(void)argv;
 	(void)envp;
-	prompt();
+	if ( argc > 1)
+	{
+		ft_printf("\033[31mARG_ERROR\n\033[31m");
+		return (1);
+	}
+	prompt(envp);
 	// --------- PARTIE MARLENE ---------
 
 

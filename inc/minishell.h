@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 15:31:14 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:17:32 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_data
 }	t_data;
 
 //prompt.c
-void	prompt();
+void	prompt(char **envp);
 
 //builtins.c
 int		b_pwd(t_data *dt);
@@ -153,5 +153,8 @@ void	conv_var(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);
 // void	heredoc(t_builtins *bs);
+
+//execve.c
+void	exec(t_data *dt, int in);
 
 #endif
