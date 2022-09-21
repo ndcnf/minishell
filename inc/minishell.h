@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 11:24:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:43:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ typedef struct s_data
 
 //builtins.c
 int		b_pwd(t_data *dt);
-int		b_cd(t_data *dt, int in);
 // int		b_exit(t_builtins *bs);
 int		b_env(t_data *dt);
-int		where_in_env(t_data *dt, char *key, int len);
 
 //builtins_selecter.c
 void	cmd_selecter(t_data *dt, int i);
@@ -96,8 +94,6 @@ void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
-
-void	malloc_checker(char *s);
 
 //parsing_utils.c
 int		check_quotes(t_input *input, char *s);
@@ -118,6 +114,13 @@ void	print_env(char **elem);
 void	dup_array_to_env(t_builtins *bs, char **array);
 void	freearray(char **m, int n);
 
+//b_cd.c
+int		b_cd(t_data *dt, int in);
+int		where_in_env(t_data *dt, char *key, int len);
+void	update_env(t_data *dt, char *dir);
+int		print_cd(char *s, int n);
+int		no_place_like_home(t_data *dt);
+
 //b_export.c
 // int		b_export(t_builtins *bs);
 int		b_export(t_data *dt, int in);
@@ -131,8 +134,8 @@ int		b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
-void	print_echo_n(t_input *in, int i);
 int		b_echo(t_data *dt, int in);
+void	print_echo_n(t_input *in, int i);
 void	print_echo_quotes(t_input *in, int i);
 
 //b_init.c
