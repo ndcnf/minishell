@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/19 16:11:41 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:13:26 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ typedef struct s_data
 	int					n_cmd;
 	t_input				*in;
 }	t_data;
+
+//prompt.c
+void	prompt();
 
 //builtins.c
 int		b_pwd(t_builtins *bs);

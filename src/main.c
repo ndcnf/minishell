@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/14 11:11:01 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:12:55 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,7 @@ int main (int argc, char *argv[], char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	char 	*prompt;
-	t_data	dt;
-
-	//dt = NULL;
-	prompt = NULL;
-	while (1)
-	{
-		prompt = readline("\e[36mmarynad$ \e[0m");
-		parsing_init(prompt, &dt);
-		//cmd_selecter(&dt, 0); //remplacer le 0 plus tard pour savoir quel input est concerné
-		add_history(prompt);
-	}
-	free(prompt);
+	prompt();
 	// --------- PARTIE MARLENE ---------
 
 
