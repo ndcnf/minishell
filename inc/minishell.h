@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/20 11:24:22 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:43:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define NEW_VAL 1
 # define NO_VAL 2
 # define CREATE_KEY 3
+# define OPT_IGN "Option(s) ignored\n"
+# define ERR_ARG "Argument invalid in this scope\n"
+# define ERR_NO_ARG "No argument(s) provided\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -62,7 +65,6 @@ typedef struct s_elem
 typedef struct s_input
 {
 	char				*cont;
-	//int					n_cmd;
 	int					n_elem;
 	t_elem				*elem;
 	int					fd;
@@ -70,8 +72,8 @@ typedef struct s_input
 
 typedef struct s_data
 {
-	char				**env; //copie des valeurs de l'environnement
-	int					n_env; //nombre de variables d'environnement
+	char				**env;
+	int					n_env;
 	char				*path;
 	int					n_cmd;
 	t_input				*in;
@@ -79,7 +81,6 @@ typedef struct s_data
 
 //builtins.c
 int		b_pwd(t_data *dt);
-int		b_cd(t_data *dt, int in);
 // int		b_exit(t_builtins *bs);
 int		b_env(t_data *dt);
 
@@ -93,8 +94,6 @@ void	dividing_args(t_builtins *bs);
 int		parse_pwd(t_builtins *bs, char *in);
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
-
-void	malloc_checker(char *s);
 
 //parsing_utils.c
 int		check_quotes(t_input *input, char *s);
@@ -115,6 +114,13 @@ void	print_env(char **elem);
 void	dup_array_to_env(t_builtins *bs, char **array);
 void	freearray(char **m, int n);
 
+//b_cd.c
+int		b_cd(t_data *dt, int in);
+int		where_in_env(t_data *dt, char *key, int len);
+void	update_env(t_data *dt, char *dir);
+int		print_cd(char *s, int n);
+int		no_place_like_home(t_data *dt);
+
 //b_export.c
 // int		b_export(t_builtins *bs);
 int		b_export(t_data *dt, int in);
@@ -128,8 +134,8 @@ int		b_unset(t_builtins *bs);
 void	remove_key(t_builtins *bs, char *key);
 
 //b_echo.c
-void	print_echo_n(t_input *in, int i);
 int		b_echo(t_data *dt, int in);
+void	print_echo_n(t_input *in, int i);
 void	print_echo_quotes(t_input *in, int i);
 
 //b_init.c
