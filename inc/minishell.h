@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/20 13:18:55 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:24:49 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int		b_pwd(t_data *dt);
 int		b_cd(t_data *dt, int in);
 // int		b_exit(t_builtins *bs);
 int		b_env(t_data *dt);
+int		where_in_env(t_data *dt, char *key, int len);
 
 //builtins_selecter.c
 void	cmd_selecter(t_data *dt, int i);

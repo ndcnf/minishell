@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/20 11:39:03 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:26:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int main (int argc, char *argv[], char **envp)
 		parsing_init(prompt, &dt);
 		//ft_printf("MAIN [%s]\n", &dt.in[0].elem->cont[1]);
 		//builtins_selector(&dt, 0); //TESTS
+		b_pwd(&dt);
 		b_cd(&dt, 0); // in = 0 actuellement, juste pour les tests
-		// b_cd(&dt, 0); // test only
 		add_history(prompt);
 	}
 	free(prompt);

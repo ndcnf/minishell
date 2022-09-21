@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/20 15:03:46 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:04:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	b_pwd(t_data *dt)
 	(void)dt;
 	char	dir[MAX_PATH];
 
-	if (getcwd(dir, sizeof(dir)) == NULL)
+	if (getcwd(dir, sizeof(dir)))
 		ft_printf("%s\n", dir);
 	//exit_stat = EXIT_SUCCESS;
 	return (EXIT_SUCCESS);
@@ -74,10 +74,9 @@ int	b_cd(t_data *dt, int in)
 {
 	char	dir[MAX_PATH];
 	int		i;
+	int		j;
 	int		n;
 
-	i = where_in_env(dt, "OLDPWD", 6);
-	dt->env[i] = ft_strjoin("OLDPWD=", parse_env(dt->env[i])[1]);
 	i = where_in_env(dt, "HOME", 4);
 	if (dt->in[in].n_elem == 1)
 	{
@@ -86,24 +85,31 @@ int	b_cd(t_data *dt, int in)
 			perror("ERR");
 			return (EXIT_FAILURE);
 		}
+		n = 0;
 	}
-	n = 1;
-	if (dt->in[in].elem->cont[n][0] == '-')
+	else
+		n = 1;
+	if (n)
 	{
-		ft_printf(OPT_IGN);
-		n = 2;
-	}
-	if (n >= dt->in[in].n_elem)
-	{
-		ft_printf(ERR_NO_ARG);
-		return (EXIT_FAILURE);
-	}
-	if (chdir(dt->in[in].elem->cont[n]))
-	{
-		perror("ERR");
-		return (EXIT_FAILURE);
+		if (dt->in[in].elem->cont[n][0] == '-') // <-----------------------------------PROBLEME ICI avec 'cd' seul, mais fonctionne pour detecter les options
+		{
+			ft_printf(OPT_IGN);
+			n = 2;
+		}
+		if (n >= dt->in[in].n_elem)
+		{
+			ft_printf(ERR_NO_ARG);
+			return (EXIT_FAILURE);
+		}
+		if (chdir(dt->in[in].elem->cont[n]))
+		{
+			perror("ERR");
+			return (EXIT_FAILURE);
+		}
 	}
 	i = where_in_env(dt, "PWD", 3);
+	j = where_in_env(dt, "OLDPWD", 6);
+	dt->env[j] = ft_strjoin("OLDPWD", parse_env(dt->env[i])[1]);
 	dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
 	return (EXIT_SUCCESS);
 }
