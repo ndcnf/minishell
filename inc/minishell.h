@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 10:59:21 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:42:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ int		no_quote_mgmt(t_input *input, char *s, int i, int n);
 //env_utils.c
 char	**parse_env(char *s);
 void	sort_env(t_data *dt, int in);
-void	print_env(char **elem);
+void	print_env(t_data *dt, char **elem);
+void	the_sorter(t_data *dt, char *tempura, char *a, char *b);
+// void	print_env(char **elem);
 void	dup_array_to_env(t_data *dt, char **array);
 void	freearray(char **m, int n);
 
@@ -124,10 +126,6 @@ int		no_place_like_home(t_data *dt);
 //b_export.c
 // int		b_export(t_builtins *bs);
 int		b_export(t_data *dt, int in);
-char	*get_key(char **args, int pos);
-// char	*get_key(t_data *dt, int pos);
-char	*get_val(char **args, int pos);
-// char	*get_val(t_data *dt, int pos);
 void	add_key(t_data *dt, char *key, char *val);
 char	*define_val(char *key, char *val);
 

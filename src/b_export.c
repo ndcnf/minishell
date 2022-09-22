@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 11:49:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:09:54 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	add_key(t_data *dt, char *key, char *val)
 	if (add_key)
 	{
 		new_array[i] = ft_strdup(new_val);
-		// new_array[i + 1] = NULL; //LEAKS
+		new_array[i + 1] = NULL;
 		dt->n_env++;
 	}
 	else
