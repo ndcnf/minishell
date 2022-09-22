@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 13:09:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:27:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	*define_val(char *key, char *val)
 	if (val)
 	{
 		new_val = ft_strjoin(key, "=");
+		val = quotes_ignorer(val);
 		new_val = ft_strjoin(new_val, val);
 	}
 	else
