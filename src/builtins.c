@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 14:11:17 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:34:55 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 ///////////////////////////////////////////////////////////////
 int	b_pwd(t_data *dt)
 {
-	(void)dt;
 	char	dir[MAX_PATH];
 
+	(void)dt;
 	if (getcwd(dir, sizeof(dir)))
 		ft_printf("%s\n", dir);
 	//exit_stat = EXIT_SUCCESS;

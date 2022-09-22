@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/21 13:28:01 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/09/21 17:06:27 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRC =	src/builtins.c \
 		src/quotes_mgmt.c \
 		src/cmd_selecter.c \
 		src/var.c \
+		src/prompt.c \
 		src/b_cd.c \
+		src/execve.c \
 		#src/b_export.c \
 		src/b_unset.c \
 
