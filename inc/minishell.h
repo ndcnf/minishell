@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 13:42:27 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:30:51 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ void	malloc_checker(char *s);
 
 //var.c
 // void	conv_var(t_data *dt);
+
+//quotes_utils.c
+char	*quotes_ignorer(char *s);
 
 //redirections.c
 // void	redir_input(t_builtins *bs);
