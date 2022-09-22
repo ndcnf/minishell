@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/19 17:41:22 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:28:23 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,13 @@ void	parsing_init(char *args, t_data *dt)
 	while (++i < dt->n_cmd)
 		dt->in[i].cont = ft_split_ex(args, '|')[i];
 	i = 0;
-	// while (i < dt->n_cmd)
-	// {
-	// 	dt->in[i].n_elem = 1;
-	// 	dt->in[i].cont = parse_cmd(dt, dt->in[i].cont, i);
-	// 	space_counter(&dt->in[i], dt->in[i].cont);
-	// 	dt->in[i].elem = malloc(sizeof(t_elem));
-	// 	dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
-	// 	parsing_elem(dt, dt->in[i].cont, i);
-	// 	i++;
-	// }
 	ft_printf("n_cmd : [%d]\n", dt->n_cmd);
 	while (i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
 		space_counter(&dt->in[i], dt->in[i].cont);
 		dt->in[i].elem = malloc(sizeof(t_elem));
-		dt->in[i].elem->cont = malloc(sizeof(char *) * dt->in[i].n_elem);
+		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
 		parsing_elem(dt, dt->in[i].cont, i);
 		ft_printf("n_elem : [%d]\n", dt->in[i].n_elem);
 		i++;
@@ -95,6 +85,7 @@ void	parsing_elem(t_data *dt, char *s, int in)
 			break ;
 		i++;
 	}
+	dt->in[in].elem->cont[n] = NULL;
 	//cmd_selecter(dt, 0);
 	n = 0;
 	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS

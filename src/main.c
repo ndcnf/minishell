@@ -3,39 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 15:46:25 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:27:58 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int main (int argc, char *argv[], char **envp)
+int	main(int argc, char *argv[], char **envp)
 {
-
 	//--------- PARTIE MARLENE ---------
-	(void)argc;
 	(void)argv;
 	(void)envp;
-	char 	*prompt;
-	t_data	dt;
-
-	prompt = NULL;
-	b_init(&dt, envp);
-	while (1)
+	if (argc > 1)
 	{
-		prompt = readline("\e[36mmarynad$ \e[0m");
-		parsing_init(prompt, &dt);
-		//ft_printf("MAIN [%s]\n", &dt.in[0].elem->cont[1]);
-		//builtins_selector(&dt, 0); //TESTS
-		b_export(&dt, 0);
-		add_history(prompt);
+		ft_printf("\033[31mARG_ERROR\n\033[31m");
+		return (1);
 	}
-	free(prompt);
+	prompt(envp);
 	// --------- PARTIE MARLENE ---------
-
 
 	/* --------- PARTIE NADIA ---------
 	t_builtins bs;

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
 /*   Updated: 2022/09/22 13:42:27 by nchennaf         ###   ########.fr       */
@@ -79,6 +79,9 @@ typedef struct s_data
 	t_input				*in;
 }	t_data;
 
+//prompt.c
+void	prompt(char **envp);
+
 //builtins.c
 int		b_pwd(t_data *dt);
 // int		b_exit(t_builtins *bs);
@@ -150,5 +153,8 @@ void	malloc_checker(char *s);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);
 // void	heredoc(t_builtins *bs);
+
+//execve.c
+void	exec(t_data *dt, int in);
 
 #endif

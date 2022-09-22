@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
 #    Updated: 2022/09/22 11:32:05 by nchennaf         ###   ########.fr        #
@@ -30,8 +30,10 @@ SRC =	src/builtins.c \
 		src/quotes_mgmt.c \
 		src/cmd_selecter.c \
 		src/var.c \
+		src/prompt.c \
 		src/b_cd.c \
 		src/b_export.c \
+		src/execve.c \
 		#src/b_unset.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
