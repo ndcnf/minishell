@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_selecter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/20 11:24:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:35:10 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

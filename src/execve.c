@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/21 17:58:52 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:37:40 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	exec(t_data *dt, int in)
 {
-	char	*cmd_path;
-	char	**tdpp;
-	struct	stat buff;
-	int		i;
+	char		*cmd_path;
+	char		**tdpp;
+	struct stat	buff;
+	int			i;
 
 	i = 0;
 	tdpp = ft_split(dt->path, ':');
@@ -27,8 +27,8 @@ void	exec(t_data *dt, int in)
 		cmd_path = ft_strjoin(cmd_path, dt->in[in].elem->cont[0]);
 		if (!stat(cmd_path, &buff))
 		{
-			if (execve(cmd_path, dt->in[in].elem->cont, dt->env) ==  -1)
-				exit (0);
+			if (execve(cmd_path, dt->in[in].elem->cont, dt->env) == -1)
+				exit (1);
 		}
 		i++;
 	}

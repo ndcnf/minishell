@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/21 17:23:25 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:27:01 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	prompt(char **envp)
 {
-	char 	*prompt;
+	char	*prompt;
 	t_data	dt;
 
 	prompt = NULL;

@@ -6,26 +6,24 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 17:58:03 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:27:58 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int main (int argc, char *argv[], char **envp)
+int	main(int argc, char *argv[], char **envp)
 {
-
 	//--------- PARTIE MARLENE ---------
 	(void)argv;
 	(void)envp;
-	if ( argc > 1)
+	if (argc > 1)
 	{
 		ft_printf("\033[31mARG_ERROR\n\033[31m");
 		return (1);
 	}
 	prompt(envp);
 	// --------- PARTIE MARLENE ---------
-
 
 	/* --------- PARTIE NADIA ---------
 	t_builtins bs;
