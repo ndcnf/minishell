@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/22 14:15:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:36:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	prompt(char **envp)
 		//b_pwd(&dt);
 		//b_cd(&dt, 0); // in = 0 actuellement, juste pour les tests
 		b_export(&dt, 0);
-		// b_unset(&dt);
+		// b_unset(&dt, 0);
 		//cmd_selecter(&dt, 0); //remplacer le 0 plus tard pour savoir quel input est concerné
 		add_history(prompt);
 	}

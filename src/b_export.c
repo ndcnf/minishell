@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 16:27:27 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:44:24 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	add_key(t_data *dt, char *key, char *val)
 	int		i;
 
 	add_key = 1;
-	new_array = malloc(sizeof(char *) * (dt->n_env + 1) + 1);
+	new_array = malloc(sizeof(char *) * (dt->n_env + 2));
 	malloc_checker((char *)new_array);
 
 	i = 0;

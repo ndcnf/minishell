@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 14:30:51 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:05:50 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	add_key(t_data *dt, char *key, char *val);
 char	*define_val(char *key, char *val);
 
 //b_unset.c
-int		b_unset(t_data *dt);
+int		b_unset(t_data *dt, int in);
 void	remove_key(t_data *dt, char *key);
 
 //b_echo.c
