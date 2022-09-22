@@ -6,7 +6,7 @@
 #    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/21 17:06:27 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/09/22 16:10:04 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC =	src/builtins.c \
 		src/prompt.c \
 		src/b_cd.c \
 		src/execve.c \
+		src/parsing_elem_utils.c \
 		#src/b_export.c \
 		src/b_unset.c \
 
