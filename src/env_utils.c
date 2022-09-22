@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/19 10:28:47 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:00:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,63 @@ char	**parse_env(char *s)
 }
 
 //Separer en DUPLIQUER environnement et SORT environnement
-void	sort_env(t_builtins *bs)
+// void	sort_env(t_builtins *bs)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*tempura;
+// 	char	**export;
+
+// 	export = malloc(sizeof(char *) * bs->n_env);
+// 	malloc_checker((char *)export);
+// 	i = 0;
+// 	while (i < bs->n_env)
+// 	{
+// 		export[i] = ft_strdup(bs->env[i]);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < bs->n_env)
+// 	{
+// 		j = i + 1;
+// 		while (j < bs->n_env)
+// 		{
+// 			if (ft_strncmp(export[j], export[i], MAX_PATH) < 0)
+// 			{
+// 				tempura = export[i];
+// 				export[i] = export[j];
+// 				export[j] = tempura;
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < bs->n_env)
+// 		print_env(parse_env(export[i++]));
+// 	//freearray(export) ?
+// }
+
+void	sort_env(t_data *dt, int in)
 {
 	int		i;
 	int		j;
 	char	*tempura;
 	char	**export;
 
-	export = malloc(sizeof(char *) * bs->n_env);
+	export = malloc(sizeof(char *) * dt->n_env);
 	malloc_checker((char *)export);
 	i = 0;
-	while (i < bs->n_env)
+	while (i < dt->n_env)
 	{
-		export[i] = ft_strdup(bs->env[i]);
+		export[i] = ft_strdup(dt->env[i]);
 		i++;
 	}
 	i = 0;
-	while (i < bs->n_env)
+	while (i < dt->n_env)
 	{
 		j = i + 1;
-		while (j < bs->n_env)
+		while (j < dt->n_env)
 		{
 			if (ft_strncmp(export[j], export[i], MAX_PATH) < 0)
 			{
@@ -60,26 +97,29 @@ void	sort_env(t_builtins *bs)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < bs->n_env)
-		print_env(parse_env(export[i++]));
-	//freearray(export) ?
+	if (dt->in[in].n_elem == 1)
+	{
+		i = 0;
+		while (i < dt->n_env)
+			print_env(parse_env(export[i++]));
+	}
+	freearray(export, dt->n_env);
 }
 
-void	dup_array_to_env(t_builtins *bs, char **array)
+void	dup_array_to_env(t_data *dt, char **array)
 {
 	int	i;
 
-	bs->env = malloc (sizeof(char *) * bs->n_env);
-	if (!bs->env)
+	dt->env = malloc (sizeof(char *) * dt->n_env);
+	if (!dt->env)
 		exit(EXIT_FAILURE);
 	i = 0;
-	while (i < bs->n_env)
+	while (i < dt->n_env)
 	{
-		bs->env[i] = array[i];
+		dt->env[i] = array[i];
 		i++;
 	}
-	bs->env[i] = NULL;
+	//dt->env[i] = NULL;
 	free(array);
 }
 

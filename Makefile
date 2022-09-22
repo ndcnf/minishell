@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/21 13:28:01 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/09/22 11:32:05 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ GRN = \033[32m
 RST = \033[0m
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
 NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
@@ -31,8 +31,8 @@ SRC =	src/builtins.c \
 		src/cmd_selecter.c \
 		src/var.c \
 		src/b_cd.c \
-		#src/b_export.c \
-		src/b_unset.c \
+		src/b_export.c \
+		#src/b_unset.c \
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)
