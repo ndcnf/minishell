@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve.c                                           :+:      :+:    :+:   */
+/*   parsing_elem_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/22 16:06:45 by mthiesso         ###   ########.fr       */
+/*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
+/*   Updated: 2022/09/22 16:09:22 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_data *dt, int in)
+void	malloc_elem()
 {
-	char		*cmd_path;
-	char		**tdpp;
-	struct stat	buff;
-	int			i;
-
-	i = 0;
-	tdpp = ft_split(dt->path, ':');
-	while (tdpp[i])
+	if (s[i] == '\"' || s[i] == '\'')
+			j = (is_quotes(s, i) + 1);
+	else
 	{
-		cmd_path = ft_strjoin(tdpp[i], "/");
-		cmd_path = ft_strjoin(cmd_path, dt->in[in].elem->cont[0]);
-		if (!stat(cmd_path, &buff))
+		while (s[i])
 		{
-			if (execve(cmd_path, dt->in[in].elem->cont, dt->env) == -1)
-				exit (1);
+			if (s[i] == '\"' || s[i] == '\'')
+			{
+				j = (is_quotes(s, i) + 1);
+				i = j;
+			}
+			if (!s[i])
+				break ;
+			if (s[i] == ' ')
+				break ;
+			i++;
+			j++;
 		}
-		i++;
 	}
-	cmd_path = ft_strjoin("/usr/local/bin/", dt->in[in].elem->cont[0]);
+	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/09/22 14:41:11 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/09/22 16:49:00 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,12 @@ SRC =	src/builtins.c \
 		src/b_cd.c \
 		src/b_export.c \
 		src/execve.c \
+		src/parsing_elem_utils.c \
+		#src/b_export.c \
+		src/b_unset.c \
 		src/quotes_utils.c \
 		#src/b_unset.c \
+
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
 RL_P	:= $(shell brew --cellar readline)
