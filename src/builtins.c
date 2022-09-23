@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 11:34:55 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:00:42 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	b_env(t_data *dt)
 
 	i = 0;
 	while (i < dt->n_env)
-		printf("%s\n", dt->env[i++]);
+	{
+		if (ft_strchr(dt->env[i], '='))
+			ft_printf("%s\n", dt->env[i]);
+		i++;
+	}
 	return (EXIT_SUCCESS);
 }
