@@ -5,6 +5,5 @@ make: brew: Command not found
 make: Entering directory `/Users/mthiesso/Documents/cursus/minishell'
 
 make: Nothing to be done for `all'.
- 
 make: Leaving directory `/Users/mthiesso/Documents/cursus/minishell'
  

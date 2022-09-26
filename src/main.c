@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 18:07:46 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/26 20:52:54 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ int	main(int argc, char *argv[], char **envp)
 		ft_printf("\033[31mARG_ERROR\n\033[31m");
 		return (1);
 	}
-	prompt(envp);
+	if(envp)
+	{
+		signal(SIGINT, sig_int);
+		signal(SIGQUIT, SIG_IGN);
+		ft_termios();
+		prompt(envp);
+	}
+
 	// --------- PARTIE MARLENE ---------
 
 	/* --------- PARTIE NADIA ---------

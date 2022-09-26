@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/26 17:13:49 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/26 20:48:04 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,10 @@ char	*quotes_ignorer(char *s);
 
 //execve.c
 void	exec(t_data *dt, int in);
+
+//signals.c
+void	sig_int(int c);
+void	sig_quit(int c);
+void	ft_termios(void);
 
 #endif
