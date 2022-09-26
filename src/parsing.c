@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/26 15:40:30 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:13:32 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void	parsing_init(char *args, t_data *dt)
 		return ;
 	}
 	dt->n_cmd = 1;
-	while (args[i])
-	{
-		if (args[i] == '\"' || args[i] == '\'')
-			i = is_quotes(args, i);
-		if (args[i] == '|')
-			dt->n_cmd++;
-		i++;
-	}
+	nb_cmd(dt, args, i);
+	// while (args[i])
+	// {
+	// 	if (args[i] == '\"' || args[i] == '\'')
+	// 		i = is_quotes(args, i);
+	// 	if (args[i] == '|')
+	// 		dt->n_cmd++;
+	// 	i++;
+	// }
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)
@@ -62,7 +63,6 @@ char	*parse_cmd(t_data *dt, char *s, int in)
 		printf("DEGAGE\n");
 		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
 	}
-	//s = ft_strtrim(s, " ");
 	return (s);
 }
 

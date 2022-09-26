@@ -6,11 +6,23 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/26 16:27:57 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:16:08 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	nb_cmd(t_data *dt, char *args, int i)
+{
+	while (args[i])
+	{
+		if (args[i] == '\"' || args[i] == '\'')
+			i = is_quotes(args, i);
+		if (args[i] == '|')
+			dt->n_cmd++;
+		i++;
+	}
+}
 
 int	malloc_elem(t_input *in, char *s, int i, int n)
 {
@@ -42,7 +54,7 @@ int	malloc_elem(t_input *in, char *s, int i, int n)
 
 int	into_elem_quotes(t_input *in, char *s, int i, int n)
 {
-	if (s[i] == '\"' || s[i] == '\'')
+	if (s[i] == '\"' && s[i] == '\'')
 	{
 		in->elem->cont[n][i] = s[i];
 		i++;
