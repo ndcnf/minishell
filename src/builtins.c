@@ -6,11 +6,11 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 11:34:55 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:07:33 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 // 'pwd'		-> affiche le chemin actuel, suivi d'un \n
 // 'pwd texte	-> message d'erreur : 'pwd: too many arguments'

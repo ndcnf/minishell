@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 14:30:51 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:31:40 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,10 @@ int		skip_spaces(char *s, int i);
 void	space_counter(t_input *input, char *s);
 int		skip_quotes(t_input *in, int i);
 int		skip_n(t_input *in, int i);
+
+//parsing_elem_utils.c
+int		malloc_elem(t_input *in, char *s, int i, int n);
+int		into_elem_quotes(t_input *in, char *s, int i, int n);
 
 //quotes_mgmt.c
 int		d_quotes_mgmt(t_input *input, char *s, int i, int n);

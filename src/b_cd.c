@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   b_cd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/21 13:46:43 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:07:07 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 // 'cd ~'		-> retour a /Users/(nom du user)
 // 'cd'			-> identique a 'cd ~'

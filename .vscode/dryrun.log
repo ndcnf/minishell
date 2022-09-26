@@ -2,39 +2,9 @@ make --dry-run --keep-going --print-directory
 /bin/sh: brew: command not found
 
 make: brew: Command not found
-
 make: Entering directory `/Users/mthiesso/Documents/cursus/minishell'
 
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/builtins.c -o src/builtins.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/main.c -o src/main.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/env_utils.c -o src/env_utils.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/parsing.c -o src/parsing.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/parsing_utils.c -o src/parsing_utils.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/b_echo.c -o src/b_echo.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/b_init.c -o src/b_init.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/redirections.c -o src/redirections.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/quotes_mgmt.c -o src/quotes_mgmt.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/cmd_selecter.c -o src/cmd_selecter.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/prompt.c -o src/prompt.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/b_cd.c -o src/b_cd.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/b_export.c -o src/b_export.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/execve.c -o src/execve.o
-gcc -Wall -Wextra -Werror -g  -I./inc -I. -I //include/  -c src/parsing_elem_utils.c -o src/parsing_elem_utils.o
-echo "[LIBFT]		\033[36mCreating...\033[0m"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./utils/libft/
+make: Nothing to be done for `all'.
  
-make[1]: Entering directory `/Users/mthiesso/Documents/cursus/minishell/utils/libft'
-gcc -Wall -Wextra -Werror -g -c ft_strtrim.c -o ft_strtrim.o
-gcc -Wall -Wextra -Werror -g -c ft_tolower.c -o ft_tolower.o
-gcc -Wall -Wextra -Werror -g -c ft_split_exception.c -o ft_split_exception.o
-ar rc libft.a ft_atoi.o ft_atol.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_split.o ft_strchr.o ft_strdup.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o get_next_line.o get_next_line_utils.o ft_strichr.o ft_lstnew.o ft_lstadd_front.o ft_lstlast.o ft_lstsize.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o ft_hexa_printnbr.o ft_printf.o ft_printnbr.o ft_putchar.o ft_unsigned_printnbr.o ft_printstr.o ft_split_exception.o
-ranlib libft.a
-make[1]: Leaving directory `/Users/mthiesso/Documents/cursus/minishell/utils/libft'
-echo "[LIBFT]		\033[32mOK\033[0m"
-echo "[MINISHELL]	\033[36mCompilating...\033[0m"
-gcc src/builtins.o src/main.o src/env_utils.o src/parsing.o src/parsing_utils.o src/b_echo.o src/b_init.o src/redirections.o src/quotes_mgmt.o src/cmd_selecter.o src/var.o src/prompt.o src/b_cd.o src/b_export.o src/execve.o src/parsing_elem_utils.o -Wall -Wextra -Werror -g  -L //lib/ -lreadline -lhistory\
-			-L./utils/libft/ -lft\
-			-o minishell
-echo "[MINISHELL]	\033[32mOK\033[0m"
 make: Leaving directory `/Users/mthiesso/Documents/cursus/minishell'
  

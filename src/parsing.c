@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/22 16:06:25 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:40:30 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,60 +93,17 @@ void	parsing_elem(t_data *dt, char *s, int in)
 int	each_elem(t_input *in, char *s, int i, int n)
 {
 	int		j;
-	int		g;
 
-	j = 0;
-	g = i;
 	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
 	i = 0;
-	if (s[i] == '\"' || s[i] == '\'')
-		j = (is_quotes(s, i) + 1);
-	else
+	j = malloc_elem(in, s, i, n);
+	while (i < j)
 	{
-		while (s[i])
-		{
-			if (s[i] == '\"' || s[i] == '\'')
-			{
-				j = (is_quotes(s, i) + 1);
-				i = j;
-			}
-			if (!s[i])
-				break ;
-			if (s[i] == ' ')
-				break ;
-			i++;
-			j++;
-		}
-	}
-	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
-	i = 0;
-	if (s[i] == '\"' || s[i] == '\'')
-	{
-		while (i < j)
-		{
-			in->elem->cont[n][i] = s[i];
-			i++;
-		}
-	}
-	else
-	{
-		while (i < j)
-		{
-			if (s[i] == '\"' || s[i] == '\'')
-			{
-				in->elem->cont[n][i] = s[i];
-				i++;
-				while (s[i] != '\"')
-				{
-					in->elem->cont[n][i] = s[i];
-					i++;
-				}
-			}
-			if (s[i] == ' ')
-				break ;
-			in->elem->cont[n][i] = s[i];
-			i++;
-		}
+		i = into_elem_quotes(in, s, i, n);
+		if (s[i] == ' ')
+			break ;
+		in->elem->cont[n][i] = s[i];
+		i++;
 	}
 	in->elem->cont[n][i] = '\0';
 	return (i);

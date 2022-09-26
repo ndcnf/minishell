@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/22 14:15:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:02:42 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	prompt(char **envp)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
 		parsing_init(prompt, &dt);
-		exec(&dt, 0);
+		// exec(&dt, 0);
 		//ft_printf("MAIN [%s]\n", &dt.in[0].elem->cont[1]);
 		//builtins_selector(&dt, 0); //TESTS
 		//b_pwd(&dt);
 		//b_cd(&dt, 0); // in = 0 actuellement, juste pour les tests
-		b_export(&dt, 0);
+		// b_export(&dt, 0);
 		// b_unset(&dt);
 		//cmd_selecter(&dt, 0); //remplacer le 0 plus tard pour savoir quel input est concerné
 		add_history(prompt);
