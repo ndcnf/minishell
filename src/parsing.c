@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/22 16:06:25 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:35:02 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,18 @@ void	parsing_init(char *args, t_data *dt)
 
 	i = 0;
 	dt->n_cmd = 0;
-	if (ft_strncmp(args, "", 1) == 0)
+	// if (ft_strncmp(args, "", 0) == 0)
+	// 	return ;
+	if (args)
 	{
-		printf("");
-		return ;
-	}
-	dt->n_cmd = 1;
-	while (args[i])
-	{
-		if (args[i] == '\"' || args[i] == '\'')
-			i = is_quotes(args, i);
-		if (args[i] == '|')
-			dt->n_cmd++;
-		i++;
+		dt->n_cmd = 1;
+		nb_cmd(dt, args, i);
 	}
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)
 		dt->in[i].cont = ft_split_ex(args, '|')[i];
 	i = 0;
-	ft_printf("n_cmd : [%d]\n", dt->n_cmd);
 	while (i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
@@ -45,7 +37,6 @@ void	parsing_init(char *args, t_data *dt)
 		dt->in[i].elem = malloc(sizeof(t_elem));
 		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
 		parsing_elem(dt, dt->in[i].cont, i);
-		ft_printf("n_elem : [%d]\n", dt->in[i].n_elem);
 		i++;
 	}
 }
@@ -62,7 +53,6 @@ char	*parse_cmd(t_data *dt, char *s, int in)
 		printf("DEGAGE\n");
 		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
 	}
-	//s = ft_strtrim(s, " ");
 	return (s);
 }
 
@@ -93,60 +83,17 @@ void	parsing_elem(t_data *dt, char *s, int in)
 int	each_elem(t_input *in, char *s, int i, int n)
 {
 	int		j;
-	int		g;
 
-	j = 0;
-	g = i;
 	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
 	i = 0;
-	if (s[i] == '\"' || s[i] == '\'')
-		j = (is_quotes(s, i) + 1);
-	else
+	j = malloc_elem(in, s, i, n);
+	while (i < j)
 	{
-		while (s[i])
-		{
-			if (s[i] == '\"' || s[i] == '\'')
-			{
-				j = (is_quotes(s, i) + 1);
-				i = j;
-			}
-			if (!s[i])
-				break ;
-			if (s[i] == ' ')
-				break ;
-			i++;
-			j++;
-		}
-	}
-	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
-	i = 0;
-	if (s[i] == '\"' || s[i] == '\'')
-	{
-		while (i < j)
-		{
-			in->elem->cont[n][i] = s[i];
-			i++;
-		}
-	}
-	else
-	{
-		while (i < j)
-		{
-			if (s[i] == '\"' || s[i] == '\'')
-			{
-				in->elem->cont[n][i] = s[i];
-				i++;
-				while (s[i] != '\"')
-				{
-					in->elem->cont[n][i] = s[i];
-					i++;
-				}
-			}
-			if (s[i] == ' ')
-				break ;
-			in->elem->cont[n][i] = s[i];
-			i++;
-		}
+		i = into_elem_quotes(in, s, i, n);
+		if (s[i] == ' ')
+			break ;
+		in->elem->cont[n][i] = s[i];
+		i++;
 	}
 	in->elem->cont[n][i] = '\0';
 	return (i);

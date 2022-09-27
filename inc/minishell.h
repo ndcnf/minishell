@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
 /*   Updated: 2022/09/27 13:47:00 by nchennaf         ###   ########.fr       */
@@ -116,6 +116,11 @@ void	space_counter(t_input *input, char *s);
 int		skip_quotes(t_input *in, int i);
 int		skip_n(t_input *in, int i);
 
+//parsing_elem_utils.c
+int		malloc_elem(t_input *in, char *s, int i, int n);
+int		into_elem_quotes(t_input *in, char *s, int i, int n);
+void	nb_cmd(t_data *dt, char *args, int i);
+
 //quotes_mgmt.c
 int		d_quotes_mgmt(t_input *input, char *s, int i, int n);
 int		s_quotes_mgmt(t_input *input, char *s, int i, int n);
@@ -171,5 +176,10 @@ char	*quotes_ignorer(char *s); // ----------------------------------------------
 
 //execve.c
 void	exec(t_data *dt, int in);
+
+//signals.c
+void	sig_int(int c);
+void	sig_quit(int c);
+void	ft_termios(void);
 
 #endif
