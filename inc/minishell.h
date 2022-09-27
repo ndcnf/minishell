@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 13:47:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:21:36 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void	cmd_selecter(t_data *dt, int i);
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
 char	*parse_cmd(t_data *dt, char *s, int in);
-// void	dividing_args(t_builtins *bs);
-// int		parse_pwd(t_builtins *bs, char *in);
+// void	dividing_args(t_builtins *bs); // ---------------------------------------- utile ou non ?
+// int		parse_pwd(t_builtins *bs, char *in); // ------------------------------ utile ou non ?
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
 
@@ -158,7 +158,7 @@ void	b_init(t_data *dt, char *envp[]);
 void	malloc_checker(char *s);
 
 //var.c
-// void	conv_var(t_data *dt);
+void	conv_var(t_data *dt, int in);
 
 //quotes_utils.c
 char	*quotes_ignorer(char *s); // ---------------------------------------------- utile ou non ?
