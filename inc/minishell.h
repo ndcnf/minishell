@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 11:38:12 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:47:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,37 @@
 # include <fcntl.h>				// open
 
 # define MAX_PATH 1024
-# define NEW_VAL 1
-# define NO_VAL 2
-# define CREATE_KEY 3
+
+# define ERR_PERM 126
+# define ERR_404 127
+# define ERR_SIGN 128
+# define ERR_EXIT 255
+
+// # define NEW_VAL 1
+// # define NO_VAL 2
+// # define CREATE_KEY 3
+
 # define OPT_IGN "Option(s) ignored\n"
 # define ERR_ARG "Argument invalid in this scope\n"
 # define ERR_NO_ARG "No argument(s) provided\n"
 # define CMD_404 "command not found\n"
+# define TM_ARG "too many arguments\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
-typedef struct s_builtins
-{
-	char	*content;
-	int		len;
-	char	**args; //une commande valide entree par le user
-	//char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
-	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
-	char	**env; //copie des valeurs de l'environnement
-	int		n_env; //nombre de variables d'environnement
-	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
-}	t_builtins;
+// typedef struct s_builtins
+// {
+// 	char	*content;
+// 	int		len;
+// 	char	**args; //une commande valide entree par le user
+// 	//char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
+// 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
+// 	char	**env; //copie des valeurs de l'environnement
+// 	int		n_env; //nombre de variables d'environnement
+// 	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
+// }	t_builtins;
+
+// int		g_exit_stat; // ------------------------------------------------------ declarer une variable globale
 
 // structure des listes chaînées afin de pouvoir stocker les arguments
 //et de pouvoir les utiliser de manière optimisée
@@ -85,7 +95,7 @@ void	prompt(char **envp);
 
 //builtins.c
 int		b_pwd(t_data *dt);
-// int		b_exit(t_builtins *bs);
+int		b_exit(t_data *dt, int in);
 int		b_env(t_data *dt);
 
 //builtins_selecter.c
@@ -94,8 +104,8 @@ void	cmd_selecter(t_data *dt, int i);
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
 char	*parse_cmd(t_data *dt, char *s, int in);
-void	dividing_args(t_builtins *bs);
-int		parse_pwd(t_builtins *bs, char *in);
+// void	dividing_args(t_builtins *bs);
+// int		parse_pwd(t_builtins *bs, char *in);
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
 
@@ -151,7 +161,7 @@ void	malloc_checker(char *s);
 // void	conv_var(t_data *dt);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s); // utile ou non ?
+char	*quotes_ignorer(char *s); // ---------------------------------------------- utile ou non ?
 
 //redirections.c
 // void	redir_input(t_builtins *bs);

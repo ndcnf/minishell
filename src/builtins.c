@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/23 14:00:42 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:48:14 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	b_pwd(t_data *dt)
 	(void)dt;
 	if (getcwd(dir, sizeof(dir)))
 		ft_printf("%s\n", dir);
-	//exit_stat = EXIT_SUCCESS;
+	// g_exit_stat = EXIT_SUCCESS;
+	// return (g_exit_stat);
 	return (EXIT_SUCCESS);
 }
 
@@ -30,12 +31,20 @@ int	b_pwd(t_data *dt)
 // 'exit texte'	-> affiche 'exit\n' puis un message erreur et ferme
 // exit values : celles de la commande precedente
 ////////////////////////////////////////
-int	b_exit(t_builtins *bs)
+int	b_exit(t_data *dt, int in)
 {
-	printf("%s\n", bs->args[0]); //plus simple : "exit\n" mais evite dutiliser un (void)bs
-	if (bs->n_args > 1)
-		printf(ERR_ARG);
-	exit(EXIT_SUCCESS);
+	ft_printf("exit\n");
+	if (dt->in[in].n_elem > 2)
+	{
+		ft_printf(TM_ARG);
+		// g_exit_stat = EXIT_FAILURE; // assigner la valeur donee dans la variable globale
+	}
+	// else if (dt->in[in].n_elem == 2)
+	// 	g_exit_stat = ft_atoi(dt->in[in].elem->cont[1]); // assigner la valeur donee dans la variable globale
+	// else
+	// 	g_exit_stat = EXIT_SUCCESS;
+	exit(EXIT_SUCCESS); //remplacer par la variable globale plus tard
+	// exit(g_exit_status);
 }
 
 // 'env'		-> affiche la liste des variables d'environnement
