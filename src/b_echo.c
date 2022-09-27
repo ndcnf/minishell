@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 11:37:35 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:40:40 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	print_echo_n(t_input *in, int i)
 }
 
 // DISPATCHE SELON LES CAS DANS LA BONNE FONCTION ET RETOURNERA LA BONNE STRING
-char	*entrequotes(char *s, int j)
-{
+// char	*entrequotes(char *s, int j)
+// {
 	// char	*new_str;
 	// int		len;
 	// int		i;
@@ -85,4 +85,4 @@ char	*entrequotes(char *s, int j)
 
 	// new_str = malloc(sizeof(char) * len);
 	// return (new_str);
-}
+// }
