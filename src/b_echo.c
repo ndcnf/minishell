@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 16:06:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:50:25 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int	b_echo(t_data *dt, int in)
 {
 	int		i;
+	int		j;
 
 	if (dt->in[in].n_elem == 1)
 			ft_printf("\n");
@@ -35,6 +36,14 @@ int	b_echo(t_data *dt, int in)
 		{
 			while (i < dt->in[in].n_elem)
 			{
+				j = 0;
+				while (dt->in[in].elem->cont[i][j])
+				{
+					if (dt->in[in].elem->cont[i][j] == '$')
+						conv_var(dt, in);
+					j++;
+				}
+
 				ft_printf("%s", dt->in[in].elem->cont[i]);
 				i++;
 				if (i != dt->in[in].n_elem)
