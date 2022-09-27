@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/23 14:00:53 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:54:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define OPT_IGN "Option(s) ignored\n"
 # define ERR_ARG "Argument invalid in this scope\n"
 # define ERR_NO_ARG "No argument(s) provided\n"
+# define CMD_404 "command not found\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing

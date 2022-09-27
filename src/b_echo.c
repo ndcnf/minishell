@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_echo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/13 19:09:45 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/27 10:59:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,32 @@
 int	b_echo(t_data *dt, int in)
 {
 	int	i;
+	// int	j;
 
-	i = 0;
-	if (dt->in[in].n_elem < 4)
-		ft_printf("\n");
-	if (dt->in[in].n_elem > 3)
+	if (dt->in[in].n_elem == 1)
+			ft_printf("\n");
+	if (dt->in[in].n_elem > 1)
 	{
-		i = skip_quotes(&dt->in[in], 3);
+		i = 1;
 		if (ft_strncmp(dt->in[in].elem->cont[i], "-n", 2) == 0)
 			print_echo_n(&dt->in[in], i);
 		else
 		{
 			while (i < dt->in[in].n_elem)
 			{
-				i = skip_quotes(&dt->in[in], i);
-				if (i == dt->in[in].n_elem)
-					break ;
-				ft_printf("[%s]", dt->in[in].elem->cont[i]);
+				ft_printf("%s", dt->in[in].elem->cont[i]);
 				i++;
-				i = skip_quotes(&dt->in[in], i);
-				if (i < dt->in[in].n_elem)
-					ft_printf("[H]");
+				// if (dt->in[in].elem->cont[i][j] == '\"')
+				// {
+				// 	ft_printf("oh, une double quote !\n");
+				// 	j++;
+				// }
+				if (i != dt->in[in].n_elem)
+					ft_printf(" ");
+				// j++;
 			}
 			ft_printf("\n");
+			// ft_printf("i[%d] j[%d]\n", i, j);
 		}
 	}
 		// i = 0;
@@ -77,6 +80,31 @@ void	print_echo_n(t_input *in, int i)
 		i = skip_quotes(in, i);
 	}
 }
+
+// char	*entrequotes(char *s)
+// {
+// 	char	*new_str;
+// 	int		len;
+// 	int		i;
+
+// 	len = ft_strlen(s);
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		if (s[i] == '\"')
+// 		{
+
+// 		}
+// 		i++;
+// 	}
+
+
+
+// 	new_str = malloc(sizeof(char) * len)
+
+
+// 	return (new_str);
+// }
 
 // void	print_echo_quotes(t_input *in, int i)
 // {
