@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 10:59:52 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:37:35 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 ///////////////////////////////////////////////
 int	b_echo(t_data *dt, int in)
 {
-	int	i;
-	// int	j;
+	int		i;
 
 	if (dt->in[in].n_elem == 1)
 			ft_printf("\n");
@@ -38,28 +37,12 @@ int	b_echo(t_data *dt, int in)
 			{
 				ft_printf("%s", dt->in[in].elem->cont[i]);
 				i++;
-				// if (dt->in[in].elem->cont[i][j] == '\"')
-				// {
-				// 	ft_printf("oh, une double quote !\n");
-				// 	j++;
-				// }
 				if (i != dt->in[in].n_elem)
 					ft_printf(" ");
-				// j++;
 			}
 			ft_printf("\n");
-			// ft_printf("i[%d] j[%d]\n", i, j);
 		}
 	}
-		// i = 0;
-		// while (i < bs->n_args)
-		// {
-		// 	printf("FREE [%s], {%p}\n", bs->args[i], bs->args[i]);
-		// 	i++;
-		// }
-		// i = 0;
-		// while (i < bs->n_args)
-		// 	free(bs->args[i++]);
 	return (EXIT_SUCCESS);
 }
 
@@ -81,41 +64,25 @@ void	print_echo_n(t_input *in, int i)
 	}
 }
 
-// char	*entrequotes(char *s)
-// {
-// 	char	*new_str;
-// 	int		len;
-// 	int		i;
+// DISPATCHE SELON LES CAS DANS LA BONNE FONCTION ET RETOURNERA LA BONNE STRING
+char	*entrequotes(char *s, int j)
+{
+	// char	*new_str;
+	// int		len;
+	// int		i;
 
-// 	len = ft_strlen(s);
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (s[i] == '\"')
-// 		{
+	// len = ft_strlen(s);
+	// i = 0;
+	// while (s[i])
+	// {
+	// 	if (s[i] == '\"')
+	// 	{
 
-// 		}
-// 		i++;
-// 	}
-
-
-
-// 	new_str = malloc(sizeof(char) * len)
+	// 	}
+	// 	i++;
+	// }
 
 
-// 	return (new_str);
-// }
-
-// void	print_echo_quotes(t_input *in, int i)
-// {
-// 	while (i < in->n_elem)
-// 	{
-// 		i = skip_quotes(in, i);
-// 		if (i == in->n_elem)
-// 			break ;
-// 		ft_printf("[%s]", in->elem->cont[i]);
-// 		i++;
-// 		if (i != in->n_elem - 1)
-// 			ft_printf("[ ]");
-// 	}
-// }
+	// new_str = malloc(sizeof(char) * len);
+	// return (new_str);
+}

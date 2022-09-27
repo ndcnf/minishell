@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_mgmt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:32:51 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/22 11:28:19 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:23:25 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 int	d_quotes_mgmt(t_input *in, char *s, int i, int n)
 {

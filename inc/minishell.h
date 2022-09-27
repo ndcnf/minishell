@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/23 14:54:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:38:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void	remove_key(t_data *dt, char *key);
 int		b_echo(t_data *dt, int in);
 void	print_echo_n(t_input *in, int i);
 void	print_echo_quotes(t_input *in, int i);
+char	*entrequotes(char *s, int j);
 
 //b_init.c
 void	b_init(t_data *dt, char *envp[]);
@@ -150,7 +151,7 @@ void	malloc_checker(char *s);
 // void	conv_var(t_data *dt);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s);
+char	*quotes_ignorer(char *s); // utile ou non ?
 
 //redirections.c
 // void	redir_input(t_builtins *bs);
