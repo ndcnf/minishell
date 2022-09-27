@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
 #    Updated: 2022/09/26 19:34:06 by mthiesso         ###   ########.fr        #
@@ -35,9 +35,9 @@ SRC =	src/builtins.c \
 		src/execve.c \
 		src/parsing_elem_utils.c \
 		src/signals.c \
-		#src/b_export.c \
-		#src/b_unset.c \
-		#src/quotes_utils.c \
+		src/b_export.c \
+		src/b_unset.c \
+		src/quotes_utils.c \
 
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')

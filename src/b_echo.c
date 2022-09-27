@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_echo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 18:07:13 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:40:40 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,27 @@
 ///////////////////////////////////////////////
 int	b_echo(t_data *dt, int in)
 {
-	int	i;
+	int		i;
 
-	i = 0;
-	if (dt->in[in].n_elem < 4)
-		ft_printf("\n");
-	if (dt->in[in].n_elem > 3)
+	if (dt->in[in].n_elem == 1)
+			ft_printf("\n");
+	if (dt->in[in].n_elem > 1)
 	{
-		i = skip_quotes(&dt->in[in], 3);
+		i = 1;
 		if (ft_strncmp(dt->in[in].elem->cont[i], "-n", 2) == 0)
 			print_echo_n(&dt->in[in], i);
 		else
 		{
 			while (i < dt->in[in].n_elem)
 			{
-				i = skip_quotes(&dt->in[in], i);
-				if (i == dt->in[in].n_elem)
-					break ;
-				ft_printf("[%s]", dt->in[in].elem->cont[i]);
+				ft_printf("%s", dt->in[in].elem->cont[i]);
 				i++;
-				i = skip_quotes(&dt->in[in], i);
-				if (i < dt->in[in].n_elem)
-					ft_printf("[H]");
+				if (i != dt->in[in].n_elem)
+					ft_printf(" ");
 			}
 			ft_printf("\n");
 		}
 	}
-		// i = 0;
-		// while (i < bs->n_args)
-		// {
-		// 	printf("FREE [%s], {%p}\n", bs->args[i], bs->args[i]);
-		// 	i++;
-		// }
-		// i = 0;
-		// while (i < bs->n_args)
-		// 	free(bs->args[i++]);
 	return (EXIT_SUCCESS);
 }
 
@@ -78,16 +64,25 @@ void	print_echo_n(t_input *in, int i)
 	}
 }
 
-// void	print_echo_quotes(t_input *in, int i)
+// DISPATCHE SELON LES CAS DANS LA BONNE FONCTION ET RETOURNERA LA BONNE STRING
+// char	*entrequotes(char *s, int j)
 // {
-// 	while (i < in->n_elem)
-// 	{
-// 		i = skip_quotes(in, i);
-// 		if (i == in->n_elem)
-// 			break ;
-// 		ft_printf("[%s]", in->elem->cont[i]);
-// 		i++;
-// 		if (i != in->n_elem - 1)
-// 			ft_printf("[ ]");
-// 	}
+	// char	*new_str;
+	// int		len;
+	// int		i;
+
+	// len = ft_strlen(s);
+	// i = 0;
+	// while (s[i])
+	// {
+	// 	if (s[i] == '\"')
+	// 	{
+
+	// 	}
+	// 	i++;
+	// }
+
+
+	// new_str = malloc(sizeof(char) * len);
+	// return (new_str);
 // }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 18:07:38 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/23 13:35:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	dup_array_to_env(t_data *dt, char **array)
 {
 	int	i;
 
-	dt->env = malloc (sizeof(char *) * dt->n_env);
+	dt->env = malloc (sizeof(char *) * (dt->n_env + 1));
 	if (!dt->env)
 		exit(EXIT_FAILURE);
 	i = -1;

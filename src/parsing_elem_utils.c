@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elem_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
 /*   Updated: 2022/09/26 17:16:08 by mthiesso         ###   ########.fr       */
