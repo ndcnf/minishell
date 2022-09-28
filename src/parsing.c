@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/27 13:35:02 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:36:07 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	parsing_init(char *args, t_data *dt)
 
 	i = 0;
 	dt->n_cmd = 0;
-	// if (ft_strncmp(args, "", 0) == 0)
-	// 	return ;
 	if (args)
 	{
 		dt->n_cmd = 1;
