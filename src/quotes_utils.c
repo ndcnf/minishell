@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:29:31 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 14:12:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:42:21 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,22 @@ char	*quotes_ignorer(char *s)
 	new_s[i] = '\0';
 	// free(s);
 	return (new_s);
+}
+
+void	trimquotes(t_data *dt, char *s, int in)
+{
+	int		i;
+	char	*tempura;
+
+	i = 0;
+	while (i < dt->in[in].n_elem)
+	{
+		if (ft_strncmp(dt->in[in].elem->cont[i], s, ft_strlen(s)) == 0)
+		{
+			tempura = dt->in[in].elem->cont[i];
+			dt->in[in].elem->cont[i] = ft_strtrim(dt->in[in].elem->cont[i], s);
+			free(tempura);
+		}
+		i++;
+	}
 }
