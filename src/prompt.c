@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 18:37:23 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:40:47 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	prompt(char **envp)
 			}
 			cmd_selector(&dt, i++); //remplacer le 0 plus tard pour savoir quel input est concerné
 		}
-		// exec(&dt, 0);
 		//ft_printf("MAIN [%s]\n", &dt.in[0].elem->cont[1]);
 		//builtins_selector(&dt, 0); //TESTS
 		add_history(prompt);
