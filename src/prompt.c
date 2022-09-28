@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/27 13:04:07 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:08:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	prompt(char **envp)
 		//b_unset(&dt, 0);
 		//b_env(&dt);
 		//b_echo(&dt, 0);
-		b_exit(&dt, 0);
+		//b_exit(&dt, 0);
 		//cmd_selecter(&dt, 0); //remplacer le 0 plus tard pour savoir quel input est concerné
 		add_history(prompt);
 	}
