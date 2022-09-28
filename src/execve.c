@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/22 16:06:45 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:58:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	exec(t_data *dt, int in)
 		}
 		i++;
 	}
-	cmd_path = ft_strjoin("/usr/local/bin/", dt->in[in].elem->cont[0]);
+	cmd_path = ft_strjoin("/usr/local/bin/", dt->in[in].elem->cont[0]); // ------ ne devrait pas etre ajoute. Le programme doit ne pas trouver lors d'ún unset du PATHpar exemple
 }

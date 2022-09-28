@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 11:40:40 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:18:25 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int	b_echo(t_data *dt, int in)
 {
 	int		i;
+	// char	tempura[MAX_PATH];
 
 	if (dt->in[in].n_elem == 1)
 			ft_printf("\n");
@@ -35,8 +36,12 @@ int	b_echo(t_data *dt, int in)
 		{
 			while (i < dt->in[in].n_elem)
 			{
-				ft_printf("%s", dt->in[in].elem->cont[i]);
-				i++;
+				// tempura = malloc(sizeof)
+				if (ft_strchr(dt->in[in].elem->cont[i], '\"'))
+					quotes_ignorer("\"bonjour\"");
+				// if (ft_strchr(dt->in[in].elem->cont[i],'$'))
+				// 	conv_var(dt, in);
+				ft_printf("%s", dt->in[in].elem->cont[i++]);
 				if (i != dt->in[in].n_elem)
 					ft_printf(" ");
 			}
@@ -48,11 +53,9 @@ int	b_echo(t_data *dt, int in)
 
 void	print_echo_n(t_input *in, int i)
 {
-	i = skip_quotes(in, i);
 	i = skip_n(in, i);
 	while (i < in->n_elem)
 	{
-		i = skip_quotes(in, i);
 		if (ft_strncmp(in->elem->cont[i], "\0", 1))
 		{
 			ft_printf("%s", in->elem->cont[i]);
@@ -60,11 +63,16 @@ void	print_echo_n(t_input *in, int i)
 				ft_printf(" ");
 			i++;
 		}
-		i = skip_quotes(in, i);
 	}
 }
 
-// DISPATCHE SELON LES CAS DANS LA BONNE FONCTION ET RETOURNERA LA BONNE STRING
+// DISPATCHE SELON LES CAS DANS LA BONNE FONCTION ET RETOURNERA LA BONNE STRING// char	*entrequotes(char *s, int j)
+// char	*entrequotes(char *s, int j)
+// {
+// 	if (!s)
+// 		return ()
+// }
+
 // char	*entrequotes(char *s, int j)
 // {
 	// char	*new_str;

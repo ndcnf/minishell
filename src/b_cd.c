@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 18:07:07 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:06:07 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,17 @@ int	where_in_env(t_data *dt, char *key, int len)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp(parse_env(dt->env[i])[0], key, len) && i < dt->n_env)
+	// while (ft_strncmp(parse_env(dt->env[i])[0], key, len) && i < dt->n_env)
+	// 	i++;
+	while (i < dt->n_env)
+	{
+		if (ft_strncmp(dt->env[i], key, len) == 0)
+			return (i);
 		i++;
-	return (i);
+	}
+	// if (i > dt->n_env)
+	// 	return (-1);
+	return (NO_RESULT);
 }
 
 int	print_cd(char *s, int n)

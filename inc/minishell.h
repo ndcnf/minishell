@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 13:47:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:13:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,12 @@
 # include <fcntl.h>				// open
 
 # define MAX_PATH 1024
+# define NO_RESULT -1
 
 # define ERR_PERM 126
 # define ERR_404 127
 # define ERR_SIGN 128
 # define ERR_EXIT 255
-
-// # define NEW_VAL 1
-// # define NO_VAL 2
-// # define CREATE_KEY 3
 
 # define OPT_IGN "Option(s) ignored\n"
 # define ERR_ARG "Argument invalid in this scope\n"
@@ -98,14 +95,14 @@ int		b_pwd(t_data *dt);
 int		b_exit(t_data *dt, int in);
 int		b_env(t_data *dt);
 
-//builtins_selecter.c
-void	cmd_selecter(t_data *dt, int i);
+//builtins_selector.c
+void	cmd_selector(t_data *dt, int i);
 
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
 char	*parse_cmd(t_data *dt, char *s, int in);
-// void	dividing_args(t_builtins *bs);
-// int		parse_pwd(t_builtins *bs, char *in);
+// void	dividing_args(t_builtins *bs); // ---------------------------------------- utile ou non ?
+// int		parse_pwd(t_builtins *bs, char *in); // ------------------------------ utile ou non ?
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
 
@@ -163,10 +160,12 @@ void	b_init(t_data *dt, char *envp[]);
 void	malloc_checker(char *s);
 
 //var.c
-// void	conv_var(t_data *dt);
+void	conv_var(t_data *dt, int in);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s); // ---------------------------------------------- utile ou non ?
+char	*quotes_ignorer(char *s);
+int		trimquotes(t_data *dt, char *s, int in);
+
 
 //redirections.c
 // void	redir_input(t_builtins *bs);

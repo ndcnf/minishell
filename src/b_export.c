@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 17:44:24 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:51:18 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,18 @@ void	add_key(t_data *dt, char *key, char *val)
 char	*define_val(char *key, char *val)
 {
 	char	*new_val;
+	char	*tempura;
 
 	if (val)
 	{
 		new_val = ft_strjoin(key, "=");
-		val = quotes_ignorer(val);
+		// val = quotes_ignorer(val);
+		tempura = val;
+		val = ft_strtrim(val, "\"");
+		free(tempura);
+		tempura = new_val;
 		new_val = ft_strjoin(new_val, val);
+		free(tempura);
 	}
 	else
 		new_val = key;
