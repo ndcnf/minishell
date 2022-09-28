@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 15:29:57 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:13:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void	conv_var(t_data *dt, int in);
 
 //quotes_utils.c
 char	*quotes_ignorer(char *s);
-void	trimquotes(t_data *dt, char *s, int in);
+int		trimquotes(t_data *dt, char *s, int in);
 
 
 //redirections.c
