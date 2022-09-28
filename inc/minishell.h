@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 11:05:57 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:13:47 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,18 @@
 # include <fcntl.h>				// open
 
 # define MAX_PATH 1024
+# define NO_RESULT -1
 
 # define ERR_PERM 126
 # define ERR_404 127
 # define ERR_SIGN 128
 # define ERR_EXIT 255
 
-// # define NEW_VAL 1
-// # define NO_VAL 2
-// # define CREATE_KEY 3
-
 # define OPT_IGN "Option(s) ignored\n"
 # define ERR_ARG "Argument invalid in this scope\n"
 # define ERR_NO_ARG "No argument(s) provided\n"
 # define CMD_404 "command not found\n"
 # define TM_ARG "too many arguments\n"
-# define NO_RESULT -1
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -99,8 +95,8 @@ int		b_pwd(t_data *dt);
 int		b_exit(t_data *dt, int in);
 int		b_env(t_data *dt);
 
-//builtins_selecter.c
-void	cmd_selecter(t_data *dt, int i);
+//builtins_selector.c
+void	cmd_selector(t_data *dt, int i);
 
 //parsing.c
 void	parsing_init(char *args, t_data *dt);
@@ -167,7 +163,9 @@ void	malloc_checker(char *s);
 void	conv_var(t_data *dt, int in);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s); // ---------------------------------------------- utile ou non ?
+char	*quotes_ignorer(char *s);
+int		trimquotes(t_data *dt, char *s, int in);
+
 
 //redirections.c
 // void	redir_input(t_builtins *bs);
