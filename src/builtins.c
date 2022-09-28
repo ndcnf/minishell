@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 // 'pwd'		-> affiche le chemin actuel, suivi d'un \n
 // 'pwd texte	-> message d'erreur : 'pwd: too many arguments'

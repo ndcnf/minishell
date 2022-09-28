@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/19 10:52:08 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:14:58 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_quotes(char *s, int i)
 			i++;
 			while (s[i] != '\"')
 				i++;
-			if (s[i] == '\"')
+			if ((s[i] == '\"' && s[i + 1] == ' ') || (s[i] == '\"' && s[i + 1] == '\0'))
 				return (i);
 		}
 		else if (s[i] == '\'')
@@ -41,7 +41,7 @@ int	is_quotes(char *s, int i)
 			i++;
 			while (s[i] != '\'')
 				i++;
-			if (s[i] == '\'')
+			if ((s[i] == '\'' && s[i + 1] == ' ') || (s[i] == '\'' && s[i + 1] == '\0'))
 				return (i);
 		}
 		i++;

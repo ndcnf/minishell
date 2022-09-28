@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 // 'echo'				-> retour à la ligne
 // 'echo -n'			-> rien, ligne suivante
