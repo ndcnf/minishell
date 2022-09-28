@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_selector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 15:14:02 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:28:31 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	cmd_selector(t_data *dt, int i)
 		b_export(dt, i);
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "unset", 6) == 0)
 		b_unset(dt, i);
+	else
+		exec(dt, i);
 
 	// freearray(bs.env, bs.n_env);
 	// freearray(bs.args, bs.n_args);

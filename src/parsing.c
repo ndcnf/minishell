@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/27 16:36:07 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:36:13 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	parsing_elem(t_data *dt, char *s, int in)
 		i++;
 	}
 	dt->in[in].elem->cont[n] = NULL;
-	//cmd_selecter(dt, 0);
 	n = 0;
 	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
 	{

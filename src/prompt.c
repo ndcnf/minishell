@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 16:44:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:37:23 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	prompt(char **envp)
 		if (!prompt)
 			exit(0); // ------------------------------------------------------------valeur de sortie a gerer
 		if (!prompt[0])
-			continue;
+			continue ;
 		parsing_init(prompt, &dt);
 		i = 0;
 		while (i < dt.n_cmd)

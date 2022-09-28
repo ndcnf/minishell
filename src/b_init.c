@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:55:05 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 18:07:22 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:37:50 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	b_init(t_data *dt, char *envp[])
 	while (envp[i] != NULL)
 		i++;
 	dt->n_env = i;
-	dt->env = malloc(sizeof(char *) * dt->n_env);
+	dt->env = malloc(sizeof(char *) * (dt->n_env + 1));
 	malloc_checker((char *)dt->env);
 	i = 0;
 	while (i < dt->n_env)
@@ -28,6 +28,7 @@ void	b_init(t_data *dt, char *envp[])
 		dt->env[i] = ft_strdup(envp[i]);
 		malloc_checker(dt->env[i++]);
 	}
+	dt->env[i] = NULL;
 	i = 0;
 	while (ft_strncmp(parse_env(dt->env[i])[0], "PATH", 4))
 		i++;

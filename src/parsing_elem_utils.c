@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elem_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/26 17:16:08 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:48:20 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	malloc_elem(t_input *in, char *s, int i, int n)
 
 int	into_elem_quotes(t_input *in, char *s, int i, int n)
 {
-	if (s[i] == '\"' && s[i] == '\'')
+	if (s[i] == '\"' || s[i] == '\'')
 	{
 		in->elem->cont[n][i] = s[i];
 		i++;
