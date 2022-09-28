@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:29:31 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/22 16:26:43 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:12:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	*quotes_ignorer(char *s)
 			new_s[j++] = s[i++];
 	}
 	new_s[i] = '\0';
-	free(s);
+	// free(s);
 	return (new_s);
 }
