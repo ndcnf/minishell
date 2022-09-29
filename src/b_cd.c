@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 13:26:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:21:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,16 @@ void	update_env(t_data *dt, char *dir)
 int	where_in_env(t_data *dt, char *key, int len)
 {
 	int	i;
+	int diff;
 
 	i = 0;
-	// while (ft_strncmp(parse_env(dt->env[i])[0], key, len) && i < dt->n_env)
-	// 	i++;
 	while (i < dt->n_env)
 	{
-		if (ft_strncmp(dt->env[i], key, len) == 0)
+		diff = ft_strncmp(dt->env[i], key, len + 1);
+		if (diff == 0 || diff == 61)
 			return (i);
 		i++;
 	}
-	// if (i > dt->n_env)
-	// 	return (-1);
 	return (NO_RESULT);
 }
 

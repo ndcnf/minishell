@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/29 09:56:45 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:38:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void	prompt(char **envp)
 		prompt = readline("\e[36mmarynad$ \e[0m");
 		if (!prompt)
 			exit(0); // ------------------------------------------------------------valeur de sortie a gerer
-		if (!prompt[0])
+		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
 			continue;
-		parsing_init(prompt, &dt);
 		i = 0;
 		while (i < dt.n_cmd)
 		{
