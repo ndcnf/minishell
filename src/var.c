@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:34:51 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 13:33:39 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:21:46 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	conv_var(t_data *dt, int in, int i)
 	while (tmp)
 	{
 		tmp = ft_strtrim(dt->in[in].elem->cont[i], "$");
-		j = where_in_env(dt, tmp, (ft_strlen(tmp) + 1));
+		j = where_in_env(dt, tmp, ft_strlen(tmp));
 		if (j == NO_RESULT)
 		{
 			tmp = ft_strchr(dt->in[in].elem->cont[i] + ft_strlen(tmp), '$');
