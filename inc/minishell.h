@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 14:40:44 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:36:48 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,9 @@ int		b_pwd(t_data *dt);
 int		b_exit(t_data *dt, int in);
 int		b_env(t_data *dt);
 
-//builtins_selector.c
+//cmd_selector.c
 void	cmd_selector(t_data *dt, int i);
+int		builtins_selector(t_data *dt, int i);
 
 //parsing.c
 int		parsing_init(char *args, t_data *dt);
