@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:32:06 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 16:26:32 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:53:29 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,15 @@ void	ft_termios(void)
 	tcsetattr(STDIN_FILENO, TCSADRAIN, &rplc);
 }
 
-void	sig_quit(int c)
+void	sig_double(int c)
 {
+	if (c == SIGINT)
+	{
+		write(1, "\n", 1);
+	}
 	if (c == SIGQUIT)
 	{
-		rl_redisplay();
+		write(1, "Quit : 3\n", 9);
+		rl_on_new_line();
 	}
 }

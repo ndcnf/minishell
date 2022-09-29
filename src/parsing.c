@@ -73,7 +73,6 @@ void	parsing_elem(t_data *dt, char *s, int in)
 		i++;
 	}
 	dt->in[in].elem->cont[n] = NULL;
-	//cmd_selecter(dt, 0);
 	n = 0;
 	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
 	{
