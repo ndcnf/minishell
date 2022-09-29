@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 19:53:57 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:29:20 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_data
 	char				*path;
 	int					n_cmd;
 	t_input				*in;
+	pid_t				pid;
 }	t_data;
 
 //prompt.c

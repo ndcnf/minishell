@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 19:54:24 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:47:58 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	cmd_selector(t_data *dt, int i)
 {
 	signal(SIGINT, sig_double);
 	signal(SIGQUIT, sig_double);
-	if (dt->n_cmd == 0) // cette condition devra etre faite au debut meme du programme, pas ici
-		printf("\n");
 	if (ft_strncmp(dt->in[i].elem->cont[0], "echo", 5) == 0)
 		b_echo(dt, i);
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "pwd", 4) == 0)
@@ -32,6 +30,7 @@ void	cmd_selector(t_data *dt, int i)
 		b_export(dt, i);
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "unset", 6) == 0)
 		b_unset(dt, i);
+	//dt->pid = fork();
 	else
 		exec(dt, i);
 	signal(SIGINT, sig_int);
