@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 13:23:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:40:44 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define CMD_404 "command not found\n"
 # define TM_ARG "too many arguments\n"
 # define HOMELESS "HOME not set\n"
+# define NOT_EVEN "Quotes are not closed\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -100,7 +101,7 @@ int		b_env(t_data *dt);
 void	cmd_selector(t_data *dt, int i);
 
 //parsing.c
-void	parsing_init(char *args, t_data *dt);
+int		parsing_init(char *args, t_data *dt);
 char	*parse_cmd(t_data *dt, char *s, int in);
 // void	dividing_args(t_builtins *bs); // ---------------------------------------- utile ou non ?
 // int		parse_pwd(t_builtins *bs, char *in); // ------------------------------ utile ou non ?
@@ -117,7 +118,7 @@ int		skip_n(t_input *in, int i);
 //parsing_elem_utils.c
 int		malloc_elem(t_input *in, char *s, int i, int n);
 int		into_elem_quotes(t_input *in, char *s, int i, int n);
-void	nb_cmd(t_data *dt, char *args, int i);
+int		nb_cmd(t_data *dt, char *args, int i);
 
 //quotes_mgmt.c
 int		d_quotes_mgmt(t_input *input, char *s, int i, int n);
