@@ -6,37 +6,30 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:34:51 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 11:06:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:21:46 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	conv_var(t_data *dt, int in)
+void	conv_var(t_data *dt, int in, int i)
 {
-	int		i;
-	char	*tempura;
+	char	*tmp;
 	int		j;
 
-	i = 0;
-	while (i < dt->in[in].n_elem)
+	tmp = ft_strchr(dt->in[in].elem->cont[i], '$');
+	while (tmp)
 	{
-		j = 0;
-		tempura = ft_strchr(dt->in[in].elem->cont[i], '$');
-		if (tempura)
+		tmp = ft_strtrim(dt->in[in].elem->cont[i], "$");
+		j = where_in_env(dt, tmp, ft_strlen(tmp));
+		if (j == NO_RESULT)
 		{
-			tempura = ft_strtrim(dt->in[in].elem->cont[i], "$");
-			j = where_in_env(dt, tempura, ft_strlen(tempura));
-			free (dt->in[in].elem->cont[i]);
-			if (j == NO_RESULT)
-			{
-				dt->in[in].elem->cont[i] = ft_strdup(" ");
-				free (tempura);
-				break ;
-			}
-			dt->in[in].elem->cont[i] = ft_strdup(parse_env(dt->env[j])[1]);
-			free (tempura);
+			tmp = ft_strchr(dt->in[in].elem->cont[i] + ft_strlen(tmp), '$');
+			continue;
 		}
-		i++;
+		free (dt->in[in].elem->cont[i]);
+		dt->in[in].elem->cont[i] = ft_strdup(parse_env(dt->env[j])[1]);
+		free (tmp);
+		tmp = ft_strchr(dt->in[in].elem->cont[i], '$');
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 19:40:47 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:38:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	prompt(char **envp)
 	char	*prompt;
 	t_data	dt;
 	int		i;
+	int		j;
 	int		quote;
 
 	prompt = NULL;
@@ -26,18 +27,19 @@ void	prompt(char **envp)
 		prompt = readline("\e[36mmarynad$ \e[0m");
 		if (!prompt)
 			exit(0); // ------------------------------------------------------------valeur de sortie a gerer
-		if (!prompt[0])
-			continue ;
-		parsing_init(prompt, &dt);
+		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
+			continue;
 		i = 0;
 		while (i < dt.n_cmd)
 		{
-			quote = trimquotes(&dt, "\"", i);
-			if (!quote)
+			j = 0;
+			while (j < dt.in[i].n_elem)
 			{
-				quote = trimquotes(&dt, "\'", i);
+				trimquotes(&dt, "\"", i, j);
+				quote = trimquotes(&dt, "\'", i, j);
 				if (!quote)
-					conv_var(&dt, i);
+					conv_var(&dt, i, j);
+				j++;
 			}
 			cmd_selector(&dt, i++); //remplacer le 0 plus tard pour savoir quel input est concerné
 		}

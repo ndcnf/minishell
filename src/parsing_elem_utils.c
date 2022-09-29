@@ -6,22 +6,30 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 18:48:20 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:41:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	nb_cmd(t_data *dt, char *args, int i)
+int	nb_cmd(t_data *dt, char *args, int i)
 {
 	while (args[i])
 	{
 		if (args[i] == '\"' || args[i] == '\'')
+		{
 			i = is_quotes(args, i);
+			if (i == NO_RESULT)
+			{
+				ft_printf(NOT_EVEN);
+				return (NO_RESULT);
+			}
+		}
 		if (args[i] == '|')
 			dt->n_cmd++;
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }
 
 int	malloc_elem(t_input *in, char *s, int i, int n)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/28 18:36:13 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:37:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parsing_init(char *args, t_data *dt)
+int		parsing_init(char *args, t_data *dt)
 {
 	int			i;
 
@@ -21,7 +21,10 @@ void	parsing_init(char *args, t_data *dt)
 	if (args)
 	{
 		dt->n_cmd = 1;
-		nb_cmd(dt, args, i);
+		if (nb_cmd(dt, args, i) == NO_RESULT)
+		{
+			return (NO_RESULT);
+		}
 	}
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
@@ -37,6 +40,7 @@ void	parsing_init(char *args, t_data *dt)
 		parsing_elem(dt, dt->in[i].cont, i);
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }
 
 char	*parse_cmd(t_data *dt, char *s, int in)
