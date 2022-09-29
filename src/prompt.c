@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/29 09:06:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 09:56:45 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	prompt(char **envp)
 	char	*prompt;
 	t_data	dt;
 	int		i;
+	int		j;
 	int		quote;
 
 	prompt = NULL;
@@ -32,10 +33,15 @@ void	prompt(char **envp)
 		i = 0;
 		while (i < dt.n_cmd)
 		{
-			trimquotes(&dt, "\"", i);
-			quote = trimquotes(&dt, "\'", i);
-			if (!quote)
-				conv_var(&dt, i);
+			j = 0;
+			while (j < dt.in[i].n_elem)
+			{
+				trimquotes(&dt, "\"", i, j);
+				quote = trimquotes(&dt, "\'", i, j);
+				if (!quote)
+					conv_var(&dt, i, j);
+				j++;
+			}
 			cmd_selector(&dt, i++); //remplacer le 0 plus tard pour savoir quel input est concerné
 		}
 		// exec(&dt, 0);
