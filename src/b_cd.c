@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_cd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 11:06:07 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:26:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	b_cd(t_data *dt, int in)
 	int		n;
 
 	if (dt->in[in].n_elem == 1)
-		n = no_place_like_home(dt);
+	{
+		no_place_like_home(dt);
+		n = 0;
+	}
 	else
 		n = 1;
 	if (n)
@@ -53,9 +56,13 @@ void	update_env(t_data *dt, char *dir)
 
 	i = where_in_env(dt, "PWD", 3);
 	j = where_in_env(dt, "OLDPWD", 6);
-	dt->env[j] = ft_strjoin("OLDPWD", parse_env(dt->env[i])[1]);
-	dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
-	ft_printf("PWD [%s]\nOLD [%s]\n", dt->env[i], dt->env[j]);
+	if (i == NO_RESULT)
+		ft_printf(CMD_404);
+	else
+	{
+		dt->env[j] = ft_strjoin("OLDPWD", parse_env(dt->env[i])[1]);
+		dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
+	}
 }
 
 int	where_in_env(t_data *dt, char *key, int len)
@@ -86,11 +93,16 @@ int	no_place_like_home(t_data *dt)
 {
 	int		i;
 
-	i = where_in_env(dt, "HOME", 4);
-	if (chdir(parse_env(dt->env[i])[1]))
+	i = where_in_env(dt, "HOME", 5);
+	if (i == NO_RESULT)
+	{
+		ft_printf(HOMELESS);
+		return (EXIT_FAILURE);
+	}
+	else if (chdir(parse_env(dt->env[i])[1]))
 	{
 		perror("ERR");
 		return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

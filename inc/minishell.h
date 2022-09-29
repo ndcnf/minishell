@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 16:13:47 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:23:54 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define ERR_NO_ARG "No argument(s) provided\n"
 # define CMD_404 "command not found\n"
 # define TM_ARG "too many arguments\n"
+# define HOMELESS "HOME not set\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -160,11 +161,11 @@ void	b_init(t_data *dt, char *envp[]);
 void	malloc_checker(char *s);
 
 //var.c
-void	conv_var(t_data *dt, int in);
+void	conv_var(t_data *dt, int in, int i);
 
 //quotes_utils.c
 char	*quotes_ignorer(char *s);
-int		trimquotes(t_data *dt, char *s, int in);
+int		trimquotes(t_data *dt, char *s, int in, int i);
 
 
 //redirections.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_unset.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:22:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/23 13:34:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/29 10:48:02 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	remove_key(t_data *dt, char *key)
 	int		j;
 
 	rem_key = 0;
-	new_array = malloc(sizeof(char *) * (dt->n_env));
+	new_array = malloc(sizeof(char *) * (dt->n_env + 1));
 	malloc_checker((char *)new_array);
 	i = 0;
 	j = 0;
