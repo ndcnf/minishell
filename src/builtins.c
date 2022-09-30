@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 15:35:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:37:13 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	b_exit(t_data *dt, int in)
 	}
 	if (dt->in[in].n_elem > 2)
 	{
-		if (ft_atoi(dt->in[in].elem->cont[1]) || dt->in[in].elem->cont[1][0] == '0')
+		if (ft_atoi(dt->in[in].elem->cont[1])
+			|| dt->in[in].elem->cont[1][0] == '0')
 			return (the_end(TM_ARG, EXIT_FAILURE));
 		exit (the_end(NOT_NUM, ERR_EXIT));
 	}
