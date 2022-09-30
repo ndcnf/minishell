@@ -36,9 +36,11 @@ int	is_quotes(char *s, int i)
 				if (!s[i])
 					return (NO_RESULT);
 				i++;
-			}
-			if ((s[i] == '\"' && s[i + 1] == ' ') || (s[i] == '\"' && s[i + 1] == '\0'))
-				return (i);
+			  if ((s[i] == '\"' && s[i + 1] == ' ')
+				  || (s[i] == '\"' && s[i + 1] == '\0')
+				  || (s[i] == '\"' && s[i + 1] == '|'))
+				  return (i);
+      }
 		}
 		else if (s[i] == '\'')
 		{
@@ -48,9 +50,11 @@ int	is_quotes(char *s, int i)
 				if (!s[i])
 					return (NO_RESULT);
 				i++;
-			}
-			if ((s[i] == '\'' && s[i + 1] == ' ') || (s[i] == '\'' && s[i + 1] == '\0'))
-				return (i);
+			  if ((s[i] == '\'' && s[i + 1] == ' ')
+				  || (s[i] == '\'' && s[i + 1] == '\0')
+				  || (s[i] == '\'' && s[i + 1] == '|'))
+				  return (i);
+      }
 		}
 		i++;
 	}
