@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 15:37:13 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:38:51 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ int	b_env(t_data *dt)
 			ft_printf("%s\n", dt->env[i]);
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS));
 }
