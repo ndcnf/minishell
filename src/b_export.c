@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 15:51:18 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:51:22 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	b_export(t_data *dt, int in)
 			i++;
 		}
 	}
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS));
 }
 
 void	add_key(t_data *dt, char *key, char *val)
@@ -45,7 +45,6 @@ void	add_key(t_data *dt, char *key, char *val)
 	add_key = 1;
 	new_array = malloc(sizeof(char *) * (dt->n_env + 2));
 	malloc_checker((char *)new_array);
-
 	i = 0;
 	while (i < dt->n_env)
 		new_array[i++] = malloc(sizeof(char) * 2);

@@ -55,3 +55,4 @@ minishell
 sandbox/
 .vscode/
 .DS_Store
+src/cmd_selector.c

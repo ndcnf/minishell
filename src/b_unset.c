@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:22:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 10:48:02 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:53:10 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	b_unset(t_data *dt, int in)
 
 	i = 0;
 	if (dt->in[in].n_elem == 1)
-		return (EXIT_SUCCESS);
+		return (the_end(NULL, EXIT_SUCCESS));
 	else
 	{
 		i = 1;
@@ -30,7 +30,7 @@ int	b_unset(t_data *dt, int in)
 			i++;
 		}
 	}
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS));
 }
 
 void	remove_key(t_data *dt, char *key)
