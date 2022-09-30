@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 14:44:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:35:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,21 @@ int	b_exit(t_data *dt, int in)
 {
 	int	n;
 
-	n = 0;
-	if (dt->in[in].n_elem > 2)
-		return (the_end(TM_ARG, EXIT_FAILURE));
-	else if (dt->in[in].n_elem == 1)
+	if (dt->in[in].n_elem == 1)
 	{
 		ft_printf("exit\n");
-		exit(the_end(NULL, EXIT_SUCCESS));
+		exit (the_end(NULL, EXIT_SUCCESS));
 	}
-	else if (dt->in[in].n_elem == 2)
+	if (dt->in[in].n_elem > 2)
 	{
-		n = ft_atoi(dt->in[in].elem->cont[1]);
-		exit (the_end("exit\n", n));
+		if (ft_atoi(dt->in[in].elem->cont[1]) || dt->in[in].elem->cont[1][0] == '0')
+			return (the_end(TM_ARG, EXIT_FAILURE));
+		exit (the_end(NOT_NUM, ERR_EXIT));
 	}
-
-
-	// else if (dt->in[in].n_elem == 2)
-	//g_exit_stat = ft_atoi(dt->in[in].elem->cont[1]); // assigner la valeur donee dans la variable globale
-	// else
-	// 	g_exit_stat = EXIT_SUCCESS;
-	exit(the_end(NULL, EXIT_SUCCESS)); //remplacer par la variable globale plus tard
+	n = ft_atoi(dt->in[in].elem->cont[1]);
+	if (n || dt->in[in].elem->cont[1][0] == '0')
+		exit (the_end("exit\n", n));
+	exit (the_end(NOT_NUM, ERR_EXIT));
 }
 
 // 'env'		-> affiche la liste des variables d'environnement
