@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 14:21:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 11:41:05 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,20 @@ int	b_cd(t_data *dt, int in)
 	if (n)
 	{
 		if (dt->in[in].elem->cont[n][0] == '-')
-			n = print_cd(OPT_IGN, 2);
+			n = print_cd(OPT_IGN, 2); //------------------------------------------- maj g_exit_stat ?
 		if (n >= dt->in[in].n_elem)
-			return (print_cd(ERR_NO_ARG, 1)); //---------------------------------EXIT NUMBER TO DEFINE HERE
+			return (the_end(ERR_NO_ARG, EXIT_FAILURE));
+			// return (print_cd(ERR_NO_ARG, 1)); //---------------------------------EXIT NUMBER TO DEFINE HERE
 		if (chdir(dt->in[in].elem->cont[n]))
 		{
-			perror("ERR");
-			return (EXIT_FAILURE);
+			return (the_end(ERROR, EXIT_FAILURE));
+			// perror("ERR");
+			// return (EXIT_FAILURE);
 		}
 	}
 	update_env(dt, dir);
-	return (EXIT_SUCCESS);
+	return (the_end("", EXIT_SUCCESS));
+	// return (EXIT_SUCCESS);
 }
 
 void	update_env(t_data *dt, char *dir)
@@ -93,14 +96,12 @@ int	no_place_like_home(t_data *dt)
 
 	i = where_in_env(dt, "HOME", 5);
 	if (i == NO_RESULT)
-	{
-		ft_printf(HOMELESS);
-		return (EXIT_FAILURE);
-	}
+		the_end(HOMELESS, EXIT_FAILURE);
 	else if (chdir(parse_env(dt->env[i])[1]))
 	{
-		perror("ERR");
-		return (EXIT_FAILURE);
+		the_end(ERROR, EXIT_FAILURE);
+		// perror("ERR");
+		// return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
