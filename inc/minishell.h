@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 13:19:10 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:26:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define TM_ARG "too many arguments\n"
 # define HOMELESS "HOME not set\n"
 # define NOT_EVEN "Quotes are not closed\n"
+# define NOT_NUM "numeric argument required\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
