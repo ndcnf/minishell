@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/29 14:37:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 11:47:04 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int		parsing_init(char *args, t_data *dt)
 	{
 		dt->n_cmd = 1;
 		if (nb_cmd(dt, args, i) == NO_RESULT)
-		{
 			return (NO_RESULT);
-		}
 	}
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;

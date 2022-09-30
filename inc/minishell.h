@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 14:40:44 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 11:10:49 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define ERR_SIGN 128
 # define ERR_EXIT 255
 
+# define ERROR "Error\n"
 # define OPT_IGN "Option(s) ignored\n"
 # define ERR_ARG "Argument invalid in this scope\n"
 # define ERR_NO_ARG "No argument(s) provided\n"
@@ -63,7 +64,7 @@
 // 	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
 // }	t_builtins;
 
-// int		g_exit_stat; // ------------------------------------------------------ declarer une variable globale
+int		g_exit_stat;
 
 // structure des listes chaînées afin de pouvoir stocker les arguments
 //et de pouvoir les utiliser de manière optimisée
@@ -183,5 +184,8 @@ void	exec(t_data *dt, int in);
 void	sig_int(int c);
 void	sig_double(int c);
 void	ft_termios(void);
+
+//error.c
+int	the_end(char *msg, int status);
 
 #endif
