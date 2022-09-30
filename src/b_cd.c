@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 11:41:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:02:01 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,14 @@ int	b_cd(t_data *dt, int in)
 	if (n)
 	{
 		if (dt->in[in].elem->cont[n][0] == '-')
-			n = print_cd(OPT_IGN, 2); //------------------------------------------- maj g_exit_stat ?
+			n = print_cd(OPT_IGN, 2);
 		if (n >= dt->in[in].n_elem)
 			return (the_end(ERR_NO_ARG, EXIT_FAILURE));
-			// return (print_cd(ERR_NO_ARG, 1)); //---------------------------------EXIT NUMBER TO DEFINE HERE
 		if (chdir(dt->in[in].elem->cont[n]))
-		{
 			return (the_end(ERROR, EXIT_FAILURE));
-			// perror("ERR");
-			// return (EXIT_FAILURE);
-		}
 	}
 	update_env(dt, dir);
-	return (the_end("", EXIT_SUCCESS));
-	// return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS));
 }
 
 void	update_env(t_data *dt, char *dir)
@@ -63,7 +57,7 @@ void	update_env(t_data *dt, char *dir)
 		ft_printf(CMD_404);
 	else
 	{
-		dt->env[j] = ft_strjoin("OLDPWD", parse_env(dt->env[i])[1]);
+		dt->env[j] = ft_strjoin("OLDPWD=", parse_env(dt->env[i])[1]);
 		dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
 	}
 }
@@ -98,10 +92,6 @@ int	no_place_like_home(t_data *dt)
 	if (i == NO_RESULT)
 		the_end(HOMELESS, EXIT_FAILURE);
 	else if (chdir(parse_env(dt->env[i])[1]))
-	{
 		the_end(ERROR, EXIT_FAILURE);
-		// perror("ERR");
-		// return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS));
 }

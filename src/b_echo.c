@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 15:18:25 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:45:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 int	b_echo(t_data *dt, int in)
 {
 	int		i;
-	// char	tempura[MAX_PATH];
 
 	if (dt->in[in].n_elem == 1)
 			ft_printf("\n");
@@ -36,11 +35,6 @@ int	b_echo(t_data *dt, int in)
 		{
 			while (i < dt->in[in].n_elem)
 			{
-				// tempura = malloc(sizeof)
-				if (ft_strchr(dt->in[in].elem->cont[i], '\"'))
-					quotes_ignorer("\"bonjour\"");
-				// if (ft_strchr(dt->in[in].elem->cont[i],'$'))
-				// 	conv_var(dt, in);
 				ft_printf("%s", dt->in[in].elem->cont[i++]);
 				if (i != dt->in[in].n_elem)
 					ft_printf(" ");
@@ -48,7 +42,7 @@ int	b_echo(t_data *dt, int in)
 			ft_printf("\n");
 		}
 	}
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS));
 }
 
 void	print_echo_n(t_input *in, int i)
@@ -65,32 +59,3 @@ void	print_echo_n(t_input *in, int i)
 		}
 	}
 }
-
-// DISPATCHE SELON LES CAS DANS LA BONNE FONCTION ET RETOURNERA LA BONNE STRING// char	*entrequotes(char *s, int j)
-// char	*entrequotes(char *s, int j)
-// {
-// 	if (!s)
-// 		return ()
-// }
-
-// char	*entrequotes(char *s, int j)
-// {
-	// char	*new_str;
-	// int		len;
-	// int		i;
-
-	// len = ft_strlen(s);
-	// i = 0;
-	// while (s[i])
-	// {
-	// 	if (s[i] == '\"')
-	// 	{
-
-	// 	}
-	// 	i++;
-	// }
-
-
-	// new_str = malloc(sizeof(char) * len);
-	// return (new_str);
-// }

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/30 11:47:04 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:53:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,6 @@ int		parsing_init(char *args, t_data *dt)
 		i++;
 	}
 	return (EXIT_SUCCESS);
-}
-
-char	*parse_cmd(t_data *dt, char *s, int in)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (check_quotes(&dt->in[in], s) == 1)
-	{
-		printf("DEGAGE\n");
-		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
-	}
-	return (s);
 }
 
 void	parsing_elem(t_data *dt, char *s, int in)

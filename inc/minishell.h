@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 11:10:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:45:02 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define TM_ARG "too many arguments\n"
 # define HOMELESS "HOME not set\n"
 # define NOT_EVEN "Quotes are not closed\n"
+# define NOT_NUM "numeric argument required\n"
+# define ERR_MALL "malloc error\n"
 
 // structure minimale pour gerer les donnees pour tester les builtins
 // sera certainement vouee a modification suite au parsing
@@ -104,9 +106,6 @@ void	cmd_selector(t_data *dt, int i);
 
 //parsing.c
 int		parsing_init(char *args, t_data *dt);
-char	*parse_cmd(t_data *dt, char *s, int in);
-// void	dividing_args(t_builtins *bs); // ---------------------------------------- utile ou non ?
-// int		parse_pwd(t_builtins *bs, char *in); // ------------------------------ utile ou non ?
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
 
@@ -132,7 +131,6 @@ char	**parse_env(char *s);
 void	sort_env(t_data *dt, int in);
 void	print_env(t_data *dt, char **elem);
 void	the_sorter(t_data *dt, char *tempura, char *a, char *b);
-// void	print_env(char **elem);
 void	dup_array_to_env(t_data *dt, char **array);
 void	freearray(char **m, int n);
 
@@ -156,8 +154,6 @@ void	remove_key(t_data *dt, char *key);
 //b_echo.c
 int		b_echo(t_data *dt, int in);
 void	print_echo_n(t_input *in, int i);
-void	print_echo_quotes(t_input *in, int i);
-char	*entrequotes(char *s, int j);
 
 //b_init.c
 void	b_init(t_data *dt, char *envp[]);
@@ -167,7 +163,7 @@ void	malloc_checker(char *s);
 void	conv_var(t_data *dt, int in, int i);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s);
+char	*quotes_ignorer(char *s); // --------------------------------------------- INUTILE NORMALEMENT
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
 

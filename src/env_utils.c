@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/23 13:35:27 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:49:40 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	**parse_env(char *s)
 	return (elem);
 }
 
-//Separer en DUPLIQUER environnement et SORT environnement
 void	sort_env(t_data *dt, int in)
 {
 	int		i;
@@ -72,8 +71,7 @@ void	dup_array_to_env(t_data *dt, char **array)
 	int	i;
 
 	dt->env = malloc (sizeof(char *) * (dt->n_env + 1));
-	if (!dt->env)
-		exit(EXIT_FAILURE);
+	malloc_checker((char *)dt->env);
 	i = -1;
 	while (++i < dt->n_env)
 		dt->env[i] = array[i];
