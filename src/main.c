@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/28 16:37:25 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:20:18 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[], char **envp)
 		ft_printf("\033[31mARG_ERROR\n\033[31m");
 		return (1);
 	}
-	if(envp)
+	if (envp)
 	{
 		signal(SIGINT, sig_int);
 		signal(SIGQUIT, SIG_IGN);
@@ -33,7 +33,6 @@ int	main(int argc, char *argv[], char **envp)
 	// --------- PARTIE MARLENE ---------
 
 	/* --------- PARTIE NADIA ---------
-	t_builtins bs;
 	//int	i;
 
 	b_init(&bs, argc, argv, envp);

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 15:49:40 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:18:54 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_env(t_data *dt, char **elem)
 {
 	(void)dt;
-	if (elem[1]) // A TESTER, SI AUCUNE VALEUR DONNEE POUR LA CLEF
+	if (elem[1])
 		printf("declare -x %s=\"%s\"\n", elem[0], elem[1]);
 	else if (elem[0])
 		printf("declare -x %s\n", elem[0]);

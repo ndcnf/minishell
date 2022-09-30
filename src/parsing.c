@@ -6,13 +6,13 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/30 13:53:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:22:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		parsing_init(char *args, t_data *dt)
+int	parsing_init(char *args, t_data *dt)
 {
 	int			i;
 
@@ -57,11 +57,13 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	}
 	dt->in[in].elem->cont[n] = NULL;
 	n = 0;
-	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
+	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
+	while (n < dt->in[in].n_elem)
 	{
 		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
 		n++;
 	}
+	///////////////////////////////////////////////////////////////////////////
 }
 
 int	each_elem(t_input *in, char *s, int i, int n)

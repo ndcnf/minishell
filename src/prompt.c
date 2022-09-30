@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/30 13:47:22 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:23:33 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	prompt(char **envp)
 		if (!prompt)
 			exit(EXIT_SUCCESS);
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
-			continue;
+			continue ;
 		i = 0;
 		while (i < dt.n_cmd)
 		{
@@ -45,10 +45,11 @@ void	prompt(char **envp)
 			}
 			cmd_selector(&dt, i++);
 		}
-		//ft_printf("MAIN [%s]\n", &dt.in[0].elem->cont[1]);
-		//builtins_selector(&dt, 0); //TESTS
 		add_history(prompt);
+
+		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
 		ft_printf("globale maintenant = %d\n", g_exit_stat);
+		///////////////////////////////////////////////////////////////////////
 	}
 	free(prompt);
 }

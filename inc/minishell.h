@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 15:45:02 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:14:23 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,6 @@
 # define NOT_EVEN "Quotes are not closed\n"
 # define NOT_NUM "numeric argument required\n"
 # define ERR_MALL "malloc error\n"
-
-// structure minimale pour gerer les donnees pour tester les builtins
-// sera certainement vouee a modification suite au parsing
-// typedef struct s_builtins
-// {
-// 	char	*content;
-// 	int		len;
-// 	char	**args; //une commande valide entree par le user
-// 	//char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
-// 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
-// 	char	**env; //copie des valeurs de l'environnement
-// 	int		n_env; //nombre de variables d'environnement
-// 	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
-// }	t_builtins;
 
 int		g_exit_stat;
 
@@ -166,7 +152,6 @@ void	conv_var(t_data *dt, int in, int i);
 char	*quotes_ignorer(char *s); // --------------------------------------------- INUTILE NORMALEMENT
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
-
 //redirections.c
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
@@ -182,6 +167,6 @@ void	sig_double(int c);
 void	ft_termios(void);
 
 //error.c
-int	the_end(char *msg, int status);
+int		the_end(char *msg, int status);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 14:02:01 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:16:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	update_env(t_data *dt, char *dir)
 int	where_in_env(t_data *dt, char *key, int len)
 {
 	int	i;
-	int diff;
+	int	diff;
 
 	i = 0;
 	while (i < dt->n_env)
