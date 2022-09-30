@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 11:41:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:52:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	b_cd(t_data *dt, int in)
 		}
 	}
 	update_env(dt, dir);
-	return (the_end("", EXIT_SUCCESS));
+	return (the_end(NULL, EXIT_SUCCESS));
 	// return (EXIT_SUCCESS);
 }
 
@@ -63,7 +63,7 @@ void	update_env(t_data *dt, char *dir)
 		ft_printf(CMD_404);
 	else
 	{
-		dt->env[j] = ft_strjoin("OLDPWD", parse_env(dt->env[i])[1]);
+		dt->env[j] = ft_strjoin("OLDPWD=", parse_env(dt->env[i])[1]);
 		dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
 	}
 }
