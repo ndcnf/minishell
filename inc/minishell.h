@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 13:46:50 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:33:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ int		no_place_like_home(t_data *dt);
 int		b_export(t_data *dt, int in);
 void	add_key(t_data *dt, char *key, char *val);
 char	*define_val(char *key, char *val);
+void	update_arr(t_data *dt, char **new_array, int add_key, char *new_val);
+void	update_key(t_data *dt, char *key, char *val, char **new_array);
 
 //b_unset.c
 int		b_unset(t_data *dt, int in);

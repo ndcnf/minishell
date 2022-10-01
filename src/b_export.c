@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 15:22:29 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:32:58 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ int	b_export(t_data *dt, int in)
 	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
 
+void	update_arr(t_data *dt, char **new_array, int add_key, char *new_val)
+{
+	if (add_key)
+	{
+		*new_array = new_val;
+		*(new_array + 1) = NULL;
+		dt->n_env++;
+	}
+	else
+		new_array = NULL;
+}
+
 void	update_key(t_data *dt, char *key, char *val, char **new_array)
 {
 	int		i;
@@ -59,14 +71,7 @@ void	update_key(t_data *dt, char *key, char *val, char **new_array)
 			new_array[i] = ft_strdup(dt->env[i]);
 		i++;
 	}
-	if (add_key)
-	{
-		new_array[i] = new_val;
-		new_array[i + 1] = NULL;
-		dt->n_env++;
-	}
-	else
-		new_array[i] = NULL;
+	update_arr(dt, &new_array[i], add_key, new_val);
 }
 
 void	add_key(t_data *dt, char *key, char *val)
