@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 15:33:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:35:05 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,6 @@ void	sig_double(int c);
 void	ft_termios(void);
 
 //error.c
-int	the_end(char *msg, int status, int print);
+int		the_end(char *msg, int status, int print);
 
 #endif
