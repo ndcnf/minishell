@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 13:48:06 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:14:02 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_env(t_data *dt, int in, char **elem)
 			else if (export[0])
 				printf("declare -x %s\n", export[0]);
 			i++;
-			free(export);
+			freearray(export, 2);
 		}
 	}
 }

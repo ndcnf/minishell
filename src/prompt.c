@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/30 16:23:33 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:16:42 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	prompt(char **envp)
 		if (!prompt)
 			exit(EXIT_SUCCESS);
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
+		{
+			free(prompt);// a voir si necessaire avec les leaks
 			continue ;
+		}
 		i = 0;
 		while (i < dt.n_cmd)
 		{
@@ -46,10 +49,11 @@ void	prompt(char **envp)
 			cmd_selector(&dt, i++);
 		}
 		add_history(prompt);
+		free(prompt);
 
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
 		ft_printf("globale maintenant = %d\n", g_exit_stat);
 		///////////////////////////////////////////////////////////////////////
 	}
-	free(prompt);
+	// free(prompt);
 }
