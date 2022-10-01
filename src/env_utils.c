@@ -6,11 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 16:18:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:19:58 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	print_env(t_data *dt, char **elem)
 {
@@ -65,6 +65,8 @@ void	sort_env(t_data *dt, int in)
 	}
 	freearray(export, dt->n_env);
 }
+
+// char	**dup_env()
 
 void	dup_array_to_env(t_data *dt, char **array)
 {
