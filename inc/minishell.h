@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 13:46:07 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:46:50 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int		print_cd(char *s, int n);
 int		no_place_like_home(t_data *dt);
 
 //b_export.c
-// int		b_export(t_builtins *bs);
 int		b_export(t_data *dt, int in);
 void	add_key(t_data *dt, char *key, char *val);
 char	*define_val(char *key, char *val);

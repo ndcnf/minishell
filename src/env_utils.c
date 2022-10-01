@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 13:46:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:48:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_env(t_data *dt, int in, char **elem)
 {
-	int	i;
-	char **export;
+	int		i;
+	char	**export;
 
 	if (dt->in[in].n_elem == 1)
 	{
