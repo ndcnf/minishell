@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:48:36 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 16:17:38 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:50:43 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	b_export(t_data *dt, int in)
 			i++;
 		}
 	}
-	return (the_end(NULL, EXIT_SUCCESS));
+	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
 
 void	add_key(t_data *dt, char *key, char *val)

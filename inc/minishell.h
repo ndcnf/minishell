@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 16:14:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:46:07 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,9 @@ int		no_quote_mgmt(t_input *input, char *s, int i, int n);
 //env_utils.c
 char	**parse_env(char *s);
 void	sort_env(t_data *dt, int in);
-void	print_env(t_data *dt, char **elem);
+void	print_env(t_data *dt, int in, char **elem);
 void	the_sorter(t_data *dt, char *tempura, char *a, char *b);
 void	dup_array_to_env(t_data *dt, char **array);
-void	freearray(char **m, int n);
 
 //b_cd.c
 int		b_cd(t_data *dt, int in);
@@ -144,6 +143,7 @@ void	print_echo_n(t_input *in, int i);
 //b_init.c
 void	b_init(t_data *dt, char *envp[]);
 void	malloc_checker(char *s);
+void	freearray(char **m, int n);
 
 //var.c
 void	conv_var(t_data *dt, int in, int i);
@@ -167,6 +167,6 @@ void	sig_double(int c);
 void	ft_termios(void);
 
 //error.c
-int		the_end(char *msg, int status);
+int	the_end(char *msg, int status, int print);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:42:21 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 16:16:43 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:50:46 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	b_echo(t_data *dt, int in)
 			ft_printf("\n");
 		}
 	}
-	return (the_end(NULL, EXIT_SUCCESS));
+	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
 
 void	print_echo_n(t_input *in, int i)

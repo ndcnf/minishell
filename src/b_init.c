@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:55:05 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 15:47:53 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:45:34 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,15 @@ void	b_init(t_data *dt, char *envp[])
 void	malloc_checker(char *s)
 {
 	if (!s)
-		exit(the_end(ERR_MALL, EXIT_FAILURE));
+		exit(the_end(ERR_MALL, EXIT_FAILURE, 1));
+}
+
+void	freearray(char **m, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+		free(m[i++]);
+	free(m);
 }
