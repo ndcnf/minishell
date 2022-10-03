@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/01 14:25:08 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:53:46 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_data *dt, int in)
+int	exec(t_data *dt, int in)
 {
 	char		*cmd_path;
 	char		**tdpp;
 	struct stat	buff;
 	int			i;
 	int			j;
+	int			status;
 
 	i = 0;
 	j = -1;
@@ -33,7 +34,17 @@ void	exec(t_data *dt, int in)
 		cmd_path = ft_strjoin(tdpp[i], "/");
 		cmd_path = ft_strjoin(cmd_path, dt->in[in].elem->cont[0]);
 		if (!stat(cmd_path, &buff))
-			execve(cmd_path, dt->in[in].elem->cont, dt->env);
+		{
+			dt->in[in].pid = fork();
+			if (dt->in[in].pid == 0)
+			{
+				execve(cmd_path, dt->in[in].elem->cont, dt->env);
+				return (0);
+			}
+		}
 		i++;
 	}
+	while (dt->in[in].cont != NULL)
+		waitpid(dt->in[in++].pid, &status, 0);
+	return (-1);
 }

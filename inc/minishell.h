@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 15:35:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:21:38 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_input
 	int					n_elem;
 	t_elem				*elem;
 	int					fd;
+	pid_t				pid;
 }	t_input;
 
 typedef struct s_data
@@ -76,7 +77,6 @@ typedef struct s_data
 	char				*path;
 	int					n_cmd;
 	t_input				*in;
-	pid_t				pid;
 }	t_data;
 
 //prompt.c
@@ -161,7 +161,7 @@ int		trimquotes(t_data *dt, char *s, int in, int i);
 // void	heredoc(t_builtins *bs);
 
 //execve.c
-void	exec(t_data *dt, int in);
+int		exec(t_data *dt, int in);
 
 //signals.c
 void	sig_int(int c);

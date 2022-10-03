@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/30 16:22:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:48:16 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parsing_init(char *args, t_data *dt)
 		if (nb_cmd(dt, args, i) == NO_RESULT)
 			return (NO_RESULT);
 	}
-	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
+	dt->in = malloc(sizeof(t_input) * dt->n_cmd + 1);
 	i = -1;
 	while (++i < dt->n_cmd)
 		dt->in[i].cont = ft_split_ex(args, '|')[i];

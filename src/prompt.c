@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/01 14:16:42 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:55:04 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	prompt(char **envp)
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
-		ft_printf("globale preco = %d\n", g_exit_stat);
+		//ft_printf("globale preco = %d\n", g_exit_stat);
 		if (!prompt)
 			exit(EXIT_SUCCESS);
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
@@ -50,9 +50,8 @@ void	prompt(char **envp)
 		}
 		add_history(prompt);
 		free(prompt);
-
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
-		ft_printf("globale maintenant = %d\n", g_exit_stat);
+		//ft_printf("globale maintenant = %d\n", g_exit_stat);
 		///////////////////////////////////////////////////////////////////////
 	}
 	// free(prompt);
