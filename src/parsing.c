@@ -6,15 +6,16 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/30 16:22:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:04:21 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 int	parsing_init(char *args, t_data *dt)
 {
-	int			i;
+	int		i;
+	char	**split;
 
 	i = 0;
 	dt->n_cmd = 0;
@@ -27,7 +28,10 @@ int	parsing_init(char *args, t_data *dt)
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)
-		dt->in[i].cont = ft_split_ex(args, '|')[i];
+	{
+		split = ft_split_ex(args, '|');
+		dt->in[i].cont = split[i];
+	}
 	i = 0;
 	while (i < dt->n_cmd)
 	{
@@ -38,6 +42,7 @@ int	parsing_init(char *args, t_data *dt)
 		parsing_elem(dt, dt->in[i].cont, i);
 		i++;
 	}
+	freearray(split, i);
 	return (EXIT_SUCCESS);
 }
 
@@ -82,5 +87,6 @@ int	each_elem(t_input *in, char *s, int i, int n)
 		i++;
 	}
 	in->elem->cont[n][i] = '\0';
+	free(s);
 	return (i);
 }
