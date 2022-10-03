@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 18:41:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:34:56 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,17 @@ int	print_cd(char *s, int n)
 int	no_place_like_home(t_data *dt)
 {
 	int		i;
+	char	**tempura;
 
 	i = where_in_env(dt, "HOME", 5);
 	if (i == NO_RESULT)
 		the_end(HOMELESS, EXIT_FAILURE, 1);
-	else if (chdir(parse_env(dt->env[i])[1]))
-		the_end(ERROR, EXIT_FAILURE, 1);
+	else
+	{
+		tempura = parse_env(dt->env[i]);
+		if (chdir(tempura[1]))
+			the_end(ERROR, EXIT_FAILURE, 1);
+		freearray(tempura, 2);
+	}
 	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
