@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 15:14:15 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:57:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int		trimquotes(t_data *dt, char *s, int in, int i);
 int		count_redir(t_data *dt, int in);
 void	init_redir(t_data *dt, int in);
 int		pop_redir(t_data *dt, int in, int i);
-void	checker_redir(t_data *dt, int in, int i);
+int		checker_redir(t_data *dt, int in, int i);
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);
@@ -185,5 +185,8 @@ void	ft_termios(void);
 //error.c
 int		the_end(char *msg, int status, int print);
 int		return_exit(t_data *dt, char *msg, int status, int print);
+
+//free.c
+void	free_data(t_data *dt);
 
 #endif

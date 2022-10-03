@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/03 15:23:17 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:22:36 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	prompt(char **envp)
 	t_data	dt;
 	int		i;
 	int		j;
-	int		k;
 	int		quote;
 
 	g_exit_stat = 0;
 	prompt = NULL;
 	b_init(&dt, envp);
+	add_history("echo test > >> test1 >> test2");
 	while (1)
 	{
 		prompt = readline("marynad$ ");
@@ -40,7 +40,7 @@ void	prompt(char **envp)
 		while (i < dt.n_cmd)
 		{
 			j = 0;
-			init_redir(&dt,i);
+			init_redir(&dt, i);
 			while (j < dt.in[i].n_elem)
 			{
 				// redirection AVANT d'enlever les quotes, non ?
@@ -48,61 +48,41 @@ void	prompt(char **envp)
 				quote = trimquotes(&dt, "\'", i, j);
 				if (!quote)
 					conv_var(&dt, i, j);
-				checker_redir(&dt, i, j);
+				if (checker_redir(&dt, i, j) == NO_RESULT)
+				{
+					// the_end(ERR_CHEVRON, g_exit_stat, 0);
+					break;
+				}
+				// else
+					// dt.in[i].n_elem -= 2;
 				j++;
 			}
-			dt.in[i].n_elem -= dt.in[i].n_redir * 2;
+			if (dt.in[i].pos_red == NO_RESULT)
+				break;
+			// dt.in[i].n_elem -= dt.in[i].n_redir * 2;
 			// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-			// j = 0;
-			// ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
-			// while (j < dt.in[i].n_elem)
-			// {
-			// 	ft_printf("new_elem [%d] : [%s]\n", j, dt.in[i].elem->cont[j]);
-			// 	// if (dt.in[i].red)
-			// 	// {
-			// 	// 	int z = 0;
-			// 	// 	while (z < dt.in[i].n_redir)
-			// 	// 	{
-			// 	// 		ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
-			// 	// 		z++;
-			// 	// 	}
-			// 	// }
-			// 	j++;
-			// }
+			j = 0;
+			ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
+			while (j < dt.in[i].n_elem)
+			{
+				ft_printf("new_elem [%d] : [%s]\n", j, dt.in[i].elem->cont[j]);
+				j++;
+			}
+			int z = 0;
+			while (z < dt.in[i].n_redir)
+			{
+				ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
+				z++;
+			}
 			///////////////////////////////////////////////////////////////////////////
 			cmd_selector(&dt, i++);
 		}
 		add_history(prompt);
 		free(prompt);
-		i = 0;
-		while (i < dt.n_cmd)
-		{
-			j = 0;
-			while (j < dt.in[i].n_elem)
-			{
-				free(dt.in[i].elem->cont[j]);
-				j++;
-			}
-			k = 0;
-			while (k < dt.in[i].n_redir)
-			{
-				free(dt.in[i].red[k].chevron);
-				free(dt.in[i].red[k].file);
-				k++;
-			}
-			free(dt.in[i].red);
-			free(dt.in[i].elem->cont);
-			free(dt.in[i].elem);
-			i++;
-		}
-		free(dt.in);
-		// dt->in[i].elem = mal
-		// dt->in[i].elem->cont
-
+		free_data(&dt);
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
 		ft_printf("globale maintenant = %d\n", g_exit_stat);
 		///////////////////////////////////////////////////////////////////////
 	}
 	free(dt.path);
-	// free(prompt);
 }

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 12:50:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:41:05 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int	b_cd(t_data *dt, int in)
 
 void	update_env(t_data *dt, char *dir)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	**splited;
 
 	i = where_in_env(dt, "PWD", 3);
 	j = where_in_env(dt, "OLDPWD", 6);
@@ -57,7 +58,11 @@ void	update_env(t_data *dt, char *dir)
 		ft_printf(CMD_404);
 	else
 	{
-		dt->env[j] = ft_strjoin("OLDPWD=", parse_env(dt->env[i])[1]);
+		free(dt->env[j]);
+		splited = parse_env(dt->env[i]);
+		dt->env[j] = ft_strjoin("OLDPWD=", splited[1]);
+		freearray(splited, 2);
+		free(dt->env[i]);
 		dt->env[i] = ft_strjoin("PWD=", getcwd(dir, MAX_PATH));
 	}
 }

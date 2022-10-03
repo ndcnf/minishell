@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/01 13:07:02 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:04:19 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	cmd_selector(t_data *dt, int i)
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "unset", 6) == 0)
 		b_unset(dt, i);
 	//dt->pid = fork();
-	else
-		exec(dt, i);
+	// else
+	// 	exec(dt, i);
 	signal(SIGINT, sig_int);
 	signal(SIGQUIT, SIG_IGN);
 	// freearray(bs.env, bs.n_env);
