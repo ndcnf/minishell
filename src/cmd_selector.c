@@ -16,6 +16,17 @@ void	cmd_selector(t_data *dt, int i)
 {
 	signal(SIGINT, sig_double);
 	signal(SIGQUIT, sig_double);
+	dt->pid = fork();
+	if (builtins_selector(dt, i) == -1)
+		exec(dt, i);
+	signal(SIGINT, sig_int);
+	signal(SIGQUIT, SIG_IGN);
+	// freearray(bs.env, bs.n_env);
+	// freearray(bs.args, bs.n_args);
+}
+
+int	builtins_selector(t_data *dt, int i)
+{
 	if (ft_strncmp(dt->in[i].elem->cont[0], "echo", 5) == 0)
 		b_echo(dt, i);
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "pwd", 4) == 0)
@@ -30,11 +41,7 @@ void	cmd_selector(t_data *dt, int i)
 		b_export(dt, i);
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "unset", 6) == 0)
 		b_unset(dt, i);
-	//dt->pid = fork();
 	else
-		exec(dt, i);
-	signal(SIGINT, sig_int);
-	signal(SIGQUIT, SIG_IGN);
-	// freearray(bs.env, bs.n_env);
-	// freearray(bs.args, bs.n_args);
+		return (-1);
+	return (0);
 }

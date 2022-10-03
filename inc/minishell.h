@@ -87,8 +87,9 @@ int		b_pwd(t_data *dt);
 int		b_exit(t_data *dt, int in);
 int		b_env(t_data *dt);
 
-//builtins_selector.c
+//cmd_selector.c
 void	cmd_selector(t_data *dt, int i);
+int		builtins_selector(t_data *dt, int i);
 
 //parsing.c
 int		parsing_init(char *args, t_data *dt);
