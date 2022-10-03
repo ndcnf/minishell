@@ -6,32 +6,40 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/03 17:41:39 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/03 23:34:39 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_data *dt, int in)
+void	exec_boarders(t_data *dt, int in)
 {
-	char		*cmd_path;
-	char		**tdpp;
-	struct stat	buff;
 	int			i;
-	int			j;
 	int			status;
 	int			ok;
 
-	j = -1;
+	ok = 0;
 	i = where_in_env(dt, "PATH", 4);
 	if (i == NO_RESULT)
 	{
 		the_end(CMD_404, EXIT_FAILURE, 1);
 		return ;
 	}
+	ok = exec_middle(dt, in, ok, i);
+	if (ok == 0)
+		the_end(CMD_404, EXIT_FAILURE, 1);
+	while (dt->in[in].cont != NULL)
+		waitpid(dt->in[in++].pid, &status, 0);
+}
+
+int	exec_middle(t_data *dt, int in, int ok, int i)
+{
+	char		**tdpp;
+	char		*cmd_path;
+	struct stat	buff;
+
 	tdpp = ft_split((parse_env(dt->env[i])[1]), ':');
 	i = 0;
-	ok = 0;
 	while (tdpp[i])
 	{
 		cmd_path = ft_strjoin(tdpp[i], "/");
@@ -47,8 +55,5 @@ void	exec(t_data *dt, int in)
 		}
 		i++;
 	}
-	if (ok == 0)
-			the_end(CMD_404, EXIT_FAILURE, 1);
-	while (dt->in[in].cont != NULL)
-		waitpid(dt->in[in++].pid, &status, 0);
+	return (ok);
 }
