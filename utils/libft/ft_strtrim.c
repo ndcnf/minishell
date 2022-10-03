@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:36:59 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/16 13:53:57 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:27:55 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * set        ".,"
  * return:    "Hell,,.,.,o"
  * ____________________________________________________*/
- 
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;

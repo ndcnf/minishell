@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:35:25 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/08/12 13:38:53 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:27:34 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlen(const char *str)
 {
 	int	i;
 
-	// if (!str)
-	// 	return (0);
 	i = 0;
 	while (str[i] != '\0')
 	{

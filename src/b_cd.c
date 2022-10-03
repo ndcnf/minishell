@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:43 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 14:02:01 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:50:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	b_cd(t_data *dt, int in)
 		if (dt->in[in].elem->cont[n][0] == '-')
 			n = print_cd(OPT_IGN, 2);
 		if (n >= dt->in[in].n_elem)
-			return (the_end(ERR_NO_ARG, EXIT_FAILURE));
+			return (the_end(ERR_NO_ARG, EXIT_FAILURE, 1));
 		if (chdir(dt->in[in].elem->cont[n]))
-			return (the_end(ERROR, EXIT_FAILURE));
+			return (the_end(ERROR, EXIT_FAILURE, 1));
 	}
 	update_env(dt, dir);
-	return (the_end(NULL, EXIT_SUCCESS));
+	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
 
 void	update_env(t_data *dt, char *dir)
@@ -65,7 +65,7 @@ void	update_env(t_data *dt, char *dir)
 int	where_in_env(t_data *dt, char *key, int len)
 {
 	int	i;
-	int diff;
+	int	diff;
 
 	i = 0;
 	while (i < dt->n_env)
@@ -90,8 +90,8 @@ int	no_place_like_home(t_data *dt)
 
 	i = where_in_env(dt, "HOME", 5);
 	if (i == NO_RESULT)
-		the_end(HOMELESS, EXIT_FAILURE);
+		the_end(HOMELESS, EXIT_FAILURE, 1);
 	else if (chdir(parse_env(dt->env[i])[1]))
-		the_end(ERROR, EXIT_FAILURE);
-	return (the_end(NULL, EXIT_SUCCESS));
+		the_end(ERROR, EXIT_FAILURE, 1);
+	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
