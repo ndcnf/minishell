@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 16:35:25 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/30 16:27:34 by nchennaf         ###   ########.fr       */
+/*   Created: 2022/09/30 10:55:13 by nchennaf          #+#    #+#             */
+/*   Updated: 2022/10/01 13:16:14 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/minishell.h"
 
-size_t	ft_strlen(const char *str)
+int	the_end(char *msg, int status, int print)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	if (!msg)
+		msg = ERROR;
+	if (status || print)
+		ft_printf(msg);
+	g_exit_stat = status;
+	return (status);
 }
+
+// int	return_exit()
+// {
+// 	the_end(CMD_404, g_exit_stat, 1);
+// 	return (g_exit_stat);
+// }

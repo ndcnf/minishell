@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/29 14:38:38 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:16:42 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@ void	prompt(char **envp)
 	int		j;
 	int		quote;
 
+	g_exit_stat = 0;
 	prompt = NULL;
 	b_init(&dt, envp);
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
+		ft_printf("globale preco = %d\n", g_exit_stat);
 		if (!prompt)
-			exit(0); // ------------------------------------------------------------valeur de sortie a gerer
+			exit(EXIT_SUCCESS);
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
-			continue;
+		{
+			free(prompt);// a voir si necessaire avec les leaks
+			continue ;
+		}
 		i = 0;
 		while (i < dt.n_cmd)
 		{
@@ -41,11 +46,14 @@ void	prompt(char **envp)
 					conv_var(&dt, i, j);
 				j++;
 			}
-			cmd_selector(&dt, i++); //remplacer le 0 plus tard pour savoir quel input est concerné
+			cmd_selector(&dt, i++);
 		}
-		//ft_printf("MAIN [%s]\n", &dt.in[0].elem->cont[1]);
-		//builtins_selector(&dt, 0); //TESTS
 		add_history(prompt);
+		free(prompt);
+
+		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
+		ft_printf("globale maintenant = %d\n", g_exit_stat);
+		///////////////////////////////////////////////////////////////////////
 	}
-	free(prompt);
+	// free(prompt);
 }

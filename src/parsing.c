@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/29 16:31:47 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:22:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	parsing_init(char *args, t_data *dt)
 	{
 		dt->n_cmd = 1;
 		if (nb_cmd(dt, args, i) == NO_RESULT)
-		{
 			return (NO_RESULT);
-		}
 	}
 	dt->in = malloc(sizeof(t_input) * dt->n_cmd);
 	i = -1;
@@ -43,21 +41,6 @@ int	parsing_init(char *args, t_data *dt)
 	return (EXIT_SUCCESS);
 }
 
-char	*parse_cmd(t_data *dt, char *s, int in)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (check_quotes(&dt->in[in], s) == 1)
-	{
-		printf("DEGAGE\n");
-		exit(0); // A CHANGER CAR TU ES PAS SI COOL :'(
-	}
-	return (s);
-}
-
 void	parsing_elem(t_data *dt, char *s, int in)
 {
 	int	i;
@@ -74,11 +57,13 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	}
 	dt->in[in].elem->cont[n] = NULL;
 	n = 0;
-	while (n < dt->in[in].n_elem) // UNIQUEMENT POUR TESTS
+	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
+	while (n < dt->in[in].n_elem)
 	{
 		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
 		n++;
 	}
+	///////////////////////////////////////////////////////////////////////////
 }
 
 int	each_elem(t_input *in, char *s, int i, int n)

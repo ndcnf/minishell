@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 16:36:48 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:35:05 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define ERR_SIGN 128
 # define ERR_EXIT 255
 
+# define ERROR "Error\n"
 # define OPT_IGN "Option(s) ignored\n"
 # define ERR_ARG "Argument invalid in this scope\n"
 # define ERR_NO_ARG "No argument(s) provided\n"
@@ -48,22 +49,10 @@
 # define TM_ARG "too many arguments\n"
 # define HOMELESS "HOME not set\n"
 # define NOT_EVEN "Quotes are not closed\n"
+# define NOT_NUM "numeric argument required\n"
+# define ERR_MALL "malloc error\n"
 
-// structure minimale pour gerer les donnees pour tester les builtins
-// sera certainement vouee a modification suite au parsing
-// typedef struct s_builtins
-// {
-// 	char	*content;
-// 	int		len;
-// 	char	**args; //une commande valide entree par le user
-// 	//char	*path; //chemin du programme, devra etre renomme en *path au lieu de path[256]
-// 	int		n_args; //nombre d'arguments (peut etre pas indispensable plus tard)
-// 	char	**env; //copie des valeurs de l'environnement
-// 	int		n_env; //nombre de variables d'environnement
-// 	char	*file; // "test.txt"; //le nom d'un fichier entré, devra dispraitre au profit du parsing
-// }	t_builtins;
-
-// int		g_exit_stat; // ------------------------------------------------------ declarer une variable globale
+int		g_exit_stat;
 
 // structure des listes chaînées afin de pouvoir stocker les arguments
 //et de pouvoir les utiliser de manière optimisée
@@ -104,9 +93,6 @@ int		builtins_selector(t_data *dt, int i);
 
 //parsing.c
 int		parsing_init(char *args, t_data *dt);
-char	*parse_cmd(t_data *dt, char *s, int in);
-// void	dividing_args(t_builtins *bs); // ---------------------------------------- utile ou non ?
-// int		parse_pwd(t_builtins *bs, char *in); // ------------------------------ utile ou non ?
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
 
@@ -130,11 +116,9 @@ int		no_quote_mgmt(t_input *input, char *s, int i, int n);
 //env_utils.c
 char	**parse_env(char *s);
 void	sort_env(t_data *dt, int in);
-void	print_env(t_data *dt, char **elem);
+void	print_env(t_data *dt, int in, char **elem);
 void	the_sorter(t_data *dt, char *tempura, char *a, char *b);
-// void	print_env(char **elem);
 void	dup_array_to_env(t_data *dt, char **array);
-void	freearray(char **m, int n);
 
 //b_cd.c
 int		b_cd(t_data *dt, int in);
@@ -144,10 +128,11 @@ int		print_cd(char *s, int n);
 int		no_place_like_home(t_data *dt);
 
 //b_export.c
-// int		b_export(t_builtins *bs);
 int		b_export(t_data *dt, int in);
 void	add_key(t_data *dt, char *key, char *val);
 char	*define_val(char *key, char *val);
+void	update_arr(t_data *dt, char **new_array, int add_key, char *new_val);
+void	update_key(t_data *dt, char *key, char *val, char **new_array);
 
 //b_unset.c
 int		b_unset(t_data *dt, int in);
@@ -156,20 +141,18 @@ void	remove_key(t_data *dt, char *key);
 //b_echo.c
 int		b_echo(t_data *dt, int in);
 void	print_echo_n(t_input *in, int i);
-void	print_echo_quotes(t_input *in, int i);
-char	*entrequotes(char *s, int j);
 
 //b_init.c
 void	b_init(t_data *dt, char *envp[]);
 void	malloc_checker(char *s);
+void	freearray(char **m, int n);
 
 //var.c
 void	conv_var(t_data *dt, int in, int i);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s);
+char	*quotes_ignorer(char *s); // --------------------------------------------- INUTILE NORMALEMENT
 int		trimquotes(t_data *dt, char *s, int in, int i);
-
 
 //redirections.c
 // void	redir_input(t_builtins *bs);
@@ -184,5 +167,8 @@ void	exec(t_data *dt, int in);
 void	sig_int(int c);
 void	sig_double(int c);
 void	ft_termios(void);
+
+//error.c
+int		the_end(char *msg, int status, int print);
 
 #endif

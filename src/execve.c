@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/28 19:38:44 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/01 14:25:08 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void	exec(t_data *dt, int in)
 
 	i = 0;
 	j = -1;
+	/* le path doit etre recupere depuis le env des builtins.
+	Il faudra utiliser 'where_in_env' plutot ici pour les cas de suppression (unset)
+	du PATH lors de l'eval
+	Il ne faudra pas utiliser dt->path. La maniere de faire est juste,
+	mais la variable utilisee ici est fausse */
 	tdpp = ft_split(dt->path, ':');
 	while (tdpp[i])
 	{

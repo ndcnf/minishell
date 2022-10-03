@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/29 14:30:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:26:18 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 /* This function returns the number of words (strings) in
 the string s */
 
-int	is_quotes(char *s, int i)
+int	is_quotes(char *s, int i) // -------------------------------------------------- FAUDRA REPARER POUR ACCEPTER LES QUOTES CONSECUTIVES (sinon compte comme "uneven")
 {
 	int	j;
 
@@ -36,11 +36,11 @@ int	is_quotes(char *s, int i)
 				if (!s[i])
 					return (NO_RESULT);
 				i++;
-			  if ((s[i] == '\"' && s[i + 1] == ' ')
-				  || (s[i] == '\"' && s[i + 1] == '\0')
-				  || (s[i] == '\"' && s[i + 1] == '|'))
-				  return (i);
-      }
+				if ((s[i] == '\"' && s[i + 1] == ' ')
+					|| (s[i] == '\"' && s[i + 1] == '\0')
+					|| (s[i] == '\"' && s[i + 1] == '|'))
+					return (i);
+			}
 		}
 		else if (s[i] == '\'')
 		{
@@ -50,11 +50,11 @@ int	is_quotes(char *s, int i)
 				if (!s[i])
 					return (NO_RESULT);
 				i++;
-			  if ((s[i] == '\'' && s[i + 1] == ' ')
-				  || (s[i] == '\'' && s[i + 1] == '\0')
-				  || (s[i] == '\'' && s[i + 1] == '|'))
-				  return (i);
-      }
+				if ((s[i] == '\'' && s[i + 1] == ' ')
+					|| (s[i] == '\'' && s[i + 1] == '\0')
+					|| (s[i] == '\'' && s[i + 1] == '|'))
+					return (i);
+			}
 		}
 		i++;
 	}

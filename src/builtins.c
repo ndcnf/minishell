@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/27 13:48:14 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/01 12:52:26 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	b_pwd(t_data *dt)
 	(void)dt;
 	if (getcwd(dir, sizeof(dir)))
 		ft_printf("%s\n", dir);
-	// g_exit_stat = EXIT_SUCCESS;
-	// return (g_exit_stat);
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
 
 // 'exit'		-> affiche 'exit\n' et ferme
@@ -33,18 +31,24 @@ int	b_pwd(t_data *dt)
 ////////////////////////////////////////
 int	b_exit(t_data *dt, int in)
 {
-	ft_printf("exit\n");
+	int	n;
+
+	if (dt->in[in].n_elem == 1)
+	{
+		ft_printf("exit\n");
+		exit (the_end(NULL, EXIT_SUCCESS, 0));
+	}
 	if (dt->in[in].n_elem > 2)
 	{
-		ft_printf(TM_ARG);
-		// g_exit_stat = EXIT_FAILURE; // assigner la valeur donee dans la variable globale
+		if (ft_atoi(dt->in[in].elem->cont[1])
+			|| dt->in[in].elem->cont[1][0] == '0')
+			return (the_end(TM_ARG, EXIT_FAILURE, 1));
+		exit (the_end(NOT_NUM, ERR_EXIT, 1));
 	}
-	// else if (dt->in[in].n_elem == 2)
-	// 	g_exit_stat = ft_atoi(dt->in[in].elem->cont[1]); // assigner la valeur donee dans la variable globale
-	// else
-	// 	g_exit_stat = EXIT_SUCCESS;
-	exit(EXIT_SUCCESS); //remplacer par la variable globale plus tard
-	// exit(g_exit_status);
+	n = ft_atoi(dt->in[in].elem->cont[1]);
+	if (n || dt->in[in].elem->cont[1][0] == '0')
+		exit (the_end("exit\n", n, 0));
+	exit (the_end(NOT_NUM, ERR_EXIT, 1));
 }
 
 // 'env'		-> affiche la liste des variables d'environnement
@@ -61,5 +65,5 @@ int	b_env(t_data *dt)
 			ft_printf("%s\n", dt->env[i]);
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (the_end(NULL, EXIT_SUCCESS, 0));
 }
