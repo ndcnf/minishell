@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 15:35:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:57:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define NOT_EVEN "Quotes are not closed\n"
 # define NOT_NUM "numeric argument required\n"
 # define ERR_MALL "malloc error\n"
+# define ERR_CHEVRON "redirection error\n"
 
 int		g_exit_stat;
 
@@ -58,25 +59,35 @@ int		g_exit_stat;
 //et de pouvoir les utiliser de manière optimisée
 typedef struct s_elem
 {
-	char				**cont;
+	char	**cont;
+
 }	t_elem;
+
+typedef struct s_redir
+{
+	char	*file;
+	char	*chevron;
+}	t_redir;
 
 typedef struct s_input
 {
-	char				*cont;
-	int					n_elem;
-	t_elem				*elem;
-	int					fd;
+	char	*cont;
+	int		n_elem;
+	t_elem	*elem;
+	int		fd;
+	t_redir	*red;
+	int		n_redir;
+	int		pos_red;
 }	t_input;
 
 typedef struct s_data
 {
-	char				**env;
-	int					n_env;
-	char				*path;
-	int					n_cmd;
-	t_input				*in;
-	pid_t				pid;
+	char	**env;
+	int		n_env;
+	char	*path;
+	int		n_cmd;
+	t_input	*in;
+	pid_t	pid;
 }	t_data;
 
 //prompt.c
@@ -155,6 +166,10 @@ char	*quotes_ignorer(char *s); // --------------------------------------------- 
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
 //redirections.c
+int		count_redir(t_data *dt, int in);
+void	init_redir(t_data *dt, int in);
+int		pop_redir(t_data *dt, int in, int i);
+int		checker_redir(t_data *dt, int in, int i);
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);
@@ -170,5 +185,9 @@ void	ft_termios(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);
+int		return_exit(t_data *dt, char *msg, int status, int print);
+
+//free.c
+void	free_data(t_data *dt);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/01 12:52:26 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:54:07 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ int	b_exit(t_data *dt, int in)
 	if (dt->in[in].n_elem == 1)
 	{
 		ft_printf("exit\n");
-		exit (the_end(NULL, EXIT_SUCCESS, 0));
+		exit (return_exit(dt, NULL, EXIT_SUCCESS, 0));
 	}
 	if (dt->in[in].n_elem > 2)
 	{
 		if (ft_atoi(dt->in[in].elem->cont[1])
 			|| dt->in[in].elem->cont[1][0] == '0')
 			return (the_end(TM_ARG, EXIT_FAILURE, 1));
-		exit (the_end(NOT_NUM, ERR_EXIT, 1));
+		exit (return_exit(dt, NOT_NUM, ERR_EXIT, 1));
 	}
 	n = ft_atoi(dt->in[in].elem->cont[1]);
 	if (n || dt->in[in].elem->cont[1][0] == '0')
-		exit (the_end("exit\n", n, 0));
-	exit (the_end(NOT_NUM, ERR_EXIT, 1));
+		exit (return_exit(dt, "exit\n", n, 0));
+	exit (return_exit(dt, NOT_NUM, ERR_EXIT, 1));
 }
 
 // 'env'		-> affiche la liste des variables d'environnement
