@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 14:21:38 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:41:15 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int		trimquotes(t_data *dt, char *s, int in, int i);
 // void	heredoc(t_builtins *bs);
 
 //execve.c
-int		exec(t_data *dt, int in);
+void	exec(t_data *dt, int in);
 
 //signals.c
 void	sig_int(int c);
