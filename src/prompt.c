@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/03 14:58:01 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:23:17 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	prompt(char **envp)
 	t_data	dt;
 	int		i;
 	int		j;
+	int		k;
 	int		quote;
 
 	g_exit_stat = 0;
@@ -82,6 +83,14 @@ void	prompt(char **envp)
 				free(dt.in[i].elem->cont[j]);
 				j++;
 			}
+			k = 0;
+			while (k < dt.in[i].n_redir)
+			{
+				free(dt.in[i].red[k].chevron);
+				free(dt.in[i].red[k].file);
+				k++;
+			}
+			free(dt.in[i].red);
 			free(dt.in[i].elem->cont);
 			free(dt.in[i].elem);
 			i++;

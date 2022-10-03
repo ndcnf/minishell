@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:03:11 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 14:24:03 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:25:40 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		count_redir(t_data *dt, int in)
 void	init_redir(t_data *dt, int in)
 {
 	dt->in[in].n_redir = count_redir(dt, in);
+	dt->in[in].pos_red = 0;
 	if (dt->in[in].n_redir > 0)
 	{
 		dt->in[in].red = malloc(sizeof(t_redir) * dt->in[in].n_redir);
@@ -45,21 +46,25 @@ void	init_redir(t_data *dt, int in)
 	// pop_redir(dt, in);
 }
 
-void	pop_redir(t_data *dt, int in, int i)
+int	pop_redir(t_data *dt, int in, int i)
 {
-	static int	s_i = 0;
+	int	j;
 
-	dt->in[in].red[s_i].chevron = ft_strdup(dt->in[in].elem->cont[i]);
+	j =	dt->in[in].pos_red;
+	dt->in[in].red[j].chevron = ft_strdup(dt->in[in].elem->cont[i]);
+	free(dt->in[in].elem->cont[i]);
 	if (i + 1 <= dt->in[in].n_elem)
 	{
-		dt->in[in].red[s_i].file = ft_strdup(dt->in[in].elem->cont[i + 1]);
+		dt->in[in].red[j].file = ft_strdup(dt->in[in].elem->cont[i + 1]);
+		free(dt->in[in].elem->cont[i + 1]);
 	}
 	else
 		the_end(ERR_CHEVRON, -10, 1); // ----------------------------------------- Erreur de retour a changer
 	// ft_printf("redir [%s] : [%s]\n", dt->in[in].red[s_i].chevron, dt->in[in].red[s_i].file);
-	s_i++;
 	// free(dt->in[in].elem->cont[i]);
 	// free(dt->in[in].elem->cont[i + 1]);
+	dt->in[in].pos_red++;
+	return (j);
 }
 
 void	checker_redir(t_data *dt, int in, int i)

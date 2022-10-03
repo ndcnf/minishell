@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 14:40:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:14:15 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_input
 	int		fd;
 	t_redir	*red;
 	int		n_redir;
+	int		pos_red;
 }	t_input;
 
 typedef struct s_data
@@ -166,7 +167,7 @@ int		trimquotes(t_data *dt, char *s, int in, int i);
 //redirections.c
 int		count_redir(t_data *dt, int in);
 void	init_redir(t_data *dt, int in);
-void	pop_redir(t_data *dt, int in, int i);
+int		pop_redir(t_data *dt, int in, int i);
 void	checker_redir(t_data *dt, int in, int i);
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
