@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/03 18:35:26 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:03:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parsing_init(char *args, t_data *dt)
 {
 	int		i;
-	char	**split;
+	char	**input;
 
 	i = 0;
 	dt->n_cmd = 0;
@@ -29,20 +29,19 @@ int	parsing_init(char *args, t_data *dt)
 	i = -1;
 	while (++i < dt->n_cmd)
 	{
-		split = ft_split_ex(args, '|');
-		dt->in[i].cont = split[i];
+		input = ft_split_ex(args, '|');
+		dt->in[i].cont = input[i];
 	}
-	i = 0;
-	while (i < dt->n_cmd)
+	i = -1;
+	while (++i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
 		space_counter(&dt->in[i], dt->in[i].cont);
 		dt->in[i].elem = malloc(sizeof(t_elem));
 		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
 		parsing_elem(dt, dt->in[i].cont, i);
-		i++;
 	}
-	freearray(split, i);
+	freearray(input, i);
 	return (EXIT_SUCCESS);
 }
 
