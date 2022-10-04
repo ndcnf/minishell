@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:05:15 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/15 11:23:41 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:50:25 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char			*ft_strchr(const char *str, int c);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_substr(char const *s, size_t start, size_t end);
 char			*ft_strdup(const char *s1);
+char			*ft_strjoin_free(char const *s1, char const *s2);
 
 void			*ft_memset(void *str, int c, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
