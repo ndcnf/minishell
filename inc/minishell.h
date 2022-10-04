@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 16:14:39 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:30:46 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define ERR_MALL "malloc error\n"
 # define ERR_CHEVRON "redirection error\n"
 # define ERR_PIPE "pipe error\n"
+# define ERR_FILE "file error\n"
 
 int		g_exit_stat;
 
@@ -180,10 +181,12 @@ int		checker_redir(t_data *dt, int in, int i);
 //redir.c
 void	exec_redir(t_data *dt);
 void	init_fd(t_data *dt);
-// void	redir_input(t_builtins *bs);
-// void	redir_output(t_builtins *bs);
-// void	append_in(t_builtins *bs);
-// void	heredoc(t_builtins *bs);
+void	mgmnt_fd(t_data *dt);
+void	open_fd(t_data *dt, int i, int j);
+void	redir_output(t_data *dt, int i, int j);
+void	redir_input(t_data *dt, int i, int j);
+void	append_in(t_data *dt, int i, int j);
+void	heredoc(t_data *dt, int i, int j);
 
 //execve.c
 void	exec_boarders(t_data *dt, int in);
