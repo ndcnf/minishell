@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 16:15:55 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:10:50 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	exec_boarders(t_data *dt, int in)
 {
 	int			i;
-	int			status;
 	int			ok;
 
 	ok = 0;
@@ -29,7 +28,13 @@ void	exec_boarders(t_data *dt, int in)
 	if (ok == 0)
 		the_end(CMD_404, EXIT_FAILURE, 1);
 	while (in < dt->n_cmd)
-		waitpid(dt->in[in++].pid, &status, 0);
+	{
+		waitpid(dt->in[in++].pid, &g_exit_stat, 0);
+		if (WIFSIGNALED(g_exit_stat))
+			g_exit_stat = ERR_SIGN + g_exit_stat;
+		if (WIFEXITED(g_exit_stat))
+			g_exit_stat = WEXITSTATUS(g_exit_stat);
+	}
 }
 
 int	exec_middle(t_data *dt, int in, int ok, int i)
@@ -37,7 +42,6 @@ int	exec_middle(t_data *dt, int in, int ok, int i)
 	char		**tdpp;
 	char		**tmp;
 	char		*cmd_path;
-	struct stat	buff;
 
 	tmp = parse_env(dt->env[i]);
 	tdpp = ft_split(tmp[1], ':');
@@ -47,18 +51,26 @@ int	exec_middle(t_data *dt, int in, int ok, int i)
 	{
 		cmd_path = ft_strjoin_free(tdpp[i], "/");
 		cmd_path = ft_strjoin_free(cmd_path, dt->in[in].elem->cont[0]);
-		if (!stat(cmd_path, &buff))
-		{
-			ok = 1;
-			dt->in[in].pid = fork();
-			if (dt->in[in].pid == 0)
-			{
-				execve(cmd_path, dt->in[in].elem->cont, dt->env);
-			}
-		}
+		ok = on_my_way(dt, ok, cmd_path, in);
 		i++;
 		free(cmd_path);
 	}
 	free(tdpp);
+	return (ok);
+}
+
+int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
+{
+	struct stat	buff;
+
+	if (!stat(cmd_path, &buff))
+	{
+		ok = 1;
+		dt->in[in].pid = fork();
+		signal(SIGINT, sig_double);
+		signal(SIGQUIT, sig_double);
+		if (dt->in[in].pid == 0)
+			execve(cmd_path, dt->in[in].elem->cont, dt->env);
+	}
 	return (ok);
 }

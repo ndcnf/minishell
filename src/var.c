@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:34:51 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 20:03:11 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:03:32 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	conv_quest(t_data *dt, int in, int i)
 	{
 		free(dt->in[in].elem->cont[i]);
 		dt->in[in].elem->cont[i] = ft_itoa(g_exit_stat);
-		printf("%p\n", dt->in[in].elem->cont[i]);
 	}
 }
 
