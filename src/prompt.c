@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 18:14:36 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:05:07 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	prompt(char **envp)
 int	termios_line(t_data *dt)
 {
 	char			*prompt;
+	char			*new_prompt;
 	struct termios	rplc;
 	struct termios	saved;
 
@@ -82,14 +83,16 @@ int	termios_line(t_data *dt)
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &rplc);
 	prompt = readline("\e[36mmarynad$ \e[0m");
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &saved);
-	if (!prompt)
+	new_prompt = ft_strtrim(prompt, " \t\n\r");
+	free(prompt);
+	if (!new_prompt)
 		exit(the_end("exit\n", EXIT_SUCCESS, 1));
-	if (!prompt[0] || parsing_init(prompt, dt) == NO_RESULT)
+	if (!new_prompt[0] || parsing_init(new_prompt, dt) == NO_RESULT)
 	{
-		free(prompt);
+		free(new_prompt);
 		return (1);
 	}
-	add_history(prompt);
-	free(prompt);
+	add_history(new_prompt);
+	free(new_prompt);
 	return (0);
 }
