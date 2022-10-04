@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 19:35:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:08:28 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	prompt(char **envp)
 			init_redir(&dt, i);
 			while (j < dt.in[i].n_elem)
 			{
-				// redirection AVANT d'enlever les quotes, non ?
 				trimquotes(&dt, "\"", i, j);
 				quote = trimquotes(&dt, "\'", i, j);
 				if (!quote)
@@ -80,6 +79,13 @@ void	prompt(char **envp)
 			cmd_selector(&dt, i);
 			i++;
 		}
+		i = 0;
+		while (i < dt.n_cmd)
+		{
+			ft_printf("pid %d\n", dt.in[i].pid);
+			waitpid(dt.in[i++].pid, NULL, 0); // ---------------------------------- MARLENE, POSE TON BEAU CODE ICI
+		}
+
 		add_history(prompt);
 		free(prompt);
 		free_data(&dt);
