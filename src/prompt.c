@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/03 20:04:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:46:17 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ void	prompt(char **envp)
 				if (!quote)
 					conv_var(&dt, i, j);
 				if (checker_redir(&dt, i, j) == NO_RESULT)
-				{
-					break;
-				}
+					break ;
 				j++;
 			}
 			if (dt.in[i].pos_red == NO_RESULT)
-				break;
+				break ;
 			// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
 			j = 0;
 			ft_printf("n_elem [%d]\n", dt.in[i].n_elem);

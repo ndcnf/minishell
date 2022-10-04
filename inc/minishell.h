@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 15:57:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:00:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define ERR_404 127
 # define ERR_SIGN 128
 # define ERR_EXIT 255
+# define ERR_REDIR 258
 
 # define ERROR "Error\n"
 # define OPT_IGN "Option(s) ignored\n"
@@ -60,7 +61,6 @@ int		g_exit_stat;
 typedef struct s_elem
 {
 	char	**cont;
-
 }	t_elem;
 
 typedef struct s_redir
@@ -162,7 +162,6 @@ void	freearray(char **m, int n);
 void	conv_var(t_data *dt, int in, int i);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s); // --------------------------------------------- INUTILE NORMALEMENT
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
 //redirections.c
@@ -185,9 +184,9 @@ void	ft_termios(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);
-int		return_exit(t_data *dt, char *msg, int status, int print);
 
 //free.c
 void	free_data(t_data *dt);
+void	free_redir(t_data *dt, int i);
 
 #endif

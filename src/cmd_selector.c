@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/03 16:04:19 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:31:03 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	cmd_selector(t_data *dt, int i)
 {
 	signal(SIGINT, sig_double);
 	signal(SIGQUIT, sig_double);
-	dt->pid = fork();
+	// dt->pid = fork();
 	if (builtins_selector(dt, i) == -1)
 		exec(dt, i);
 	signal(SIGINT, sig_int);
