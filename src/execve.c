@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 14:34:05 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:15:55 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int	exec_middle(t_data *dt, int in, int ok, int i)
 		i++;
 		free(cmd_path);
 	}
+	free(tdpp);
 	return (ok);
 }
