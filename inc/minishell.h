@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 12:00:38 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:27:04 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,23 @@ typedef struct s_redir
 	char	*chevron;
 }	t_redir;
 
+typedef struct s_fd
+{
+	int		in;
+	int		out;
+}	t_fd;
+
 typedef struct s_input
 {
-	pid_t				pid;
+	pid_t	pid;
 	char	*cont;
 	int		n_elem;
 	t_elem	*elem;
-	int		fd;
 	t_redir	*red;
 	int		n_redir;
 	int		pos_red;
+	t_fd	*fd;
+	int		n_fd; // nombre de pipes + les redirections
 }	t_input;
 
 typedef struct s_data
@@ -164,11 +171,14 @@ void	conv_var(t_data *dt, int in, int i);
 //quotes_utils.c
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
-//redirections.c
+//redir_utils.c
 int		count_redir(t_data *dt, int in);
 void	init_redir(t_data *dt, int in);
 int		pop_redir(t_data *dt, int in, int i);
 int		checker_redir(t_data *dt, int in, int i);
+
+//redir.c
+void	exec_redir(t_data *dt, int in);
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);

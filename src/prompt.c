@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 11:46:17 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:27:28 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	prompt(char **envp)
 	g_exit_stat = 0;
 	prompt = NULL;
 	b_init(&dt, envp);
-	add_history("echo test > >> test1 >> test2");
+	add_history("echo | echo > echo"); // ---------------------------------------- TESTS UNIQUEMENT
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
@@ -49,6 +49,8 @@ void	prompt(char **envp)
 					conv_var(&dt, i, j);
 				if (checker_redir(&dt, i, j) == NO_RESULT)
 					break ;
+				if (dt.in[i].n_redir > 0)
+					j--;
 				j++;
 			}
 			if (dt.in[i].pos_red == NO_RESULT)
@@ -58,7 +60,7 @@ void	prompt(char **envp)
 			ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
 			while (j < dt.in[i].n_elem)
 			{
-				ft_printf("new_elem [%d] : [%s]\n", j, dt.in[i].elem->cont[j]);
+				ft_printf("new_elem[%d][%d] : [%s]\n", i, j, dt.in[i].elem->cont[j]);
 				j++;
 			}
 			int z = 0;
@@ -68,7 +70,9 @@ void	prompt(char **envp)
 				z++;
 			}
 			///////////////////////////////////////////////////////////////////////////
-			cmd_selector(&dt, i++);
+			exec_redir(&dt, i);
+			cmd_selector(&dt, i);
+			i++;
 		}
 		add_history(prompt);
 		free(prompt);
