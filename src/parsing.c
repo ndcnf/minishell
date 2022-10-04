@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/03 14:48:16 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:03:12 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 int	parsing_init(char *args, t_data *dt)
 {
-	int			i;
+	int		i;
+	char	**input;
 
 	i = 0;
 	dt->n_cmd = 0;
@@ -24,20 +25,23 @@ int	parsing_init(char *args, t_data *dt)
 		if (nb_cmd(dt, args, i) == NO_RESULT)
 			return (NO_RESULT);
 	}
-	dt->in = malloc(sizeof(t_input) * dt->n_cmd + 1);
+	dt->in = ft_calloc(sizeof(t_input), dt->n_cmd);
 	i = -1;
 	while (++i < dt->n_cmd)
-		dt->in[i].cont = ft_split_ex(args, '|')[i];
-	i = 0;
-	while (i < dt->n_cmd)
+	{
+		input = ft_split_ex(args, '|');
+		dt->in[i].cont = input[i];
+	}
+	i = -1;
+	while (++i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
 		space_counter(&dt->in[i], dt->in[i].cont);
 		dt->in[i].elem = malloc(sizeof(t_elem));
 		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
 		parsing_elem(dt, dt->in[i].cont, i);
-		i++;
 	}
+	freearray(input, i);
 	return (EXIT_SUCCESS);
 }
 
@@ -82,5 +86,6 @@ int	each_elem(t_input *in, char *s, int i, int n)
 		i++;
 	}
 	in->elem->cont[n][i] = '\0';
+	free(s);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 23:26:40 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:00:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define ERR_404 127
 # define ERR_SIGN 128
 # define ERR_EXIT 255
+# define ERR_REDIR 258
 
 # define ERROR "Error\n"
 # define OPT_IGN "Option(s) ignored\n"
@@ -51,6 +52,7 @@
 # define NOT_EVEN "Quotes are not closed\n"
 # define NOT_NUM "numeric argument required\n"
 # define ERR_MALL "malloc error\n"
+# define ERR_CHEVRON "redirection error\n"
 
 int		g_exit_stat;
 
@@ -58,16 +60,25 @@ int		g_exit_stat;
 //et de pouvoir les utiliser de manière optimisée
 typedef struct s_elem
 {
-	char				**cont;
+	char	**cont;
 }	t_elem;
+
+typedef struct s_redir
+{
+	char	*file;
+	char	*chevron;
+}	t_redir;
 
 typedef struct s_input
 {
-	char				*cont;
-	int					n_elem;
-	t_elem				*elem;
-	int					fd;
 	pid_t				pid;
+	char	*cont;
+	int		n_elem;
+	t_elem	*elem;
+	int		fd;
+	t_redir	*red;
+	int		n_redir;
+	int		pos_red;
 }	t_input;
 
 typedef struct s_data
@@ -151,10 +162,13 @@ void	freearray(char **m, int n);
 void	conv_var(t_data *dt, int in, int i);
 
 //quotes_utils.c
-char	*quotes_ignorer(char *s); // --------------------------------------------- INUTILE NORMALEMENT
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
 //redirections.c
+int		count_redir(t_data *dt, int in);
+void	init_redir(t_data *dt, int in);
+int		pop_redir(t_data *dt, int in, int i);
+int		checker_redir(t_data *dt, int in, int i);
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);
@@ -171,5 +185,9 @@ void	ft_termios(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);
+
+//free.c
+void	free_data(t_data *dt);
+void	free_redir(t_data *dt, int i);
 
 #endif

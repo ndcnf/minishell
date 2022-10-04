@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/03 14:55:04 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:46:17 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	prompt(char **envp)
 	g_exit_stat = 0;
 	prompt = NULL;
 	b_init(&dt, envp);
+	add_history("echo test > >> test1 >> test2");
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
@@ -38,21 +39,43 @@ void	prompt(char **envp)
 		while (i < dt.n_cmd)
 		{
 			j = 0;
+			init_redir(&dt, i);
 			while (j < dt.in[i].n_elem)
 			{
+				// redirection AVANT d'enlever les quotes, non ?
 				trimquotes(&dt, "\"", i, j);
 				quote = trimquotes(&dt, "\'", i, j);
 				if (!quote)
 					conv_var(&dt, i, j);
+				if (checker_redir(&dt, i, j) == NO_RESULT)
+					break ;
 				j++;
 			}
+			if (dt.in[i].pos_red == NO_RESULT)
+				break ;
+			// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
+			j = 0;
+			ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
+			while (j < dt.in[i].n_elem)
+			{
+				ft_printf("new_elem [%d] : [%s]\n", j, dt.in[i].elem->cont[j]);
+				j++;
+			}
+			int z = 0;
+			while (z < dt.in[i].n_redir)
+			{
+				ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
+				z++;
+			}
+			///////////////////////////////////////////////////////////////////////////
 			cmd_selector(&dt, i++);
 		}
 		add_history(prompt);
 		free(prompt);
+		free_data(&dt);
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
 		//ft_printf("globale maintenant = %d\n", g_exit_stat);
 		///////////////////////////////////////////////////////////////////////
 	}
-	// free(prompt);
+	free(dt.path);
 }

@@ -39,6 +39,7 @@ SRC =	src/builtins.c \
 		src/b_unset.c \
 		src/quotes_utils.c \
 		src/exit.c \
+		src/free.c
 
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')
