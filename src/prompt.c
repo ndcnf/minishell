@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 11:46:17 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:59:13 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void	prompt(char **envp)
 	g_exit_stat = 0;
 	prompt = NULL;
 	b_init(&dt, envp);
-	add_history("echo test > >> test1 >> test2");
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
 		//ft_printf("globale preco = %d\n", g_exit_stat);
 		if (!prompt)
-			exit(EXIT_SUCCESS);
+			exit(the_end("exit\n", EXIT_SUCCESS, 1));
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
 		{
 			free(prompt);// a voir si necessaire avec les leaks
