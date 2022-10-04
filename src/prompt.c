@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 14:27:28 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:22:11 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ void	prompt(char **envp)
 				z++;
 			}
 			///////////////////////////////////////////////////////////////////////////
-			exec_redir(&dt, i);
+			// exec_redir(&dt);
+			// cmd_selector(&dt, i);
+			i++;
+		}
+		i = 0;
+		exec_redir(&dt);
+		while (i < dt.n_cmd)
+		{
 			cmd_selector(&dt, i);
 			i++;
 		}

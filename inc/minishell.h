@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 13:27:04 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:14:39 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define NOT_NUM "numeric argument required\n"
 # define ERR_MALL "malloc error\n"
 # define ERR_CHEVRON "redirection error\n"
+# define ERR_PIPE "pipe error\n"
 
 int		g_exit_stat;
 
@@ -84,8 +85,7 @@ typedef struct s_input
 	t_redir	*red;
 	int		n_redir;
 	int		pos_red;
-	t_fd	*fd;
-	int		n_fd; // nombre de pipes + les redirections
+	t_fd	fd;
 }	t_input;
 
 typedef struct s_data
@@ -178,7 +178,8 @@ int		pop_redir(t_data *dt, int in, int i);
 int		checker_redir(t_data *dt, int in, int i);
 
 //redir.c
-void	exec_redir(t_data *dt, int in);
+void	exec_redir(t_data *dt);
+void	init_fd(t_data *dt);
 // void	redir_input(t_builtins *bs);
 // void	redir_output(t_builtins *bs);
 // void	append_in(t_builtins *bs);

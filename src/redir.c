@@ -6,17 +6,33 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:17:08 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 14:10:51 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:22:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	exec_redir(t_data *dt, int in)
+void	init_fd(t_data *dt)
 {
-	dt->in[in].n_fd = dt->n_cmd - 1 + dt->in[in].n_redir;
-	ft_printf("fd nombre: %d\n", dt->in[in].n_fd);
-	ft_printf("cmd-1[%d] + nredir[%d]\n", (dt->n_cmd - 1), dt->in[in].n_redir);
+	int	i;
+	int	fd[2];
+
+	dt->in[0].fd.in = STDIN_FILENO;
+	dt->in[dt->n_cmd - 1].fd.out = STDOUT_FILENO;
+	i = 0;
+	while (i < dt->n_cmd - 1)
+	{
+		if (pipe(fd) == NO_RESULT)
+			exit (the_end(ERR_PIPE, EXIT_FAILURE, 1));
+		dt->in[i].fd.out = fd[1];
+		dt->in[i + 1].fd.in = fd[0];
+		i++;
+	}
+}
+
+void	exec_redir(t_data *dt)
+{
+	init_fd(dt);
 }
 
 
