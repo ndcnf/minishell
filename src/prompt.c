@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 16:22:11 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:35:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	prompt(char **envp)
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
-		//ft_printf("globale preco = %d\n", g_exit_stat);
 		if (!prompt)
 			exit(EXIT_SUCCESS);
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
