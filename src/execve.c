@@ -3,37 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 11:15:50 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:56:58 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_data *dt, int in)
+void	exec_boarders(t_data *dt, int in)
 {
-	char		*cmd_path;
-	char		**tdpp;
-	struct stat	buff;
 	int			i;
-	int			j;
+	int			status;
+	int			ok;
 
+	ok = 0;
+	i = where_in_env(dt, "PATH", 4);
+	if (i == NO_RESULT)
+	{
+		the_end(CMD_404, EXIT_FAILURE, 1);
+		return ;
+	}
+	ok = exec_middle(dt, in, ok, i);
+	if (ok == 0)
+		the_end(CMD_404, EXIT_FAILURE, 1);
+	while (in < dt->n_cmd)
+		waitpid(dt->in[in++].pid, &status, 0);
+}
+
+int	exec_middle(t_data *dt, int in, int ok, int i)
+{
+	char		**tdpp;
+	char		**tmp;
+	char		*cmd_path;
+	struct stat	buff;
+
+	tmp = parse_env(dt->env[i]);
+	tdpp = ft_split(tmp[1], ':');
+	freearray(tmp, 2);
 	i = 0;
-	j = -1;
-	/* le path doit etre recupere depuis le env des builtins.
-	Il faudra utiliser 'where_in_env' plutot ici pour les cas de suppression (unset)
-	du PATH lors de l'eval
-	Il ne faudra pas utiliser dt->path. La maniere de faire est juste,
-	mais la variable utilisee ici est fausse */
-	tdpp = ft_split(dt->path, ':');
 	while (tdpp[i])
 	{
-		cmd_path = ft_strjoin(tdpp[i], "/");
-		cmd_path = ft_strjoin(cmd_path, dt->in[in].elem->cont[0]);
+		cmd_path = ft_strjoin_free(tdpp[i], "/");
+		cmd_path = ft_strjoin_free(cmd_path, dt->in[in].elem->cont[0]);
 		if (!stat(cmd_path, &buff))
-			execve(cmd_path, dt->in[in].elem->cont, dt->env);
+		{
+			ok = 1;
+			dt->in[in].pid = fork();
+			if (dt->in[in].pid == 0)
+			{
+				execve(cmd_path, dt->in[in].elem->cont, dt->env);
+			}
+		}
 		i++;
 	}
+	free(cmd_path);
+	return (ok);
 }

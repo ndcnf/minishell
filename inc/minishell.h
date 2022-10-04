@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
 /*   Updated: 2022/10/04 12:00:38 by nchennaf         ###   ########.fr       */
@@ -71,6 +71,7 @@ typedef struct s_redir
 
 typedef struct s_input
 {
+	pid_t				pid;
 	char	*cont;
 	int		n_elem;
 	t_elem	*elem;
@@ -82,12 +83,11 @@ typedef struct s_input
 
 typedef struct s_data
 {
-	char	**env;
-	int		n_env;
-	char	*path;
-	int		n_cmd;
-	t_input	*in;
-	pid_t	pid;
+	char				**env;
+	int					n_env;
+	char				*path;
+	int					n_cmd;
+	t_input				*in;
 }	t_data;
 
 //prompt.c
@@ -175,7 +175,8 @@ int		checker_redir(t_data *dt, int in, int i);
 // void	heredoc(t_builtins *bs);
 
 //execve.c
-void	exec(t_data *dt, int in);
+void	exec_boarders(t_data *dt, int in);
+int		exec_middle(t_data *dt, int in, int ok, int i);
 
 //signals.c
 void	sig_int(int c);

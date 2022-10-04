@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_selector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
 /*   Updated: 2022/10/04 11:31:03 by nchennaf         ###   ########.fr       */
@@ -16,9 +16,8 @@ void	cmd_selector(t_data *dt, int i)
 {
 	signal(SIGINT, sig_double);
 	signal(SIGQUIT, sig_double);
-	// dt->pid = fork();
-	if (builtins_selector(dt, i) == -1)
-		exec(dt, i);
+	if (builtins_selector(dt, i) == NO_RESULT)
+		exec_boarders(dt, i);
 	signal(SIGINT, sig_int);
 	signal(SIGQUIT, SIG_IGN);
 	// freearray(bs.env, bs.n_env);
@@ -42,6 +41,6 @@ int	builtins_selector(t_data *dt, int i)
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "unset", 6) == 0)
 		b_unset(dt, i);
 	else
-		return (-1);
+		return (NO_RESULT);
 	return (0);
 }
