@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 12:00:38 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:11:11 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_data
 
 //prompt.c
 void	prompt(char **envp);
+int		termios_line(t_data *dt);
 
 //builtins.c
 int		b_pwd(t_data *dt);
@@ -177,11 +178,11 @@ int		checker_redir(t_data *dt, int in, int i);
 //execve.c
 void	exec_boarders(t_data *dt, int in);
 int		exec_middle(t_data *dt, int in, int ok, int i);
+int		on_my_way(t_data *dt, int ok, char *cmd_path, int in);
 
 //signals.c
 void	sig_int(int c);
 void	sig_double(int c);
-void	ft_termios(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);

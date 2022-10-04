@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 14:26:19 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:14:09 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char *argv[], char **envp)
 	{
 		signal(SIGINT, sig_int);
 		signal(SIGQUIT, SIG_IGN);
-		ft_termios();
 		prompt(envp);
 	}
 

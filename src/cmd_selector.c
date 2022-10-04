@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 14:26:33 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:57:02 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 void	cmd_selector(t_data *dt, int i)
 {
-	signal(SIGINT, sig_double);
-	signal(SIGQUIT, sig_double);
 	if (builtins_selector(dt, i) == NO_RESULT)
 		exec_boarders(dt, i);
-	signal(SIGINT, sig_int);
-	signal(SIGQUIT, SIG_IGN);
-	// freearray(bs.env, bs.n_env);
-	// freearray(bs.args, bs.n_args);
 }
 
 int	builtins_selector(t_data *dt, int i)

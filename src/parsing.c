@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/04 11:03:12 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:17:04 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ int	parsing_init(char *args, t_data *dt)
 	}
 	dt->in = ft_calloc(sizeof(t_input), dt->n_cmd);
 	i = -1;
+	input = ft_split_ex(args, '|');
 	while (++i < dt->n_cmd)
-	{
-		input = ft_split_ex(args, '|');
 		dt->in[i].cont = input[i];
-	}
 	i = -1;
 	while (++i < dt->n_cmd)
 	{
@@ -41,7 +39,7 @@ int	parsing_init(char *args, t_data *dt)
 		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
 		parsing_elem(dt, dt->in[i].cont, i);
 	}
-	freearray(input, i);
+	freearray(input, dt->n_cmd);
 	return (EXIT_SUCCESS);
 }
 
@@ -62,11 +60,11 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	dt->in[in].elem->cont[n] = NULL;
 	n = 0;
 	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-	while (n < dt->in[in].n_elem)
-	{
-		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
-		n++;
-	}
+	// while (n < dt->in[in].n_elem)
+	// {
+	// 	ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
+	// 	n++;
+	// }
 	///////////////////////////////////////////////////////////////////////////
 }
 
