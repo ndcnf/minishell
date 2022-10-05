@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/09/26 15:35:54 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:19:48 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	skip_spaces(char *s, int i)
 {
 	while (s[i])
 	{
-		while (s[i] == ' ')
+		while (s[i] == ' ' || s[i] == '\t')
 			i++;
 		return (i);
 	}

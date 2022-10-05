@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 18:10:50 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:34:07 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@ void	exec_boarders(t_data *dt, int in)
 	int			ok;
 
 	ok = 0;
-	i = where_in_env(dt, "PATH", 4);
-	if (i == NO_RESULT)
+	if (on_my_way(dt, ok, dt->in[in].elem->cont[0], in) == 0)
 	{
-		the_end(CMD_404, EXIT_FAILURE, 1);
-		return ;
+		i = where_in_env(dt, "PATH", 4);
+		if (i == NO_RESULT)
+		{
+			the_end(CMD_404, EXIT_FAILURE, 1);
+			return ;
+		}
+		ok = exec_middle(dt, in, ok, i);
+		if (ok == 0)
+			the_end(CMD_404, EXIT_FAILURE, 1);
 	}
-	ok = exec_middle(dt, in, ok, i);
-	if (ok == 0)
-		the_end(CMD_404, EXIT_FAILURE, 1);
+	// a mettre dans le prompt
 	while (in < dt->n_cmd)
 	{
 		waitpid(dt->in[in++].pid, &g_exit_stat, 0);
@@ -61,9 +65,7 @@ int	exec_middle(t_data *dt, int in, int ok, int i)
 
 int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 {
-	struct stat	buff;
-
-	if (!stat(cmd_path, &buff))
+	if (!access(cmd_path, X_OK))
 	{
 		ok = 1;
 		dt->in[in].pid = fork();
