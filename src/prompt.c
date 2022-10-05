@@ -6,11 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 13:34:35 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:32:02 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	prompt(char **envp)
 {
@@ -44,21 +44,6 @@ void	prompt(char **envp)
 			}
 			if (dt.in[i].pos_red == NO_RESULT)
 				break ;
-			// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-			// j = 0;
-			// ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
-			// while (j < dt.in[i].n_elem)
-			// {
-			// 	ft_printf("new_elem[%d][%d] : [%s]\n", i, j, dt.in[i].elem->cont[j]);
-			// 	j++;
-			// }
-			// int z = 0;
-			// while (z < dt.in[i].n_redir)
-			// {
-			// 	ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
-			// 	z++;
-			// }
-			///////////////////////////////////////////////////////////////////////////
 			i++;
 		}
 		i = 0;
@@ -68,6 +53,7 @@ void	prompt(char **envp)
 			cmd_selector(&dt, i);
 			i++;
 		}
+		the_closer(&dt);
 		i = 0;
 		while (i < dt.n_cmd)
 		{
@@ -82,11 +68,23 @@ void	prompt(char **envp)
 			i++;
 		}
 		free_data(&dt);
-		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
-		//ft_printf("globale maintenant = %d\n", g_exit_stat);
-		///////////////////////////////////////////////////////////////////////
 	}
 	free(dt.path);
+}
+
+void	the_closer(t_data *dt)
+{
+	int	i;
+
+	i = 0;
+	while (i < dt->n_cmd)
+	{
+		if (dt->in[i].fd.out > 2)
+			close(dt->in[i].fd.out);
+		if (dt->in[i].fd.in > 2)
+			close(dt->in[i].fd.in);
+		i++;
+	}
 }
 
 int	termios_line(t_data *dt)
@@ -96,14 +94,15 @@ int	termios_line(t_data *dt)
 	struct termios	rplc;
 	struct termios	saved;
 
-	signal(SIGINT, sig_int);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sig_int);
 	tcgetattr(STDIN_FILENO, &saved);
 	tcgetattr(STDIN_FILENO, &rplc);
 	rplc.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &rplc);
 	prompt = readline("\e[36mmarynad$ \e[0m");
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &saved);
+	signal(SIGINT, SIG_IGN);
 	new_prompt = ft_strtrim(prompt, " \t\n\r");
 	free(prompt);
 	if (!new_prompt)

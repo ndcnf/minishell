@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 10:11:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:33:25 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,23 @@ int	parsing_init(char *args, t_data *dt)
 	i = -1;
 	input = ft_split_ex(args, '|');
 	while (++i < dt->n_cmd)
+	{
+		if (input[i] == NULL && dt->n_cmd > 1)
+		{
+			the_end(ERR_TOKEN, ERR_REDIR, 1);
+			return (NO_RESULT);
+		}
 		dt->in[i].cont = input[i];
+	}
 	i = -1;
 	while (++i < dt->n_cmd)
 	{
 		dt->in[i].n_elem = 1;
 		space_counter(&dt->in[i], dt->in[i].cont);
 		dt->in[i].elem = malloc(sizeof(t_elem));
+		malloc_checker((char *)dt->in[i].elem);
 		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
+		malloc_checker((char *)dt->in[i].elem->cont);
 		parsing_elem(dt, dt->in[i].cont, i);
 	}
 	freearray(input, dt->n_cmd);
@@ -58,22 +67,18 @@ void	parsing_elem(t_data *dt, char *s, int in)
 		i++;
 	}
 	dt->in[in].elem->cont[n] = NULL;
-	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-	// n = 0;
-	// while (n < dt->in[in].n_elem)
-	// {
-	// 	ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
-	// 	n++;
-	// }
-	///////////////////////////////////////////////////////////////////////////
 }
 
 int	each_elem(t_input *in, char *s, int i, int n)
 {
 	int		j;
+	char	*tmp;
 
 	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
-	i = skip_spaces(s, i);
+	tmp = ft_strtrim(s, " \t\n\r");
+	free (s);
+	s = tmp;
+	i = 0;
 	j = malloc_elem(in, s, i, n);
 	while (i < j)
 	{
@@ -83,7 +88,6 @@ int	each_elem(t_input *in, char *s, int i, int n)
 		in->elem->cont[n][i] = s[i];
 		i++;
 	}
-	// printf("[%s]\n", in->elem->cont[n]);
 	in->elem->cont[n][i] = '\0';
 	free(s);
 	return (i);

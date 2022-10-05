@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 11:35:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:29:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,60 @@ void	cmd_selector(t_data *dt, int i)
 		exec_boarders(dt, i);
 }
 
+void	bs_fd(t_data *dt, int i, t_fd *fdk)
+{
+	fdk->out = dup(STDOUT_FILENO);
+	fdk->in = dup(STDIN_FILENO);
+	if (dt->in[i].fd.out > 2)
+	{
+		dup2(dt->in[i].fd.out, STDOUT_FILENO);
+		close(dt->in[i].fd.out);
+	}
+	if (dt->in[i].fd.in > 2)
+	{
+		dup2(dt->in[i].fd.in, STDIN_FILENO);
+		close(dt->in[i].fd.in);
+	}
+}
+
+void	reset_fd(t_fd *fdk)
+{
+	dup2(fdk->out, STDOUT_FILENO);
+	dup2(fdk->in, STDIN_FILENO);
+	close(fdk->out);
+	close(fdk->in);
+}
+
+int	is_bs(t_data *dt, int i)
+{
+	int	bs;
+
+	bs = 1;
+	if (ft_strncmp(dt->in[i].elem->cont[0], "echo", 5) == 0)
+		bs = 1;
+	else if (ft_strncmp(dt->in[i].elem->cont[0], "pwd", 4) == 0)
+		bs = 1;
+	else if (ft_strncmp(dt->in[i].elem->cont[0], "cd", 3) == 0)
+		bs = 1;
+	else if (ft_strncmp(dt->in[i].elem->cont[0], "exit", 5) == 0)
+		bs = 1;
+	else if (ft_strncmp(dt->in[i].elem->cont[0], "env", 4) == 0)
+		bs = 1;
+	else if (ft_strncmp(dt->in[i].elem->cont[0], "export", 7) == 0)
+		bs = 1;
+	else if (ft_strncmp(dt->in[i].elem->cont[0], "unset", 6) == 0)
+		bs = 1;
+	else
+		bs = 0;
+	return (bs);
+}
+
 int	builtins_selector(t_data *dt, int i)
 {
+	t_fd	fd_keeper;
+
+	if (is_bs(dt, i))
+		bs_fd(dt, i, &fd_keeper);
 	if (ft_strncmp(dt->in[i].elem->cont[0], "echo", 5) == 0)
 		b_echo(dt, i);
 	else if (ft_strncmp(dt->in[i].elem->cont[0], "pwd", 4) == 0)
@@ -42,5 +94,6 @@ int	builtins_selector(t_data *dt, int i)
 		b_unset(dt, i);
 	else
 		return (NO_RESULT);
+	reset_fd(&fd_keeper);
 	return (0);
 }
