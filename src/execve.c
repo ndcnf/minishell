@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 16:58:40 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:08:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,8 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 {
 	if (!access(cmd_path, X_OK))
 	{
-		fprintf(stderr, "avant dup2 out [%d]\n", dt->in[in].fd.out);
 		if (dt->in[in].fd.out > 2)
 			dup2(dt->in[in].fd.out, STDOUT_FILENO);
-		fprintf(stderr, "avant dup2 in [%d]\n", dt->in[in].fd.in);
 		if (dt->in[in].fd.in > 2)
 			dup2(dt->in[in].fd.in, STDIN_FILENO);
 		the_closer(dt);
