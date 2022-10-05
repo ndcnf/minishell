@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 20:34:07 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:59:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	exec_boarders(t_data *dt, int in)
 	int			ok;
 
 	ok = 0;
+	signal(SIGINT, sig_double);
+	signal(SIGQUIT, sig_double);
 	dt->in[in].pid = fork();
 	if (dt->in[in].pid == 0)
 	{
@@ -68,8 +70,8 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 	{
 		ok = 1;
 		// signal(SIGINT, SIG_DFL);
-		signal(SIGINT, sig_double);
-		signal(SIGQUIT, sig_double);
+		// signal(SIGINT, sig_double);
+		// signal(SIGQUIT, sig_double);
 		execve(cmd_path, dt->in[in].elem->cont, dt->env);
 		exit (the_end(ERR_EXE, EXIT_FAILURE, 1));
 	}

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 13:34:35 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:00:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,15 @@ int	termios_line(t_data *dt)
 	struct termios	rplc;
 	struct termios	saved;
 
-	signal(SIGINT, sig_int);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sig_int);
 	tcgetattr(STDIN_FILENO, &saved);
 	tcgetattr(STDIN_FILENO, &rplc);
 	rplc.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &rplc);
 	prompt = readline("\e[36mmarynad$ \e[0m");
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &saved);
+	signal(SIGINT, SIG_IGN);
 	new_prompt = ft_strtrim(prompt, " \t\n\r");
 	free(prompt);
 	if (!new_prompt)
