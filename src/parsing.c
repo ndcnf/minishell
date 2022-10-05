@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 15:44:41 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:55:44 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,24 @@ void	parsing_elem(t_data *dt, char *s, int in)
 	}
 	dt->in[in].elem->cont[n] = NULL;
 	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-	// n = 0;
-	// while (n < dt->in[in].n_elem)
-	// {
-	// 	ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
-	// 	n++;
-	// }
+	n = 0;
+	while (n < dt->in[in].n_elem)
+	{
+		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
+		n++;
+	}
 	///////////////////////////////////////////////////////////////////////////
 }
 
 int	each_elem(t_input *in, char *s, int i, int n)
 {
 	int		j;
+	char	*tmp;
 
-	s = ft_strtrim(s, " \t\n\r");
+	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
+	tmp = ft_strtrim(s, " \t\n\r");
+	free (s);
+	s = tmp;
 	i = 0;
 	j = malloc_elem(in, s, i, n);
 	while (i < j)
@@ -90,7 +94,6 @@ int	each_elem(t_input *in, char *s, int i, int n)
 		in->elem->cont[n][i] = s[i];
 		i++;
 	}
-	// printf("[%s]\n", in->elem->cont[n]);
 	in->elem->cont[n][i] = '\0';
 	free(s);
 	return (i);
