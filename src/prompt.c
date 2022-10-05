@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 20:05:07 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:34:35 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ void	prompt(char **envp)
 			init_redir(&dt, i);
 			while (j < dt.in[i].n_elem)
 			{
-				// redirection AVANT d'enlever les quotes, non ?
 				trimquotes(&dt, "\"", i, j);
 				quote = trimquotes(&dt, "\'", i, j);
 				if (!quote)
 					conv_var(&dt, i, j);
 				if (checker_redir(&dt, i, j) == NO_RESULT)
 					break ;
+				if (dt.in[i].n_redir > 0)
+					j--;
 				j++;
 			}
 			if (dt.in[i].pos_red == NO_RESULT)
@@ -48,7 +49,7 @@ void	prompt(char **envp)
 			// ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
 			// while (j < dt.in[i].n_elem)
 			// {
-			// 	ft_printf("new_elem [%d] : [%s]\n", j, dt.in[i].elem->cont[j]);
+			// 	ft_printf("new_elem[%d][%d] : [%s]\n", i, j, dt.in[i].elem->cont[j]);
 			// 	j++;
 			// }
 			// int z = 0;
@@ -58,7 +59,27 @@ void	prompt(char **envp)
 			// 	z++;
 			// }
 			///////////////////////////////////////////////////////////////////////////
-			cmd_selector(&dt, i++);
+			i++;
+		}
+		i = 0;
+		exec_redir(&dt);
+		while (i < dt.n_cmd)
+		{
+			cmd_selector(&dt, i);
+			i++;
+		}
+		i = 0;
+		while (i < dt.n_cmd)
+		{
+			if (dt.in[i].pid != NO_RESULT)
+			{
+				waitpid(dt.in[i].pid, &g_exit_stat, 0);
+				if (WIFSIGNALED(g_exit_stat))
+					g_exit_stat = ERR_SIGN + g_exit_stat;
+				if (WIFEXITED(g_exit_stat))
+					g_exit_stat = WEXITSTATUS(g_exit_stat);
+			}
+			i++;
 		}
 		free_data(&dt);
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////

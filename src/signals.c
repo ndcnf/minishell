@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:32:06 by mthiesso          #+#    #+#             */
 /*   Updated: 2022/10/04 17:56:49 by mthiesso         ###   ########.fr       */
@@ -16,9 +16,9 @@ void	sig_int(int c)
 {
 	if (c == SIGINT)
 	{
-		rl_replace_line("", 0);
 		write(1, "\n", 1);
 		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }

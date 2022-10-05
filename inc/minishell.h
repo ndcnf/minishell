@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 18:11:11 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:44:23 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@
 # define NOT_NUM "numeric argument required\n"
 # define ERR_MALL "malloc error\n"
 # define ERR_CHEVRON "redirection error\n"
+# define ERR_PIPE "pipe error\n"
+# define ERR_FILE "file error\n"
+# define ERR_EXE "execution error\n"
 
 int		g_exit_stat;
 
@@ -69,16 +72,22 @@ typedef struct s_redir
 	char	*chevron;
 }	t_redir;
 
+typedef struct s_fd
+{
+	int		in;
+	int		out;
+}	t_fd;
+
 typedef struct s_input
 {
-	pid_t				pid;
+	pid_t	pid;
 	char	*cont;
 	int		n_elem;
 	t_elem	*elem;
-	int		fd;
 	t_redir	*red;
 	int		n_redir;
 	int		pos_red;
+	t_fd	fd;
 }	t_input;
 
 typedef struct s_data
@@ -165,15 +174,21 @@ void	conv_var(t_data *dt, int in, int i);
 //quotes_utils.c
 int		trimquotes(t_data *dt, char *s, int in, int i);
 
-//redirections.c
+//redir_utils.c
 int		count_redir(t_data *dt, int in);
 void	init_redir(t_data *dt, int in);
 int		pop_redir(t_data *dt, int in, int i);
 int		checker_redir(t_data *dt, int in, int i);
-// void	redir_input(t_builtins *bs);
-// void	redir_output(t_builtins *bs);
-// void	append_in(t_builtins *bs);
-// void	heredoc(t_builtins *bs);
+
+//redir.c
+void	exec_redir(t_data *dt);
+void	init_fd(t_data *dt);
+void	mgmnt_fd(t_data *dt);
+void	open_fd(t_data *dt, int i, int j);
+void	redir_output(t_data *dt, int i, int j);
+void	redir_input(t_data *dt, int i, int j);
+void	append_in(t_data *dt, int i, int j);
+void	heredoc(t_data *dt, int i, int j);
 
 //execve.c
 void	exec_boarders(t_data *dt, int in);

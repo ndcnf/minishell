@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/30 16:26:18 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:21:58 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static char	*words_without_borders(char *s, char c)
 		if (s[w_len] != c)
 			w_len++;
 	}
-	ptr = (char *)malloc(sizeof(char) * (w_len + 1));
+	ptr = (char *)ft_calloc((w_len + 1), sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 	while (i < w_len)
@@ -152,7 +152,7 @@ char	**ft_split_ex(char const *s, char c)
 		return (NULL);
 	str = (char *)s;
 	w_cnt = word_cnt(str, c);
-	lean = (char **)malloc(sizeof(char *) * (w_cnt + 1));
+	lean = (char **)ft_calloc(sizeof(char *), (w_cnt + 1));
 	if (lean == NULL)
 		return (NULL);
 	while (i < w_cnt)

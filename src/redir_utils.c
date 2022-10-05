@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirections.c                                     :+:      :+:    :+:   */
+/*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:03:11 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 11:55:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:35:08 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_redir(t_data *dt, int in)
 
 	cnt = 0;
 	j = 0;
-	while (j < dt->in->n_elem)
+	while (j < dt->in[in].n_elem)
 	{
 		if (ft_strncmp(dt->in[in].elem->cont[j], ">", 2) == 0)
 			cnt++;
@@ -105,32 +105,3 @@ int	checker_redir(t_data *dt, int in, int i)
 	}
 	return (err);
 }
-
-// '<'
-// void	redir_input(t_builtins *bs)
-// {
-
-// }
-
-// '>'
-// void	redir_output(t_builtins *bs)
-// {
-// 	int	fd;
-
-// 	fd = open(bs->file, O_RDONLY | O_WRONLY);
-// 	dup2(fd, STDOUT_FILENO);
-// 	close(fd);
-// 	// printf("Je suis ici\n");
-// }
-
-// '<<'
-// void	append_in(t_builtins *bs)
-// {
-
-// }
-
-// '>>'
-// void	heredoc(t_builtins *bs)
-// {
-
-// }

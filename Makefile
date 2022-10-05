@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
 #    Updated: 2022/10/04 20:25:23 by mthiesso         ###   ########.fr        #
@@ -16,7 +16,7 @@ GRN = \033[32m
 RST = \033[0m
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
 NAME =	minishell
 AR =	ar rcs
 SRC =	src/builtins.c \
@@ -26,7 +26,6 @@ SRC =	src/builtins.c \
 		src/parsing_utils.c \
 		src/b_echo.c \
 		src/b_init.c \
-		src/redirections.c \
 		src/quotes_mgmt.c \
 		src/cmd_selector.c \
 		src/var.c \
@@ -39,7 +38,9 @@ SRC =	src/builtins.c \
 		src/b_unset.c \
 		src/quotes_utils.c \
 		src/exit.c \
-		src/free.c
+		src/free.c \
+		src/redir_utils.c \
+		src/redir.c
 
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')

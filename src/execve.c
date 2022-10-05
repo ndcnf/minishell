@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
 /*   Updated: 2022/10/04 20:34:07 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	exec_boarders(t_data *dt, int in)
 {
@@ -18,26 +18,25 @@ void	exec_boarders(t_data *dt, int in)
 	int			ok;
 
 	ok = 0;
-	if (on_my_way(dt, ok, dt->in[in].elem->cont[0], in) == 0)
+	dt->in[in].pid = fork();
+	if (dt->in[in].pid == 0)
 	{
-		i = where_in_env(dt, "PATH", 4);
-		if (i == NO_RESULT)
+		if (builtins_selector(dt, in) == NO_RESULT)
 		{
-			the_end(CMD_404, EXIT_FAILURE, 1);
-			return ;
+			if (on_my_way(dt, ok, dt->in[in].elem->cont[0], in) != 1)
+			{
+				i = where_in_env(dt, "PATH", 4);
+				if (i == NO_RESULT)
+					the_end(CMD_404, ERR_404, 1);
+				else
+				{
+					ok = exec_middle(dt, in, ok, i);
+					if (ok == 0)
+						the_end(CMD_404, ERR_404, 1);
+				}
+			}
 		}
-		ok = exec_middle(dt, in, ok, i);
-		if (ok == 0)
-			the_end(CMD_404, EXIT_FAILURE, 1);
-	}
-	// a mettre dans le prompt
-	while (in < dt->n_cmd)
-	{
-		waitpid(dt->in[in++].pid, &g_exit_stat, 0);
-		if (WIFSIGNALED(g_exit_stat))
-			g_exit_stat = ERR_SIGN + g_exit_stat;
-		if (WIFEXITED(g_exit_stat))
-			g_exit_stat = WEXITSTATUS(g_exit_stat);
+		exit (g_exit_stat);
 	}
 }
 
@@ -68,11 +67,11 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 	if (!access(cmd_path, X_OK))
 	{
 		ok = 1;
-		dt->in[in].pid = fork();
+		// signal(SIGINT, SIG_DFL);
 		signal(SIGINT, sig_double);
 		signal(SIGQUIT, sig_double);
-		if (dt->in[in].pid == 0)
-			execve(cmd_path, dt->in[in].elem->cont, dt->env);
+		execve(cmd_path, dt->in[in].elem->cont, dt->env);
+		exit (the_end(ERR_EXE, EXIT_FAILURE, 1));
 	}
 	return (ok);
 }

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/04 20:17:17 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:11:54 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ int	parsing_init(char *args, t_data *dt)
 	i = -1;
 	input = ft_split_ex(args, '|');
 	while (++i < dt->n_cmd)
-	{
-		if (!input[i])
-			return (NO_RESULT);
 		dt->in[i].cont = input[i];
-	}
 	i = -1;
 	while (++i < dt->n_cmd)
 	{
@@ -62,8 +58,8 @@ void	parsing_elem(t_data *dt, char *s, int in)
 		i++;
 	}
 	dt->in[in].elem->cont[n] = NULL;
-	n = 0;
 	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
+	// n = 0;
 	// while (n < dt->in[in].n_elem)
 	// {
 	// 	ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
