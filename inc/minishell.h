@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 15:43:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:32:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,9 @@ int		b_env(t_data *dt);
 //cmd_selector.c
 void	cmd_selector(t_data *dt, int i);
 int		builtins_selector(t_data *dt, int i);
+void	bs_fd(t_data *dt, int i, t_fd *fdk);
+void	reset_fd(t_fd *fdk);
+int		is_bs(t_data *dt, int i);
 
 //parsing.c
 int		parsing_init(char *args, t_data *dt);
