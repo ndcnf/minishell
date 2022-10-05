@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 11:10:47 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:33:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	b_exit(t_data *dt, int in)
 	if (dt->in[in].n_elem == 1)
 	{
 		ft_printf("exit\n");
-		exit (the_end(NULL, g_exit_stat, 0));
+		exit (g_exit_stat);
 	}
 	if (dt->in[in].n_elem > 2)
 	{

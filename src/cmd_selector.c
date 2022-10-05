@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 10:50:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:35:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	cmd_selector(t_data *dt, int i)
 {
 	if (dt->n_cmd == 1)
 	{
+		dt->in[i].pid = NO_RESULT;
 		if (builtins_selector(dt, i) == NO_RESULT)
 			exec_boarders(dt, i);
 	}

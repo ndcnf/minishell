@@ -6,11 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 11:23:58 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:09:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	exec_boarders(t_data *dt, int in)
 {
@@ -67,6 +67,7 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 	if (!access(cmd_path, X_OK))
 	{
 		ok = 1;
+		// signal(SIGINT, SIG_DFL);
 		signal(SIGINT, sig_double);
 		signal(SIGQUIT, sig_double);
 		execve(cmd_path, dt->in[in].elem->cont, dt->env);

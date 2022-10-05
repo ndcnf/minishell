@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 11:14:24 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:34:35 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,15 @@ void	prompt(char **envp)
 		i = 0;
 		while (i < dt.n_cmd)
 		{
-			ft_printf("avant [%d]\n", g_exit_stat);
-			waitpid(dt.in[i++].pid, &g_exit_stat, 0);
-			ft_printf("pendant [%d]\n", g_exit_stat);
-			if (WIFSIGNALED(g_exit_stat))
-				g_exit_stat = ERR_SIGN + g_exit_stat;
-			if (WIFEXITED(g_exit_stat))
-				g_exit_stat = WEXITSTATUS(g_exit_stat);
-			ft_printf("apres [%d]\n", g_exit_stat);
+			if (dt.in[i].pid != NO_RESULT)
+			{
+				waitpid(dt.in[i].pid, &g_exit_stat, 0);
+				if (WIFSIGNALED(g_exit_stat))
+					g_exit_stat = ERR_SIGN + g_exit_stat;
+				if (WIFEXITED(g_exit_stat))
+					g_exit_stat = WEXITSTATUS(g_exit_stat);
+			}
+			i++;
 		}
 		free_data(&dt);
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
@@ -91,6 +92,7 @@ void	prompt(char **envp)
 int	termios_line(t_data *dt)
 {
 	char			*prompt;
+	char			*new_prompt;
 	struct termios	rplc;
 	struct termios	saved;
 
@@ -102,14 +104,16 @@ int	termios_line(t_data *dt)
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &rplc);
 	prompt = readline("\e[36mmarynad$ \e[0m");
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &saved);
-	if (!prompt)
+	new_prompt = ft_strtrim(prompt, " \t\n\r");
+	free(prompt);
+	if (!new_prompt)
 		exit(the_end("exit\n", EXIT_SUCCESS, 1));
-	if (!prompt[0] || parsing_init(prompt, dt) == NO_RESULT)
+	if (!new_prompt[0] || parsing_init(new_prompt, dt) == NO_RESULT)
 	{
-		free(prompt);
+		free(new_prompt);
 		return (1);
 	}
-	add_history(prompt);
-	free(prompt);
+	add_history(new_prompt);
+	free(new_prompt);
 	return (0);
 }
