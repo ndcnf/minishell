@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:17:08 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 10:08:56 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:22:49 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	redir_output(t_data *dt, int i, int j)
 {
 	int	fd;
 
-	fd = open(dt->in[i].red[j].file, O_CREAT | O_WRONLY, 0644);
+	fd = open(dt->in[i].red[j].file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == NO_RESULT)
 		the_end(ERR_FILE, EXIT_FAILURE, 1);
 	else
