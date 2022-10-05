@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exception.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:01:45 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 22:00:36 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,47 +21,19 @@
 /* This function returns the number of words (strings) in
 the string s */
 
-int	is_quotes(char *s, int i) // -------------------------------------------------- FAUDRA REPARER POUR ACCEPTER LES QUOTES CONSECUTIVES (sinon compte comme "uneven")
+int	is_quotes(char *s, int i)
 {
-	int	j;
+	int		j;
+	char	c;
 
 	j = i;
+	if (s[i] == '\"')
+		c = '\"';
+	else
+		c = '\'';
 	while (s[i])
 	{
-		if (s[i] == '\"' && s[i + 1] == '\"')
-		{
-			return (1);
-		}
-		if (s[i] == '\"')
-		{
-			i++;
-			while (s[i] != '\"')
-			{
-				if (!s[i])
-					return (1);
-				i++;
-				if ((s[i] == '\"' && s[i + 1] == ' ')
-					|| (s[i] == '\"' && s[i + 1] == '\0')
-					|| (s[i] == '\"' && s[i + 1] == '|'))
-					return (i);
-			}
-		}
-		else if (s[i] == '\'' && s[i + 1] == '\'')
-			return (1);
-		else if (s[i] == '\'')
-		{
-			i++;
-			while (s[i] != '\'')
-			{
-				if (!s[i])
-					return (NO_RESULT);
-				i++;
-				if ((s[i] == '\'' && s[i + 1] == ' ')
-					|| (s[i] == '\'' && s[i + 1] == '\0')
-					|| (s[i] == '\'' && s[i + 1] == '|'))
-					return (i);
-			}
-		}
+		i = (check_qts_split(s, i, c));
 		i++;
 	}
 	return (j);

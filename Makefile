@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/10/05 15:54:11 by mthiesso         ###   ########.fr        #
+#    Updated: 2022/10/05 21:27:15 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC =	src/builtins.c \
 		src/exit.c \
 		src/free.c \
 		src/redir_utils.c \
-		src/redir.c
+		src/redir.c \
+		src/redir_again.c
 
 
 RL_V	:= $(shell brew list --versions  readline | sed 's/.*[[:blank:]]//')

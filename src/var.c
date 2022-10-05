@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:34:51 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 20:51:03 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:22:36 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ void	conv_var(t_data *dt, int in, int i)
 		j = where_in_env(dt, tmp, ft_strlen(tmp));
 		if (j == NO_RESULT)
 		{
-			j = ft_strlen(tmp) + 1;
-			free(tmp);
-			if (j < (int)ft_strlen(dt->in[in].elem->cont[i]))
-				tmp = ft_strchr(dt->in[in].elem->cont[i] + j, '$');
-			else
-				tmp = NULL;
+			tmp = check_doll(&dt->in[in], j, tmp, i);
 			continue ;
 		}
 		free (dt->in[in].elem->cont[i]);
@@ -50,4 +45,15 @@ void	conv_var(t_data *dt, int in, int i)
 		free (tmp);
 		tmp = ft_strchr(dt->in[in].elem->cont[i], '$');
 	}
+}
+
+char	*check_doll(t_input *in, int j, char *tmp, int i)
+{
+	j = ft_strlen(tmp) + 1;
+	free(tmp);
+	if (j < (int)ft_strlen(in->elem->cont[i]))
+		tmp = ft_strchr(in->elem->cont[i] + j, '$');
+	else
+		tmp = NULL;
+	return (tmp);
 }

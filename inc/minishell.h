@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 20:32:45 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:57:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int		b_env(t_data *dt);
 void	cmd_selector(t_data *dt, int i);
 int		builtins_selector(t_data *dt, int i);
 void	bs_fd(t_data *dt, int i, t_fd *fdk);
-void	reset_fd(t_fd *fdk);
 int		is_bs(t_data *dt, int i);
 char	*ft_strtolower(char *s);
 
@@ -179,6 +178,7 @@ void	freearray(char **m, int n);
 
 //var.c
 void	conv_var(t_data *dt, int in, int i);
+char	*check_doll(t_input *in, int j, char *tmp, int i);
 
 //quotes_utils.c
 int		trimquotes(t_data *dt, char *s, int in, int i);
@@ -191,13 +191,16 @@ int		checker_redir(t_data *dt, int in, int i);
 
 //redir.c
 void	exec_redir(t_data *dt);
-void	init_fd(t_data *dt);
-void	mgmnt_fd(t_data *dt);
-void	open_fd(t_data *dt, int i, int j);
 void	redir_output(t_data *dt, int i, int j);
 void	redir_input(t_data *dt, int i, int j);
 void	append_in(t_data *dt, int i, int j);
 void	heredoc(t_data *dt, int i, int j);
+
+//redir_again.c
+void	mgmnt_fd(t_data *dt);
+void	open_fd(t_data *dt, int i, int j);
+void	init_fd(t_data *dt);
+void	reset_fd(t_fd *fdk);
 
 //execve.c
 void	exec_boarders(t_data *dt, int in);
@@ -217,5 +220,8 @@ int		msg_cmd_404(t_data *dt, int i);
 //free.c
 void	free_data(t_data *dt);
 void	free_redir(t_data *dt, int i);
+
+//ft_split_exception_utils.c
+int		check_qts_split(char *s, int i, char c);
 
 #endif
