@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 15:44:56 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:07:04 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static char	*words_without_borders(char *s, char c)
 	while (s[w_len] != c && s[w_len])
 		w_len++;
 	ptr = (char *)malloc(sizeof(char) * (w_len + 1));
+	malloc_checker(ptr);
 	if (ptr == NULL)
 		return (NULL);
 	while (i < w_len)
@@ -104,6 +105,7 @@ char	**ft_split(char const *s, char c)
 	str = (char *)s;
 	w_cnt = word_cnt(str, c);
 	lean = (char **)malloc(sizeof(char *) * (w_cnt + 1));
+	malloc_checker((char *)lean);
 	if (lean == NULL)
 		return (NULL);
 	while (i < w_cnt)

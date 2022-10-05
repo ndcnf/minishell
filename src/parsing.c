@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 17:03:32 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:06:32 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int	parsing_init(char *args, t_data *dt)
 		dt->in[i].n_elem = 1;
 		space_counter(&dt->in[i], dt->in[i].cont);
 		dt->in[i].elem = malloc(sizeof(t_elem));
+		malloc_checker((char *)dt->in[i].elem);
 		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
+		malloc_checker((char *)dt->in[i].elem->cont);
 		parsing_elem(dt, dt->in[i].cont, i);
 	}
 	freearray(input, dt->n_cmd);

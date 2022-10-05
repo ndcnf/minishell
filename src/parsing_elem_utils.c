@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elem_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/29 14:41:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:02:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	malloc_elem(t_input *in, char *s, int i, int n)
 		}
 	}
 	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
+	malloc_checker(in->elem->cont[n]);
 	return (j);
 }
 
