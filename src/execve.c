@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 13:59:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:54:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,18 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 {
 	if (!access(cmd_path, X_OK))
 	{
-		ok = 1;
-		// signal(SIGINT, SIG_DFL);
-		// signal(SIGINT, sig_double);
-		// signal(SIGQUIT, sig_double);
+		fprintf(stderr, "avant dup2 out [%d]\n", dt->in[in].fd.out);
+		if (dt->in[in].fd.out > 2)
+		{
+			dup2(dt->in[in].fd.out, STDOUT_FILENO);
+			close(dt->in[in].fd.out);
+		}
+		fprintf(stderr, "avant dup2 in [%d]\n", dt->in[in].fd.in);
+		if (dt->in[in].fd.in > 2)
+		{
+			dup2(dt->in[in].fd.in, STDIN_FILENO);
+			close(dt->in[in].fd.in);
+		}
 		execve(cmd_path, dt->in[in].elem->cont, dt->env);
 		exit (the_end(ERR_EXE, EXIT_FAILURE, 1));
 	}

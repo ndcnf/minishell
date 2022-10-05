@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 10:44:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:42:01 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_data
 //prompt.c
 void	prompt(char **envp);
 int		termios_line(t_data *dt);
+void	the_closer(t_data *dt);
 
 //builtins.c
 int		b_pwd(t_data *dt);

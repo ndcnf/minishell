@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 14:00:41 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:44:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,28 @@ void	prompt(char **envp)
 			}
 			i++;
 		}
+		the_closer(&dt);
 		free_data(&dt);
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
 		//ft_printf("globale maintenant = %d\n", g_exit_stat);
 		///////////////////////////////////////////////////////////////////////
 	}
 	free(dt.path);
+}
+
+void	the_closer(t_data *dt)
+{
+	int	i;
+
+	i = 0;
+	while (i < dt->n_cmd)
+	{
+		if (dt->in[i].fd.out > 2)
+			close(dt->in[i].fd.out);
+		if (dt->in[i].fd.in > 2)
+			close(dt->in[i].fd.in);
+		i++;
+	}
 }
 
 int	termios_line(t_data *dt)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 10:11:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:24:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	each_elem(t_input *in, char *s, int i, int n)
 	int		j;
 
 	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
-	i = skip_spaces(s, i);
+	i = 0;
+	// i = skip_spaces(s, i); //--------------------------------------------------- segfault, a bosser dessus
 	j = malloc_elem(in, s, i, n);
 	while (i < j)
 	{
