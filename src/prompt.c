@@ -6,11 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 16:23:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:32:02 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	prompt(char **envp)
 {
@@ -44,21 +44,6 @@ void	prompt(char **envp)
 			}
 			if (dt.in[i].pos_red == NO_RESULT)
 				break ;
-			// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-			// j = 0;
-			// ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
-			// while (j < dt.in[i].n_elem)
-			// {
-			// 	ft_printf("new_elem[%d][%d] : [%s]\n", i, j, dt.in[i].elem->cont[j]);
-			// 	j++;
-			// }
-			// int z = 0;
-			// while (z < dt.in[i].n_redir)
-			// {
-			// 	ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
-			// 	z++;
-			// }
-			///////////////////////////////////////////////////////////////////////////
 			i++;
 		}
 		i = 0;
@@ -83,9 +68,6 @@ void	prompt(char **envp)
 			i++;
 		}
 		free_data(&dt);
-		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
-		//ft_printf("globale maintenant = %d\n", g_exit_stat);
-		///////////////////////////////////////////////////////////////////////
 	}
 	free(dt.path);
 }

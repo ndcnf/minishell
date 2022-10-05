@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 16:38:43 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:29:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	bs_fd(t_data *dt, int i, t_fd *fdk)
 {
 	fdk->out = dup(STDOUT_FILENO);
 	fdk->in = dup(STDIN_FILENO);
-
 	if (dt->in[i].fd.out > 2)
 	{
 		dup2(dt->in[i].fd.out, STDOUT_FILENO);
@@ -77,8 +76,6 @@ int	builtins_selector(t_data *dt, int i)
 {
 	t_fd	fd_keeper;
 
-	ft_printf("fd out avant [%d]\n", dt->in[i].fd.out);
-	ft_printf("fd in avant [%d]\n", dt->in[i].fd.in);
 	if (is_bs(dt, i))
 		bs_fd(dt, i, &fd_keeper);
 	if (ft_strncmp(dt->in[i].elem->cont[0], "echo", 5) == 0)
