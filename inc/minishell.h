@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:33:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:57:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,5 +220,8 @@ int		msg_cmd_404(t_data *dt, int i);
 //free.c
 void	free_data(t_data *dt);
 void	free_redir(t_data *dt, int i);
+
+//ft_split_exception_utils.c
+int		check_qts_split(char *s, int i, char c);
 
 #endif
