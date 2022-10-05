@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 18:33:25 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:06:29 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,8 @@ int	parsing_init(char *args, t_data *dt)
 	dt->in = ft_calloc(sizeof(t_input), dt->n_cmd);
 	i = -1;
 	input = ft_split_ex(args, '|');
-	while (++i < dt->n_cmd)
-	{
-		if (input[i] == NULL && dt->n_cmd > 1)
-		{
-			the_end(ERR_TOKEN, ERR_REDIR, 1);
-			return (NO_RESULT);
-		}
-		dt->in[i].cont = input[i];
-	}
-	i = -1;
-	while (++i < dt->n_cmd)
-	{
-		dt->in[i].n_elem = 1;
-		space_counter(&dt->in[i], dt->in[i].cont);
-		dt->in[i].elem = malloc(sizeof(t_elem));
-		malloc_checker((char *)dt->in[i].elem);
-		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
-		malloc_checker((char *)dt->in[i].elem->cont);
-		parsing_elem(dt, dt->in[i].cont, i);
-	}
+	if (parsing_misc(dt, i, input) == NO_RESULT)
+		return (NO_RESULT);
 	freearray(input, dt->n_cmd);
 	return (EXIT_SUCCESS);
 }
@@ -91,4 +73,29 @@ int	each_elem(t_input *in, char *s, int i, int n)
 	in->elem->cont[n][i] = '\0';
 	free(s);
 	return (i);
+}
+
+int	parsing_misc(t_data *dt, int i, char **input)
+{
+	while (++i < dt->n_cmd)
+	{
+		if (input[i] == NULL && dt->n_cmd > 1)
+		{
+			the_end(ERR_TOKEN, ERR_REDIR, 1);
+			return (NO_RESULT);
+		}
+		dt->in[i].cont = input[i];
+	}
+	i = -1;
+	while (++i < dt->n_cmd)
+	{
+		dt->in[i].n_elem = 1;
+		space_counter(&dt->in[i], dt->in[i].cont);
+		dt->in[i].elem = malloc(sizeof(t_elem));
+		malloc_checker((char *)dt->in[i].elem);
+		dt->in[i].elem->cont = malloc(sizeof(char *) * (dt->in[i].n_elem + 1));
+		malloc_checker((char *)dt->in[i].elem->cont);
+		parsing_elem(dt, dt->in[i].cont, i);
+	}
+	return (0);
 }

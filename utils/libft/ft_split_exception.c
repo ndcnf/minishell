@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exception.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 15:21:58 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:13:25 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ int	is_quotes(char *s, int i) // -----------------------------------------------
 	j = i;
 	while (s[i])
 	{
+		if (s[i] == '\"' && s[i + 1] == '\"')
+		{
+			return (1);
+		}
 		if (s[i] == '\"')
 		{
 			i++;
 			while (s[i] != '\"')
 			{
 				if (!s[i])
-					return (NO_RESULT);
+					return (1);
 				i++;
 				if ((s[i] == '\"' && s[i + 1] == ' ')
 					|| (s[i] == '\"' && s[i + 1] == '\0')
@@ -42,6 +46,8 @@ int	is_quotes(char *s, int i) // -----------------------------------------------
 					return (i);
 			}
 		}
+		else if (s[i] == '\'' && s[i + 1] == '\'')
+			return (1);
 		else if (s[i] == '\'')
 		{
 			i++;
@@ -133,7 +139,7 @@ static void	*new_str(char *s, char c, int w_cnt, int toggle)
 		if (s[i - 1] != c && (s[i] == '\"' || s[i] == '\''))
 			i = is_quotes(s, i);
 		p = i - 1;
-		if ((s[i] != c && s[p] == c && i > 0) || (w_cnt == 0 && s[i] != c))
+		if ((s[i] != c && i > 0 && s[p] == c) || (w_cnt == 0 && s[i] != c))
 			return ((char *)&s[i]);
 		i++;
 	}

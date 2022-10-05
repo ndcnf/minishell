@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
 /*   Updated: 2022/10/05 19:48:51 by nchennaf         ###   ########.fr       */
@@ -28,14 +28,7 @@ void	exec_boarders(t_data *dt, int in)
 			if (on_my_way(dt, ok, dt->in[in].elem->cont[0], in) != 1)
 			{
 				i = where_in_env(dt, "PATH", 4);
-				if (i == NO_RESULT)
-					msg_cmd_404(dt, in);
-				else
-				{
-					ok = exec_middle(dt, in, ok, i);
-					if (ok == 0)
-						msg_cmd_404(dt, in);
-				}
+				execution(dt, in, i, ok);
 			}
 		}
 		exit (g_exit_stat);
@@ -77,4 +70,16 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 		exit (the_end(ERR_EXE, EXIT_FAILURE, 1));
 	}
 	return (ok);
+}
+
+void	execution(t_data *dt, int in, int i, int ok)
+{
+	if (i == NO_RESULT)
+		the_end(CMD_404, ERR_404, 1);
+	else
+	{
+		ok = exec_middle(dt, in, ok, i);
+		if (ok == 0)
+			the_end(CMD_404, ERR_404, 1);
+	}
 }

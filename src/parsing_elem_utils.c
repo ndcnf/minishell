@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_elem_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 18:02:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:11:09 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int	nb_cmd(t_data *dt, char *args, int i)
 			if (i == NO_RESULT)
 			{
 				ft_printf(NOT_EVEN);
+				return (NO_RESULT);
+			}
+			else if (i == 1)
+			{
+				ft_printf(CMD_404);
 				return (NO_RESULT);
 			}
 		}
