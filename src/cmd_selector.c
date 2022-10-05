@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 18:29:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:37:21 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	builtins_selector(t_data *dt, int i)
 {
 	t_fd	fd_keeper;
 
+	ft_strtolower(dt->in[i].elem->cont[0]);
 	if (is_bs(dt, i))
 		bs_fd(dt, i, &fd_keeper);
 	if (ft_strncmp(dt->in[i].elem->cont[0], "echo", 5) == 0)
@@ -96,4 +97,17 @@ int	builtins_selector(t_data *dt, int i)
 		return (NO_RESULT);
 	reset_fd(&fd_keeper);
 	return (0);
+}
+
+char	*ft_strtolower(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		s[i] = ft_tolower(s[i]);
+		i++;
+	}
+	return (s);
 }

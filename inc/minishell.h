@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 19:56:41 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:32:45 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int		builtins_selector(t_data *dt, int i);
 void	bs_fd(t_data *dt, int i, t_fd *fdk);
 void	reset_fd(t_fd *fdk);
 int		is_bs(t_data *dt, int i);
+char	*ft_strtolower(char *s);
 
 //parsing.c
 int		parsing_init(char *args, t_data *dt);
