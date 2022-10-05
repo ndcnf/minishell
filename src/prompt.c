@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 20:08:28 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:11:35 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	prompt(char **envp)
 	g_exit_stat = 0;
 	prompt = NULL;
 	b_init(&dt, envp);
-	add_history("echo | echo > echo"); // ---------------------------------------- TESTS UNIQUEMENT
 	while (1)
 	{
 		prompt = readline("\e[36mmarynad$ \e[0m");
@@ -31,7 +30,7 @@ void	prompt(char **envp)
 			exit(EXIT_SUCCESS);
 		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
 		{
-			free(prompt);// a voir si necessaire avec les leaks
+			free(prompt);
 			continue ;
 		}
 		i = 0;
@@ -54,22 +53,20 @@ void	prompt(char **envp)
 			if (dt.in[i].pos_red == NO_RESULT)
 				break ;
 			// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-			j = 0;
-			ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
-			while (j < dt.in[i].n_elem)
-			{
-				ft_printf("new_elem[%d][%d] : [%s]\n", i, j, dt.in[i].elem->cont[j]);
-				j++;
-			}
-			int z = 0;
-			while (z < dt.in[i].n_redir)
-			{
-				ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
-				z++;
-			}
+			// j = 0;
+			// ft_printf("n_elem [%d]\n", dt.in[i].n_elem);
+			// while (j < dt.in[i].n_elem)
+			// {
+			// 	ft_printf("new_elem[%d][%d] : [%s]\n", i, j, dt.in[i].elem->cont[j]);
+			// 	j++;
+			// }
+			// int z = 0;
+			// while (z < dt.in[i].n_redir)
+			// {
+			// 	ft_printf("redir [%s] : [%s]\n", dt.in[i].red[z].chevron, dt.in[i].red[z].file);
+			// 	z++;
+			// }
 			///////////////////////////////////////////////////////////////////////////
-			// exec_redir(&dt);
-			// cmd_selector(&dt, i);
 			i++;
 		}
 		i = 0;
@@ -82,9 +79,17 @@ void	prompt(char **envp)
 		i = 0;
 		while (i < dt.n_cmd)
 		{
-			ft_printf("pid %d\n", dt.in[i].pid);
-			waitpid(dt.in[i++].pid, NULL, 0); // ---------------------------------- MARLENE, POSE TON BEAU CODE ICI
+			waitpid(dt.in[i++].pid, &g_exit_stat, 0);
+			if (WIFSIGNALED(g_exit_stat))
+				g_exit_stat = ERR_SIGN + g_exit_stat;
+			if (WIFEXITED(g_exit_stat))
+				g_exit_stat = WEXITSTATUS(g_exit_stat);
 		}
+		// while (i < dt.n_cmd)
+		// {
+		// 	ft_printf("pid %d\n", dt.in[i].pid);
+		// 	waitpid(dt.in[i++].pid, NULL, 0); // ---------------------------------- MARLENE, POSE TON BEAU CODE ICI
+		// }
 
 		add_history(prompt);
 		free(prompt);

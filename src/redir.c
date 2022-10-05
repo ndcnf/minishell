@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:17:08 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 19:34:42 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:08:56 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void	init_fd(t_data *dt)
 		dt->in[i + 1].fd.in = fd[0];
 		i++;
 	}
-	mgmnt_fd(dt);
 }
 
 void	exec_redir(t_data *dt)
 {
 	init_fd(dt);
+	mgmnt_fd(dt);
 }
 
 // '<'

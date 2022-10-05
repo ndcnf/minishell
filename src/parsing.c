@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/04 15:33:10 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:11:54 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	parsing_elem(t_data *dt, char *s, int in)
 		i++;
 	}
 	dt->in[in].elem->cont[n] = NULL;
-	n = 0;
 	// UNIQUEMENT POUR TESTS //////////////////////////////////////////////////
-	while (n < dt->in[in].n_elem)
-	{
-		ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
-		n++;
-	}
+	// n = 0;
+	// while (n < dt->in[in].n_elem)
+	// {
+	// 	ft_printf("elem [%d] : [%s]\n", n, dt->in[in].elem->cont[n]);
+	// 	n++;
+	// }
 	///////////////////////////////////////////////////////////////////////////
 }
 

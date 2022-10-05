@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 17:30:46 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:02:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void	heredoc(t_data *dt, int i, int j);
 //execve.c
 void	exec_boarders(t_data *dt, int in);
 int		exec_middle(t_data *dt, int in, int ok, int i);
+int		on_my_way(t_data *dt, int ok, char *cmd_path, int in);
 
 //signals.c
 void	sig_int(int c);
