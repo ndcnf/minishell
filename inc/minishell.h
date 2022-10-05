@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 19:43:36 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:56:41 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ typedef struct s_data
 void	prompt(char **envp);
 int		termios_line(t_data *dt);
 void	the_closer(t_data *dt);
+void	prompt_quotes(t_data *dt);
+void	ft_wait(t_data *dt, int i);
 
 //builtins.c
 int		b_pwd(t_data *dt);
@@ -121,6 +123,7 @@ int		is_bs(t_data *dt, int i);
 int		parsing_init(char *args, t_data *dt);
 int		each_elem(t_input *in, char *s, int i, int n);
 void	parsing_elem(t_data *dt, char *s, int in);
+int		parsing_misc(t_data *dt, int i, char **input);
 
 //parsing_utils.c
 int		check_quotes(t_input *input, char *s);
@@ -199,10 +202,12 @@ void	heredoc(t_data *dt, int i, int j);
 void	exec_boarders(t_data *dt, int in);
 int		exec_middle(t_data *dt, int in, int ok, int i);
 int		on_my_way(t_data *dt, int ok, char *cmd_path, int in);
+void	execution(t_data *dt, int in, int i, int ok);
 
 //signals.c
 void	sig_int(int c);
 void	sig_double(int c);
+char	*ft_set_signal(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);
