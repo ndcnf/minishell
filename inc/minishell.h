@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 14:42:01 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:43:54 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define ERR_PIPE "pipe error\n"
 # define ERR_FILE "file error\n"
 # define ERR_EXE "execution error\n"
+# define ERR_TOKEN "syntax error near unexpected token\n"
 
 int		g_exit_stat;
 
