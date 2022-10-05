@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:44:46 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/04 15:37:30 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:47:21 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	print_env(t_data *dt, int in, char **elem)
 		{
 			export = parse_env(elem[i]);
 			if (export[1])
-				printf("declare -x %s=\"%s\"\n", export[0], export[1]);
+				ft_printf("declare -x %s=\"%s\"\n", export[0], export[1]);
 			else if (export[0])
-				printf("declare -x %s\n", export[0]);
+				ft_printf("declare -x %s\n", export[0]);
 			i++;
 			freearray(export, 2);
 		}
