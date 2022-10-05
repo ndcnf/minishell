@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 20:32:45 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:20:50 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void	freearray(char **m, int n);
 
 //var.c
 void	conv_var(t_data *dt, int in, int i);
+char	*check_doll(t_input *in, int j, char *tmp, int i);
 
 //quotes_utils.c
 int		trimquotes(t_data *dt, char *s, int in, int i);
