@@ -6,11 +6,12 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:17:08 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:26:41 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:35:13 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
 void	exec_redir(t_data *dt)
 {
 	init_fd(dt);
@@ -84,7 +85,7 @@ void	heredoc(t_data *dt, int i, int j)
 		if (ft_strncmp(prompt, keyword, (ft_strlen(keyword) + 1)))
 			ft_putendl_fd(prompt, fd[1]);
 		else
-			break;
+			break ;
 		free(prompt);
 	}
 	free(prompt);

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 20:37:21 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:32:21 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ void	bs_fd(t_data *dt, int i, t_fd *fdk)
 		dup2(dt->in[i].fd.in, STDIN_FILENO);
 		close(dt->in[i].fd.in);
 	}
-}
-
-void	reset_fd(t_fd *fdk)
-{
-	dup2(fdk->out, STDOUT_FILENO);
-	dup2(fdk->in, STDIN_FILENO);
-	close(fdk->out);
-	close(fdk->in);
 }
 
 int	is_bs(t_data *dt, int i)

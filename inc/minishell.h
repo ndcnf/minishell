@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:28:33 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:33:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int		b_env(t_data *dt);
 void	cmd_selector(t_data *dt, int i);
 int		builtins_selector(t_data *dt, int i);
 void	bs_fd(t_data *dt, int i, t_fd *fdk);
-void	reset_fd(t_fd *fdk);
 int		is_bs(t_data *dt, int i);
 char	*ft_strtolower(char *s);
 
@@ -201,6 +200,7 @@ void	heredoc(t_data *dt, int i, int j);
 void	mgmnt_fd(t_data *dt);
 void	open_fd(t_data *dt, int i, int j);
 void	init_fd(t_data *dt);
+void	reset_fd(t_fd *fdk);
 
 //execve.c
 void	exec_boarders(t_data *dt, int in);

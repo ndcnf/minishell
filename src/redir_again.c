@@ -6,11 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:25:05 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:27:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:35:43 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minishell.h"
+#include "../inc/minishell.h"
 
 void	mgmnt_fd(t_data *dt)
 {
@@ -58,4 +58,12 @@ void	init_fd(t_data *dt)
 		dt->in[i + 1].fd.in = fd[0];
 		i++;
 	}
+}
+
+void	reset_fd(t_fd *fdk)
+{
+	dup2(fdk->out, STDOUT_FILENO);
+	dup2(fdk->in, STDIN_FILENO);
+	close(fdk->out);
+	close(fdk->in);
 }
