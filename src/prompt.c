@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 18:32:02 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:57:22 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	prompt(char **envp)
 {
 	t_data	dt;
 	int		i;
-	int		j;
-	int		quote;
 
 	g_exit_stat = 0;
 	b_init(&dt, envp);
@@ -25,27 +23,7 @@ void	prompt(char **envp)
 	{
 		if (termios_line(&dt) == 1)
 			continue ;
-		i = 0;
-		while (i < dt.n_cmd)
-		{
-			j = 0;
-			init_redir(&dt, i);
-			while (j < dt.in[i].n_elem)
-			{
-				trimquotes(&dt, "\"", i, j);
-				quote = trimquotes(&dt, "\'", i, j);
-				if (!quote)
-					conv_var(&dt, i, j);
-				if (checker_redir(&dt, i, j) == NO_RESULT)
-					break ;
-				if (dt.in[i].n_redir > 0)
-					j--;
-				j++;
-			}
-			if (dt.in[i].pos_red == NO_RESULT)
-				break ;
-			i++;
-		}
+		prompt_quotes(&dt);
 		i = 0;
 		exec_redir(&dt);
 		while (i < dt.n_cmd)
@@ -55,18 +33,7 @@ void	prompt(char **envp)
 		}
 		the_closer(&dt);
 		i = 0;
-		while (i < dt.n_cmd)
-		{
-			if (dt.in[i].pid != NO_RESULT)
-			{
-				waitpid(dt.in[i].pid, &g_exit_stat, 0);
-				if (WIFSIGNALED(g_exit_stat))
-					g_exit_stat = ERR_SIGN + g_exit_stat;
-				if (WIFEXITED(g_exit_stat))
-					g_exit_stat = WEXITSTATUS(g_exit_stat);
-			}
-			i++;
-		}
+		ft_wait(&dt, i);
 		free_data(&dt);
 	}
 	free(dt.path);
@@ -91,17 +58,8 @@ int	termios_line(t_data *dt)
 {
 	char			*prompt;
 	char			*new_prompt;
-	struct termios	rplc;
-	struct termios	saved;
 
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sig_int);
-	tcgetattr(STDIN_FILENO, &saved);
-	tcgetattr(STDIN_FILENO, &rplc);
-	rplc.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSAFLUSH, &rplc);
-	prompt = readline("\e[36mmarynad$ \e[0m");
-	tcsetattr(STDIN_FILENO, TCSAFLUSH, &saved);
+	prompt = ft_set_signal();
 	signal(SIGINT, SIG_IGN);
 	new_prompt = ft_strtrim(prompt, " \t\n\r");
 	free(prompt);
@@ -115,4 +73,49 @@ int	termios_line(t_data *dt)
 	add_history(new_prompt);
 	free(new_prompt);
 	return (0);
+}
+
+void	prompt_quotes(t_data *dt)
+{
+	int	i;
+	int	j;
+	int	quote;
+
+	i = 0;
+	while (i < dt->n_cmd)
+	{
+		j = 0;
+		init_redir(dt, i);
+		while (j < dt->in[i].n_elem)
+		{
+			trimquotes(dt, "\"", i, j);
+			quote = trimquotes(dt, "\'", i, j);
+			if (!quote)
+				conv_var(dt, i, j);
+			if (checker_redir(dt, i, j) == NO_RESULT)
+				break ;
+			if (dt->in[i].n_redir > 0)
+				j--;
+			j++;
+		}
+		if (dt->in[i].pos_red == NO_RESULT)
+			break ;
+		i++;
+	}
+}
+
+void	ft_wait(t_data *dt, int i)
+{
+	while (i < dt->n_cmd)
+	{
+		if (dt->in[i].pid != NO_RESULT)
+		{
+			waitpid(dt->in[i].pid, &g_exit_stat, 0);
+			if (WIFSIGNALED(g_exit_stat))
+				g_exit_stat = ERR_SIGN + g_exit_stat;
+			if (WIFEXITED(g_exit_stat))
+				g_exit_stat = WEXITSTATUS(g_exit_stat);
+		}
+		i++;
+	}
 }
