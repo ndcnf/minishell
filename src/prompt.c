@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 19:57:22 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:25:17 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	prompt(char **envp)
 		ft_wait(&dt, i);
 		free_data(&dt);
 	}
-	free(dt.path);
 }
 
 void	the_closer(t_data *dt)
@@ -64,7 +63,10 @@ int	termios_line(t_data *dt)
 	new_prompt = ft_strtrim(prompt, " \t\n\r");
 	free(prompt);
 	if (!new_prompt)
+	{
+		freearray(dt->env, dt->n_env);
 		exit(the_end("exit\n", EXIT_SUCCESS, 1));
+	}
 	if (!new_prompt[0] || parsing_init(new_prompt, dt) == NO_RESULT)
 	{
 		free(new_prompt);

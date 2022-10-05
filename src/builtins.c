@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 16:40:41 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 13:33:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:39:15 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	b_exit(t_data *dt, int in)
 	if (dt->in[in].n_elem == 1)
 	{
 		ft_printf("exit\n");
+		freearray(dt->env, dt->n_env);
+		free_data(dt);
 		exit (g_exit_stat);
 	}
 	if (dt->in[in].n_elem > 2)
@@ -43,11 +45,19 @@ int	b_exit(t_data *dt, int in)
 		if (ft_atoi(dt->in[in].elem->cont[1])
 			|| dt->in[in].elem->cont[1][0] == '0')
 			return (the_end(TM_ARG, EXIT_FAILURE, 1));
+		freearray(dt->env, dt->n_env);
+		free_data(dt);
 		exit (the_end(NOT_NUM, ERR_EXIT, 1));
 	}
 	n = ft_atoi(dt->in[in].elem->cont[1]);
 	if (n || dt->in[in].elem->cont[1][0] == '0')
+	{
+		freearray(dt->env, dt->n_env);
+		free_data(dt);
 		exit (the_end("exit\n", n, 0));
+	}
+	freearray(dt->env, dt->n_env);
+	free_data(dt);
 	exit (the_end(NOT_NUM, ERR_EXIT, 1));
 }
 

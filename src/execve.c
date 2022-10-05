@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 19:48:51 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:40:46 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	exec_boarders(t_data *dt, int in)
 				execution(dt, in, i, ok);
 			}
 		}
+		freearray(dt->env, dt->n_env);
+		free_data(dt);
 		exit (g_exit_stat);
 	}
 }
@@ -67,6 +69,8 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 			dup2(dt->in[in].fd.in, STDIN_FILENO);
 		the_closer(dt);
 		execve(cmd_path, dt->in[in].elem->cont, dt->env);
+		freearray(dt->env, dt->n_env);
+		free_data(dt);
 		exit (the_end(ERR_EXE, EXIT_FAILURE, 1));
 	}
 	return (ok);
@@ -75,11 +79,11 @@ int	on_my_way(t_data *dt, int ok, char *cmd_path, int in)
 void	execution(t_data *dt, int in, int i, int ok)
 {
 	if (i == NO_RESULT)
-		the_end(CMD_404, ERR_404, 1);
+		msg_cmd_404(dt, in);
 	else
 	{
 		ok = exec_middle(dt, in, ok, i);
 		if (ok == 0)
-			the_end(CMD_404, ERR_404, 1);
+			msg_cmd_404(dt, in);
 	}
 }
