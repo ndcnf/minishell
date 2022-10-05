@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 10:44:23 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:57:52 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define ERR_PIPE "pipe error\n"
 # define ERR_FILE "file error\n"
 # define ERR_EXE "execution error\n"
+# define ERR_TOKEN "syntax error near unexpected token\n"
 
 int		g_exit_stat;
 

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 10:11:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:03:52 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,14 @@ int	parsing_init(char *args, t_data *dt)
 	i = -1;
 	input = ft_split_ex(args, '|');
 	while (++i < dt->n_cmd)
+	{
+		if (input[i] == NULL && dt->n_cmd > 1)
+		{
+			the_end(ERR_TOKEN, ERR_REDIR, 1);
+			return (NO_RESULT);
+		}
 		dt->in[i].cont = input[i];
+	}
 	i = -1;
 	while (++i < dt->n_cmd)
 	{
@@ -72,8 +79,8 @@ int	each_elem(t_input *in, char *s, int i, int n)
 {
 	int		j;
 
-	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
-	i = skip_spaces(s, i);
+	s = ft_strtrim(s, " \t\n\r");
+	i = 0;
 	j = malloc_elem(in, s, i, n);
 	while (i < j)
 	{
