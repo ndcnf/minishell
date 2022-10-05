@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_selector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:54:27 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 11:31:03 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:50:49 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	cmd_selector(t_data *dt, int i)
 {
-	signal(SIGINT, sig_double);
-	signal(SIGQUIT, sig_double);
-	if (builtins_selector(dt, i) == NO_RESULT)
+	if (dt->n_cmd == 1)
+	{
+		if (builtins_selector(dt, i) == NO_RESULT)
+			exec_boarders(dt, i);
+	}
+	else
 		exec_boarders(dt, i);
-	signal(SIGINT, sig_int);
-	signal(SIGQUIT, SIG_IGN);
-	// freearray(bs.env, bs.n_env);
-	// freearray(bs.args, bs.n_args);
 }
 
 int	builtins_selector(t_data *dt, int i)
