@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:29:26 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 10:11:35 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:24:04 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,17 @@
 
 void	prompt(char **envp)
 {
-	char	*prompt;
 	t_data	dt;
 	int		i;
 	int		j;
 	int		quote;
 
 	g_exit_stat = 0;
-	prompt = NULL;
 	b_init(&dt, envp);
 	while (1)
 	{
-		prompt = readline("\e[36mmarynad$ \e[0m");
-		if (!prompt)
-			exit(EXIT_SUCCESS);
-		if (!prompt[0] || parsing_init(prompt, &dt) == NO_RESULT)
-		{
-			free(prompt);
+		if (termios_line(&dt) == 1)
 			continue ;
-		}
 		i = 0;
 		while (i < dt.n_cmd)
 		{
@@ -85,18 +77,36 @@ void	prompt(char **envp)
 			if (WIFEXITED(g_exit_stat))
 				g_exit_stat = WEXITSTATUS(g_exit_stat);
 		}
-		// while (i < dt.n_cmd)
-		// {
-		// 	ft_printf("pid %d\n", dt.in[i].pid);
-		// 	waitpid(dt.in[i++].pid, NULL, 0); // ---------------------------------- MARLENE, POSE TON BEAU CODE ICI
-		// }
-
-		add_history(prompt);
-		free(prompt);
 		free_data(&dt);
 		// POUR TESTS UNIQUEMENT //////////////////////////////////////////////
 		//ft_printf("globale maintenant = %d\n", g_exit_stat);
 		///////////////////////////////////////////////////////////////////////
 	}
 	free(dt.path);
+}
+
+int	termios_line(t_data *dt)
+{
+	char			*prompt;
+	struct termios	rplc;
+	struct termios	saved;
+
+	signal(SIGINT, sig_int);
+	signal(SIGQUIT, SIG_IGN);
+	tcgetattr(STDIN_FILENO, &saved);
+	tcgetattr(STDIN_FILENO, &rplc);
+	rplc.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &rplc);
+	prompt = readline("\e[36mmarynad$ \e[0m");
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &saved);
+	if (!prompt)
+		exit(the_end("exit\n", EXIT_SUCCESS, 1));
+	if (!prompt[0] || parsing_init(prompt, dt) == NO_RESULT)
+	{
+		free(prompt);
+		return (1);
+	}
+	add_history(prompt);
+	free(prompt);
+	return (0);
 }

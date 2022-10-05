@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 10:02:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:22:15 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_data
 
 //prompt.c
 void	prompt(char **envp);
+int		termios_line(t_data *dt);
 
 //builtins.c
 int		b_pwd(t_data *dt);
@@ -196,7 +197,6 @@ int		on_my_way(t_data *dt, int ok, char *cmd_path, int in);
 //signals.c
 void	sig_int(int c);
 void	sig_double(int c);
-void	ft_termios(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);

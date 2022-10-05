@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:45:47 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/03 14:21:48 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:19:32 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int	main(int argc, char *argv[], char **envp)
 	}
 	if (envp)
 	{
-		signal(SIGINT, sig_int);
-		signal(SIGQUIT, SIG_IGN);
-		ft_termios();
 		prompt(envp);
 	}
 

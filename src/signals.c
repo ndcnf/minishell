@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:32:06 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/09/29 16:28:48 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:21:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,6 @@ void	sig_int(int c)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-}
-
-void	ft_termios(void)
-{
-	struct termios	rplc;
-
-	tcgetattr(STDIN_FILENO, &rplc);
-	rplc.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSADRAIN, &rplc);
 }
 
 void	sig_double(int c)
