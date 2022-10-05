@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 16:32:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:43:36 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ void	sig_double(int c);
 
 //error.c
 int		the_end(char *msg, int status, int print);
+int		msg_cmd_404(t_data *dt, int i);
 
 //free.c
 void	free_data(t_data *dt);

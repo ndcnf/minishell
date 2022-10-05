@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:05:55 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 17:08:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:48:51 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	exec_boarders(t_data *dt, int in)
 			{
 				i = where_in_env(dt, "PATH", 4);
 				if (i == NO_RESULT)
-					the_end(CMD_404, ERR_404, 1);
+					msg_cmd_404(dt, in);
 				else
 				{
 					ok = exec_middle(dt, in, ok, i);
 					if (ok == 0)
-						the_end(CMD_404, ERR_404, 1);
+						msg_cmd_404(dt, in);
 				}
 			}
 		}
