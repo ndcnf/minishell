@@ -211,6 +211,7 @@ char	*ft_set_signal(void);
 
 //error.c
 int		the_end(char *msg, int status, int print);
+int		msg_cmd_404(t_data *dt, int i);
 
 //free.c
 void	free_data(t_data *dt);
