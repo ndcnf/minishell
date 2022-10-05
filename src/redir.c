@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:17:08 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 18:28:26 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:41:01 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ void	init_fd(t_data *dt)
 	while (i < dt->n_cmd - 1)
 	{
 		if (pipe(fd) == NO_RESULT)
+		{
+			freearray(dt->env, dt->n_env);
+			free_data(dt);
 			exit (the_end(ERR_PIPE, EXIT_FAILURE, 1));
+		}
 		dt->in[i].fd.out = fd[1];
 		dt->in[i + 1].fd.in = fd[0];
 		i++;
