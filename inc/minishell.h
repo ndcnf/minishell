@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:20:50 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:28:33 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,13 +192,15 @@ int		checker_redir(t_data *dt, int in, int i);
 
 //redir.c
 void	exec_redir(t_data *dt);
-void	init_fd(t_data *dt);
-void	mgmnt_fd(t_data *dt);
-void	open_fd(t_data *dt, int i, int j);
 void	redir_output(t_data *dt, int i, int j);
 void	redir_input(t_data *dt, int i, int j);
 void	append_in(t_data *dt, int i, int j);
 void	heredoc(t_data *dt, int i, int j);
+
+//redir_again.c
+void	mgmnt_fd(t_data *dt);
+void	open_fd(t_data *dt, int i, int j);
+void	init_fd(t_data *dt);
 
 //execve.c
 void	exec_boarders(t_data *dt, int in);
