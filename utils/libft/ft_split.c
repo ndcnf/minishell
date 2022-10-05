@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/09/01 14:51:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:44:56 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	*new_str(char *s, char c, int w_cnt, int toggle)
 		p = i - 1;
 		if (s[0] != c && toggle == 0)
 			return ((char *)&s[0]);
-		if ((s[i] != c && s[p] == c && i > 0) || (w_cnt == 0 && s[i] != c))
+		if ((s[i] != c && i > 0 && s[p] == c) || (w_cnt == 0 && s[i] != c))
 			return ((char *)&s[i]);
 		i++;
 	}

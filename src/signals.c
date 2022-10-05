@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:32:06 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 11:47:29 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:56:49 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	sig_double(int c)
 	}
 	if (c == SIGQUIT)
 	{
-		write(1, "Quit : 3\n", 9);
+		ft_printf("Quit : %d\n", c);
 		rl_on_new_line();
 	}
 }

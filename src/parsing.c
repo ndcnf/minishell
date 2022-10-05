@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
 /*   Updated: 2022/10/05 10:11:54 by nchennaf         ###   ########.fr       */
@@ -73,7 +73,7 @@ int	each_elem(t_input *in, char *s, int i, int n)
 	int		j;
 
 	s = ft_substr(s, skip_spaces(s, i), ft_strlen(s));
-	i = 0;
+	i = skip_spaces(s, i);
 	j = malloc_elem(in, s, i, n);
 	while (i < j)
 	{
@@ -83,6 +83,7 @@ int	each_elem(t_input *in, char *s, int i, int n)
 		in->elem->cont[n][i] = s[i];
 		i++;
 	}
+	// printf("[%s]\n", in->elem->cont[n]);
 	in->elem->cont[n][i] = '\0';
 	free(s);
 	return (i);
