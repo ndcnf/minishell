@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:34:51 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 10:10:43 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:51:03 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	conv_var(t_data *dt, int in, int i)
 		{
 			j = ft_strlen(tmp) + 1;
 			free(tmp);
-			tmp = ft_strchr(dt->in[in].elem->cont[i] + j, '$');
+			if (j < (int)ft_strlen(dt->in[in].elem->cont[i]))
+				tmp = ft_strchr(dt->in[in].elem->cont[i] + j, '$');
+			else
+				tmp = NULL;
 			continue ;
 		}
 		free (dt->in[in].elem->cont[i]);
