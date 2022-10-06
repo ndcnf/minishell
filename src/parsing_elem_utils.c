@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/06 14:54:07 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:59:58 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	malloc_elem(t_input *in, char *s, int i, int n)
 
 	j = 0;
 	if (s[i] == '\"' || s[i] == '\'')
-			j = (is_quotes(s, i) + 1);
+			j = (is_quotes(s, i));
 	else
 	{
 		while (s[i])
 		{
 			if (s[i] == '\"' || s[i] == '\'')
 			{
-				j = (is_quotes(s, i) + 1);
+				j = (is_quotes(s, i));
 				i = j;
 			}
 			if (!s[i])
