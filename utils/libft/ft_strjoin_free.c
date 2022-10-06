@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:26:29 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/04 15:31:36 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:02:44 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ char	*ft_strjoin_free(char const *s1, char const *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (0);
-	dest = malloc (sizeof(*dest) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	dest = malloc (sizeof(*dest) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!dest)
 		return (0);
-	while (s1[i])
+	while (i < ft_strlen(s1))
 	{
 		dest[i] = s1[i];
 		i++;
 	}
 	y = 0;
-	while (s2[y])
+	while (y < ft_strlen(s2))
 	{
 		dest[i] = s2[y];
 		i++;

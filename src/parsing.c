@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:23:52 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/06 14:57:00 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:00:18 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	parsing_init(char *args, t_data *dt)
 		if (nb_cmd(dt, args, i) == NO_RESULT)
 			return (NO_RESULT);
 	}
-	dt->in = ft_calloc(sizeof(t_input), dt->n_cmd);
+	dt->in = ft_calloc(sizeof(t_input), dt->n_cmd + 1);
 	i = -1;
 	input = ft_split_ex(args, '|');
 	if (parsing_misc(dt, i, input) == NO_RESULT)

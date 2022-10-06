@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 18:07:04 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:51:46 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	word_cnt(char *s, char c)
 	i = 0;
 	is_word = 0;
 	cnt = 0;
-	while (s[i])
+	while (i < (int) ft_strlen(s))
 	{
 		if (s[i] == c)
 			is_word = 0;
@@ -56,7 +56,7 @@ static char	*words_without_borders(char *s, char c)
 
 	i = 0;
 	w_len = 0;
-	while (s[w_len] != c && s[w_len])
+	while (w_len < (int) ft_strlen(s) && s[w_len] != c)
 		w_len++;
 	ptr = (char *)malloc(sizeof(char) * (w_len + 1));
 	malloc_checker(ptr);
@@ -80,7 +80,7 @@ static void	*new_str(char *s, char c, int w_cnt, int toggle)
 	int	p;
 
 	i = 0;
-	while (s[i])
+	while (i < (int) ft_strlen(s))
 	{
 		p = i - 1;
 		if (s[0] != c && toggle == 0)

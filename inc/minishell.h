@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/06 15:56:21 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:44:59 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void	exec_boarders(t_data *dt, int in);
 int		exec_middle(t_data *dt, int in, int ok, int i);
 int		on_my_way(t_data *dt, int ok, char *cmd_path, int in);
 void	execution(t_data *dt, int in, int i, int ok);
+int		len_array(char **array);
 
 //signals.c
 void	sig_int(int c);
