@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/25 11:41:15 by nchennaf          #+#    #+#              #
-#    Updated: 2022/10/05 21:27:15 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/10/06 14:51:26 by mthiesso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 20:11:09 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:54:07 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	into_elem_quotes(t_input *in, char *s, int i, int n)
 	{
 		in->elem->cont[n][i] = s[i];
 		i++;
+		if (!s[i])
+			return (i);
 		while (s[i] != '\"' && s[i] != '\'')
 		{
 			in->elem->cont[n][i] = s[i];
