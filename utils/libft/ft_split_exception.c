@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 22:00:36 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:43:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@ int	is_quotes(char *s, int i)
 	char	c;
 
 	j = i;
-	if (s[i] == '\"')
-		c = '\"';
-	else
-		c = '\'';
 	while (s[i])
 	{
-		i = (check_qts_split(s, i, c));
+		if (s[i] == '\"')
+		{
+			c = '\"';
+			return (check_qts_split(s, i, c));
+		}
+		else if (s[i] == '\'')
+		{
+			c = '\'';
+			return (check_qts_split(s, i, c));
+		}
 		i++;
 	}
 	return (j);
