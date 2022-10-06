@@ -6,7 +6,7 @@
 /*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:08:20 by mthiesso          #+#    #+#             */
-/*   Updated: 2022/10/05 20:11:09 by mthiesso         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:45:19 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	nb_cmd(t_data *dt, char *args, int i)
 {
-	while (args[i])
+	while (i < (int) ft_strlen(args))
 	{
 		if (args[i] == '\"' || args[i] == '\'')
 		{
@@ -43,14 +43,14 @@ int	malloc_elem(t_input *in, char *s, int i, int n)
 
 	j = 0;
 	if (s[i] == '\"' || s[i] == '\'')
-			j = (is_quotes(s, i) + 1);
+			j = (is_quotes(s, i));
 	else
 	{
-		while (s[i])
+		while (i < (int) ft_strlen(s))
 		{
 			if (s[i] == '\"' || s[i] == '\'')
 			{
-				j = (is_quotes(s, i) + 1);
+				j = (is_quotes(s, i));
 				i = j;
 			}
 			if (!s[i])
@@ -61,7 +61,7 @@ int	malloc_elem(t_input *in, char *s, int i, int n)
 			j++;
 		}
 	}
-	in->elem->cont[n] = malloc(sizeof(char) * j + 1);
+	in->elem->cont[n] = malloc(sizeof(char) * (j + 2));
 	malloc_checker(in->elem->cont[n]);
 	return (j);
 }
@@ -72,6 +72,8 @@ int	into_elem_quotes(t_input *in, char *s, int i, int n)
 	{
 		in->elem->cont[n][i] = s[i];
 		i++;
+		if (!s[i])
+			return (i);
 		while (s[i] != '\"' && s[i] != '\'')
 		{
 			in->elem->cont[n][i] = s[i];

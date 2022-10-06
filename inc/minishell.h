@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:25:30 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/05 21:57:06 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:56:21 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	ft_wait(t_data *dt, int i);
 int		b_pwd(t_data *dt);
 int		b_exit(t_data *dt, int in);
 int		b_env(t_data *dt);
+void	free_all(t_data *dt);
 
 //cmd_selector.c
 void	cmd_selector(t_data *dt, int i);
