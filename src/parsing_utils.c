@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:36:28 by marlene           #+#    #+#             */
-/*   Updated: 2022/10/05 14:19:44 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:42:01 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ void	space_counter(t_input *in, char *s)
 
 	i = 0;
 	i = skip_spaces(s, i);
-	while (s[i])
+	while (i < (int) ft_strlen(s))
 	{
 		if (s[i] == '\"')
 		{
 			i++;
-			while (s[i] != '\"')
+			while (i < (int) ft_strlen(s) && s[i] != '\"')
 				i++;
 		}
 		else if (s[i] == '\'')
 		{
 			i++;
-			while (s[i] != '\'')
+			while (i < (int) ft_strlen(s) && s[i] != '\'')
 				i++;
 		}
 		else if (s[i] == ' ' && s[i + 1] == '\0')

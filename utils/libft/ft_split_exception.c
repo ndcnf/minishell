@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exception.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: mthiesso <mthiesso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:44:45 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/10/06 11:43:53 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:07:18 by mthiesso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	word_cnt(char *s, char c)
 	i = 0;
 	is_word = 0;
 	cnt = 0;
-	while (s[i])
+	while (i < (int) ft_strlen(s))
 	{
 		if (s[i] == '\"' || s[i] == '\'')
 			i = is_quotes(s, i);
@@ -81,7 +81,7 @@ static char	*words_without_borders(char *s, char c)
 
 	i = 0;
 	w_len = 0;
-	while (s[w_len] && s[w_len] != c)
+	while (w_len < (int) ft_strlen(s) && s[w_len] != c)
 	{
 		if (s[w_len] == '\"' || s[w_len] == '\'')
 			w_len = is_quotes(s, w_len);
@@ -109,11 +109,11 @@ static void	*new_str(char *s, char c, int w_cnt, int toggle)
 	int	p;
 
 	i = 0;
-	while (s[i])
+	while (i < (int) ft_strlen(s))
 	{
 		if (s[0] != c && toggle == 0)
 			return ((char *)&s[0]);
-		else if (s[i - 1] != c && (s[i] == '\"' || s[i] == '\''))
+		else if (i > 0 && s[i - 1] != c && (s[i] == '\"' || s[i] == '\''))
 			i = is_quotes(s, i);
 		p = i - 1;
 		if ((s[i] != c && i > 0 && s[p] == c) || (w_cnt == 0 && s[i] != c))
